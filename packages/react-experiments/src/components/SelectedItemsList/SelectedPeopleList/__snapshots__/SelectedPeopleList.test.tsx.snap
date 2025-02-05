@@ -25,24 +25,24 @@ Array [
         &:hover {
           background: #deecf9;
         }
-        @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+        @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
           background: Highlight;
           border: 1px solid ButtonText;
           color: HighlightText;
         }
-        @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover .ms-PickerItem-content {
+        @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover .ms-PickerItem-content {
           color: HighlightText;
         }
-        @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover .ms-PickerItem-removeButton {
+        @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover .ms-PickerItem-removeButton {
           color: HighlightText;
         }
-        @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+        @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
           -ms-high-contrast-adjust: none;
           background: ButtonFace;
           border: 1px solid ButtonText;
           color: ButtonText;
         }
-        @media screen and (-ms-high-contrast: active), (forced-colors: active){& .ms-PickerItem-removeButton {
+        @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& .ms-PickerItem-removeButton {
           color: ButtonText;
         }
     data-is-focusable={true}
@@ -61,6 +61,7 @@ Array [
             {
               -moz-osx-font-smoothing: grayscale;
               -webkit-font-smoothing: antialiased;
+              align-items: center;
               background-color: transparent;
               border-radius: 15px 0px 0px 15px;
               border: none;
@@ -72,6 +73,7 @@ Array [
               font-size: 14px;
               font-weight: 400;
               height: 32px;
+              justify-content: center;
               margin-right: -17px;
               outline: transparent;
               padding-bottom: 0;
@@ -98,7 +100,25 @@ Array [
               top: 2px;
               z-index: 1;
             }
-            @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              bottom: -2px;
+              left: -2px;
+              outline-color: ButtonText;
+              right: -2px;
+              top: -2px;
+            }
+            :host(.ms-Fabric--isFocusVisible) &:focus:after {
+              border: 1px solid transparent;
+              bottom: 2px;
+              content: "";
+              left: 2px;
+              outline: 1px solid #605e5c;
+              position: absolute;
+              right: 2px;
+              top: 2px;
+              z-index: 1;
+            }
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
               bottom: -2px;
               left: -2px;
               outline-color: ButtonText;
@@ -110,7 +130,7 @@ Array [
               position: relative;
               top: 0px;
             }
-            @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
               background-color: inherit;
               color: inherit;
             }
@@ -118,7 +138,7 @@ Array [
               background-color: #c7e0f4;
               color: #005a9e;
             }
-            @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
               background: inherit;
               border-color: Highlight;
               color: inherit;
@@ -127,7 +147,7 @@ Array [
               background-color: #106ebe;
               color: #ffffff;
             }
-            @media screen and (-ms-high-contrast: active), (forced-colors: active){&:active {
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:active {
               background: inherit;
               color: inherit;
             }
@@ -159,6 +179,7 @@ Array [
                 ms-Button-icon
                 {
                   display: inline-block;
+                  text-decoration: inherit;
                 }
                 {
                   -moz-osx-font-smoothing: grayscale;
@@ -279,7 +300,7 @@ Array [
                       height: 32px;
                       line-height: 32px;
                     }
-                    @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+                    @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                       -ms-high-contrast-adjust: none;
                       background-color: Window !important;
                       border: 1px solid WindowText;
@@ -327,10 +348,10 @@ Array [
                   &:hover {
                     color: #005a9e;
                   }
-                  @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+                  @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                     color: inherit;
                   }
-                  @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+                  @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                     color: inherit;
                   }
               dir="auto"
@@ -369,48 +390,6 @@ Array [
                 </div>
               </div>
             </div>
-            <div
-              className=
-                  ms-Persona-secondaryText
-                  {
-                    color: #605e5c;
-                    display: none;
-                    font-size: 12px;
-                    font-weight: 400;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    white-space: nowrap;
-                  }
-              dir="auto"
-            />
-            <div
-              className=
-                  ms-Persona-tertiaryText
-                  {
-                    color: #605e5c;
-                    display: none;
-                    font-size: 14px;
-                    font-weight: 400;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    white-space: nowrap;
-                  }
-              dir="auto"
-            />
-            <div
-              className=
-                  ms-Persona-optionalText
-                  {
-                    color: #605e5c;
-                    display: none;
-                    font-size: 14px;
-                    font-weight: 400;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    white-space: nowrap;
-                  }
-              dir="auto"
-            />
           </div>
         </div>
       </div>
@@ -422,18 +401,20 @@ Array [
             {
               -moz-osx-font-smoothing: grayscale;
               -webkit-font-smoothing: antialiased;
+              align-items: center;
               background-color: transparent;
               border-radius: 15px;
               border: none;
               box-sizing: border-box;
               color: #005a9e;
               cursor: pointer;
-              display: inline-block;
+              display: inline-flex;
               flex: 0 0 auto;
               font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
               font-size: 14px;
               font-weight: 400;
               height: 32px;
+              justify-content: center;
               outline: transparent;
               padding-bottom: 0;
               padding-left: 4px;
@@ -459,7 +440,25 @@ Array [
               top: 2px;
               z-index: 1;
             }
-            @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              bottom: -2px;
+              left: -2px;
+              outline-color: ButtonText;
+              right: -2px;
+              top: -2px;
+            }
+            :host(.ms-Fabric--isFocusVisible) &:focus:after {
+              border: 1px solid transparent;
+              bottom: 2px;
+              content: "";
+              left: 2px;
+              outline: 1px solid #605e5c;
+              position: absolute;
+              right: 2px;
+              top: 2px;
+              z-index: 1;
+            }
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
               bottom: -2px;
               left: -2px;
               outline-color: ButtonText;
@@ -471,7 +470,7 @@ Array [
               position: relative;
               top: 0px;
             }
-            @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
               background-color: inherit;
               color: inherit;
             }
@@ -479,7 +478,7 @@ Array [
               background-color: #c7e0f4;
               color: #005a9e;
             }
-            @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
               background: inherit;
               border-color: Highlight;
               color: inherit;
@@ -488,7 +487,7 @@ Array [
               background-color: #106ebe;
               color: #ffffff;
             }
-            @media screen and (-ms-high-contrast: active), (forced-colors: active){&:active {
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:active {
               background: inherit;
               color: inherit;
             }
@@ -520,6 +519,7 @@ Array [
                 ms-Button-icon
                 {
                   display: inline-block;
+                  text-decoration: inherit;
                 }
                 {
                   -moz-osx-font-smoothing: grayscale;
@@ -575,24 +575,24 @@ Array [
         &:hover {
           background: #deecf9;
         }
-        @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+        @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
           background: Highlight;
           border: 1px solid ButtonText;
           color: HighlightText;
         }
-        @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover .ms-PickerItem-content {
+        @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover .ms-PickerItem-content {
           color: HighlightText;
         }
-        @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover .ms-PickerItem-removeButton {
+        @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover .ms-PickerItem-removeButton {
           color: HighlightText;
         }
-        @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+        @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
           -ms-high-contrast-adjust: none;
           background: ButtonFace;
           border: 1px solid ButtonText;
           color: ButtonText;
         }
-        @media screen and (-ms-high-contrast: active), (forced-colors: active){& .ms-PickerItem-removeButton {
+        @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& .ms-PickerItem-removeButton {
           color: ButtonText;
         }
     data-is-focusable={true}
@@ -611,6 +611,7 @@ Array [
             {
               -moz-osx-font-smoothing: grayscale;
               -webkit-font-smoothing: antialiased;
+              align-items: center;
               background-color: transparent;
               border-radius: 15px 0px 0px 15px;
               border: none;
@@ -622,6 +623,7 @@ Array [
               font-size: 14px;
               font-weight: 400;
               height: 32px;
+              justify-content: center;
               margin-right: -17px;
               outline: transparent;
               padding-bottom: 0;
@@ -648,7 +650,25 @@ Array [
               top: 2px;
               z-index: 1;
             }
-            @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              bottom: -2px;
+              left: -2px;
+              outline-color: ButtonText;
+              right: -2px;
+              top: -2px;
+            }
+            :host(.ms-Fabric--isFocusVisible) &:focus:after {
+              border: 1px solid transparent;
+              bottom: 2px;
+              content: "";
+              left: 2px;
+              outline: 1px solid #605e5c;
+              position: absolute;
+              right: 2px;
+              top: 2px;
+              z-index: 1;
+            }
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
               bottom: -2px;
               left: -2px;
               outline-color: ButtonText;
@@ -660,7 +680,7 @@ Array [
               position: relative;
               top: 0px;
             }
-            @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
               background-color: inherit;
               color: inherit;
             }
@@ -668,7 +688,7 @@ Array [
               background-color: #c7e0f4;
               color: #005a9e;
             }
-            @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
               background: inherit;
               border-color: Highlight;
               color: inherit;
@@ -677,7 +697,7 @@ Array [
               background-color: #106ebe;
               color: #ffffff;
             }
-            @media screen and (-ms-high-contrast: active), (forced-colors: active){&:active {
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:active {
               background: inherit;
               color: inherit;
             }
@@ -709,6 +729,7 @@ Array [
                 ms-Button-icon
                 {
                   display: inline-block;
+                  text-decoration: inherit;
                 }
                 {
                   -moz-osx-font-smoothing: grayscale;
@@ -829,7 +850,7 @@ Array [
                       height: 32px;
                       line-height: 32px;
                     }
-                    @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+                    @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                       -ms-high-contrast-adjust: none;
                       background-color: Window !important;
                       border: 1px solid WindowText;
@@ -877,10 +898,10 @@ Array [
                   &:hover {
                     color: #005a9e;
                   }
-                  @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+                  @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                     color: inherit;
                   }
-                  @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+                  @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                     color: inherit;
                   }
               dir="auto"
@@ -919,48 +940,6 @@ Array [
                 </div>
               </div>
             </div>
-            <div
-              className=
-                  ms-Persona-secondaryText
-                  {
-                    color: #605e5c;
-                    display: none;
-                    font-size: 12px;
-                    font-weight: 400;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    white-space: nowrap;
-                  }
-              dir="auto"
-            />
-            <div
-              className=
-                  ms-Persona-tertiaryText
-                  {
-                    color: #605e5c;
-                    display: none;
-                    font-size: 14px;
-                    font-weight: 400;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    white-space: nowrap;
-                  }
-              dir="auto"
-            />
-            <div
-              className=
-                  ms-Persona-optionalText
-                  {
-                    color: #605e5c;
-                    display: none;
-                    font-size: 14px;
-                    font-weight: 400;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    white-space: nowrap;
-                  }
-              dir="auto"
-            />
           </div>
         </div>
       </div>
@@ -972,18 +951,20 @@ Array [
             {
               -moz-osx-font-smoothing: grayscale;
               -webkit-font-smoothing: antialiased;
+              align-items: center;
               background-color: transparent;
               border-radius: 15px;
               border: none;
               box-sizing: border-box;
               color: #005a9e;
               cursor: pointer;
-              display: inline-block;
+              display: inline-flex;
               flex: 0 0 auto;
               font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
               font-size: 14px;
               font-weight: 400;
               height: 32px;
+              justify-content: center;
               outline: transparent;
               padding-bottom: 0;
               padding-left: 4px;
@@ -1009,7 +990,25 @@ Array [
               top: 2px;
               z-index: 1;
             }
-            @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              bottom: -2px;
+              left: -2px;
+              outline-color: ButtonText;
+              right: -2px;
+              top: -2px;
+            }
+            :host(.ms-Fabric--isFocusVisible) &:focus:after {
+              border: 1px solid transparent;
+              bottom: 2px;
+              content: "";
+              left: 2px;
+              outline: 1px solid #605e5c;
+              position: absolute;
+              right: 2px;
+              top: 2px;
+              z-index: 1;
+            }
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
               bottom: -2px;
               left: -2px;
               outline-color: ButtonText;
@@ -1021,7 +1020,7 @@ Array [
               position: relative;
               top: 0px;
             }
-            @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
               background-color: inherit;
               color: inherit;
             }
@@ -1029,7 +1028,7 @@ Array [
               background-color: #c7e0f4;
               color: #005a9e;
             }
-            @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
               background: inherit;
               border-color: Highlight;
               color: inherit;
@@ -1038,7 +1037,7 @@ Array [
               background-color: #106ebe;
               color: #ffffff;
             }
-            @media screen and (-ms-high-contrast: active), (forced-colors: active){&:active {
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:active {
               background: inherit;
               color: inherit;
             }
@@ -1070,6 +1069,7 @@ Array [
                 ms-Button-icon
                 {
                   display: inline-block;
+                  text-decoration: inherit;
                 }
                 {
                   -moz-osx-font-smoothing: grayscale;
@@ -1130,24 +1130,24 @@ Array [
         &:hover {
           background: #deecf9;
         }
-        @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+        @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
           background: Highlight;
           border: 1px solid ButtonText;
           color: HighlightText;
         }
-        @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover .ms-PickerItem-content {
+        @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover .ms-PickerItem-content {
           color: HighlightText;
         }
-        @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover .ms-PickerItem-removeButton {
+        @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover .ms-PickerItem-removeButton {
           color: HighlightText;
         }
-        @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+        @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
           -ms-high-contrast-adjust: none;
           background: ButtonFace;
           border: 1px solid ButtonText;
           color: ButtonText;
         }
-        @media screen and (-ms-high-contrast: active), (forced-colors: active){& .ms-PickerItem-removeButton {
+        @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& .ms-PickerItem-removeButton {
           color: ButtonText;
         }
     data-is-focusable={true}
@@ -1166,6 +1166,7 @@ Array [
             {
               -moz-osx-font-smoothing: grayscale;
               -webkit-font-smoothing: antialiased;
+              align-items: center;
               background-color: transparent;
               border-radius: 15px 0px 0px 15px;
               border: none;
@@ -1177,6 +1178,7 @@ Array [
               font-size: 14px;
               font-weight: 400;
               height: 32px;
+              justify-content: center;
               margin-right: -17px;
               outline: transparent;
               padding-bottom: 0;
@@ -1203,7 +1205,25 @@ Array [
               top: 2px;
               z-index: 1;
             }
-            @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              bottom: -2px;
+              left: -2px;
+              outline-color: ButtonText;
+              right: -2px;
+              top: -2px;
+            }
+            :host(.ms-Fabric--isFocusVisible) &:focus:after {
+              border: 1px solid transparent;
+              bottom: 2px;
+              content: "";
+              left: 2px;
+              outline: 1px solid #605e5c;
+              position: absolute;
+              right: 2px;
+              top: 2px;
+              z-index: 1;
+            }
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
               bottom: -2px;
               left: -2px;
               outline-color: ButtonText;
@@ -1215,7 +1235,7 @@ Array [
               position: relative;
               top: 0px;
             }
-            @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
               background-color: inherit;
               color: inherit;
             }
@@ -1223,7 +1243,7 @@ Array [
               background-color: #c7e0f4;
               color: #005a9e;
             }
-            @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
               background: inherit;
               border-color: Highlight;
               color: inherit;
@@ -1232,7 +1252,7 @@ Array [
               background-color: #106ebe;
               color: #ffffff;
             }
-            @media screen and (-ms-high-contrast: active), (forced-colors: active){&:active {
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:active {
               background: inherit;
               color: inherit;
             }
@@ -1264,6 +1284,7 @@ Array [
                 ms-Button-icon
                 {
                   display: inline-block;
+                  text-decoration: inherit;
                 }
                 {
                   -moz-osx-font-smoothing: grayscale;
@@ -1384,7 +1405,7 @@ Array [
                       height: 32px;
                       line-height: 32px;
                     }
-                    @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+                    @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                       -ms-high-contrast-adjust: none;
                       background-color: Window !important;
                       border: 1px solid WindowText;
@@ -1432,10 +1453,10 @@ Array [
                   &:hover {
                     color: #005a9e;
                   }
-                  @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+                  @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                     color: inherit;
                   }
-                  @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+                  @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                     color: inherit;
                   }
               dir="auto"
@@ -1474,48 +1495,6 @@ Array [
                 </div>
               </div>
             </div>
-            <div
-              className=
-                  ms-Persona-secondaryText
-                  {
-                    color: #605e5c;
-                    display: none;
-                    font-size: 12px;
-                    font-weight: 400;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    white-space: nowrap;
-                  }
-              dir="auto"
-            />
-            <div
-              className=
-                  ms-Persona-tertiaryText
-                  {
-                    color: #605e5c;
-                    display: none;
-                    font-size: 14px;
-                    font-weight: 400;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    white-space: nowrap;
-                  }
-              dir="auto"
-            />
-            <div
-              className=
-                  ms-Persona-optionalText
-                  {
-                    color: #605e5c;
-                    display: none;
-                    font-size: 14px;
-                    font-weight: 400;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    white-space: nowrap;
-                  }
-              dir="auto"
-            />
           </div>
         </div>
       </div>
@@ -1527,18 +1506,20 @@ Array [
             {
               -moz-osx-font-smoothing: grayscale;
               -webkit-font-smoothing: antialiased;
+              align-items: center;
               background-color: transparent;
               border-radius: 15px;
               border: none;
               box-sizing: border-box;
               color: #005a9e;
               cursor: pointer;
-              display: inline-block;
+              display: inline-flex;
               flex: 0 0 auto;
               font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
               font-size: 14px;
               font-weight: 400;
               height: 32px;
+              justify-content: center;
               outline: transparent;
               padding-bottom: 0;
               padding-left: 4px;
@@ -1564,7 +1545,25 @@ Array [
               top: 2px;
               z-index: 1;
             }
-            @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              bottom: -2px;
+              left: -2px;
+              outline-color: ButtonText;
+              right: -2px;
+              top: -2px;
+            }
+            :host(.ms-Fabric--isFocusVisible) &:focus:after {
+              border: 1px solid transparent;
+              bottom: 2px;
+              content: "";
+              left: 2px;
+              outline: 1px solid #605e5c;
+              position: absolute;
+              right: 2px;
+              top: 2px;
+              z-index: 1;
+            }
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
               bottom: -2px;
               left: -2px;
               outline-color: ButtonText;
@@ -1576,7 +1575,7 @@ Array [
               position: relative;
               top: 0px;
             }
-            @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
               background-color: inherit;
               color: inherit;
             }
@@ -1584,7 +1583,7 @@ Array [
               background-color: #c7e0f4;
               color: #005a9e;
             }
-            @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
               background: inherit;
               border-color: Highlight;
               color: inherit;
@@ -1593,7 +1592,7 @@ Array [
               background-color: #106ebe;
               color: #ffffff;
             }
-            @media screen and (-ms-high-contrast: active), (forced-colors: active){&:active {
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:active {
               background: inherit;
               color: inherit;
             }
@@ -1625,6 +1624,7 @@ Array [
                 ms-Button-icon
                 {
                   display: inline-block;
+                  text-decoration: inherit;
                 }
                 {
                   -moz-osx-font-smoothing: grayscale;
@@ -1680,24 +1680,24 @@ Array [
         &:hover {
           background: #deecf9;
         }
-        @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+        @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
           background: Highlight;
           border: 1px solid ButtonText;
           color: HighlightText;
         }
-        @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover .ms-PickerItem-content {
+        @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover .ms-PickerItem-content {
           color: HighlightText;
         }
-        @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover .ms-PickerItem-removeButton {
+        @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover .ms-PickerItem-removeButton {
           color: HighlightText;
         }
-        @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+        @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
           -ms-high-contrast-adjust: none;
           background: ButtonFace;
           border: 1px solid ButtonText;
           color: ButtonText;
         }
-        @media screen and (-ms-high-contrast: active), (forced-colors: active){& .ms-PickerItem-removeButton {
+        @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& .ms-PickerItem-removeButton {
           color: ButtonText;
         }
     data-is-focusable={true}
@@ -1716,6 +1716,7 @@ Array [
             {
               -moz-osx-font-smoothing: grayscale;
               -webkit-font-smoothing: antialiased;
+              align-items: center;
               background-color: transparent;
               border-radius: 15px 0px 0px 15px;
               border: none;
@@ -1727,6 +1728,7 @@ Array [
               font-size: 14px;
               font-weight: 400;
               height: 32px;
+              justify-content: center;
               margin-right: -17px;
               outline: transparent;
               padding-bottom: 0;
@@ -1753,7 +1755,25 @@ Array [
               top: 2px;
               z-index: 1;
             }
-            @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              bottom: -2px;
+              left: -2px;
+              outline-color: ButtonText;
+              right: -2px;
+              top: -2px;
+            }
+            :host(.ms-Fabric--isFocusVisible) &:focus:after {
+              border: 1px solid transparent;
+              bottom: 2px;
+              content: "";
+              left: 2px;
+              outline: 1px solid #605e5c;
+              position: absolute;
+              right: 2px;
+              top: 2px;
+              z-index: 1;
+            }
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
               bottom: -2px;
               left: -2px;
               outline-color: ButtonText;
@@ -1765,7 +1785,7 @@ Array [
               position: relative;
               top: 0px;
             }
-            @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
               background-color: inherit;
               color: inherit;
             }
@@ -1773,7 +1793,7 @@ Array [
               background-color: #c7e0f4;
               color: #005a9e;
             }
-            @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
               background: inherit;
               border-color: Highlight;
               color: inherit;
@@ -1782,7 +1802,7 @@ Array [
               background-color: #106ebe;
               color: #ffffff;
             }
-            @media screen and (-ms-high-contrast: active), (forced-colors: active){&:active {
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:active {
               background: inherit;
               color: inherit;
             }
@@ -1814,6 +1834,7 @@ Array [
                 ms-Button-icon
                 {
                   display: inline-block;
+                  text-decoration: inherit;
                 }
                 {
                   -moz-osx-font-smoothing: grayscale;
@@ -1934,7 +1955,7 @@ Array [
                       height: 32px;
                       line-height: 32px;
                     }
-                    @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+                    @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                       -ms-high-contrast-adjust: none;
                       background-color: Window !important;
                       border: 1px solid WindowText;
@@ -1982,10 +2003,10 @@ Array [
                   &:hover {
                     color: #005a9e;
                   }
-                  @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+                  @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                     color: inherit;
                   }
-                  @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+                  @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                     color: inherit;
                   }
               dir="auto"
@@ -2024,48 +2045,6 @@ Array [
                 </div>
               </div>
             </div>
-            <div
-              className=
-                  ms-Persona-secondaryText
-                  {
-                    color: #605e5c;
-                    display: none;
-                    font-size: 12px;
-                    font-weight: 400;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    white-space: nowrap;
-                  }
-              dir="auto"
-            />
-            <div
-              className=
-                  ms-Persona-tertiaryText
-                  {
-                    color: #605e5c;
-                    display: none;
-                    font-size: 14px;
-                    font-weight: 400;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    white-space: nowrap;
-                  }
-              dir="auto"
-            />
-            <div
-              className=
-                  ms-Persona-optionalText
-                  {
-                    color: #605e5c;
-                    display: none;
-                    font-size: 14px;
-                    font-weight: 400;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    white-space: nowrap;
-                  }
-              dir="auto"
-            />
           </div>
         </div>
       </div>
@@ -2077,18 +2056,20 @@ Array [
             {
               -moz-osx-font-smoothing: grayscale;
               -webkit-font-smoothing: antialiased;
+              align-items: center;
               background-color: transparent;
               border-radius: 15px;
               border: none;
               box-sizing: border-box;
               color: #005a9e;
               cursor: pointer;
-              display: inline-block;
+              display: inline-flex;
               flex: 0 0 auto;
               font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
               font-size: 14px;
               font-weight: 400;
               height: 32px;
+              justify-content: center;
               outline: transparent;
               padding-bottom: 0;
               padding-left: 4px;
@@ -2114,7 +2095,25 @@ Array [
               top: 2px;
               z-index: 1;
             }
-            @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              bottom: -2px;
+              left: -2px;
+              outline-color: ButtonText;
+              right: -2px;
+              top: -2px;
+            }
+            :host(.ms-Fabric--isFocusVisible) &:focus:after {
+              border: 1px solid transparent;
+              bottom: 2px;
+              content: "";
+              left: 2px;
+              outline: 1px solid #605e5c;
+              position: absolute;
+              right: 2px;
+              top: 2px;
+              z-index: 1;
+            }
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
               bottom: -2px;
               left: -2px;
               outline-color: ButtonText;
@@ -2126,7 +2125,7 @@ Array [
               position: relative;
               top: 0px;
             }
-            @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
               background-color: inherit;
               color: inherit;
             }
@@ -2134,7 +2133,7 @@ Array [
               background-color: #c7e0f4;
               color: #005a9e;
             }
-            @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
               background: inherit;
               border-color: Highlight;
               color: inherit;
@@ -2143,7 +2142,7 @@ Array [
               background-color: #106ebe;
               color: #ffffff;
             }
-            @media screen and (-ms-high-contrast: active), (forced-colors: active){&:active {
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:active {
               background: inherit;
               color: inherit;
             }
@@ -2175,6 +2174,7 @@ Array [
                 ms-Button-icon
                 {
                   display: inline-block;
+                  text-decoration: inherit;
                 }
                 {
                   -moz-osx-font-smoothing: grayscale;

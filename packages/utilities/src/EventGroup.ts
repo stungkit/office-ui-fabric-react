@@ -1,3 +1,4 @@
+import { getDocument } from './dom';
 import { assign } from './object';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -61,21 +62,29 @@ export class EventGroup {
    *  which may lead to unexpected behavior if it differs from the defaults.
    *
    */
-  public static raise(target: any, eventName: string, eventArgs?: any, bubbleEvent?: boolean): boolean | undefined {
+  public static raise(
+    target: any,
+    eventName: string,
+    eventArgs?: any,
+    bubbleEvent?: boolean,
+    doc?: Document,
+  ): boolean | undefined {
     let retVal;
+    const theDoc = doc ?? getDocument()!;
 
     if (EventGroup._isElement(target)) {
-      if (typeof document !== 'undefined' && document.createEvent) {
-        let ev = document.createEvent('HTMLEvents');
+      if (typeof theDoc !== 'undefined' && theDoc.createEvent) {
+        let ev = theDoc.createEvent('HTMLEvents');
 
+        // eslint-disable-next-line @typescript-eslint/no-deprecated
         ev.initEvent(eventName, bubbleEvent || false, true);
 
         assign(ev, eventArgs);
 
         retVal = target.dispatchEvent(ev);
-      } else if (typeof document !== 'undefined' && (document as any).createEventObject) {
+      } else if (typeof theDoc !== 'undefined' && (theDoc as any).createEventObject) {
         // IE8
-        let evObj = (document as any).createEventObject(eventArgs);
+        let evObj = (theDoc as any).createEventObject(eventArgs);
         // cannot set cancelBubble on evObj, fireEvent will overwrite it
         target.fireEvent('on' + eventName, evObj);
       }
@@ -183,10 +192,10 @@ export class EventGroup {
     } else {
       let parent = this._parent;
       let eventRecord: IEventRecord = {
-        target: target,
-        eventName: eventName,
-        parent: parent,
-        callback: callback,
+        target,
+        eventName,
+        parent,
+        callback,
         options,
       };
 

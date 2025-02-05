@@ -194,7 +194,7 @@ export function getIcon(name?: string): IIconRecord | undefined {
         }
       }
     } else {
-      // eslint-disable-next-line deprecation/deprecation
+      // eslint-disable-next-line @typescript-eslint/no-deprecated
       if (!options.disableWarnings && options.warnOnMissingIcons) {
         warn(
           `The icon "${name}" was used but not registered. See https://github.com/microsoft/fluentui/wiki/Using-icons for more information.`,
@@ -219,7 +219,7 @@ export function setIconOptions(options: Partial<IIconOptions>): void {
 }
 
 let _missingIcons: string[] = [];
-let _missingIconsTimer: number | undefined = undefined;
+let _missingIconsTimer: ReturnType<typeof setTimeout> | undefined = undefined;
 
 function _warnDuplicateIcon(iconName: string): void {
   const options = _iconSettings.__options;

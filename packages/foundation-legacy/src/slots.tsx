@@ -33,7 +33,7 @@ import {
  */
 // Can't use typeof on React.createElement since it's overloaded. Approximate createElement's signature for now
 // and widen as needed.
-export function withSlots<P>(
+export function withSlots<P extends {}>(
   type: ISlot<P> | React.FunctionComponent<P> | string,
   props?: (React.Attributes & P) | null,
   ...children: React.ReactNode[]
@@ -222,7 +222,7 @@ function _constructFinalProps<TProps extends IProcessedSlotProps>(
 function _renderSlot<
   TSlotComponent extends ISlottableReactType<TSlotProps, TSlotShorthand>,
   TSlotProps extends ValidProps,
-  TSlotShorthand extends ValidShorthand
+  TSlotShorthand extends ValidShorthand,
 >(
   ComponentType: TSlotComponent,
   componentProps: TSlotProps,
@@ -235,7 +235,7 @@ function _renderSlot<
     return ComponentType.create(componentProps, userProps, slotOptions, defaultStyles);
   } else {
     // TODO: need to resolve typing / generic issues passing through memoizeFunction. for now, cast to 'unknown'
-    return ((defaultFactory(ComponentType) as unknown) as ISlotFactory<TSlotProps, TSlotShorthand>)(
+    return (defaultFactory(ComponentType) as unknown as ISlotFactory<TSlotProps, TSlotShorthand>)(
       componentProps,
       userProps,
       slotOptions,

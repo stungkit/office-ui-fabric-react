@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { addons } from '@storybook/addons';
+import { addons } from '@storybook/preview-api';
 import { NAVIGATE_URL } from '@storybook/core-events';
-import { makeStyles, shorthands } from '@griffel/react';
+import { makeStyles, shorthands } from '@fluentui/react-components';
 
 const useTocStyles = makeStyles({
   root: {
@@ -75,10 +75,15 @@ export const nameToHash = (id: string): string => id.toLowerCase().replace(/[^a-
 
 export const Toc = ({ stories }: { stories: TocItem[] }) => {
   const [selected, setSelected] = React.useState('');
+  const isNavigating = React.useRef<boolean>(false);
 
   React.useEffect(() => {
     const observer = new IntersectionObserver(
       (entries: IntersectionObserverEntry[]) => {
+        if (isNavigating.current) {
+          isNavigating.current = false;
+          return;
+        }
         for (const entry of entries) {
           const { intersectionRatio, target } = entry;
           if (intersectionRatio > 0.5) {
@@ -118,6 +123,7 @@ export const Toc = ({ stories }: { stories: TocItem[] }) => {
                 href={`#${name}`}
                 target="_self"
                 onClick={e => {
+                  isNavigating.current = true;
                   navigate(`#${name}`);
                   setSelected(name);
                 }}

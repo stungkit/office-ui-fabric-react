@@ -118,7 +118,9 @@ export type ComponentVariablesPrepared = (siteVariables?: SiteVariablesPrepared)
 // Component Style Props
 // ========================================================
 
-export type ComponentSlotStyle<TProps = {}, TVars = {}> = ComponentSlotStyleFunction<TProps, TVars> | ICSSInJSStyle;
+export type ComponentSlotStyle<TProps extends {} = {}, TVars extends {} = {}> =
+  | ComponentSlotStyleFunction<TProps, TVars>
+  | ICSSInJSStyle;
 
 export type PropsWithVarsAndStyles = Extendable<{
   variables?: ComponentVariablesInput;
@@ -129,17 +131,17 @@ export type PropsWithVarsAndStyles = Extendable<{
 // Component Styles
 // ========================================================
 
-export interface ComponentSlotStylesInput<TProps = {}, TVars = {}>
+export interface ComponentSlotStylesInput<TProps extends {} = {}, TVars extends {} = {}>
   extends Record<string, ComponentSlotStyle<TProps, TVars>> {}
 
-export interface ComponentSlotStylesPrepared<TProps = {}, TVars = {}>
+export interface ComponentSlotStylesPrepared<TProps extends {} = {}, TVars extends {} = {}>
   extends Record<string, ComponentSlotStyleFunction<TProps, TVars>> {}
 
 export interface ComponentSlotStylesResolved extends Record<string, ICSSInJSStyle> {}
 
 export interface ComponentStyleFunctionParam<
   TProps extends PropsWithVarsAndStyles = PropsWithVarsAndStyles,
-  TVars extends ComponentVariablesObject = ComponentVariablesObject
+  TVars extends ComponentVariablesObject = ComponentVariablesObject,
 > {
   props: TProps;
   variables: TVars;
@@ -148,7 +150,7 @@ export interface ComponentStyleFunctionParam<
   disableAnimations: boolean;
 }
 
-export type ComponentSlotStyleFunction<TProps = {}, TVars = {}> = (
+export type ComponentSlotStyleFunction<TProps extends {} = {}, TVars extends {} = {}> = (
   styleParam: ComponentStyleFunctionParam<TProps, TVars>,
 ) => ICSSInJSStyle;
 
@@ -173,25 +175,21 @@ export type StaticStyles = StaticStyle[];
 // TODO: Theme typings that have no sense
 // ========================================================
 
-export type ThemeComponentVariablesInput<ThemeStylesProps = any> = {
+export type ThemeComponentVariablesInput<ThemeStylesProps extends {} = any> = {
   [K in keyof ThemeStylesProps]?: ComponentVariablesInput;
-} &
-  Record<string, any>;
+} & Record<string, any>;
 
-export type ThemeComponentVariablesPrepared<ThemeStylesProps = any> = {
+export type ThemeComponentVariablesPrepared<ThemeStylesProps extends {} = any> = {
   [K in keyof ThemeStylesProps]?: ComponentVariablesPrepared;
-} &
-  Record<string, any>;
+} & Record<string, any>;
 
-export type ThemeComponentStylesInput<ThemeStylesProps = any> = {
+export type ThemeComponentStylesInput<ThemeStylesProps extends Record<string, {}> = any> = {
   [K in keyof ThemeStylesProps]?: ComponentSlotStylesInput<ThemeStylesProps[K]>;
-} &
-  Record<string, ComponentSlotStylesInput | undefined>;
+} & Record<string, ComponentSlotStylesInput | undefined>;
 
-export type ThemeComponentStylesPrepared<ThemeStylesProps = any> = {
+export type ThemeComponentStylesPrepared<ThemeStylesProps extends Record<string, {}> = any> = {
   [K in keyof ThemeStylesProps]?: ComponentSlotStylesPrepared<ThemeStylesProps[K]>;
-} &
-  Record<string, ComponentSlotStylesPrepared | undefined>;
+} & Record<string, ComponentSlotStylesPrepared | undefined>;
 
 // ========================================================
 // Theme

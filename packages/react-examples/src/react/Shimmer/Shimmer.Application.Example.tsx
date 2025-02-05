@@ -50,7 +50,7 @@ const randomFileIcon = (): { docType: string; url: string } => {
   const docType: string = fileIcons[Math.floor(Math.random() * fileIcons.length) + 0].name;
   return {
     docType,
-    url: `https://static2.sharepointonline.com/files/fabric/assets/item-types/16/${docType}.svg`,
+    url: `https://res-1.cdn.office.net/files/fabric-cdn-prod_20230815.002/assets/item-types/16/${docType}.svg`,
   };
 };
 

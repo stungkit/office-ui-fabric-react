@@ -106,15 +106,15 @@ export const PersonaCoinBase: React.FunctionComponent<IPersonaCoinProps> = React
     initialsColor,
     initialsTextColor,
     isOutOfOffice,
-    // eslint-disable-next-line deprecation/deprecation
+    // eslint-disable-next-line @typescript-eslint/no-deprecated
     onRenderCoin = renderCoin,
-    // eslint-disable-next-line deprecation/deprecation
+
     onRenderPersonaCoin = onRenderCoin,
     onRenderInitials = renderPersonaCoinInitials,
     presence,
     presenceTitle,
     presenceColors,
-    // eslint-disable-next-line deprecation/deprecation
+    // eslint-disable-next-line @typescript-eslint/no-deprecated
     primaryText,
     showInitialsUntilImageLoads,
     text,
@@ -155,7 +155,7 @@ export const PersonaCoinBase: React.FunctionComponent<IPersonaCoinProps> = React
     <div role="presentation" {...divProps} className={classNames.coin} ref={forwardedRef}>
       {
         // Render PersonaCoin if size is not size8. size10 and tiny need to removed after a deprecation cleanup.
-        // eslint-disable-next-line deprecation/deprecation
+        // eslint-disable-next-line @typescript-eslint/no-deprecated
         size !== PersonaSize.size8 && size !== PersonaSize.size10 && size !== PersonaSize.tiny ? (
           <div role="presentation" {...divCoinProps} className={classNames.imageArea} style={coinSizeStyle}>
             {shouldRenderInitials && (
@@ -191,48 +191,50 @@ export const PersonaCoinBase: React.FunctionComponent<IPersonaCoinProps> = React
 });
 PersonaCoinBase.displayName = 'PersonaCoinBase';
 
-const getCoinRenderer = (onLoadingStateChange: (loadState: ImageLoadState) => void) => ({
-  coinSize,
-  styles,
-  imageUrl,
-  imageAlt,
-  imageShouldFadeIn,
-  imageShouldStartVisible,
-  theme,
-  showUnknownPersonaCoin,
-  size = DEFAULT_PROPS.size,
-}: IPersonaCoinProps): JSX.Element | null => {
-  // Render the Image component only if an image URL is provided
-  if (!imageUrl) {
-    return null;
-  }
-  const classNames = getClassNames(styles, {
-    theme: theme!,
-    size,
+const getCoinRenderer =
+  (onLoadingStateChange: (loadState: ImageLoadState) => void) =>
+  ({
+    coinSize,
+    styles,
+    imageUrl,
+    imageAlt,
+    imageShouldFadeIn,
+    imageShouldStartVisible,
+    theme,
     showUnknownPersonaCoin,
-  });
-  const dimension = coinSize || sizeToPixels[size];
-  return (
-    <Image
-      className={classNames.image}
-      imageFit={ImageFit.cover}
-      src={imageUrl}
-      width={dimension}
-      height={dimension}
-      alt={imageAlt}
-      shouldFadeIn={imageShouldFadeIn}
-      shouldStartVisible={imageShouldStartVisible}
-      onLoadingStateChange={onLoadingStateChange}
-    />
-  );
-};
+    size = DEFAULT_PROPS.size,
+  }: IPersonaCoinProps): JSX.Element | null => {
+    // Render the Image component only if an image URL is provided
+    if (!imageUrl) {
+      return null;
+    }
+    const classNames = getClassNames(styles, {
+      theme: theme!,
+      size,
+      showUnknownPersonaCoin,
+    });
+    const dimension = coinSize || sizeToPixels[size];
+    return (
+      <Image
+        className={classNames.image}
+        imageFit={ImageFit.cover}
+        src={imageUrl}
+        width={dimension}
+        height={dimension}
+        alt={imageAlt}
+        shouldFadeIn={imageShouldFadeIn}
+        shouldStartVisible={imageShouldStartVisible}
+        onLoadingStateChange={onLoadingStateChange}
+      />
+    );
+  };
 
 const renderPersonaCoinInitials = ({
   imageInitials,
   allowPhoneInitials,
   showUnknownPersonaCoin,
   text,
-  // eslint-disable-next-line deprecation/deprecation
+  // eslint-disable-next-line @typescript-eslint/no-deprecated
   primaryText,
   theme,
 }: IPersonaCoinProps): JSX.Element => {

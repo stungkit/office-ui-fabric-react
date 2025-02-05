@@ -1,6 +1,11 @@
 import * as React from 'react';
-import { IChartProps, ICustomizedCalloutData, ILineChartProps, LineChart } from '@fluentui/react-charting';
-import { DefaultPalette } from '@fluentui/react/lib/Styling';
+import {
+  IChartProps,
+  ICustomizedCalloutData,
+  ILineChartProps,
+  LineChart,
+  DataVizPalette,
+} from '@fluentui/react-charting';
 
 interface ILineChartGapsState {
   width: number;
@@ -11,7 +16,7 @@ export class LineChartGapsExample extends React.Component<{}, ILineChartGapsStat
   constructor(props: ILineChartProps) {
     super(props);
     this.state = {
-      width: 1200,
+      width: 700,
       height: 400,
     };
   }
@@ -45,6 +50,7 @@ export class LineChartGapsExample extends React.Component<{}, ILineChartGapsStat
             strokeDasharray: '5',
             strokeLinecap: 'butt',
             strokeWidth: '2',
+            lineBorderWidth: '4',
           },
           data: [
             {
@@ -58,7 +64,7 @@ export class LineChartGapsExample extends React.Component<{}, ILineChartGapsStat
               hideCallout: true,
             },
           ],
-          color: DefaultPalette.black,
+          color: DataVizPalette.color11,
         },
         {
           legend: 'Normal Data',
@@ -135,7 +141,7 @@ export class LineChartGapsExample extends React.Component<{}, ILineChartGapsStat
               y: 269000,
             },
           ],
-          color: DefaultPalette.blue,
+          color: DataVizPalette.color12,
         },
         {
           legend: 'Low Confidence Data*',
@@ -185,7 +191,7 @@ export class LineChartGapsExample extends React.Component<{}, ILineChartGapsStat
               y: 300000,
             },
           ],
-          color: DefaultPalette.blue,
+          color: DataVizPalette.color13,
         },
         {
           legend: 'Green Data',
@@ -226,7 +232,7 @@ export class LineChartGapsExample extends React.Component<{}, ILineChartGapsStat
               y: 299000,
             },
           ],
-          color: DefaultPalette.green,
+          color: DataVizPalette.success,
         },
       ],
     };
@@ -236,7 +242,7 @@ export class LineChartGapsExample extends React.Component<{}, ILineChartGapsStat
 
     return (
       <>
-        <label htmlFor="changeWidth_Gaps">change Width:</label>
+        <label htmlFor="changeWidth_Gaps">Change Width:</label>
         <input
           type="range"
           value={this.state.width}
@@ -246,7 +252,7 @@ export class LineChartGapsExample extends React.Component<{}, ILineChartGapsStat
           onChange={this._onWidthChange}
           aria-valuetext={`ChangeWidthSlider${this.state.width}`}
         />
-        <label htmlFor="ChangeHeight_Gaps">change Height:</label>
+        <label htmlFor="ChangeHeight_Gaps">Change Height:</label>
         <input
           type="range"
           value={this.state.height}
@@ -269,6 +275,7 @@ export class LineChartGapsExample extends React.Component<{}, ILineChartGapsStat
               calloutMaxWidth: 200,
             }}
             getCalloutDescriptionMessage={this._calculateCalloutDescription}
+            enablePerfOptimization={true}
           />
         </div>
       </>

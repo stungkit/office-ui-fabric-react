@@ -2,7 +2,7 @@ import * as React from 'react';
 import { act } from 'react-dom/test-utils';
 
 import { renderDropdown, items, getItemIdRegexByIndex } from './test-utils';
-import { Dropdown } from 'src/components/Dropdown/Dropdown';
+import { Dropdown, DropdownProps } from 'src/components/Dropdown/Dropdown';
 import { dropdownSelectedItemSlotClassNames } from 'src/components/Dropdown/DropdownSelectedItem';
 import { implementsShorthandProp, isConformant } from 'test/specs/commonTests';
 import { implementsPopperProps } from 'test/specs/commonTests/implementsPopperProps';
@@ -12,7 +12,6 @@ import { ShorthandValue } from 'src/types';
 import { List } from 'src/components/List/List';
 
 jest.dontMock('@fluentui/keyboard-key');
-jest.useFakeTimers();
 
 describe('Dropdown', () => {
   isConformant(Dropdown, {
@@ -27,7 +26,7 @@ describe('Dropdown', () => {
     requiredProps: { open: true },
   });
 
-  implementsPopperProps(Dropdown, {
+  implementsPopperProps<DropdownProps>(Dropdown, {
     requiredProps: { open: true },
   });
 
@@ -43,6 +42,17 @@ describe('Dropdown', () => {
       expect(triggerButtonNode).toHaveTextContent('');
     });
 
+    it('value is cleared at Icon enter press', () => {
+      const { triggerButtonNode, keyDownOnClearIndicator } = renderDropdown({
+        clearable: true,
+        defaultValue: items[0],
+      });
+
+      keyDownOnClearIndicator('Enter');
+
+      expect(triggerButtonNode).toHaveTextContent('');
+    });
+
     it('calls onChange on Icon click with an `empty` value', () => {
       const onChange = jest.fn();
       const { clickOnClearIndicator } = renderDropdown({
@@ -53,7 +63,7 @@ describe('Dropdown', () => {
 
       clickOnClearIndicator();
 
-      expect(onChange).toBeCalledTimes(1);
+      expect(onChange).toHaveBeenCalledTimes(1);
       expect(onChange).toHaveBeenCalledWith(
         expect.objectContaining({ type: 'click' }),
         expect.objectContaining({
@@ -85,6 +95,25 @@ describe('Dropdown', () => {
 
       expect(getClearIndicatorNode()).not.toHaveAttribute('tabindex');
       expect(getClearIndicatorNode()).not.toHaveAttribute('role', 'button');
+    });
+
+    it('is not visible when an empty array is passed', () => {
+      const { getClearIndicatorWrapper } = renderDropdown({
+        clearable: true,
+        multiple: true,
+        value: [],
+      });
+
+      expect(getClearIndicatorWrapper()).toHaveLength(0);
+    });
+
+    it('is not visible when an empty string is passed', () => {
+      const { getClearIndicatorWrapper } = renderDropdown({
+        clearable: true,
+        value: '',
+      });
+
+      expect(getClearIndicatorWrapper()).toHaveLength(0);
     });
   });
 
@@ -135,7 +164,7 @@ describe('Dropdown', () => {
 
       clickOnTriggerButton();
 
-      expect(onOpenChange).toBeCalledTimes(1);
+      expect(onOpenChange).toHaveBeenCalledTimes(1);
       expect(onOpenChange).toHaveBeenLastCalledWith(
         null,
         expect.objectContaining({
@@ -145,7 +174,7 @@ describe('Dropdown', () => {
 
       clickOnTriggerButton();
 
-      expect(onOpenChange).toBeCalledTimes(2);
+      expect(onOpenChange).toHaveBeenCalledTimes(2);
       expect(onOpenChange).toHaveBeenLastCalledWith(
         null,
         expect.objectContaining({
@@ -297,6 +326,7 @@ describe('Dropdown', () => {
   });
 
   describe('highlightedIndex', () => {
+    jest.useFakeTimers();
     afterEach(() => {
       act(() => {
         jest.runAllTimers();
@@ -991,17 +1021,13 @@ describe('Dropdown', () => {
 
     it('is set correctly in multiple selection by using Tab on highlighted item', () => {
       const itemSelectedIndex = 3;
-      const {
-        triggerButtonNode,
-        keyDownOnItemsList,
-        getSelectedItemNodeAtIndex,
-        getSelectedItemNodes,
-      } = renderDropdown({
-        defaultOpen: true,
-        defaultHighlightedIndex: itemSelectedIndex,
-        defaultValue: items[4],
-        multiple: true,
-      });
+      const { triggerButtonNode, keyDownOnItemsList, getSelectedItemNodeAtIndex, getSelectedItemNodes } =
+        renderDropdown({
+          defaultOpen: true,
+          defaultHighlightedIndex: itemSelectedIndex,
+          defaultValue: items[4],
+          multiple: true,
+        });
 
       keyDownOnItemsList('Tab');
 
@@ -1013,17 +1039,13 @@ describe('Dropdown', () => {
 
     it('is set correctly in multiple selection by using Shift+Tab on highlighted item', () => {
       const itemSelectedIndex = 2;
-      const {
-        triggerButtonNode,
-        keyDownOnItemsList,
-        getSelectedItemNodeAtIndex,
-        getSelectedItemNodes,
-      } = renderDropdown({
-        defaultOpen: true,
-        defaultHighlightedIndex: itemSelectedIndex,
-        defaultValue: items[4],
-        multiple: true,
-      });
+      const { triggerButtonNode, keyDownOnItemsList, getSelectedItemNodeAtIndex, getSelectedItemNodes } =
+        renderDropdown({
+          defaultOpen: true,
+          defaultHighlightedIndex: itemSelectedIndex,
+          defaultValue: items[4],
+          multiple: true,
+        });
 
       keyDownOnItemsList('Tab', { shiftKey: true });
 
@@ -1113,17 +1135,13 @@ describe('Dropdown', () => {
     });
 
     it('removes last item on backspace when selection range is 0, 0', () => {
-      const {
-        getSelectedItemNodes,
-        getSelectedItemNodeAtIndex,
-        keyDownOnSearchInput,
-        searchInputNode,
-      } = renderDropdown({
-        multiple: true,
-        search: true,
-        defaultSearchQuery: 'bla',
-        defaultValue: [items[0], items[1]],
-      });
+      const { getSelectedItemNodes, getSelectedItemNodeAtIndex, keyDownOnSearchInput, searchInputNode } =
+        renderDropdown({
+          multiple: true,
+          search: true,
+          defaultSearchQuery: 'bla',
+          defaultValue: [items[0], items[1]],
+        });
 
       searchInputNode.setSelectionRange(0, 0);
       keyDownOnSearchInput('Backspace');
@@ -1196,7 +1214,85 @@ describe('Dropdown', () => {
     });
   });
 
+  describe('allowFreeForm', () => {
+    ['Enter', 'Tab'].forEach(key => {
+      it(`selects item that starts with query prefix on ${key}`, () => {
+        const { changeSearchInput, keyDownOnSearchInput, searchInputNode } = renderDropdown({
+          search: items => items,
+          allowFreeform: true,
+        });
+
+        changeSearchInput('it');
+        expect(searchInputNode).toHaveAttribute(
+          'aria-activedescendant',
+          expect.stringMatching(getItemIdRegexByIndex(0)),
+        );
+        keyDownOnSearchInput(key);
+        expect(searchInputNode).toHaveValue('item0');
+      });
+
+      it(`highlights first item matching prefix and selects it on ${key}`, () => {
+        const items = ['item0', 'item1', 'itemA1', 'itemB1'];
+        const { changeSearchInput, keyDownOnSearchInput, searchInputNode } = renderDropdown({
+          search: items => items,
+          allowFreeform: true,
+          items,
+        });
+
+        changeSearchInput('itemA');
+        expect(searchInputNode).toHaveAttribute(
+          'aria-activedescendant',
+          expect.stringMatching(getItemIdRegexByIndex(2)),
+        );
+        keyDownOnSearchInput(key);
+        expect(searchInputNode).toHaveValue('itemA1');
+      });
+
+      it(`keeps search query value when there is no match on ${key}`, () => {
+        const { changeSearchInput, keyDownOnSearchInput, searchInputNode } = renderDropdown({
+          search: items => items,
+          allowFreeform: true,
+        });
+
+        changeSearchInput('itemX');
+        expect(searchInputNode).not.toHaveAttribute('aria-activedescendant');
+        keyDownOnSearchInput(key);
+        expect(searchInputNode).toHaveValue('itemX');
+      });
+
+      it(`keeps search query value when when selected by arrow key on ${key}`, () => {
+        const { changeSearchInput, keyDownOnSearchInput, searchInputNode } = renderDropdown({
+          search: items => items,
+          allowFreeform: true,
+        });
+
+        changeSearchInput('item1');
+        keyDownOnSearchInput('ArrowDown');
+        expect(searchInputNode).toHaveAttribute(
+          'aria-activedescendant',
+          expect.stringMatching(getItemIdRegexByIndex(2)),
+        );
+        keyDownOnSearchInput(key);
+        expect(searchInputNode).toHaveValue('item2');
+      });
+      return true;
+    });
+
+    it('selects item that starts with query prefix when user clicks on toggle', () => {
+      const { clickOnToggleIndicator, changeSearchInput, searchInputNode } = renderDropdown({
+        search: items => items,
+        allowFreeform: true,
+      });
+
+      changeSearchInput('it');
+      expect(searchInputNode).toHaveAttribute('aria-activedescendant', expect.stringMatching(getItemIdRegexByIndex(0)));
+      clickOnToggleIndicator();
+      expect(searchInputNode).toHaveValue('item0');
+    });
+  });
+
   describe('getA11ySelectionMessage', () => {
+    jest.useFakeTimers();
     afterEach(() => {
       jest.runAllTimers();
     });
@@ -1659,7 +1755,7 @@ describe('Dropdown', () => {
 
       keyDownOnItemsList('Tab', { preventDefault });
 
-      expect(preventDefault).toBeCalled();
+      expect(preventDefault).toHaveBeenCalled();
     });
 
     it('keeps focus on input when not passed', () => {
@@ -1671,7 +1767,7 @@ describe('Dropdown', () => {
       });
 
       keyDownOnSearchInput('Tab', { preventDefault });
-      expect(preventDefault).toBeCalled();
+      expect(preventDefault).toHaveBeenCalled();
     });
 
     it('allows focus to move to next item from search input when passed', () => {
@@ -1685,7 +1781,7 @@ describe('Dropdown', () => {
 
       keyDownOnSearchInput('Tab', { preventDefault });
 
-      expect(preventDefault).not.toBeCalled();
+      expect(preventDefault).not.toHaveBeenCalled();
     });
 
     it('allows focus to move to next item from items list when passed', () => {
@@ -1698,7 +1794,7 @@ describe('Dropdown', () => {
 
       keyDownOnItemsList('Tab', { preventDefault });
 
-      expect(preventDefault).not.toBeCalled();
+      expect(preventDefault).not.toHaveBeenCalled();
     });
   });
 
@@ -1777,6 +1873,14 @@ describe('Dropdown', () => {
       expect(getSelectedItemNodes()).toHaveLength(1);
       expect(getItemNodes()).toHaveLength(items.length - 1);
     });
+
+    it('should not call onRemove when dropdown is disabled', () => {
+      const onRemove = jest.fn();
+      const value = { header: items[0], onRemove };
+      const { clickOnSelectedItemAtIndex } = renderDropdown({ multiple: true, value, disabled: true });
+      clickOnSelectedItemAtIndex(0);
+      expect(onRemove).not.toHaveBeenCalled();
+    });
   });
 
   describe('items', () => {
@@ -1789,14 +1893,14 @@ describe('Dropdown', () => {
 
       clickOnItemAtIndex(0, mockedEvent);
 
-      expect(onClick).toBeCalledTimes(1);
+      expect(onClick).toHaveBeenCalledTimes(1);
       expect(onClick).toHaveBeenCalledWith(
         expect.objectContaining(mockedEvent),
         expect.objectContaining({
           header: 'Venom',
         }),
       );
-      expect(stopPropagation).toBeCalledTimes(1);
+      expect(stopPropagation).toHaveBeenCalledTimes(1);
     });
 
     it('when selected have onClick called when passed stop event from being propagated', () => {
@@ -1813,14 +1917,14 @@ describe('Dropdown', () => {
 
       clickOnSelectedItemAtIndex(0, mockedEvent);
 
-      expect(onClick).toBeCalledTimes(1);
+      expect(onClick).toHaveBeenCalledTimes(1);
       expect(onClick).toHaveBeenCalledWith(
         expect.objectContaining(mockedEvent),
         expect.objectContaining({
           header: 'Venom',
         }),
       );
-      expect(stopPropagation).toBeCalledTimes(1);
+      expect(stopPropagation).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -1831,7 +1935,7 @@ describe('Dropdown', () => {
 
       renderDropdown({ renderSelectedItem, multiple: true, value });
 
-      expect(renderSelectedItem).toBeCalledTimes(value.length);
+      expect(renderSelectedItem).toHaveBeenCalledTimes(value.length);
     });
   });
 
@@ -1856,18 +1960,13 @@ describe('Dropdown', () => {
   describe('disabled', () => {
     it('allows no action on the trigger button', () => {
       const { testContainer, removeTestContainer } = createTestContainer();
-      const {
-        clickOnTriggerButton,
-        focusTriggerButton,
-        getItemNodes,
-        triggerButtonNode,
-        keyDownOnTriggerButton,
-      } = renderDropdown(
-        {
-          disabled: true,
-        },
-        testContainer,
-      );
+      const { clickOnTriggerButton, focusTriggerButton, getItemNodes, triggerButtonNode, keyDownOnTriggerButton } =
+        renderDropdown(
+          {
+            disabled: true,
+          },
+          testContainer,
+        );
 
       expect(triggerButtonNode).toHaveAttribute('disabled');
 
@@ -1887,19 +1986,14 @@ describe('Dropdown', () => {
 
     it('allows no action on the search input', () => {
       const { testContainer, removeTestContainer } = createTestContainer();
-      const {
-        keyDownOnSearchInput,
-        clickOnSearchInput,
-        focusSearchInput,
-        getItemNodes,
-        searchInputNode,
-      } = renderDropdown(
-        {
-          disabled: true,
-          search: true,
-        },
-        testContainer,
-      );
+      const { keyDownOnSearchInput, clickOnSearchInput, focusSearchInput, getItemNodes, searchInputNode } =
+        renderDropdown(
+          {
+            disabled: true,
+            search: true,
+          },
+          testContainer,
+        );
 
       expect(searchInputNode).toHaveAttribute('disabled');
 
@@ -2024,14 +2118,47 @@ describe('Dropdown', () => {
       expect(triggerButtonNode).not.toHaveAttribute('aria-label');
     });
 
-    it('trigger button should not have aria-labelledby', () => {
+    it('trigger button should have aria-labelledby which points to trigger button content', () => {
       const { triggerButtonNode } = renderDropdown({ items });
-      expect(triggerButtonNode).not.toHaveAttribute('aria-labelledby');
+      expect(triggerButtonNode).toHaveAttribute('aria-labelledby');
+      expect(triggerButtonNode.getAttribute('aria-labelledby')).toContain('__content');
+    });
+
+    it('trigger button merges props correctly', () => {
+      const { triggerButtonNode } = renderDropdown({ items, triggerButton: { 'data-test': 'ok' } });
+      expect(triggerButtonNode.firstChild).toHaveAttribute('id');
+      const contentId = triggerButtonNode.firstElementChild.getAttribute('id');
+      expect(triggerButtonNode).toHaveAttribute('aria-labelledby');
+      expect(triggerButtonNode.getAttribute('aria-labelledby')).toContain(contentId);
+      expect(triggerButtonNode).toHaveAttribute('data-test');
+    });
+
+    it('trigger button merges props correctly when content is string', () => {
+      const { triggerButtonNode } = renderDropdown({ items, triggerButton: { content: 'ok' } });
+      expect(triggerButtonNode.firstChild).toHaveAttribute('id');
+      const contentId = triggerButtonNode.firstElementChild.getAttribute('id');
+      expect(triggerButtonNode).toHaveAttribute('aria-labelledby');
+      expect(triggerButtonNode.getAttribute('aria-labelledby')).toContain(contentId);
+      expect(triggerButtonNode.firstChild.textContent).toBe('ok');
+    });
+
+    it('trigger button merges props correctly when content is object', () => {
+      const { triggerButtonNode } = renderDropdown({
+        items,
+        triggerButton: { content: { content: 'ok', 'data-test': 'ok' } },
+      });
+      expect(triggerButtonNode.firstChild).toHaveAttribute('id');
+      const contentId = triggerButtonNode.firstElementChild.getAttribute('id');
+      expect(triggerButtonNode).toHaveAttribute('aria-labelledby');
+      expect(triggerButtonNode.getAttribute('aria-labelledby')).toContain(contentId);
+      expect(triggerButtonNode.firstChild.textContent).toBe('ok');
+      expect(triggerButtonNode.firstChild).toHaveAttribute('data-test');
     });
 
     it('trigger button should have aria-labelledby from user prop', () => {
       const { triggerButtonNode } = renderDropdown({ items, 'aria-labelledby': 'form-label' });
-      expect(triggerButtonNode).toHaveAttribute('aria-labelledby', 'form-label');
+      expect(triggerButtonNode.getAttribute('aria-labelledby')).toContain('form-label');
+      expect(triggerButtonNode.getAttribute('aria-labelledby')).toContain('__content');
     });
 
     it('trigger button should not have aria-describedby', () => {

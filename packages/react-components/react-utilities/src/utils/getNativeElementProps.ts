@@ -24,6 +24,7 @@ import {
   htmlElementProperties,
   getNativeProps,
   timeProperties,
+  dialogProperties,
 } from './properties';
 
 const nativeElementMap: Record<string, Record<string, number>> = {
@@ -49,6 +50,7 @@ const nativeElementMap: Record<string, Record<string, number>> = {
   iframe: iframeProperties,
   img: imgProperties,
   time: timeProperties,
+  dialog: dialogProperties,
 };
 
 /**
@@ -57,6 +59,8 @@ const nativeElementMap: Record<string, Record<string, number>> = {
  * @param tagName - Tag name (e.g. "div")
  * @param props - Props object
  * @param excludedPropNames - List of props to disallow
+ *
+ * @deprecated use getIntrinsicElementProps instead, it is a type-safe version of this method
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function getNativeElementProps<TAttributes extends React.HTMLAttributes<any>>(
@@ -80,7 +84,7 @@ export function getNativeElementProps<TAttributes extends React.HTMLAttributes<a
  */
 export const getPartitionedNativeProps = <
   Props extends Pick<React.HTMLAttributes<HTMLElement>, 'style' | 'className'>,
-  ExcludedPropKeys extends Extract<keyof Props, string> = never
+  ExcludedPropKeys extends Extract<keyof Props, string> = never,
 >({
   primarySlotTagName,
   props,
@@ -97,6 +101,7 @@ export const getPartitionedNativeProps = <
 }) => {
   return {
     root: { style: props.style, className: props.className },
+    // eslint-disable-next-line @typescript-eslint/no-deprecated
     primary: getNativeElementProps<Omit<Props, ExcludedPropKeys>>(primarySlotTagName, props, [
       ...(excludedPropNames || []),
       'style',

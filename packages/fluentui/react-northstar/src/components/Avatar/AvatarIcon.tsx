@@ -13,13 +13,13 @@ import * as PropTypes from 'prop-types';
 import {
   commonPropTypes,
   UIComponentProps,
-  SizeValue,
   ContentComponentProps,
   ChildrenComponentProps,
   childrenExist,
 } from '../../utils';
 import { FluentComponentStaticProps } from '../../types';
 import { Accessibility } from '@fluentui/accessibility';
+import { AvatarSizeValue } from './Avatar';
 
 export interface AvatarIconProps extends UIComponentProps, ContentComponentProps, ChildrenComponentProps {
   /** Accessibility behavior if overridden by the user. */
@@ -29,7 +29,7 @@ export interface AvatarIconProps extends UIComponentProps, ContentComponentProps
   square?: boolean;
 
   /** Size multiplier. */
-  size?: SizeValue;
+  size?: AvatarSizeValue;
 }
 
 export type AvatarIconStylesProps = Required<Pick<AvatarIconProps, 'size' | 'square'>>;
@@ -38,7 +38,7 @@ export const avatarIconClassName = 'ui-avatar__icon';
 /**
  * A AvatarIcon provides a status icon for the Avatar.
  */
-export const AvatarIcon = (React.forwardRef<HTMLSpanElement, AvatarIconProps>((props, ref) => {
+export const AvatarIcon = React.forwardRef<HTMLSpanElement, AvatarIconProps>((props, ref) => {
   const context = useFluentContext();
   const { setStart, setEnd } = useTelemetry(AvatarIcon.displayName, context.telemetry);
   setStart();
@@ -76,7 +76,7 @@ export const AvatarIcon = (React.forwardRef<HTMLSpanElement, AvatarIconProps>((p
   setEnd();
 
   return element;
-}) as unknown) as ForwardRefWithAs<'span', HTMLSpanElement, AvatarIconProps> &
+}) as unknown as ForwardRefWithAs<'span', HTMLSpanElement, AvatarIconProps> &
   FluentComponentStaticProps<AvatarIconProps>;
 
 AvatarIcon.displayName = 'AvatarIcon';

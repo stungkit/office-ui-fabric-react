@@ -19,13 +19,13 @@ export const ToggleBase: React.FunctionComponent<IToggleProps> = React.forwardRe
       disabled,
       inlineLabel,
       label,
-      // eslint-disable-next-line deprecation/deprecation
+      // eslint-disable-next-line @typescript-eslint/no-deprecated
       offAriaLabel,
       offText,
-      // eslint-disable-next-line deprecation/deprecation
+      // eslint-disable-next-line @typescript-eslint/no-deprecated
       onAriaLabel,
       onChange,
-      // eslint-disable-next-line deprecation/deprecation
+      // eslint-disable-next-line @typescript-eslint/no-deprecated
       onChanged,
       onClick: onToggleClick,
       onText,
@@ -128,9 +128,9 @@ export const ToggleBase: React.FunctionComponent<IToggleProps> = React.forwardRe
         className: classNames.pill,
         'data-is-focusable': true,
         'data-ktp-target': true,
-        disabled: disabled,
-        id: id,
-        onClick: onClick,
+        disabled,
+        id,
+        onClick,
         ref: toggleButton,
         role: role ? role : 'switch',
         type: 'button' as React.ButtonHTMLAttributes<HTMLButtonElement>['type'],

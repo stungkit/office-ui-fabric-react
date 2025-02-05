@@ -8,8 +8,8 @@ let _defaultHostSelector: string | undefined = `#${defaultHostId}`;
 
 /**
  * Register a layer for a given host id
- * @param hostId Id of the layer host
- * @param layer Layer instance
+ * @param hostId - Id of the layer host
+ * @param layer - Layer instance
  */
 export function registerLayer(hostId: string, callback: () => void) {
   if (!_layersByHostId[hostId]) {
@@ -29,8 +29,8 @@ export function registerLayer(hostId: string, callback: () => void) {
 
 /**
  * Unregister a layer for a given host id
- * @param hostId Id of the layer host
- * @param layer Layer instance
+ * @param hostId - Id of the layer host
+ * @param layer - Layer instance
  */
 export function unregisterLayer(hostId: string, callback: () => void) {
   const layers = _layersByHostId[hostId];
@@ -57,7 +57,7 @@ export function unregisterLayer(hostId: string, callback: () => void) {
 
 /**
  * Gets the number of layers currently registered with a host id.
- * @param hostId Id of the layer host.
+ * @param hostId - Id of the layer host.
  * @returns The number of layers currently registered with the host.
  */
 export function getLayerCount(hostId: string): number {
@@ -68,7 +68,7 @@ export function getLayerCount(hostId: string): number {
 
 /**
  * Gets the Layer Host instance associated with a hostId, if applicable.
- * @param hostId
+ * @param hostId - Id of the layer host
  * @returns A component ref for the associated layer host.
  */
 export function getLayerHost(hostId: string): ILayerHost | undefined {
@@ -79,8 +79,8 @@ export function getLayerHost(hostId: string): ILayerHost | undefined {
 
 /**
  * Registers a Layer Host with an associated hostId.
- * @param hostId Id of the layer host
- * @param layerHost layer host instance
+ * @param hostId - Id of the layer host
+ * @param layerHost - layer host instance
  */
 export function registerLayerHost(hostId: string, layerHost: ILayerHost): void {
   const layerHosts = _layerHostsById[hostId] || (_layerHostsById[hostId] = []);
@@ -94,8 +94,8 @@ export function registerLayerHost(hostId: string, layerHost: ILayerHost): void {
 
 /**
  * Unregisters a Layer Host from the associated hostId.
- * @param hostId Id of the layer host
- * @param layerHost layer host instance
+ * @param hostId - Id of the layer host
+ * @param layerHost - layer host instance
  */
 export function unregisterLayerHost(hostId: string, layerHost: ILayerHost): void {
   const layerHosts = _layerHostsById[hostId];
@@ -116,12 +116,18 @@ export function unregisterLayerHost(hostId: string, layerHost: ILayerHost): void
 /**
  * When no default layer host is provided, this function is executed to create the default host.
  */
-export function createDefaultLayerHost(doc: Document): Node | null {
+export function createDefaultLayerHost(doc: Document, shadowRoot: ShadowRoot | null = null): Node | null {
   const host = doc.createElement('div');
   host.setAttribute('id', defaultHostId);
   (host as HTMLElement).style.cssText = 'position:fixed;z-index:1000000';
 
-  doc?.body.appendChild(host);
+  if (shadowRoot) {
+    shadowRoot.appendChild(host);
+  } else {
+    doc?.body.appendChild(host);
+  }
+
+  // doc?.body.appendChild(host);
 
   return host;
 }
@@ -129,11 +135,12 @@ export function createDefaultLayerHost(doc: Document): Node | null {
 /**
  * This function can be optionally called to clean up the default layer host as needed.
  */
-export function cleanupDefaultLayerHost(doc: Document) {
-  const host = doc.querySelector(`#${defaultHostId}`);
+export function cleanupDefaultLayerHost(doc: Document, shadowRoot: ShadowRoot | null = null) {
+  const root = shadowRoot ?? doc;
+  const host = root.querySelector(`#${defaultHostId}`);
 
   if (host) {
-    doc.removeChild(host);
+    root.removeChild(host);
   }
 }
 

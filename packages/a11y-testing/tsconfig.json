@@ -11,14 +11,14 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "noUnusedLocals": true,
-    "forceConsistentCasingInFileNames": true,
     "strictNullChecks": true,
     "noImplicitAny": true,
     "moduleResolution": "node",
     "skipLibCheck": true,
     "preserveConstEnums": true,
     "lib": ["es2017", "dom"],
-    "types": ["jest"]
+    "types": ["jest"],
+    "isolatedModules": true
   },
   "include": ["src"]
 }

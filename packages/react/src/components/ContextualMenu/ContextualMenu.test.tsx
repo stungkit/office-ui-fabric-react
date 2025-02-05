@@ -470,7 +470,7 @@ describe('ContextualMenu', () => {
               className: 'SubMenuClass',
             },
           ],
-          onDismiss: onDismiss,
+          onDismiss,
         },
       },
     ];
@@ -568,6 +568,54 @@ describe('ContextualMenu', () => {
     });
 
     expect(document.querySelector('.is-expanded')).toBeTruthy();
+  });
+
+  it('toggles a split button', () => {
+    const onPrimaryClick = jest.fn();
+    const onItemClick = jest.fn();
+    const items: IContextualMenuItem[] = [
+      {
+        text: 'TestText 1',
+        key: 'TestKey1',
+        split: true,
+        canCheck: true,
+        onClick: onPrimaryClick,
+        subMenuProps: {
+          items: [
+            {
+              text: 'SubmenuText 1',
+              key: 'SubmenuKey1',
+              className: 'SubMenuClass',
+            },
+          ],
+        },
+      },
+    ];
+
+    ReactTestUtils.act(() => {
+      ReactTestUtils.renderIntoDocument<IContextualMenuProps>(
+        <ContextualMenu items={items} onItemClick={onItemClick} />,
+      );
+    });
+
+    const menuItem = document.getElementsByTagName('button')[0] as HTMLButtonElement;
+
+    ReactTestUtils.act(() => {
+      ReactTestUtils.Simulate.click(menuItem);
+    });
+
+    const checkIcon = document.querySelector('.ms-ContextualMenu-checkmarkIcon') as HTMLElement;
+
+    expect(checkIcon).toBeTruthy();
+    expect(onPrimaryClick).toHaveBeenCalled();
+    onPrimaryClick.mockClear();
+
+    ReactTestUtils.act(() => {
+      ReactTestUtils.Simulate.click(checkIcon);
+    });
+
+    expect(onPrimaryClick).toHaveBeenCalled();
+    expect(onItemClick).not.toHaveBeenCalled();
   });
 
   it('can focus on disabled items', () => {
@@ -740,6 +788,61 @@ describe('ContextualMenu', () => {
 
     const menuItems = document.querySelectorAll('li');
     expect(menuItems.length).toEqual(10);
+  });
+
+  it('calculates index and total of menu items correctly', () => {
+    const items: IContextualMenuItem[] = [
+      { key: 'header', text: 'header', itemType: ContextualMenuItemType.Header },
+      { key: '1', text: 'One' },
+      { key: 'divider', itemType: ContextualMenuItemType.Divider },
+      { key: '2', text: 'Two' },
+    ];
+
+    ReactTestUtils.act(() => {
+      ReactTestUtils.renderIntoDocument<IContextualMenuProps>(<ContextualMenu items={items} />);
+    });
+
+    const menuItems = document.querySelectorAll('li button');
+    const total = menuItems[0].getAttribute('aria-setsize');
+    const index1 = menuItems[0].getAttribute('aria-posinset');
+    const index2 = menuItems[1].getAttribute('aria-posinset');
+
+    expect(total).toBe('2');
+    expect(index1).toBe('1');
+    expect(index2).toBe('2');
+  });
+
+  it('calculates index and total of menu items in a section correctly', () => {
+    const items: IContextualMenuItem[] = [
+      {
+        key: 'section1',
+        itemType: ContextualMenuItemType.Section,
+        sectionProps: {
+          topDivider: true,
+          bottomDivider: true,
+          title: 'Actions',
+          items: [
+            { key: 'header', text: 'header', itemType: ContextualMenuItemType.Header },
+            { key: '1', text: 'One' },
+            { key: 'divider', itemType: ContextualMenuItemType.Divider },
+            { key: '2', text: 'Two' },
+          ],
+        },
+      },
+    ];
+
+    ReactTestUtils.act(() => {
+      ReactTestUtils.renderIntoDocument<IContextualMenuProps>(<ContextualMenu items={items} />);
+    });
+
+    const menuItems = document.querySelectorAll('li button');
+    const total = menuItems[0].getAttribute('aria-setsize');
+    const index1 = menuItems[0].getAttribute('aria-posinset');
+    const index2 = menuItems[1].getAttribute('aria-posinset');
+
+    expect(total).toBe('2');
+    expect(index1).toBe('1');
+    expect(index2).toBe('2');
   });
 
   describe('with links', () => {

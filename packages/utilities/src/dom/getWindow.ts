@@ -1,4 +1,4 @@
-import { _isSSR } from './setSSR';
+import { canUseDOM } from './canUseDOM';
 
 let _window: Window | undefined = undefined;
 
@@ -6,6 +6,7 @@ let _window: Window | undefined = undefined;
 // hits a memory leak, whereas aliasing it and calling "typeof _window" does not.
 // Caching the window value at the file scope lets us minimize the impact.
 try {
+  // eslint-disable-next-line no-restricted-globals
   _window = window;
 } catch (e) {
   /* no-op */
@@ -20,7 +21,7 @@ try {
  * @public
  */
 export function getWindow(rootElement?: Element | null): Window | undefined {
-  if (_isSSR || typeof _window === 'undefined') {
+  if (!canUseDOM() || typeof _window === 'undefined') {
     return undefined;
   } else {
     const el = rootElement as Element;

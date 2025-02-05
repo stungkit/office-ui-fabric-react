@@ -1,7 +1,6 @@
 import * as React from 'react';
-import Screener from 'screener-storybook/src/screener';
-import { storiesOf } from '@storybook/react';
-import { TestWrapperDecorator } from '../utilities/index';
+import { Steps } from 'storywright';
+import { getStoryVariant, RTL, StoryWrightDecorator, TestWrapperDecorator } from '../utilities';
 import { List } from '@fluentui/react';
 
 /* eslint-disable @fluentui/max-len */
@@ -130,16 +129,15 @@ const items = [
 
 const onRenderCell = (item: any) => <div>{item.name}</div>;
 
-storiesOf('List', module)
-  .addDecorator(TestWrapperDecorator)
-  .addDecorator(story =>
-    // prettier-ignore
-    <Screener
-      steps={new Screener.Steps()
-        .snapshot('default', { cropTo: '.testWrapper' })
-        .end()}
-    >
-      {story()}
-    </Screener>,
-  )
-  .addStory('Root', () => <List items={items} onRenderCell={onRenderCell} />, { includeRtl: true });
+export default {
+  title: 'List',
+
+  decorators: [
+    TestWrapperDecorator,
+    StoryWrightDecorator(new Steps().snapshot('default', { cropTo: '.testWrapper' }).end()),
+  ],
+};
+
+export const Root = () => <List items={items} onRenderCell={onRenderCell} />;
+
+export const RootRTL = getStoryVariant(Root, RTL);

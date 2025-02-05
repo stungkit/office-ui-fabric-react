@@ -14,6 +14,60 @@ export const DefaultButtonStyles = (theme: ITheme): Partial<IButtonStyles> => {
       padding: '0px 16px',
       border: `${StyleConstants.borderWidth} solid ${semanticColors.inputBorder}`,
       selectors: {
+        // danger button
+        '&.danger': {
+          outlineColor: extendedSemanticColors.ButtonBackgroundDanger,
+          borderColor: extendedSemanticColors.ButtonBorderDanger,
+          backgroundColor: extendedSemanticColors.ButtonBackgroundDanger,
+          color: extendedSemanticColors.ButtonBackgroundDangerText,
+          selectors: {
+            ':hover': {
+              outlineColor: extendedSemanticColors.ButtonBackgroundDangerHovered,
+              borderColor: extendedSemanticColors.ButtonBorderDangerHovered,
+              backgroundColor: extendedSemanticColors.ButtonBackgroundDangerHovered,
+              color: extendedSemanticColors.ButtonBackgroundDangerTextHovered,
+            },
+            ':active': {
+              outlineColor: extendedSemanticColors.ButtonBackgroundDangerPressed,
+              borderColor: `${extendedSemanticColors.ButtonBorderDangerPressed} !important`,
+              backgroundColor: extendedSemanticColors.ButtonBackgroundDangerPressed,
+              color: extendedSemanticColors.ButtonBackgroundDangerTextHovered,
+            },
+            ':focus': {
+              outlineColor: extendedSemanticColors.ButtonBackgroundDangerPressed,
+              borderColor: extendedSemanticColors.ButtonBorderDangerPressed,
+              backgroundColor: extendedSemanticColors.ButtonBackgroundDangerPressed,
+              color: extendedSemanticColors.ButtonBackgroundDangerTextHovered,
+            },
+          },
+        },
+        // tag button
+        '&.tag': {
+          outlineColor: extendedSemanticColors.ButtonBackgroundTag,
+          borderColor: `${extendedSemanticColors.ButtonBorderTag} !important`,
+          backgroundColor: extendedSemanticColors.ButtonBackgroundTag,
+          color: extendedSemanticColors.ButtonBackgroundTagText,
+          selectors: {
+            ':hover': {
+              outlineColor: extendedSemanticColors.ButtonBackgroundTagHovered,
+              borderColor: `${extendedSemanticColors.ButtonBorderTagHovered} !important`,
+              backgroundColor: extendedSemanticColors.ButtonBackgroundTagHovered,
+              color: extendedSemanticColors.ButtonBackgroundTagTextHovered,
+            },
+            ':active': {
+              outlineColor: extendedSemanticColors.ButtonBackgroundTagPressed,
+              borderColor: extendedSemanticColors.ButtonBorderTagPressed,
+              backgroundColor: `${extendedSemanticColors.ButtonBackgroundTagPressed} !important`,
+              color: extendedSemanticColors.ButtonBackgroundTagTextHovered,
+            },
+            ':focus': {
+              outlineColor: `${extendedSemanticColors.ButtonBackgroundTagPressed} !important`,
+              borderColor: `${extendedSemanticColors.ButtonBackgroundTagPressed} !important`,
+              backgroundColor: `${extendedSemanticColors.ButtonBackgroundTagPressed} !important`,
+              color: `${extendedSemanticColors.ButtonBackgroundTagTextHovered} !important`,
+            },
+          },
+        },
         // standard button
         '&.is-expanded': {
           color: semanticColors.buttonTextHovered,
@@ -38,17 +92,11 @@ export const DefaultButtonStyles = (theme: ITheme): Partial<IButtonStyles> => {
           },
         },
         '&.ms-Button--primary.is-disabled': {
-          border: `${StyleConstants.borderWidth} solid
-          ${extendedSemanticColors.primaryButtonBorderDisabled} !important`,
+          border: `${StyleConstants.borderWidth} solid ${extendedSemanticColors.primaryButtonBorderDisabled}`,
         },
       },
     },
     rootFocused: {
-      selectors: {
-        '::after': {
-          outlineColor: `${extendedSemanticColors.ButtonBorderFocus} !important`,
-        },
-      },
       backgroundColor: semanticColors.buttonBackground,
       color: semanticColors.buttonText,
       fill: semanticColors.buttonTextHovered,
@@ -205,7 +253,6 @@ export const DefaultButtonStyles = (theme: ITheme): Partial<IButtonStyles> => {
           height: StyleConstants.inputControlHeight,
           color: semanticColors.primaryButtonTextDisabled,
         },
-
         '.ms-Button--default + .ms-Button': {
           height: StyleConstants.inputControlHeight,
           border: `${StyleConstants.borderWidth} solid ${extendedSemanticColors.primaryButtonBorderDisabled}`,
@@ -217,7 +264,6 @@ export const DefaultButtonStyles = (theme: ITheme): Partial<IButtonStyles> => {
         },
         '.ms-Button--primary + .ms-Button': {
           height: StyleConstants.inputControlHeight,
-          //border: '1px solid pink !important',  //"'none',
           color: semanticColors.primaryButtonTextDisabled,
           selectors: {
             '.ms-Button-menuIcon': {

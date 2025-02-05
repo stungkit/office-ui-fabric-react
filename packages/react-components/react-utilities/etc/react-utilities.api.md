@@ -4,43 +4,22 @@
 
 ```ts
 
-import { DispatchWithoutAction } from 'react';
 import * as React_2 from 'react';
 
 // @public
-export const anchorProperties: Record<string, number>;
+function always<Props extends UnknownSlotProps>(value: Props | SlotShorthandValue | undefined, options: SlotOptions<Props>): SlotComponentType<Props>;
 
-// @public
-export const applyTriggerPropsToChildren: <TTriggerProps>(children: React_2.ReactElement<any, string | React_2.JSXElementConstructor<any>> | ((props: TTriggerProps) => React_2.ReactElement | null) | null | undefined, triggerProps: TTriggerProps) => React_2.ReactElement | null;
+// @internal
+export function applyTriggerPropsToChildren<TriggerChildProps>(children: TriggerProps<TriggerChildProps>['children'], triggerChildProps: TriggerChildProps): React_2.ReactElement | null;
 
-// @public
-export type AsIntrinsicElement<As extends keyof JSX.IntrinsicElements> = {
-    as?: As;
-};
-
-// @public
-export const audioProperties: Record<string, number>;
-
-// @public
-export const baseElementEvents: Record<string, number>;
-
-// @public
-export const baseElementProperties: Record<string, number>;
-
-// @public
-export const buttonProperties: Record<string, number>;
+// @internal
+export function assertSlots<Slots extends SlotPropsRecord>(state: unknown): asserts state is SlotComponents<Slots>;
 
 // @public
 export function canUseDOM(): boolean;
 
-// @public
+// @internal
 export const clamp: (value: number, min: number, max: number) => number;
-
-// @public (undocumented)
-export const colGroupProperties: Record<string, number>;
-
-// @public (undocumented)
-export const colProperties: Record<string, number>;
 
 // @public
 export type ComponentProps<Slots extends SlotPropsRecord, Primary extends keyof Slots = 'root'> = Omit<Slots, Primary & 'root'> & PropsWithoutRef<ExtractSlotProps<Slots[Primary]>>;
@@ -54,36 +33,52 @@ export type ComponentState<Slots extends SlotPropsRecord> = {
     [Key in keyof Slots]: ReplaceNullWithUndefined<Exclude<Slots[Key], SlotShorthandValue | (Key extends 'root' ? null : never)>>;
 };
 
-// Warning: (ae-internal-missing-underscore) The name "defaultSSRContextValue" should be prefixed with an underscore because the declaration is marked as @internal
-//
-// @internal
-export const defaultSSRContextValue: SSRContextValue;
+// @internal (undocumented)
+export function createPriorityQueue<T>(compare: PriorityQueueCompareFn<T>): PriorityQueue<T>;
 
 // @public
-export const divProperties: Record<string, number>;
+export type DistributiveOmit<T, K extends keyof any> = T extends unknown ? Omit<T, K> : T;
+
+// @internal
+export function elementContains(parent: Node | null, child: Node | null): boolean;
+
+// @public
+export type EventData<Type extends string, TEvent> = {
+    type: undefined;
+    event: React_2.SyntheticEvent | Event;
+} | {
+    type: Type;
+    event: TEvent;
+};
+
+// @public
+export type EventHandler<TData extends EventData<string, unknown>> = (ev: React_2.SyntheticEvent | Event, data: TData) => void;
 
 // @public
 export type ExtractSlotProps<S> = Exclude<S, SlotShorthandValue | null | undefined>;
 
-// @public
-export const fieldsetProperties: Record<string, number>;
-
-// @public
+// @internal
 export type FluentTriggerComponent = {
     isFluentTriggerComponent?: boolean;
 };
 
 // @public
-export const formProperties: Record<string, number>;
+export type ForwardRefComponent<Props> = React_2.ForwardRefExoticComponent<Props & React_2.RefAttributes<InferredElementRefType<Props>>>;
 
 // @public
-export type ForwardRefComponent<Props> = ObscureEventName extends keyof Props ? Required<Props>[ObscureEventName] extends React_2.PointerEventHandler<infer Element> ? React_2.ForwardRefExoticComponent<Props & React_2.RefAttributes<Element>> : never : never;
+export function getEventClientCoords(event: TouchOrMouseEvent): {
+    clientX: number;
+    clientY: number;
+};
 
 // @public
+export const getIntrinsicElementProps: <Props extends UnknownSlotProps, ExcludedPropKeys extends Extract<keyof Props, string> = never>(tagName: NonNullable<Props["as"]>, props: Props & React_2.RefAttributes<InferredElementRefType<Props>>, excludedPropNames?: ExcludedPropKeys[] | undefined) => DistributiveOmit<Props, ExcludedPropKeys | Exclude<keyof Props, "as" | keyof HTMLAttributes>>;
+
+// @public @deprecated
 export function getNativeElementProps<TAttributes extends React_2.HTMLAttributes<any>>(tagName: string, props: {}, excludedPropNames?: string[]): TAttributes;
 
-// @public
-export function getNativeProps<T extends Record<string, any>>(props: Record<string, any>, allowedPropNames: string[] | Record<string, number>, excludedPropNames?: string[]): T;
+// @internal
+export function getParent(child: Node | null, options?: GetParentOptions): Node | null;
 
 // @public
 export const getPartitionedNativeProps: <Props extends Pick<React_2.HTMLAttributes<HTMLElement>, "style" | "className">, ExcludedPropKeys extends Extract<keyof Props, string> = never>({ primarySlotTagName, props, excludedPropNames, }: {
@@ -98,99 +93,185 @@ export const getPartitionedNativeProps: <Props extends Pick<React_2.HTMLAttribut
     primary: Omit<Props, ExcludedPropKeys>;
 };
 
-// @public
+// @internal
 export const getRTLSafeKey: (key: string, dir: 'ltr' | 'rtl') => string;
 
-// @public
+// @public @deprecated
 export function getSlots<R extends SlotPropsRecord>(state: ComponentState<R>): {
     slots: Slots<R>;
     slotProps: ObjectSlotProps<R>;
 };
 
-// @public
-export const getTriggerChild: (children: React_2.ReactNode) => React_2.ReactElement & {
-    ref?: React_2.Ref<unknown>;
+// @internal @deprecated
+export function getSlotsNext<R extends SlotPropsRecord>(state: ComponentState<R>): {
+    slots: Slots<R>;
+    slotProps: ObjectSlotProps<R>;
 };
 
-// @public
-export const htmlElementProperties: Record<string, number>;
+// @internal
+export function getTriggerChild<TriggerChildProps>(children: TriggerProps<TriggerChildProps>['children']): (React_2.ReactElement<Partial<TriggerChildProps>> & {
+    ref?: React_2.Ref<any>;
+}) | null;
 
 // @public
-export const iframeProperties: Record<string, number>;
-
-// @public @deprecated (undocumented)
-export const imageProperties: Record<string, number>;
+export const IdPrefixProvider: React_2.Provider<string | undefined>;
 
 // @public
-export const imgProperties: Record<string, number>;
+export type InferredElementRefType<Props> = ObscureEventName extends keyof Props ? Required<Props>[ObscureEventName] extends React_2.PointerEventHandler<infer Element> ? Element : never : never;
+
+// @internal
+export function isFluentTrigger(element: React_2.ReactElement): element is React_2.ReactElement<TriggerProps>;
 
 // @public
-export const inputProperties: Record<string, number>;
+export function isHTMLElement<ConstructorName extends HTMLElementConstructorName = 'HTMLElement'>(element?: unknown, options?: {
+    constructorName?: ConstructorName;
+}): element is InstanceType<(typeof globalThis)[ConstructorName]>;
+
+// @internal
+export function isInteractiveHTMLElement(element: unknown): boolean;
 
 // @public
-export const isFluentTrigger: (element: React_2.ReactElement) => boolean | undefined;
+export function isMouseEvent(event: TouchOrMouseEvent): event is MouseEvent | React_2.MouseEvent;
 
 // @public
-export type IsSingleton<T extends string> = {
-    [K in T]: Exclude<T, K> extends never ? true : false;
-}[T];
+export function isResolvedShorthand<Shorthand extends Slot<UnknownSlotProps>>(shorthand?: Shorthand): shorthand is ExtractSlotProps<Shorthand>;
 
 // @public
-export const labelProperties: Record<string, number>;
+export function isSlot<Props extends {}>(element: unknown): element is SlotComponentType<Props>;
 
 // @public
-export const liProperties: Record<string, number>;
+export function isTouchEvent(event: TouchOrMouseEvent): event is TouchEvent | React_2.TouchEvent;
 
-// @public
-export const olProperties: Record<string, number>;
+// @internal
+export function mergeCallbacks<Args extends unknown[]>(callback1: ((...args: Args) => void) | undefined, callback2: ((...args: Args) => void) | undefined): (...args: Args) => void;
+
+// @public (undocumented)
+export type NativeTouchOrMouseEvent = MouseEvent | TouchEvent;
 
 // @public
 export function omit<TObj extends Record<string, any>, Exclusions extends (keyof TObj)[]>(obj: TObj, exclusions: Exclusions): Omit<TObj, Exclusions[number]>;
 
 // @public (undocumented)
-export const optionProperties: Record<string, number>;
+export type OnSelectionChangeCallback = (event: React_2.SyntheticEvent, selectedItems: Set<SelectionItemId>) => void;
+
+// @public (undocumented)
+export type OnSelectionChangeData = {
+    selectedItems: Set<SelectionItemId>;
+};
 
 // @public
-export type PropsWithoutRef<P> = 'ref' extends keyof P ? (P extends unknown ? Omit<P, 'ref'> : P) : P;
+function optional<Props extends UnknownSlotProps>(value: Props | SlotShorthandValue | undefined | null, options: {
+    renderByDefault?: boolean;
+} & SlotOptions<Props>): SlotComponentType<Props> | undefined;
+
+// @internal (undocumented)
+export interface PriorityQueue<T> {
+    // (undocumented)
+    all: () => T[];
+    // (undocumented)
+    clear: () => void;
+    // (undocumented)
+    contains: (item: T) => boolean;
+    // (undocumented)
+    dequeue: () => T;
+    // (undocumented)
+    enqueue: (item: T) => void;
+    // (undocumented)
+    peek: () => T | null;
+    // (undocumented)
+    remove: (item: T) => void;
+    // (undocumented)
+    size: () => number;
+}
+
+// @public (undocumented)
+export type ReactTouchOrMouseEvent = React_2.MouseEvent | React_2.TouchEvent;
 
 // @public
-export type RefObjectFunction<T> = React_2.RefObject<T> & ((value: T) => void);
-
-// @public
-export type ReplaceNullWithUndefined<T> = T extends null ? Exclude<T, null> | undefined : T;
+export type RefObjectFunction<T> = React_2.RefObject<T> & ((value: T | null) => void);
 
 // @public
 export function resetIdsForTests(): void;
 
-// @public
-export const resolveShorthand: ResolveShorthandFunction;
+// @public @deprecated
+export const resolveShorthand: ResolveShorthandFunction<UnknownSlotProps>;
 
-// @public (undocumented)
+// @public
+function resolveShorthand_2<Props extends UnknownSlotProps | null | undefined>(value: Props | SlotShorthandValue): Props;
+
+// @public @deprecated (undocumented)
 export type ResolveShorthandFunction<Props extends UnknownSlotProps = UnknownSlotProps> = {
-    <P extends Props | null>(value: P | SlotShorthandValue | undefined, options?: ResolveShorthandOptions<P, true>): ReplaceNullWithUndefined<P>;
-    <P extends Props | null>(value: P | SlotShorthandValue | undefined, options?: ResolveShorthandOptions<P, boolean>): ReplaceNullWithUndefined<P> | undefined;
+    <P extends Props>(value: P | SlotShorthandValue | undefined, options: ResolveShorthandOptions<P, true>): P;
+    <P extends Props>(value: P | SlotShorthandValue | null | undefined, options?: ResolveShorthandOptions<P, boolean>): P | undefined;
 };
 
-// @public (undocumented)
-export type ResolveShorthandOptions<Props, Required extends boolean = false> = {
+// @public @deprecated (undocumented)
+export type ResolveShorthandOptions<Props, Required extends boolean = false> = Required extends true ? {
+    required: true;
+    defaultProps?: Props;
+} : {
     required?: Required;
     defaultProps?: Props;
 };
 
-// @public
-export const selectProperties: Record<string, number>;
+// @public (undocumented)
+export type SelectionHookParams = {
+    selectionMode: SelectionMode_2;
+    defaultSelectedItems?: Iterable<SelectionItemId>;
+    selectedItems?: Iterable<SelectionItemId>;
+    onSelectionChange?(event: React_2.SyntheticEvent, data: OnSelectionChangeData): void;
+};
+
+// @public (undocumented)
+export type SelectionItemId = string | number;
+
+// @public (undocumented)
+export interface SelectionMethods {
+    // (undocumented)
+    clearItems(event: React_2.SyntheticEvent): void;
+    // (undocumented)
+    deselectItem(event: React_2.SyntheticEvent, id: SelectionItemId): void;
+    // (undocumented)
+    isSelected(id: SelectionItemId): boolean;
+    // (undocumented)
+    selectItem(event: React_2.SyntheticEvent, id: SelectionItemId): void;
+    // (undocumented)
+    toggleAllItems(event: React_2.SyntheticEvent, itemIds: SelectionItemId[]): void;
+    // (undocumented)
+    toggleItem(event: React_2.SyntheticEvent, id: SelectionItemId): void;
+}
+
+// @public (undocumented)
+type SelectionMode_2 = 'single' | 'multiselect';
+export { SelectionMode_2 as SelectionMode }
+
+// @internal
+export function setVirtualParent(child: Node, parent?: Node): void;
 
 // @public
-export function shouldPreventDefaultOnKeyDown(e: KeyboardEvent | React_2.KeyboardEvent): boolean;
-
-// @public
-export type Slot<Type extends keyof JSX.IntrinsicElements | React_2.ComponentType | UnknownSlotProps, AlternateAs extends keyof JSX.IntrinsicElements = never> = IsSingleton<Extract<Type, string>> extends true ? WithSlotShorthandValue<Type extends keyof JSX.IntrinsicElements ? {
+export type Slot<Type extends keyof JSX.IntrinsicElements | React_2.ComponentType | React_2.VoidFunctionComponent | UnknownSlotProps, AlternateAs extends keyof JSX.IntrinsicElements = never> = IsSingleton<Extract<Type, string>> extends true ? WithSlotShorthandValue<Type extends keyof JSX.IntrinsicElements ? {
     as?: Type;
-} & WithSlotRenderFunction<IntrisicElementProps<Type>> : Type extends React_2.ComponentType<infer Props> ? WithSlotRenderFunction<Props> : Type> | {
+} & WithSlotRenderFunction<IntrinsicElementProps<Type>> : Type extends React_2.ComponentType<infer Props> ? WithSlotRenderFunction<Props> : Type> | {
     [As in AlternateAs]: {
         as: As;
-    } & WithSlotRenderFunction<IntrisicElementProps<As>>;
+    } & WithSlotRenderFunction<IntrinsicElementProps<As>>;
 }[AlternateAs] | null : 'Error: First parameter to Slot must not be not a union of types. See documentation of Slot type.';
+
+declare namespace slot {
+    export {
+        always,
+        optional,
+        resolveShorthand_2 as resolveShorthand,
+        SlotOptions
+    }
+}
+export { slot }
+
+// @internal
+export const SLOT_ELEMENT_TYPE_SYMBOL: unique symbol;
+
+// @internal
+export const SLOT_RENDER_FUNCTION_SYMBOL: unique symbol;
 
 // @public
 export type SlotClassNames<Slots> = {
@@ -198,48 +279,44 @@ export type SlotClassNames<Slots> = {
 };
 
 // @public
+export type SlotComponentType<Props> = Props & {
+    (props: React_2.PropsWithChildren<{}>): React_2.ReactElement | null;
+    [SLOT_RENDER_FUNCTION_SYMBOL]?: SlotRenderFunction<Props>;
+    [SLOT_ELEMENT_TYPE_SYMBOL]: React_2.ComponentType<Props> | (Props extends AsIntrinsicElement<infer As> ? As : keyof JSX.IntrinsicElements);
+};
+
+// @public (undocumented)
+export type SlotOptions<Props extends UnknownSlotProps> = {
+    elementType: React_2.ComponentType<Props> | (Props extends AsIntrinsicElement<infer As> ? As : keyof JSX.IntrinsicElements);
+    defaultProps?: Partial<Props>;
+};
+
+// @public
 export type SlotPropsRecord = Record<string, UnknownSlotProps | SlotShorthandValue | null | undefined>;
 
 // @public (undocumented)
-export type SlotRenderFunction<Props> = (Component: React_2.ElementType<Props>, props: Omit<Props, 'children' | 'as'>) => React_2.ReactNode;
+export type SlotRenderFunction<Props> = (Component: React_2.ElementType<Props>, props: Omit<Props, 'as'>) => React_2.ReactNode;
 
-// @public (undocumented)
+// @public @deprecated (undocumented)
 export type Slots<S extends SlotPropsRecord> = {
     [K in keyof S]: ExtractSlotProps<S[K]> extends AsIntrinsicElement<infer As> ? As : ExtractSlotProps<S[K]> extends React_2.ComponentType<infer P> ? React_2.ElementType<NonNullable<P>> : React_2.ElementType<ExtractSlotProps<S[K]>>;
 };
 
 // @public
-export type SlotShorthandValue = React_2.ReactChild | React_2.ReactNodeArray | React_2.ReactPortal;
+export type SlotShorthandValue = React_2.ReactChild | React_2.ReactNode[] | React_2.ReactPortal;
 
-// Warning: (ae-incompatible-release-tags) The symbol "SSRContext" is marked as @public, but its signature references "SSRContextValue" which is marked as @internal
-//
+// @public
+export const SSRProvider: React_2.FC<{
+    children: React_2.ReactNode;
+}>;
+
 // @public (undocumented)
-export const SSRContext: React_2.Context<SSRContextValue>;
+export type TouchOrMouseEvent = NativeTouchOrMouseEvent | ReactTouchOrMouseEvent;
 
-// Warning: (ae-internal-missing-underscore) The name "SSRContextValue" should be prefixed with an underscore because the declaration is marked as @internal
-//
-// @internal
-export type SSRContextValue = {
-    current: number;
+// @public
+export type TriggerProps<TriggerChildProps = unknown> = {
+    children?: React_2.ReactElement | ((props: TriggerChildProps) => React_2.ReactElement | null) | null;
 };
-
-// @public
-export const SSRProvider: React_2.FC;
-
-// @public
-export const tableProperties: Record<string, number>;
-
-// @public
-export const tdProperties: Record<string, number>;
-
-// @public
-export const textAreaProperties: Record<string, number>;
-
-// @public
-export const thProperties: Record<string, number>;
-
-// @public
-export const trProperties: Record<string, number>;
 
 // @public
 export type UnionToIntersection<U> = (U extends unknown ? (x: U) => U : never) extends (x: infer I) => U ? I : never;
@@ -249,37 +326,27 @@ export type UnknownSlotProps = Pick<React_2.HTMLAttributes<HTMLElement>, 'childr
     as?: keyof JSX.IntrinsicElements;
 };
 
-// @public
-export function useBoolean(initialState: boolean): [boolean, UseBooleanCallbacks];
+// @internal
+export function useAnimationFrame(): readonly [(fn: () => void, delay?: number | undefined) => number, () => void];
 
-// @public
-export type UseBooleanCallbacks = {
-    setTrue: () => void;
-    setFalse: () => void;
-    toggle: () => void;
-};
-
-// @public
-export function useConst<T>(initialValue: T | (() => T)): T;
-
-// @public
+// @internal
 export const useControllableState: <State>(options: UseControllableStateOptions<State>) => [State, React_2.Dispatch<React_2.SetStateAction<State>>];
 
-// @public (undocumented)
+// @internal (undocumented)
 export type UseControllableStateOptions<State> = {
     defaultState?: State | (() => State);
     state: State | undefined;
     initialState: State;
 };
 
-// @public
+// @internal
 export const useEventCallback: <Args extends unknown[], Return>(fn: (...args: Args) => Return) => (...args: Args) => Return;
 
-// @public
+// @internal
 export function useFirstMount(): boolean;
 
-// @public
-export function useForceUpdate(): DispatchWithoutAction;
+// @internal
+export function useForceUpdate(): React_2.DispatchWithoutAction;
 
 // @public
 export function useId(prefix?: string, providedId?: string): string;
@@ -291,45 +358,35 @@ export const useIsomorphicLayoutEffect: typeof React_2.useEffect;
 export function useIsSSR(): boolean;
 
 // @public
-export function useMergedEventCallbacks<Args extends unknown[]>(callback1: ((...args: Args) => void) | undefined, callback2: ((...args: Args) => void) | undefined): (...args: Args) => void;
-
-// @public
 export function useMergedRefs<T>(...refs: (React_2.Ref<T> | undefined)[]): RefObjectFunction<T>;
 
-// @public
-export const useMount: (callback: () => void) => void;
-
-// @public (undocumented)
+// @internal (undocumented)
 export type UseOnClickOrScrollOutsideOptions = {
     element: Document | undefined;
     refs: React_2.MutableRefObject<HTMLElement | undefined | null>[];
     contains?(parent: HTMLElement | null, child: HTMLElement): boolean;
     disabled?: boolean;
+    disabledFocusOnIframe?: boolean;
     callback: (ev: MouseEvent | TouchEvent) => void;
 };
 
-// @public
+// @internal
 export const useOnClickOutside: (options: UseOnClickOrScrollOutsideOptions) => void;
 
-// @public
+// @internal
 export const useOnScrollOutside: (options: UseOnClickOrScrollOutsideOptions) => void;
 
-// @public (undocumented)
+// @internal (undocumented)
 export const usePrevious: <ValueType = unknown>(value: ValueType) => ValueType | null;
 
-// Warning: (ae-internal-missing-underscore) The name "useSSRContext" should be prefixed with an underscore because the declaration is marked as @internal
-//
-// @internal (undocumented)
-export function useSSRContext(): SSRContextValue;
+// @public (undocumented)
+export function useScrollbarWidth(options: UseScrollbarWidthOptions): number | undefined;
 
-// @public
-export function useTimeout(): readonly [(fn: () => void, delay: number) => void, () => void];
+// @public (undocumented)
+export function useSelection(params: SelectionHookParams): readonly [Set<SelectionItemId>, SelectionMethods];
 
-// @public
-export const useUnmount: (callback: () => void) => void;
-
-// @public
-export const videoProperties: Record<string, number>;
+// @internal
+export function useTimeout(): readonly [(fn: () => void, delay?: number | undefined) => number, () => void];
 
 // (No @packageDocumentation comment for this package)
 

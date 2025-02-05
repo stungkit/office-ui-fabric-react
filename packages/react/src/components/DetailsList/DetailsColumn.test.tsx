@@ -4,6 +4,8 @@ import { ColumnActionsMode } from './DetailsList.types';
 import { mount } from 'enzyme';
 import { DetailsList } from './DetailsList';
 import { TooltipHost } from '../../Tooltip';
+import { resetIds } from '../../Utilities';
+import * as renderer from 'react-test-renderer';
 import type { IColumn, IDetailsHeaderProps } from './DetailsList.types';
 import type { IRenderFunction } from '../../Utilities';
 import type { ITooltipHostProps } from '../../Tooltip';
@@ -13,6 +15,7 @@ let baseColumn: IColumn;
 
 describe('DetailsColumn', () => {
   beforeEach(() => {
+    resetIds();
     mockOnColumnClick = jest.fn();
     baseColumn = {
       key: '1',
@@ -183,8 +186,42 @@ describe('DetailsColumn', () => {
     expect(component.exists(`#${referenceId}`)).toBe(true);
   });
 
-  it('does not render invalid aria-describedby if custom DetailsHeader has onRenderColumnHeaderTooltip', () => {
+  it('renders valid aria-describedby pointing to a custom tooltip not set using ariaLabel', () => {
     const column: IColumn = { ...baseColumn, isFiltered: true, filterAriaLabel: 'Foo' };
+    let component: any;
+    const columns = [column];
+
+    component = mount(
+      <DetailsList
+        items={[]}
+        setKey={'key1'}
+        initialFocusedIndex={0}
+        skipViewportMeasures={true}
+        columns={columns}
+        onRenderDetailsHeader={(props: IDetailsHeaderProps, defaultRenderer?: IRenderFunction<IDetailsHeaderProps>) => {
+          return defaultRenderer!({
+            ...props,
+            onRenderColumnHeaderTooltip: (
+              tooltipProps: ITooltipHostProps,
+              tooltipRenderer?: IRenderFunction<ITooltipHostProps>,
+            ) => {
+              return <TooltipHost {...tooltipProps} content="foo" />;
+            },
+          });
+        }}
+        componentRef={ref => (component = ref)}
+        onShouldVirtualize={() => false}
+      />,
+    );
+
+    const ariaDescribedByEl = component.find('[aria-describedby]').first().getDOMNode();
+    const referenceId = ariaDescribedByEl.getAttribute('aria-describedby');
+
+    expect(component.exists(`#${referenceId}`)).toBe(true);
+  });
+
+  it('does not render invalid aria-describedby if custom DetailsHeader has onRenderColumnHeaderTooltip', () => {
+    const column: IColumn = { ...baseColumn, isFiltered: true, ariaLabel: 'Foo', filterAriaLabel: 'Foo' };
     let component: any;
     const columns = [column];
 
@@ -258,5 +295,26 @@ describe('DetailsColumn', () => {
     const columnHeaderTitle = columnHeader.find('.ms-DetailsHeader-cellTitle');
 
     expect(columnHeaderTitle.getDOMNode().getAttribute('aria-expanded')).toBe('true');
+  });
+
+  it('renders a sortable icon on an unsorted column when showSortIconWhenUnsorted is set to true', () => {
+    const column: IColumn = { ...baseColumn, showSortIconWhenUnsorted: true, sortableAriaLabel: 'Foo' };
+
+    const columns = [column];
+    let component: any;
+
+    component = renderer.create(
+      <DetailsList
+        items={[]}
+        setKey={'key1'}
+        initialFocusedIndex={0}
+        skipViewportMeasures={true}
+        columns={columns}
+        componentRef={ref => (component = ref)}
+        onShouldVirtualize={() => false}
+      />,
+    );
+
+    expect(component.toJSON()).toMatchSnapshot();
   });
 });

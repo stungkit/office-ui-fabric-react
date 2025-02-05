@@ -1,7 +1,7 @@
 import createCache, { StylisPlugin } from '@emotion/cache';
 import { CSSObject, serializeStyles } from '@emotion/serialize';
 import { StyleSheet } from '@emotion/sheet';
-import { EmotionCache, insertStyles } from '@emotion/utils';
+import { insertStyles } from '@emotion/utils';
 import {
   CreateRenderer,
   Renderer,
@@ -41,7 +41,7 @@ export function createEmotionRenderer(options: CreateEmotionRendererOptions = {}
 
       // TODO: make this configurable via perf flags
       speedy: true,
-    }) as EmotionCache & { insert: Function };
+    });
     const cacheRtl = createCache({
       container: target?.head,
       key: 'rfui',
@@ -102,7 +102,7 @@ export function createEmotionRenderer(options: CreateEmotionRendererOptions = {}
         }
 
         const serializedStyles = serializeStyles(
-          [{ [selector]: (styles as unknown) as CSSObject }],
+          [{ [selector]: styles as unknown as CSSObject }],
           // This looks as a bug in typings as in Emotion code this function can be used with a single param.
           // https://github.com/emotion-js/emotion/blob/a076e7fa5f78fec6515671b78801cfc9d6cf1316/packages/core/src/global.js#L45
           // @ts-ignore

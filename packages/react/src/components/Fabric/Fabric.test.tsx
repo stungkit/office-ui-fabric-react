@@ -1,6 +1,6 @@
-/* eslint-disable deprecation/deprecation */
+/* eslint-disable @typescript-eslint/no-deprecated */
 import * as React from 'react';
-import { create } from '@fluentui/utilities/lib/test';
+import { create } from '@fluentui/test-utilities';
 //import { Customizer } from '@fluentui/utilities';
 import { Fabric } from './Fabric';
 //import { Checkbox } from '@fluentui/react/lib/Checkbox';

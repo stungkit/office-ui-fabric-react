@@ -1,8 +1,90 @@
 # Change Log - @fluentui/keyboard-keys
 
-This log was last generated on Thu, 05 May 2022 18:26:28 GMT and should not be manually modified.
+This log was last generated on Mon, 11 Nov 2024 10:01:03 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## [9.0.8](https://github.com/microsoft/fluentui/tree/@fluentui/keyboard-keys_v9.0.8)
+
+Mon, 11 Nov 2024 10:01:03 GMT 
+[Compare changes](https://github.com/microsoft/fluentui/compare/@fluentui/keyboard-keys_v9.0.7..@fluentui/keyboard-keys_v9.0.8)
+
+### Patches
+
+- chore: replace npm-scripts and just-scrtips with nx inferred tasks ([PR #33074](https://github.com/microsoft/fluentui/pull/33074) by martinhochel@microsoft.com)
+
+## [9.0.7](https://github.com/microsoft/fluentui/tree/@fluentui/keyboard-keys_v9.0.7)
+
+Thu, 09 Nov 2023 17:29:49 GMT 
+[Compare changes](https://github.com/microsoft/fluentui/compare/@fluentui/keyboard-keys_v9.0.6..@fluentui/keyboard-keys_v9.0.7)
+
+### Patches
+
+- chore: use package.json#files setup instead of npmignore for all v9 libraries ([PR #29734](https://github.com/microsoft/fluentui/pull/29734) by martinhochel@microsoft.com)
+
+## [9.0.6](https://github.com/microsoft/fluentui/tree/@fluentui/keyboard-keys_v9.0.6)
+
+Tue, 26 Sep 2023 17:49:01 GMT 
+[Compare changes](https://github.com/microsoft/fluentui/compare/@fluentui/keyboard-keys_v9.0.5..@fluentui/keyboard-keys_v9.0.6)
+
+### Patches
+
+- chore: trigger manual version bump after broken release ([PR #29303](https://github.com/microsoft/fluentui/pull/29303) by yuanboxue@microsoft.com)
+
+## [9.0.5](https://github.com/microsoft/fluentui/tree/@fluentui/keyboard-keys_v9.0.5)
+
+Tue, 26 Sep 2023 15:32:07 GMT 
+[Compare changes](https://github.com/microsoft/fluentui/compare/@fluentui/keyboard-keys_v9.0.4..@fluentui/keyboard-keys_v9.0.5)
+
+### Patches
+
+- fix: bump swc core to mitigate transpilation memory leaks ([PR #29253](https://github.com/microsoft/fluentui/pull/29253) by martinhochel@microsoft.com)
+
+## [9.0.4](https://github.com/microsoft/fluentui/tree/@fluentui/keyboard-keys_v9.0.4)
+
+Tue, 05 Sep 2023 13:29:14 GMT 
+[Compare changes](https://github.com/microsoft/fluentui/compare/@fluentui/keyboard-keys_v9.0.3..@fluentui/keyboard-keys_v9.0.4)
+
+### Patches
+
+- bumps @swc/helpers version to 0.5.1 ([PR #28989](https://github.com/microsoft/fluentui/pull/28989) by bernardo.sunderhus@gmail.com)
+
+## [9.0.3](https://github.com/microsoft/fluentui/tree/@fluentui/keyboard-keys_v9.0.3)
+
+Fri, 12 May 2023 20:28:09 GMT 
+[Compare changes](https://github.com/microsoft/fluentui/compare/@fluentui/keyboard-keys_v9.0.2..@fluentui/keyboard-keys_v9.0.3)
+
+### Patches
+
+- chore: exclude .swcrc from being published ([PR #27740](https://github.com/microsoft/fluentui/pull/27740) by olfedias@microsoft.com)
+
+## [9.0.2](https://github.com/microsoft/fluentui/tree/@fluentui/keyboard-keys_v9.0.2)
+
+Tue, 21 Mar 2023 21:23:19 GMT 
+[Compare changes](https://github.com/microsoft/fluentui/compare/@fluentui/keyboard-keys_v9.0.1..@fluentui/keyboard-keys_v9.0.2)
+
+### Patches
+
+- chore: migrate to swc transpilation approach. ([PR #27250](https://github.com/microsoft/fluentui/pull/27250) by tristan.watanabe@gmail.com)
+- fix: add node field to package.json exports map. ([PR #27154](https://github.com/microsoft/fluentui/pull/27154) by tristan.watanabe@gmail.com)
+
+## [9.0.1](https://github.com/microsoft/fluentui/tree/@fluentui/keyboard-keys_v9.0.1)
+
+Fri, 11 Nov 2022 14:57:50 GMT 
+[Compare changes](https://github.com/microsoft/fluentui/compare/@fluentui/keyboard-keys_v9.0.0..@fluentui/keyboard-keys_v9.0.1)
+
+### Patches
+
+- fix: create valid export maps ([PR #25558](https://github.com/microsoft/fluentui/pull/25558) by martinhochel@microsoft.com)
+
+## [9.0.0](https://github.com/microsoft/fluentui/tree/@fluentui/keyboard-keys_v9.0.0)
+
+Tue, 28 Jun 2022 15:14:09 GMT 
+[Compare changes](https://github.com/microsoft/fluentui/compare/@fluentui/keyboard-keys_v9.0.0-rc.6..@fluentui/keyboard-keys_v9.0.0)
+
+### Patches
+
+- feat: Initial 9.0.0 release ([PR #23733](https://github.com/microsoft/fluentui/pull/23733) by lingfangao@hotmail.com)
 
 ## [9.0.0-rc.6](https://github.com/microsoft/fluentui/tree/@fluentui/keyboard-keys_v9.0.0-rc.6)
 

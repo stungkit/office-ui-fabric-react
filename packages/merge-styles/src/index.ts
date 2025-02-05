@@ -1,17 +1,25 @@
-export { IStyle, IStyleBase, IStyleBaseArray } from './IStyle';
+export type { IStyle, IStyleBase, IStyleBaseArray } from './IStyle';
 
-export { IRawStyle } from './IRawStyle';
+export type { IRawStyle } from './IRawStyle';
 
-export { IKeyframes } from './IKeyframes';
+export type { IKeyframes } from './IKeyframes';
 
-export { IStyleFunction, IStyleFunctionOrObject } from './IStyleFunction';
+export type { IStyleFunction, IStyleFunctionOrObject } from './IStyleFunction';
 
-export { DeepPartial } from './DeepPartial';
+// eslint-disable-next-line @typescript-eslint/no-deprecated
+export type { DeepPartial } from './DeepPartial';
 
-// eslint-disable-next-line deprecation/deprecation
-export { IConcatenatedStyleSet, IProcessedStyleSet, IStyleSet, Omit } from './IStyleSet';
+// eslint-disable-next-line @typescript-eslint/no-deprecated
+export type { IConcatenatedStyleSet, IProcessedStyleSet, IStyleSet, IStyleSetBase, Omit } from './IStyleSet';
 
-export { ICSSRule, ICSSPixelUnitRule, IFontFace, IFontWeight, IRawFontStyle, IRawStyleBase } from './IRawStyleBase';
+export type {
+  ICSSRule,
+  ICSSPixelUnitRule,
+  IFontFace,
+  IFontWeight,
+  IRawFontStyle,
+  IRawStyleBase,
+} from './IRawStyleBase';
 
 export { mergeStyles, mergeCss } from './mergeStyles';
 
@@ -25,10 +33,30 @@ export { fontFace } from './fontFace';
 
 export { keyframes } from './keyframes';
 
-export * from './Stylesheet';
+export { InjectionMode, Stylesheet } from './Stylesheet';
+export type {
+  ICSPSettings,
+  ISerializedStylesheet,
+  IStyleSheetConfig,
+  ExtendedCSSStyleSheet,
+  InsertRuleCallback,
+} from './Stylesheet';
+
+export {
+  ShadowDomStylesheet,
+  SUPPORTS_CONSTRUCTABLE_STYLESHEETS,
+  SUPPORTS_MODIFYING_ADOPTED_STYLESHEETS,
+} from './ShadowDomStylesheet';
+
+export type { AddSheetCallback } from './ShadowDomStylesheet';
 
 export { setRTL } from './StyleOptionsState';
 
-export { ObjectOnly } from './ObjectOnly';
+export type { ObjectOnly } from './ObjectOnly';
+
+export { DEFAULT_SHADOW_CONFIG, GLOBAL_STYLESHEET_KEY, makeShadowConfig } from './shadowConfig';
+export type { ShadowConfig } from './shadowConfig';
+
+export { cloneCSSStyleSheet } from './cloneCSSStyleSheet';
 
 import './version';
