@@ -1,5 +1,12 @@
 import * as React from 'react';
-import { initializeComponentRef, classNamesFunction, KeyCodes, getRTLSafeKeyCode, css } from '../../Utilities';
+import {
+  initializeComponentRef,
+  classNamesFunction,
+  FocusRects,
+  KeyCodes,
+  getRTLSafeKeyCode,
+  css,
+} from '../../Utilities';
 import { GroupedListSection } from './GroupedListSection';
 import { List, ScrollToMode } from '../../List';
 import { SelectionMode } from '../../Selection';
@@ -57,6 +64,7 @@ export class GroupedListBase extends React.Component<IGroupedListProps, IGrouped
       compact,
       groups,
       listProps,
+      items,
     };
 
     let shouldForceUpdates = false;
@@ -73,17 +81,6 @@ export class GroupedListBase extends React.Component<IGroupedListProps, IGrouped
       // If there are any props not passed explicitly to `List` which have an impact on the behavior of `onRenderCell`,
       // these need to 'force-update' this component by revving the version. Otherwise, the List might render with stale
       // data.
-      shouldForceUpdates = true;
-    }
-
-    if (groups !== previousState.groups) {
-      nextState = {
-        ...nextState,
-        groups,
-      };
-    }
-
-    if (selectionMode !== previousState.selectionMode || compact !== previousState.compact) {
       shouldForceUpdates = true;
     }
 
@@ -149,7 +146,7 @@ export class GroupedListBase extends React.Component<IGroupedListProps, IGrouped
     this._classNames = getClassNames(styles, {
       theme: theme!,
       className,
-      compact: compact,
+      compact,
     });
 
     const { shouldEnterInnerZone = this._isInnerZoneKeystroke } = focusZoneProps;
@@ -164,6 +161,7 @@ export class GroupedListBase extends React.Component<IGroupedListProps, IGrouped
         shouldEnterInnerZone={shouldEnterInnerZone}
         className={css(this._classNames.root, focusZoneProps.className)}
       >
+        <FocusRects />
         {!groups ? (
           this._renderGroup(undefined, 0)
         ) : (
@@ -358,7 +356,7 @@ export class GroupedListBase extends React.Component<IGroupedListProps, IGrouped
   };
 
   private _isInnerZoneKeystroke = (ev: React.KeyboardEvent<HTMLElement>): boolean => {
-    // eslint-disable-next-line deprecation/deprecation
+    // eslint-disable-next-line @typescript-eslint/no-deprecated
     return ev.which === getRTLSafeKeyCode(KeyCodes.right);
   };
 

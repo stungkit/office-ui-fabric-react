@@ -11,923 +11,9 @@ exports[`Pagination render buttons Pagination correctly 1`] = `
         list-style: none;
       }
 >
-  <div>
-    <button
-      aria-disabled={true}
-      aria-label="first page"
-      className=
-          ms-Button
-          ms-Button--icon
-          is-disabled
-          {
-            -moz-osx-font-smoothing: grayscale;
-            -webkit-font-smoothing: antialiased;
-            background-color: transparent;
-            border-color: #f3f2f1;
-            border-radius: 2px;
-            border: none;
-            box-sizing: border-box;
-            color: #c8c6c4;
-            cursor: default;
-            display: inline-block;
-            font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
-            font-size: 14px;
-            font-weight: 400;
-            height: 32px;
-            outline: transparent;
-            padding-bottom: 0;
-            padding-left: 4px;
-            padding-right: 4px;
-            padding-top: 0;
-            position: relative;
-            text-align: center;
-            text-decoration: none;
-            user-select: none;
-            width: 32px;
-          }
-          &::-moz-focus-inner {
-            border: 0;
-          }
-          .ms-Fabric--isFocusVisible &:focus:after {
-            border: 1px solid transparent;
-            bottom: 2px;
-            content: "";
-            left: 2px;
-            outline: 1px solid #605e5c;
-            position: absolute;
-            right: 2px;
-            top: 2px;
-            z-index: 1;
-          }
-          @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
-            bottom: -2px;
-            left: -2px;
-            outline-color: ButtonText;
-            right: -2px;
-            top: -2px;
-          }
-          &:active > span {
-            left: 0px;
-            position: relative;
-            top: 0px;
-          }
-          &:hover {
-            outline: 0px;
-          }
-          &:focus {
-            outline: 0px;
-          }
-      data-is-focusable={false}
-      disabled={true}
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      onKeyPress={[Function]}
-      onKeyUp={[Function]}
-      onMouseDown={[Function]}
-      onMouseUp={[Function]}
-      type="button"
-    >
-      <span
-        className=
-            ms-Button-flexContainer
-            {
-              align-items: center;
-              display: flex;
-              flex-wrap: nowrap;
-              height: 100%;
-              justify-content: center;
-            }
-        data-automationid="splitbuttonprimary"
-      >
-        <i
-          aria-hidden={true}
-          className=
-              ms-Icon
-              ms-Button-icon
-              {
-                display: inline-block;
-              }
-              {
-                -moz-osx-font-smoothing: grayscale;
-                -webkit-font-smoothing: antialiased;
-                font-family: "FabricMDL2Icons-1";
-                font-style: normal;
-                font-weight: normal;
-                speak: none;
-              }
-              {
-                color: #a19f9d;
-                flex-shrink: 0;
-                font-size: 16px;
-                height: 16px;
-                line-height: 16px;
-                margin-bottom: 0;
-                margin-left: 4px;
-                margin-right: 4px;
-                margin-top: 0;
-                text-align: center;
-              }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
-                color: GrayText;
-              }
-          data-icon-name="Previous"
-          style={
-            Object {
-              "fontFamily": "\\"FabricMDL2Icons-1\\"",
-            }
-          }
-        >
-          
-        </i>
-      </span>
-    </button>
-    <button
-      aria-disabled={true}
-      aria-label="previous page"
-      className=
-          ms-Button
-          ms-Button--icon
-          is-disabled
-          {
-            -moz-osx-font-smoothing: grayscale;
-            -webkit-font-smoothing: antialiased;
-            background-color: transparent;
-            border-color: #f3f2f1;
-            border-radius: 2px;
-            border: none;
-            box-sizing: border-box;
-            color: #c8c6c4;
-            cursor: default;
-            display: inline-block;
-            font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
-            font-size: 14px;
-            font-weight: 400;
-            height: 32px;
-            outline: transparent;
-            padding-bottom: 0;
-            padding-left: 4px;
-            padding-right: 4px;
-            padding-top: 0;
-            position: relative;
-            text-align: center;
-            text-decoration: none;
-            user-select: none;
-            width: 32px;
-          }
-          &::-moz-focus-inner {
-            border: 0;
-          }
-          .ms-Fabric--isFocusVisible &:focus:after {
-            border: 1px solid transparent;
-            bottom: 2px;
-            content: "";
-            left: 2px;
-            outline: 1px solid #605e5c;
-            position: absolute;
-            right: 2px;
-            top: 2px;
-            z-index: 1;
-          }
-          @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
-            bottom: -2px;
-            left: -2px;
-            outline-color: ButtonText;
-            right: -2px;
-            top: -2px;
-          }
-          &:active > span {
-            left: 0px;
-            position: relative;
-            top: 0px;
-          }
-          &:hover {
-            outline: 0px;
-          }
-          &:focus {
-            outline: 0px;
-          }
-      data-is-focusable={false}
-      disabled={true}
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      onKeyPress={[Function]}
-      onKeyUp={[Function]}
-      onMouseDown={[Function]}
-      onMouseUp={[Function]}
-      type="button"
-    >
-      <span
-        className=
-            ms-Button-flexContainer
-            {
-              align-items: center;
-              display: flex;
-              flex-wrap: nowrap;
-              height: 100%;
-              justify-content: center;
-            }
-        data-automationid="splitbuttonprimary"
-      >
-        <i
-          aria-hidden={true}
-          className=
-              ms-Icon
-              ms-Button-icon
-              {
-                display: inline-block;
-              }
-              {
-                -moz-osx-font-smoothing: grayscale;
-                -webkit-font-smoothing: antialiased;
-                font-family: "FabricMDL2Icons-8";
-                font-style: normal;
-                font-weight: normal;
-                speak: none;
-              }
-              {
-                color: #a19f9d;
-                flex-shrink: 0;
-                font-size: 16px;
-                height: 16px;
-                line-height: 16px;
-                margin-bottom: 0;
-                margin-left: 4px;
-                margin-right: 4px;
-                margin-top: 0;
-                text-align: center;
-              }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
-                color: GrayText;
-              }
-          data-icon-name="CaretSolidLeft"
-          style={
-            Object {
-              "fontFamily": "\\"FabricMDL2Icons-8\\"",
-            }
-          }
-        >
-          
-        </i>
-      </span>
-    </button>
-    <button
-      aria-label="page 1 of 10 selected"
-      aria-selected={true}
-      className=
-          ms-Button
-          ms-Pagination-pageNumber
-          ms-Button--default
-          {
-            -moz-osx-font-smoothing: grayscale;
-            -webkit-font-smoothing: antialiased;
-            background-color: transparent;
-            border-radius: 2px;
-            border: none;
-            box-sizing: border-box;
-            color: #000000;
-            cursor: pointer;
-            display: inline-block;
-            font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
-            font-size: 14px;
-            font-weight: 400;
-            height: 32px;
-            min-height: 32px;
-            min-width: 32px;
-            outline: transparent;
-            padding-bottom: 0;
-            padding-left: 16px;
-            padding-right: 16px;
-            padding-top: 0;
-            position: relative;
-            text-align: center;
-            text-decoration: none;
-            user-select: none;
-            vertical-align: middle;
-          }
-          &::-moz-focus-inner {
-            border: 0;
-          }
-          .ms-Fabric--isFocusVisible &:focus:after {
-            border: 1px solid transparent;
-            bottom: 2px;
-            content: "";
-            left: 2px;
-            outline: 1px solid #605e5c;
-            position: absolute;
-            right: 2px;
-            top: 2px;
-            z-index: 1;
-          }
-          @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
-            bottom: -2px;
-            left: -2px;
-            outline-color: ButtonText;
-            right: -2px;
-            top: -2px;
-          }
-          &:active > span {
-            left: 0px;
-            position: relative;
-            top: 0px;
-          }
-          &[aria-selected=true] {
-            color: #0078d4;
-            cursor: default;
-            font-weight: bold;
-            text-decoration: underline;
-          }
-          &:hover[aria-selected=true] {
-            background-color: transparent;
-            color: #0078d4;
-          }
-          &:active {
-            background-color: #edebe9;
-            color: #201f1e;
-          }
-          &:hover {
-            background-color: #f3f2f1;
-            color: #201f1e;
-          }
-          @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
-            border-color: Highlight;
-            color: Highlight;
-          }
-      data-is-focusable={true}
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      onKeyPress={[Function]}
-      onKeyUp={[Function]}
-      onMouseDown={[Function]}
-      onMouseUp={[Function]}
-      type="button"
-    >
-      <span
-        className=
-            ms-Button-flexContainer
-            {
-              align-items: center;
-              display: flex;
-              flex-wrap: nowrap;
-              height: 100%;
-              justify-content: center;
-            }
-        data-automationid="splitbuttonprimary"
-      >
-        1
-      </span>
-    </button>
-    <button
-      aria-label="page 2 of 10"
-      aria-selected={false}
-      className=
-          ms-Button
-          ms-Pagination-pageNumber
-          ms-Button--default
-          {
-            -moz-osx-font-smoothing: grayscale;
-            -webkit-font-smoothing: antialiased;
-            background-color: transparent;
-            border-radius: 2px;
-            border: none;
-            box-sizing: border-box;
-            color: #000000;
-            cursor: pointer;
-            display: inline-block;
-            font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
-            font-size: 14px;
-            font-weight: 400;
-            height: 32px;
-            min-height: 32px;
-            min-width: 32px;
-            outline: transparent;
-            padding-bottom: 0;
-            padding-left: 16px;
-            padding-right: 16px;
-            padding-top: 0;
-            position: relative;
-            text-align: center;
-            text-decoration: none;
-            user-select: none;
-            vertical-align: middle;
-          }
-          &::-moz-focus-inner {
-            border: 0;
-          }
-          .ms-Fabric--isFocusVisible &:focus:after {
-            border: 1px solid transparent;
-            bottom: 2px;
-            content: "";
-            left: 2px;
-            outline: 1px solid #605e5c;
-            position: absolute;
-            right: 2px;
-            top: 2px;
-            z-index: 1;
-          }
-          @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
-            bottom: -2px;
-            left: -2px;
-            outline-color: ButtonText;
-            right: -2px;
-            top: -2px;
-          }
-          &:active > span {
-            left: 0px;
-            position: relative;
-            top: 0px;
-          }
-          &[aria-selected=true] {
-            color: #0078d4;
-            cursor: default;
-            font-weight: bold;
-            text-decoration: underline;
-          }
-          &:hover[aria-selected=true] {
-            background-color: transparent;
-            color: #0078d4;
-          }
-          &:active {
-            background-color: #edebe9;
-            color: #201f1e;
-          }
-          &:hover {
-            background-color: #f3f2f1;
-            color: #201f1e;
-          }
-          @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
-            border-color: Highlight;
-            color: Highlight;
-          }
-      data-is-focusable={true}
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      onKeyPress={[Function]}
-      onKeyUp={[Function]}
-      onMouseDown={[Function]}
-      onMouseUp={[Function]}
-      type="button"
-    >
-      <span
-        className=
-            ms-Button-flexContainer
-            {
-              align-items: center;
-              display: flex;
-              flex-wrap: nowrap;
-              height: 100%;
-              justify-content: center;
-            }
-        data-automationid="splitbuttonprimary"
-      >
-        2
-      </span>
-    </button>
-    <button
-      aria-label="page 3 of 10"
-      aria-selected={false}
-      className=
-          ms-Button
-          ms-Pagination-pageNumber
-          ms-Button--default
-          {
-            -moz-osx-font-smoothing: grayscale;
-            -webkit-font-smoothing: antialiased;
-            background-color: transparent;
-            border-radius: 2px;
-            border: none;
-            box-sizing: border-box;
-            color: #000000;
-            cursor: pointer;
-            display: inline-block;
-            font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
-            font-size: 14px;
-            font-weight: 400;
-            height: 32px;
-            min-height: 32px;
-            min-width: 32px;
-            outline: transparent;
-            padding-bottom: 0;
-            padding-left: 16px;
-            padding-right: 16px;
-            padding-top: 0;
-            position: relative;
-            text-align: center;
-            text-decoration: none;
-            user-select: none;
-            vertical-align: middle;
-          }
-          &::-moz-focus-inner {
-            border: 0;
-          }
-          .ms-Fabric--isFocusVisible &:focus:after {
-            border: 1px solid transparent;
-            bottom: 2px;
-            content: "";
-            left: 2px;
-            outline: 1px solid #605e5c;
-            position: absolute;
-            right: 2px;
-            top: 2px;
-            z-index: 1;
-          }
-          @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
-            bottom: -2px;
-            left: -2px;
-            outline-color: ButtonText;
-            right: -2px;
-            top: -2px;
-          }
-          &:active > span {
-            left: 0px;
-            position: relative;
-            top: 0px;
-          }
-          &[aria-selected=true] {
-            color: #0078d4;
-            cursor: default;
-            font-weight: bold;
-            text-decoration: underline;
-          }
-          &:hover[aria-selected=true] {
-            background-color: transparent;
-            color: #0078d4;
-          }
-          &:active {
-            background-color: #edebe9;
-            color: #201f1e;
-          }
-          &:hover {
-            background-color: #f3f2f1;
-            color: #201f1e;
-          }
-          @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
-            border-color: Highlight;
-            color: Highlight;
-          }
-      data-is-focusable={true}
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      onKeyPress={[Function]}
-      onKeyUp={[Function]}
-      onMouseDown={[Function]}
-      onMouseUp={[Function]}
-      type="button"
-    >
-      <span
-        className=
-            ms-Button-flexContainer
-            {
-              align-items: center;
-              display: flex;
-              flex-wrap: nowrap;
-              height: 100%;
-              justify-content: center;
-            }
-        data-automationid="splitbuttonprimary"
-      >
-        3
-      </span>
-    </button>
-    <button
-      aria-label="page 4 of 10"
-      aria-selected={false}
-      className=
-          ms-Button
-          ms-Pagination-pageNumber
-          ms-Button--default
-          {
-            -moz-osx-font-smoothing: grayscale;
-            -webkit-font-smoothing: antialiased;
-            background-color: transparent;
-            border-radius: 2px;
-            border: none;
-            box-sizing: border-box;
-            color: #000000;
-            cursor: pointer;
-            display: inline-block;
-            font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
-            font-size: 14px;
-            font-weight: 400;
-            height: 32px;
-            min-height: 32px;
-            min-width: 32px;
-            outline: transparent;
-            padding-bottom: 0;
-            padding-left: 16px;
-            padding-right: 16px;
-            padding-top: 0;
-            position: relative;
-            text-align: center;
-            text-decoration: none;
-            user-select: none;
-            vertical-align: middle;
-          }
-          &::-moz-focus-inner {
-            border: 0;
-          }
-          .ms-Fabric--isFocusVisible &:focus:after {
-            border: 1px solid transparent;
-            bottom: 2px;
-            content: "";
-            left: 2px;
-            outline: 1px solid #605e5c;
-            position: absolute;
-            right: 2px;
-            top: 2px;
-            z-index: 1;
-          }
-          @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
-            bottom: -2px;
-            left: -2px;
-            outline-color: ButtonText;
-            right: -2px;
-            top: -2px;
-          }
-          &:active > span {
-            left: 0px;
-            position: relative;
-            top: 0px;
-          }
-          &[aria-selected=true] {
-            color: #0078d4;
-            cursor: default;
-            font-weight: bold;
-            text-decoration: underline;
-          }
-          &:hover[aria-selected=true] {
-            background-color: transparent;
-            color: #0078d4;
-          }
-          &:active {
-            background-color: #edebe9;
-            color: #201f1e;
-          }
-          &:hover {
-            background-color: #f3f2f1;
-            color: #201f1e;
-          }
-          @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
-            border-color: Highlight;
-            color: Highlight;
-          }
-      data-is-focusable={true}
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      onKeyPress={[Function]}
-      onKeyUp={[Function]}
-      onMouseDown={[Function]}
-      onMouseUp={[Function]}
-      type="button"
-    >
-      <span
-        className=
-            ms-Button-flexContainer
-            {
-              align-items: center;
-              display: flex;
-              flex-wrap: nowrap;
-              height: 100%;
-              justify-content: center;
-            }
-        data-automationid="splitbuttonprimary"
-      >
-        4
-      </span>
-    </button>
-    <button
-      aria-label="page 5 of 10"
-      aria-selected={false}
-      className=
-          ms-Button
-          ms-Pagination-pageNumber
-          ms-Button--default
-          {
-            -moz-osx-font-smoothing: grayscale;
-            -webkit-font-smoothing: antialiased;
-            background-color: transparent;
-            border-radius: 2px;
-            border: none;
-            box-sizing: border-box;
-            color: #000000;
-            cursor: pointer;
-            display: inline-block;
-            font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
-            font-size: 14px;
-            font-weight: 400;
-            height: 32px;
-            min-height: 32px;
-            min-width: 32px;
-            outline: transparent;
-            padding-bottom: 0;
-            padding-left: 16px;
-            padding-right: 16px;
-            padding-top: 0;
-            position: relative;
-            text-align: center;
-            text-decoration: none;
-            user-select: none;
-            vertical-align: middle;
-          }
-          &::-moz-focus-inner {
-            border: 0;
-          }
-          .ms-Fabric--isFocusVisible &:focus:after {
-            border: 1px solid transparent;
-            bottom: 2px;
-            content: "";
-            left: 2px;
-            outline: 1px solid #605e5c;
-            position: absolute;
-            right: 2px;
-            top: 2px;
-            z-index: 1;
-          }
-          @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
-            bottom: -2px;
-            left: -2px;
-            outline-color: ButtonText;
-            right: -2px;
-            top: -2px;
-          }
-          &:active > span {
-            left: 0px;
-            position: relative;
-            top: 0px;
-          }
-          &[aria-selected=true] {
-            color: #0078d4;
-            cursor: default;
-            font-weight: bold;
-            text-decoration: underline;
-          }
-          &:hover[aria-selected=true] {
-            background-color: transparent;
-            color: #0078d4;
-          }
-          &:active {
-            background-color: #edebe9;
-            color: #201f1e;
-          }
-          &:hover {
-            background-color: #f3f2f1;
-            color: #201f1e;
-          }
-          @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
-            border-color: Highlight;
-            color: Highlight;
-          }
-      data-is-focusable={true}
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      onKeyPress={[Function]}
-      onKeyUp={[Function]}
-      onMouseDown={[Function]}
-      onMouseUp={[Function]}
-      type="button"
-    >
-      <span
-        className=
-            ms-Button-flexContainer
-            {
-              align-items: center;
-              display: flex;
-              flex-wrap: nowrap;
-              height: 100%;
-              justify-content: center;
-            }
-        data-automationid="splitbuttonprimary"
-      >
-        5
-      </span>
-    </button>
-    <button
-      aria-label="next page"
-      className=
-          ms-Button
-          ms-Button--icon
-          {
-            -moz-osx-font-smoothing: grayscale;
-            -webkit-font-smoothing: antialiased;
-            background-color: transparent;
-            border-radius: 2px;
-            border: none;
-            box-sizing: border-box;
-            color: #0078d4;
-            cursor: pointer;
-            display: inline-block;
-            font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
-            font-size: 14px;
-            font-weight: 400;
-            height: 32px;
-            outline: transparent;
-            padding-bottom: 0;
-            padding-left: 4px;
-            padding-right: 4px;
-            padding-top: 0;
-            position: relative;
-            text-align: center;
-            text-decoration: none;
-            user-select: none;
-            width: 32px;
-          }
-          &::-moz-focus-inner {
-            border: 0;
-          }
-          .ms-Fabric--isFocusVisible &:focus:after {
-            border: 1px solid transparent;
-            bottom: 2px;
-            content: "";
-            left: 2px;
-            outline: 1px solid #605e5c;
-            position: absolute;
-            right: 2px;
-            top: 2px;
-            z-index: 1;
-          }
-          @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
-            bottom: -2px;
-            left: -2px;
-            outline-color: ButtonText;
-            right: -2px;
-            top: -2px;
-          }
-          &:active > span {
-            left: 0px;
-            position: relative;
-            top: 0px;
-          }
-          &:hover {
-            background-color: #f3f2f1;
-            color: #106ebe;
-          }
-          @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
-            border-color: Highlight;
-            color: Highlight;
-          }
-          &:active {
-            background-color: #edebe9;
-            color: #005a9e;
-          }
-      data-is-focusable={true}
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      onKeyPress={[Function]}
-      onKeyUp={[Function]}
-      onMouseDown={[Function]}
-      onMouseUp={[Function]}
-      type="button"
-    >
-      <span
-        className=
-            ms-Button-flexContainer
-            {
-              align-items: center;
-              display: flex;
-              flex-wrap: nowrap;
-              height: 100%;
-              justify-content: center;
-            }
-        data-automationid="splitbuttonprimary"
-      >
-        <i
-          aria-hidden={true}
-          className=
-              ms-Icon
-              ms-Button-icon
-              {
-                display: inline-block;
-              }
-              {
-                -moz-osx-font-smoothing: grayscale;
-                -webkit-font-smoothing: antialiased;
-                font-family: "FabricMDL2Icons-8";
-                font-style: normal;
-                font-weight: normal;
-                speak: none;
-              }
-              {
-                color: #0078d4;
-                flex-shrink: 0;
-                font-size: 16px;
-                height: 16px;
-                line-height: 16px;
-                margin-bottom: 0;
-                margin-left: 4px;
-                margin-right: 4px;
-                margin-top: 0;
-                text-align: center;
-              }
-          data-icon-name="CaretSolidRight"
-          style={
-            Object {
-              "fontFamily": "\\"FabricMDL2Icons-8\\"",
-            }
-          }
-        >
-          
-        </i>
-      </span>
-    </button>
+  <div
+    role="radiogroup"
+  >
     <div
       className=
           ms-TooltipHost
@@ -942,24 +28,29 @@ exports[`Pagination render buttons Pagination correctly 1`] = `
       role="none"
     >
       <button
-        aria-label="last page"
+        aria-disabled={true}
+        aria-label="first page"
         className=
             ms-Button
             ms-Button--icon
+            is-disabled
             {
               -moz-osx-font-smoothing: grayscale;
               -webkit-font-smoothing: antialiased;
+              align-items: center;
               background-color: transparent;
+              border-color: #f3f2f1;
               border-radius: 2px;
               border: none;
               box-sizing: border-box;
-              color: #0078d4;
-              cursor: pointer;
-              display: inline-block;
+              color: #c8c6c4;
+              cursor: default;
+              display: inline-flex;
               font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
               font-size: 14px;
               font-weight: 400;
               height: 32px;
+              justify-content: center;
               outline: transparent;
               padding-bottom: 0;
               padding-left: 4px;
@@ -985,7 +76,1016 @@ exports[`Pagination render buttons Pagination correctly 1`] = `
               top: 2px;
               z-index: 1;
             }
-            @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              bottom: -2px;
+              left: -2px;
+              outline-color: ButtonText;
+              right: -2px;
+              top: -2px;
+            }
+            :host(.ms-Fabric--isFocusVisible) &:focus:after {
+              border: 1px solid transparent;
+              bottom: 2px;
+              content: "";
+              left: 2px;
+              outline: 1px solid #605e5c;
+              position: absolute;
+              right: 2px;
+              top: 2px;
+              z-index: 1;
+            }
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
+              bottom: -2px;
+              left: -2px;
+              outline-color: ButtonText;
+              right: -2px;
+              top: -2px;
+            }
+            &:active > span {
+              left: 0px;
+              position: relative;
+              top: 0px;
+            }
+            &:hover {
+              outline: 0px;
+            }
+            &:focus {
+              outline: 0px;
+            }
+        data-is-focusable={false}
+        disabled={true}
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        onKeyPress={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseUp={[Function]}
+        type="button"
+      >
+        <span
+          className=
+              ms-Button-flexContainer
+              {
+                align-items: center;
+                display: flex;
+                flex-wrap: nowrap;
+                height: 100%;
+                justify-content: center;
+              }
+          data-automationid="splitbuttonprimary"
+        >
+          <i
+            aria-hidden={true}
+            className=
+                ms-Icon
+                ms-Button-icon
+                {
+                  display: inline-block;
+                  text-decoration: inherit;
+                }
+                {
+                  -moz-osx-font-smoothing: grayscale;
+                  -webkit-font-smoothing: antialiased;
+                  font-family: "FabricMDL2Icons-1";
+                  font-style: normal;
+                  font-weight: normal;
+                  speak: none;
+                }
+                {
+                  color: #a19f9d;
+                  flex-shrink: 0;
+                  font-size: 16px;
+                  height: 16px;
+                  line-height: 16px;
+                  margin-bottom: 0;
+                  margin-left: 4px;
+                  margin-right: 4px;
+                  margin-top: 0;
+                  text-align: center;
+                }
+                @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
+                  color: GrayText;
+                }
+            data-icon-name="Previous"
+            style={
+              Object {
+                "fontFamily": "\\"FabricMDL2Icons-1\\"",
+              }
+            }
+          >
+            
+          </i>
+        </span>
+      </button>
+      <div
+        hidden={true}
+        id="tooltip0"
+        style={
+          Object {
+            "border": 0,
+            "height": 1,
+            "margin": -1,
+            "overflow": "hidden",
+            "padding": 0,
+            "position": "absolute",
+            "whiteSpace": "nowrap",
+            "width": 1,
+          }
+        }
+      >
+        first page
+      </div>
+    </div>
+    <div
+      className=
+          ms-TooltipHost
+          {
+            display: inline;
+          }
+      onBlurCapture={[Function]}
+      onFocusCapture={[Function]}
+      onKeyDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      role="none"
+    >
+      <button
+        aria-disabled={true}
+        aria-label="previous page"
+        className=
+            ms-Button
+            ms-Button--icon
+            is-disabled
+            {
+              -moz-osx-font-smoothing: grayscale;
+              -webkit-font-smoothing: antialiased;
+              align-items: center;
+              background-color: transparent;
+              border-color: #f3f2f1;
+              border-radius: 2px;
+              border: none;
+              box-sizing: border-box;
+              color: #c8c6c4;
+              cursor: default;
+              display: inline-flex;
+              font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
+              font-size: 14px;
+              font-weight: 400;
+              height: 32px;
+              justify-content: center;
+              outline: transparent;
+              padding-bottom: 0;
+              padding-left: 4px;
+              padding-right: 4px;
+              padding-top: 0;
+              position: relative;
+              text-align: center;
+              text-decoration: none;
+              user-select: none;
+              width: 32px;
+            }
+            &::-moz-focus-inner {
+              border: 0;
+            }
+            .ms-Fabric--isFocusVisible &:focus:after {
+              border: 1px solid transparent;
+              bottom: 2px;
+              content: "";
+              left: 2px;
+              outline: 1px solid #605e5c;
+              position: absolute;
+              right: 2px;
+              top: 2px;
+              z-index: 1;
+            }
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              bottom: -2px;
+              left: -2px;
+              outline-color: ButtonText;
+              right: -2px;
+              top: -2px;
+            }
+            :host(.ms-Fabric--isFocusVisible) &:focus:after {
+              border: 1px solid transparent;
+              bottom: 2px;
+              content: "";
+              left: 2px;
+              outline: 1px solid #605e5c;
+              position: absolute;
+              right: 2px;
+              top: 2px;
+              z-index: 1;
+            }
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
+              bottom: -2px;
+              left: -2px;
+              outline-color: ButtonText;
+              right: -2px;
+              top: -2px;
+            }
+            &:active > span {
+              left: 0px;
+              position: relative;
+              top: 0px;
+            }
+            &:hover {
+              outline: 0px;
+            }
+            &:focus {
+              outline: 0px;
+            }
+        data-is-focusable={false}
+        disabled={true}
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        onKeyPress={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseUp={[Function]}
+        type="button"
+      >
+        <span
+          className=
+              ms-Button-flexContainer
+              {
+                align-items: center;
+                display: flex;
+                flex-wrap: nowrap;
+                height: 100%;
+                justify-content: center;
+              }
+          data-automationid="splitbuttonprimary"
+        >
+          <i
+            aria-hidden={true}
+            className=
+                ms-Icon
+                ms-Button-icon
+                {
+                  display: inline-block;
+                  text-decoration: inherit;
+                }
+                {
+                  -moz-osx-font-smoothing: grayscale;
+                  -webkit-font-smoothing: antialiased;
+                  font-family: "FabricMDL2Icons-8";
+                  font-style: normal;
+                  font-weight: normal;
+                  speak: none;
+                }
+                {
+                  color: #a19f9d;
+                  flex-shrink: 0;
+                  font-size: 16px;
+                  height: 16px;
+                  line-height: 16px;
+                  margin-bottom: 0;
+                  margin-left: 4px;
+                  margin-right: 4px;
+                  margin-top: 0;
+                  text-align: center;
+                }
+                @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
+                  color: GrayText;
+                }
+            data-icon-name="CaretSolidLeft"
+            style={
+              Object {
+                "fontFamily": "\\"FabricMDL2Icons-8\\"",
+              }
+            }
+          >
+            
+          </i>
+        </span>
+      </button>
+      <div
+        hidden={true}
+        id="tooltip4"
+        style={
+          Object {
+            "border": 0,
+            "height": 1,
+            "margin": -1,
+            "overflow": "hidden",
+            "padding": 0,
+            "position": "absolute",
+            "whiteSpace": "nowrap",
+            "width": 1,
+          }
+        }
+      >
+        previous page
+      </div>
+    </div>
+    <button
+      aria-checked={true}
+      aria-label="page 1 of 10 selected"
+      className=
+          ms-Button
+          ms-Pagination-pageNumber
+          ms-Button--default
+          {
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+            align-items: center;
+            background-color: transparent;
+            border-radius: 2px;
+            border: none;
+            box-sizing: border-box;
+            color: #000000;
+            cursor: pointer;
+            display: inline-flex;
+            font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            justify-content: center;
+            min-height: 32px;
+            min-width: 32px;
+            outline: transparent;
+            padding-bottom: 0;
+            padding-left: 16px;
+            padding-right: 16px;
+            padding-top: 0;
+            position: relative;
+            text-align: center;
+            text-decoration: none;
+            user-select: none;
+            vertical-align: middle;
+          }
+          &::-moz-focus-inner {
+            border: 0;
+          }
+          .ms-Fabric--isFocusVisible &:focus:after {
+            border: 1px solid transparent;
+            bottom: 2px;
+            content: "";
+            left: 2px;
+            outline: 1px solid #605e5c;
+            position: absolute;
+            right: 2px;
+            top: 2px;
+            z-index: 1;
+          }
+          @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+            bottom: -2px;
+            left: -2px;
+            outline-color: ButtonText;
+            right: -2px;
+            top: -2px;
+          }
+          :host(.ms-Fabric--isFocusVisible) &:focus:after {
+            border: 1px solid transparent;
+            bottom: 2px;
+            content: "";
+            left: 2px;
+            outline: 1px solid #605e5c;
+            position: absolute;
+            right: 2px;
+            top: 2px;
+            z-index: 1;
+          }
+          @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
+            bottom: -2px;
+            left: -2px;
+            outline-color: ButtonText;
+            right: -2px;
+            top: -2px;
+          }
+          &:active > span {
+            left: 0px;
+            position: relative;
+            top: 0px;
+          }
+          &[aria-selected=true] {
+            color: #0078d4;
+            cursor: default;
+            font-weight: bold;
+            text-decoration: underline;
+          }
+          &:hover[aria-selected=true] {
+            background-color: transparent;
+            color: #0078d4;
+          }
+          &:active {
+            background-color: #edebe9;
+            color: #201f1e;
+          }
+          &:hover {
+            background-color: #f3f2f1;
+            color: #201f1e;
+          }
+          @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
+            border-color: Highlight;
+            color: Highlight;
+          }
+      data-is-focusable={true}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      onKeyPress={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseUp={[Function]}
+      role="radio"
+      type="button"
+    >
+      <span
+        className=
+            ms-Button-flexContainer
+            {
+              align-items: center;
+              display: flex;
+              flex-wrap: nowrap;
+              height: 100%;
+              justify-content: center;
+            }
+        data-automationid="splitbuttonprimary"
+      >
+        1
+      </span>
+    </button>
+    <button
+      aria-checked={false}
+      aria-label="page 2 of 10"
+      className=
+          ms-Button
+          ms-Pagination-pageNumber
+          ms-Button--default
+          {
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+            align-items: center;
+            background-color: transparent;
+            border-radius: 2px;
+            border: none;
+            box-sizing: border-box;
+            color: #000000;
+            cursor: pointer;
+            display: inline-flex;
+            font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            justify-content: center;
+            min-height: 32px;
+            min-width: 32px;
+            outline: transparent;
+            padding-bottom: 0;
+            padding-left: 16px;
+            padding-right: 16px;
+            padding-top: 0;
+            position: relative;
+            text-align: center;
+            text-decoration: none;
+            user-select: none;
+            vertical-align: middle;
+          }
+          &::-moz-focus-inner {
+            border: 0;
+          }
+          .ms-Fabric--isFocusVisible &:focus:after {
+            border: 1px solid transparent;
+            bottom: 2px;
+            content: "";
+            left: 2px;
+            outline: 1px solid #605e5c;
+            position: absolute;
+            right: 2px;
+            top: 2px;
+            z-index: 1;
+          }
+          @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+            bottom: -2px;
+            left: -2px;
+            outline-color: ButtonText;
+            right: -2px;
+            top: -2px;
+          }
+          :host(.ms-Fabric--isFocusVisible) &:focus:after {
+            border: 1px solid transparent;
+            bottom: 2px;
+            content: "";
+            left: 2px;
+            outline: 1px solid #605e5c;
+            position: absolute;
+            right: 2px;
+            top: 2px;
+            z-index: 1;
+          }
+          @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
+            bottom: -2px;
+            left: -2px;
+            outline-color: ButtonText;
+            right: -2px;
+            top: -2px;
+          }
+          &:active > span {
+            left: 0px;
+            position: relative;
+            top: 0px;
+          }
+          &[aria-selected=true] {
+            color: #0078d4;
+            cursor: default;
+            font-weight: bold;
+            text-decoration: underline;
+          }
+          &:hover[aria-selected=true] {
+            background-color: transparent;
+            color: #0078d4;
+          }
+          &:active {
+            background-color: #edebe9;
+            color: #201f1e;
+          }
+          &:hover {
+            background-color: #f3f2f1;
+            color: #201f1e;
+          }
+          @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
+            border-color: Highlight;
+            color: Highlight;
+          }
+      data-is-focusable={true}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      onKeyPress={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseUp={[Function]}
+      role="radio"
+      type="button"
+    >
+      <span
+        className=
+            ms-Button-flexContainer
+            {
+              align-items: center;
+              display: flex;
+              flex-wrap: nowrap;
+              height: 100%;
+              justify-content: center;
+            }
+        data-automationid="splitbuttonprimary"
+      >
+        2
+      </span>
+    </button>
+    <button
+      aria-checked={false}
+      aria-label="page 3 of 10"
+      className=
+          ms-Button
+          ms-Pagination-pageNumber
+          ms-Button--default
+          {
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+            align-items: center;
+            background-color: transparent;
+            border-radius: 2px;
+            border: none;
+            box-sizing: border-box;
+            color: #000000;
+            cursor: pointer;
+            display: inline-flex;
+            font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            justify-content: center;
+            min-height: 32px;
+            min-width: 32px;
+            outline: transparent;
+            padding-bottom: 0;
+            padding-left: 16px;
+            padding-right: 16px;
+            padding-top: 0;
+            position: relative;
+            text-align: center;
+            text-decoration: none;
+            user-select: none;
+            vertical-align: middle;
+          }
+          &::-moz-focus-inner {
+            border: 0;
+          }
+          .ms-Fabric--isFocusVisible &:focus:after {
+            border: 1px solid transparent;
+            bottom: 2px;
+            content: "";
+            left: 2px;
+            outline: 1px solid #605e5c;
+            position: absolute;
+            right: 2px;
+            top: 2px;
+            z-index: 1;
+          }
+          @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+            bottom: -2px;
+            left: -2px;
+            outline-color: ButtonText;
+            right: -2px;
+            top: -2px;
+          }
+          :host(.ms-Fabric--isFocusVisible) &:focus:after {
+            border: 1px solid transparent;
+            bottom: 2px;
+            content: "";
+            left: 2px;
+            outline: 1px solid #605e5c;
+            position: absolute;
+            right: 2px;
+            top: 2px;
+            z-index: 1;
+          }
+          @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
+            bottom: -2px;
+            left: -2px;
+            outline-color: ButtonText;
+            right: -2px;
+            top: -2px;
+          }
+          &:active > span {
+            left: 0px;
+            position: relative;
+            top: 0px;
+          }
+          &[aria-selected=true] {
+            color: #0078d4;
+            cursor: default;
+            font-weight: bold;
+            text-decoration: underline;
+          }
+          &:hover[aria-selected=true] {
+            background-color: transparent;
+            color: #0078d4;
+          }
+          &:active {
+            background-color: #edebe9;
+            color: #201f1e;
+          }
+          &:hover {
+            background-color: #f3f2f1;
+            color: #201f1e;
+          }
+          @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
+            border-color: Highlight;
+            color: Highlight;
+          }
+      data-is-focusable={true}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      onKeyPress={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseUp={[Function]}
+      role="radio"
+      type="button"
+    >
+      <span
+        className=
+            ms-Button-flexContainer
+            {
+              align-items: center;
+              display: flex;
+              flex-wrap: nowrap;
+              height: 100%;
+              justify-content: center;
+            }
+        data-automationid="splitbuttonprimary"
+      >
+        3
+      </span>
+    </button>
+    <button
+      aria-checked={false}
+      aria-label="page 4 of 10"
+      className=
+          ms-Button
+          ms-Pagination-pageNumber
+          ms-Button--default
+          {
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+            align-items: center;
+            background-color: transparent;
+            border-radius: 2px;
+            border: none;
+            box-sizing: border-box;
+            color: #000000;
+            cursor: pointer;
+            display: inline-flex;
+            font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            justify-content: center;
+            min-height: 32px;
+            min-width: 32px;
+            outline: transparent;
+            padding-bottom: 0;
+            padding-left: 16px;
+            padding-right: 16px;
+            padding-top: 0;
+            position: relative;
+            text-align: center;
+            text-decoration: none;
+            user-select: none;
+            vertical-align: middle;
+          }
+          &::-moz-focus-inner {
+            border: 0;
+          }
+          .ms-Fabric--isFocusVisible &:focus:after {
+            border: 1px solid transparent;
+            bottom: 2px;
+            content: "";
+            left: 2px;
+            outline: 1px solid #605e5c;
+            position: absolute;
+            right: 2px;
+            top: 2px;
+            z-index: 1;
+          }
+          @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+            bottom: -2px;
+            left: -2px;
+            outline-color: ButtonText;
+            right: -2px;
+            top: -2px;
+          }
+          :host(.ms-Fabric--isFocusVisible) &:focus:after {
+            border: 1px solid transparent;
+            bottom: 2px;
+            content: "";
+            left: 2px;
+            outline: 1px solid #605e5c;
+            position: absolute;
+            right: 2px;
+            top: 2px;
+            z-index: 1;
+          }
+          @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
+            bottom: -2px;
+            left: -2px;
+            outline-color: ButtonText;
+            right: -2px;
+            top: -2px;
+          }
+          &:active > span {
+            left: 0px;
+            position: relative;
+            top: 0px;
+          }
+          &[aria-selected=true] {
+            color: #0078d4;
+            cursor: default;
+            font-weight: bold;
+            text-decoration: underline;
+          }
+          &:hover[aria-selected=true] {
+            background-color: transparent;
+            color: #0078d4;
+          }
+          &:active {
+            background-color: #edebe9;
+            color: #201f1e;
+          }
+          &:hover {
+            background-color: #f3f2f1;
+            color: #201f1e;
+          }
+          @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
+            border-color: Highlight;
+            color: Highlight;
+          }
+      data-is-focusable={true}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      onKeyPress={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseUp={[Function]}
+      role="radio"
+      type="button"
+    >
+      <span
+        className=
+            ms-Button-flexContainer
+            {
+              align-items: center;
+              display: flex;
+              flex-wrap: nowrap;
+              height: 100%;
+              justify-content: center;
+            }
+        data-automationid="splitbuttonprimary"
+      >
+        4
+      </span>
+    </button>
+    <button
+      aria-checked={false}
+      aria-label="page 5 of 10"
+      className=
+          ms-Button
+          ms-Pagination-pageNumber
+          ms-Button--default
+          {
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+            align-items: center;
+            background-color: transparent;
+            border-radius: 2px;
+            border: none;
+            box-sizing: border-box;
+            color: #000000;
+            cursor: pointer;
+            display: inline-flex;
+            font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            justify-content: center;
+            min-height: 32px;
+            min-width: 32px;
+            outline: transparent;
+            padding-bottom: 0;
+            padding-left: 16px;
+            padding-right: 16px;
+            padding-top: 0;
+            position: relative;
+            text-align: center;
+            text-decoration: none;
+            user-select: none;
+            vertical-align: middle;
+          }
+          &::-moz-focus-inner {
+            border: 0;
+          }
+          .ms-Fabric--isFocusVisible &:focus:after {
+            border: 1px solid transparent;
+            bottom: 2px;
+            content: "";
+            left: 2px;
+            outline: 1px solid #605e5c;
+            position: absolute;
+            right: 2px;
+            top: 2px;
+            z-index: 1;
+          }
+          @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+            bottom: -2px;
+            left: -2px;
+            outline-color: ButtonText;
+            right: -2px;
+            top: -2px;
+          }
+          :host(.ms-Fabric--isFocusVisible) &:focus:after {
+            border: 1px solid transparent;
+            bottom: 2px;
+            content: "";
+            left: 2px;
+            outline: 1px solid #605e5c;
+            position: absolute;
+            right: 2px;
+            top: 2px;
+            z-index: 1;
+          }
+          @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
+            bottom: -2px;
+            left: -2px;
+            outline-color: ButtonText;
+            right: -2px;
+            top: -2px;
+          }
+          &:active > span {
+            left: 0px;
+            position: relative;
+            top: 0px;
+          }
+          &[aria-selected=true] {
+            color: #0078d4;
+            cursor: default;
+            font-weight: bold;
+            text-decoration: underline;
+          }
+          &:hover[aria-selected=true] {
+            background-color: transparent;
+            color: #0078d4;
+          }
+          &:active {
+            background-color: #edebe9;
+            color: #201f1e;
+          }
+          &:hover {
+            background-color: #f3f2f1;
+            color: #201f1e;
+          }
+          @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
+            border-color: Highlight;
+            color: Highlight;
+          }
+      data-is-focusable={true}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      onKeyPress={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseUp={[Function]}
+      role="radio"
+      type="button"
+    >
+      <span
+        className=
+            ms-Button-flexContainer
+            {
+              align-items: center;
+              display: flex;
+              flex-wrap: nowrap;
+              height: 100%;
+              justify-content: center;
+            }
+        data-automationid="splitbuttonprimary"
+      >
+        5
+      </span>
+    </button>
+    <div
+      className=
+          ms-TooltipHost
+          {
+            display: inline;
+          }
+      onBlurCapture={[Function]}
+      onFocusCapture={[Function]}
+      onKeyDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      role="none"
+    >
+      <button
+        aria-label="next page"
+        className=
+            ms-Button
+            ms-Button--icon
+            {
+              -moz-osx-font-smoothing: grayscale;
+              -webkit-font-smoothing: antialiased;
+              align-items: center;
+              background-color: transparent;
+              border-radius: 2px;
+              border: none;
+              box-sizing: border-box;
+              color: #0078d4;
+              cursor: pointer;
+              display: inline-flex;
+              font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
+              font-size: 14px;
+              font-weight: 400;
+              height: 32px;
+              justify-content: center;
+              outline: transparent;
+              padding-bottom: 0;
+              padding-left: 4px;
+              padding-right: 4px;
+              padding-top: 0;
+              position: relative;
+              text-align: center;
+              text-decoration: none;
+              user-select: none;
+              width: 32px;
+            }
+            &::-moz-focus-inner {
+              border: 0;
+            }
+            .ms-Fabric--isFocusVisible &:focus:after {
+              border: 1px solid transparent;
+              bottom: 2px;
+              content: "";
+              left: 2px;
+              outline: 1px solid #605e5c;
+              position: absolute;
+              right: 2px;
+              top: 2px;
+              z-index: 1;
+            }
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              bottom: -2px;
+              left: -2px;
+              outline-color: ButtonText;
+              right: -2px;
+              top: -2px;
+            }
+            :host(.ms-Fabric--isFocusVisible) &:focus:after {
+              border: 1px solid transparent;
+              bottom: 2px;
+              content: "";
+              left: 2px;
+              outline: 1px solid #605e5c;
+              position: absolute;
+              right: 2px;
+              top: 2px;
+              z-index: 1;
+            }
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
               bottom: -2px;
               left: -2px;
               outline-color: ButtonText;
@@ -1001,7 +1101,7 @@ exports[`Pagination render buttons Pagination correctly 1`] = `
               background-color: #f3f2f1;
               color: #106ebe;
             }
-            @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
               border-color: Highlight;
               color: Highlight;
             }
@@ -1037,6 +1137,188 @@ exports[`Pagination render buttons Pagination correctly 1`] = `
                 ms-Button-icon
                 {
                   display: inline-block;
+                  text-decoration: inherit;
+                }
+                {
+                  -moz-osx-font-smoothing: grayscale;
+                  -webkit-font-smoothing: antialiased;
+                  font-family: "FabricMDL2Icons-8";
+                  font-style: normal;
+                  font-weight: normal;
+                  speak: none;
+                }
+                {
+                  color: #0078d4;
+                  flex-shrink: 0;
+                  font-size: 16px;
+                  height: 16px;
+                  line-height: 16px;
+                  margin-bottom: 0;
+                  margin-left: 4px;
+                  margin-right: 4px;
+                  margin-top: 0;
+                  text-align: center;
+                }
+            data-icon-name="CaretSolidRight"
+            style={
+              Object {
+                "fontFamily": "\\"FabricMDL2Icons-8\\"",
+              }
+            }
+          >
+            
+          </i>
+        </span>
+      </button>
+      <div
+        hidden={true}
+        id="tooltip23"
+        style={
+          Object {
+            "border": 0,
+            "height": 1,
+            "margin": -1,
+            "overflow": "hidden",
+            "padding": 0,
+            "position": "absolute",
+            "whiteSpace": "nowrap",
+            "width": 1,
+          }
+        }
+      >
+        next page
+      </div>
+    </div>
+    <div
+      className=
+          ms-TooltipHost
+          {
+            display: inline;
+          }
+      onBlurCapture={[Function]}
+      onFocusCapture={[Function]}
+      onKeyDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      role="none"
+    >
+      <button
+        aria-label="last page"
+        className=
+            ms-Button
+            ms-Button--icon
+            {
+              -moz-osx-font-smoothing: grayscale;
+              -webkit-font-smoothing: antialiased;
+              align-items: center;
+              background-color: transparent;
+              border-radius: 2px;
+              border: none;
+              box-sizing: border-box;
+              color: #0078d4;
+              cursor: pointer;
+              display: inline-flex;
+              font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
+              font-size: 14px;
+              font-weight: 400;
+              height: 32px;
+              justify-content: center;
+              outline: transparent;
+              padding-bottom: 0;
+              padding-left: 4px;
+              padding-right: 4px;
+              padding-top: 0;
+              position: relative;
+              text-align: center;
+              text-decoration: none;
+              user-select: none;
+              width: 32px;
+            }
+            &::-moz-focus-inner {
+              border: 0;
+            }
+            .ms-Fabric--isFocusVisible &:focus:after {
+              border: 1px solid transparent;
+              bottom: 2px;
+              content: "";
+              left: 2px;
+              outline: 1px solid #605e5c;
+              position: absolute;
+              right: 2px;
+              top: 2px;
+              z-index: 1;
+            }
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              bottom: -2px;
+              left: -2px;
+              outline-color: ButtonText;
+              right: -2px;
+              top: -2px;
+            }
+            :host(.ms-Fabric--isFocusVisible) &:focus:after {
+              border: 1px solid transparent;
+              bottom: 2px;
+              content: "";
+              left: 2px;
+              outline: 1px solid #605e5c;
+              position: absolute;
+              right: 2px;
+              top: 2px;
+              z-index: 1;
+            }
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
+              bottom: -2px;
+              left: -2px;
+              outline-color: ButtonText;
+              right: -2px;
+              top: -2px;
+            }
+            &:active > span {
+              left: 0px;
+              position: relative;
+              top: 0px;
+            }
+            &:hover {
+              background-color: #f3f2f1;
+              color: #106ebe;
+            }
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
+              border-color: Highlight;
+              color: Highlight;
+            }
+            &:active {
+              background-color: #edebe9;
+              color: #005a9e;
+            }
+        data-is-focusable={true}
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        onKeyPress={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseUp={[Function]}
+        type="button"
+      >
+        <span
+          className=
+              ms-Button-flexContainer
+              {
+                align-items: center;
+                display: flex;
+                flex-wrap: nowrap;
+                height: 100%;
+                justify-content: center;
+              }
+          data-automationid="splitbuttonprimary"
+        >
+          <i
+            aria-hidden={true}
+            className=
+                ms-Icon
+                ms-Button-icon
+                {
+                  display: inline-block;
+                  text-decoration: inherit;
                 }
                 {
                   -moz-osx-font-smoothing: grayscale;
@@ -1071,7 +1353,7 @@ exports[`Pagination render buttons Pagination correctly 1`] = `
       </button>
       <div
         hidden={true}
-        id="tooltip24"
+        id="tooltip27"
         style={
           Object {
             "border": 0,
@@ -1116,6 +1398,7 @@ exports[`Pagination render comboBox Pagination correctly 1`] = `
         {
           -moz-osx-font-smoothing: grayscale;
           -webkit-font-smoothing: antialiased;
+          align-items: center;
           background-color: #f3f2f1;
           border-color: #f3f2f1;
           border-radius: 2px;
@@ -1123,11 +1406,12 @@ exports[`Pagination render comboBox Pagination correctly 1`] = `
           box-sizing: border-box;
           color: #c8c6c4;
           cursor: default;
-          display: inline-block;
+          display: inline-flex;
           font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
           font-size: 14px;
           font-weight: 400;
           height: 32px;
+          justify-content: center;
           outline: transparent;
           padding-bottom: 0;
           padding-left: 4px;
@@ -1153,7 +1437,25 @@ exports[`Pagination render comboBox Pagination correctly 1`] = `
           top: 2px;
           z-index: 1;
         }
-        @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+        @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+          bottom: -2px;
+          left: -2px;
+          outline-color: ButtonText;
+          right: -2px;
+          top: -2px;
+        }
+        :host(.ms-Fabric--isFocusVisible) &:focus:after {
+          border: 1px solid transparent;
+          bottom: 2px;
+          content: "";
+          left: 2px;
+          outline: 1px solid #605e5c;
+          position: absolute;
+          right: 2px;
+          top: 2px;
+          z-index: 1;
+        }
+        @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
           bottom: -2px;
           left: -2px;
           outline-color: ButtonText;
@@ -1200,6 +1502,7 @@ exports[`Pagination render comboBox Pagination correctly 1`] = `
             ms-Button-icon
             {
               display: inline-block;
+              text-decoration: inherit;
             }
             {
               -moz-osx-font-smoothing: grayscale;
@@ -1221,7 +1524,7 @@ exports[`Pagination render comboBox Pagination correctly 1`] = `
               margin-top: 0;
               text-align: center;
             }
-            @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
               color: GrayText;
             }
         data-icon-name="Previous"
@@ -1245,6 +1548,7 @@ exports[`Pagination render comboBox Pagination correctly 1`] = `
         {
           -moz-osx-font-smoothing: grayscale;
           -webkit-font-smoothing: antialiased;
+          align-items: center;
           background-color: #f3f2f1;
           border-color: #f3f2f1;
           border-radius: 2px;
@@ -1252,11 +1556,12 @@ exports[`Pagination render comboBox Pagination correctly 1`] = `
           box-sizing: border-box;
           color: #c8c6c4;
           cursor: default;
-          display: inline-block;
+          display: inline-flex;
           font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
           font-size: 14px;
           font-weight: 400;
           height: 32px;
+          justify-content: center;
           outline: transparent;
           padding-bottom: 0;
           padding-left: 4px;
@@ -1282,7 +1587,25 @@ exports[`Pagination render comboBox Pagination correctly 1`] = `
           top: 2px;
           z-index: 1;
         }
-        @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+        @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+          bottom: -2px;
+          left: -2px;
+          outline-color: ButtonText;
+          right: -2px;
+          top: -2px;
+        }
+        :host(.ms-Fabric--isFocusVisible) &:focus:after {
+          border: 1px solid transparent;
+          bottom: 2px;
+          content: "";
+          left: 2px;
+          outline: 1px solid #605e5c;
+          position: absolute;
+          right: 2px;
+          top: 2px;
+          z-index: 1;
+        }
+        @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
           bottom: -2px;
           left: -2px;
           outline-color: ButtonText;
@@ -1329,6 +1652,7 @@ exports[`Pagination render comboBox Pagination correctly 1`] = `
             ms-Button-icon
             {
               display: inline-block;
+              text-decoration: inherit;
             }
             {
               -moz-osx-font-smoothing: grayscale;
@@ -1350,7 +1674,7 @@ exports[`Pagination render comboBox Pagination correctly 1`] = `
               margin-top: 0;
               text-align: center;
             }
-            @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
               color: GrayText;
             }
         data-icon-name="CaretSolidLeft"
@@ -1402,13 +1726,13 @@ exports[`Pagination render comboBox Pagination correctly 1`] = `
             display: inline-block;
             margin-bottom: 8px;
           }
-          @media screen and (-ms-high-contrast: active), (forced-colors: active){&.is-open {
+          @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&.is-open {
             -ms-high-contrast-adjust: none;
             background-color: Window;
             color: HighlightText;
             forced-color-adjust: none;
           }
-          @media screen and (-ms-high-contrast: active), (forced-colors: active){&.is-open:after {
+          @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&.is-open:after {
             border-color: Highlight;
           }
           &:after {
@@ -1433,46 +1757,46 @@ exports[`Pagination render comboBox Pagination correctly 1`] = `
           &:hover .ms-ComboBox-Input::placeholder {
             color: #201f1e;
           }
-          @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover .ms-ComboBox-Input::placeholder {
+          @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover .ms-ComboBox-Input::placeholder {
             color: GrayText;
           }
           &:hover .ms-ComboBox-Input:-ms-input-placeholder {
             color: #201f1e;
           }
-          @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover .ms-ComboBox-Input:-ms-input-placeholder {
+          @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover .ms-ComboBox-Input:-ms-input-placeholder {
             color: GrayText;
           }
           &:hover .ms-ComboBox-Input::-ms-input-placeholder {
             color: #201f1e;
           }
-          @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover .ms-ComboBox-Input::-ms-input-placeholder {
+          @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover .ms-ComboBox-Input::-ms-input-placeholder {
             color: GrayText;
           }
-          @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover .ms-ComboBox-Input {
+          @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover .ms-ComboBox-Input {
             -ms-high-contrast-adjust: none;
             background-color: Window;
             color: WindowText;
             forced-color-adjust: none;
           }
-          @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+          @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
             -ms-high-contrast-adjust: none;
             background-color: Window;
             color: HighlightText;
             forced-color-adjust: none;
           }
-          @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover:after {
+          @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover:after {
             border-color: Highlight;
           }
           &:active {
             position: relative;
           }
-          @media screen and (-ms-high-contrast: active), (forced-colors: active){&:active {
+          @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:active {
             -ms-high-contrast-adjust: none;
             background-color: Window;
             color: HighlightText;
             forced-color-adjust: none;
           }
-          @media screen and (-ms-high-contrast: active), (forced-colors: active){&:active:after {
+          @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:active:after {
             border-color: Highlight;
           }
           &:focus {
@@ -1481,19 +1805,19 @@ exports[`Pagination render comboBox Pagination correctly 1`] = `
           &:focus .ms-ComboBox-Input {
             color: #201f1e;
           }
-          @media screen and (-ms-high-contrast: active), (forced-colors: active){&:focus .ms-ComboBox-Input {
+          @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:focus .ms-ComboBox-Input {
             -ms-high-contrast-adjust: none;
             background-color: Window;
             color: WindowText;
             forced-color-adjust: none;
           }
-          @media screen and (-ms-high-contrast: active), (forced-colors: active){&:focus {
+          @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:focus {
             -ms-high-contrast-adjust: none;
             background-color: Window;
             color: HighlightText;
             forced-color-adjust: none;
           }
-          @media screen and (-ms-high-contrast: active), (forced-colors: active){&:focus:after {
+          @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:focus:after {
             border-color: Highlight;
           }
           &:focus:after {
@@ -1513,6 +1837,7 @@ exports[`Pagination render comboBox Pagination correctly 1`] = `
       <input
         aria-autocomplete="both"
         aria-expanded={false}
+        aria-invalid={false}
         autoCapitalize="off"
         autoComplete="off"
         className=
@@ -1535,25 +1860,25 @@ exports[`Pagination render comboBox Pagination correctly 1`] = `
             &::placeholder {
               color: #605e5c;
             }
-            @media screen and (-ms-high-contrast: active), (forced-colors: active){&::placeholder {
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&::placeholder {
               color: GrayText;
             }
             &:-ms-input-placeholder {
               color: #605e5c;
             }
-            @media screen and (-ms-high-contrast: active), (forced-colors: active){&:-ms-input-placeholder {
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:-ms-input-placeholder {
               color: GrayText;
             }
             &::-ms-input-placeholder {
               color: #605e5c;
             }
-            @media screen and (-ms-high-contrast: active), (forced-colors: active){&::-ms-input-placeholder {
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&::-ms-input-placeholder {
               color: GrayText;
             }
             &::-ms-clear {
               display: none;
             }
-            @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
               -ms-high-contrast-adjust: none;
               background-color: Window;
               color: WindowText;
@@ -1585,7 +1910,6 @@ exports[`Pagination render comboBox Pagination correctly 1`] = `
         value="1"
       />
       <button
-        aria-hidden={true}
         className=
             ms-Button
             ms-Button--icon
@@ -1593,17 +1917,19 @@ exports[`Pagination render comboBox Pagination correctly 1`] = `
             {
               -moz-osx-font-smoothing: grayscale;
               -webkit-font-smoothing: antialiased;
+              align-items: center;
               background-color: transparent;
               border-radius: 2px;
               border: none;
               box-sizing: border-box;
               color: #605e5c;
               cursor: default;
-              display: inline-block;
+              display: inline-flex;
               font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
               font-size: 12px;
               font-weight: 400;
               height: 100%;
+              justify-content: center;
               line-height: 30px;
               outline: transparent;
               padding-bottom: 0;
@@ -1631,7 +1957,25 @@ exports[`Pagination render comboBox Pagination correctly 1`] = `
               top: 2px;
               z-index: 1;
             }
-            @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              bottom: -2px;
+              left: -2px;
+              outline-color: ButtonText;
+              right: -2px;
+              top: -2px;
+            }
+            :host(.ms-Fabric--isFocusVisible) &:focus:after {
+              border: 1px solid transparent;
+              bottom: 2px;
+              content: "";
+              left: 2px;
+              outline: 1px solid #605e5c;
+              position: absolute;
+              right: 2px;
+              top: 2px;
+              z-index: 1;
+            }
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
               bottom: -2px;
               left: -2px;
               outline-color: ButtonText;
@@ -1643,7 +1987,7 @@ exports[`Pagination render comboBox Pagination correctly 1`] = `
               position: relative;
               top: 0px;
             }
-            @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
               -ms-high-contrast-adjust: none;
               background-color: ButtonFace;
               border-color: ButtonText;
@@ -1655,7 +1999,7 @@ exports[`Pagination render comboBox Pagination correctly 1`] = `
               color: #201f1e;
               cursor: pointer;
             }
-            @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
               -ms-high-contrast-adjust: none;
               background-color: Highlight;
               border-color: Highlight;
@@ -1666,7 +2010,7 @@ exports[`Pagination render comboBox Pagination correctly 1`] = `
               background-color: #edebe9;
               color: #201f1e;
             }
-            @media screen and (-ms-high-contrast: active), (forced-colors: active){&:active {
+            @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:active {
               -ms-high-contrast-adjust: none;
               background-color: Highlight;
               border-color: Highlight;
@@ -1681,7 +2025,6 @@ exports[`Pagination render comboBox Pagination correctly 1`] = `
         onKeyUp={[Function]}
         onMouseDown={[Function]}
         onMouseUp={[Function]}
-        role="presentation"
         tabIndex={-1}
         type="button"
       >
@@ -1704,6 +2047,7 @@ exports[`Pagination render comboBox Pagination correctly 1`] = `
                 ms-Button-icon
                 {
                   display: inline-block;
+                  text-decoration: inherit;
                 }
                 {
                   -moz-osx-font-smoothing: grayscale;
@@ -1745,17 +2089,19 @@ exports[`Pagination render comboBox Pagination correctly 1`] = `
         {
           -moz-osx-font-smoothing: grayscale;
           -webkit-font-smoothing: antialiased;
+          align-items: center;
           background-color: transparent;
           border-radius: 2px;
           border: none;
           box-sizing: border-box;
           color: #0078d4;
           cursor: pointer;
-          display: inline-block;
+          display: inline-flex;
           font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
           font-size: 14px;
           font-weight: 400;
           height: 32px;
+          justify-content: center;
           outline: transparent;
           padding-bottom: 0;
           padding-left: 4px;
@@ -1781,7 +2127,25 @@ exports[`Pagination render comboBox Pagination correctly 1`] = `
           top: 2px;
           z-index: 1;
         }
-        @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+        @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+          bottom: -2px;
+          left: -2px;
+          outline-color: ButtonText;
+          right: -2px;
+          top: -2px;
+        }
+        :host(.ms-Fabric--isFocusVisible) &:focus:after {
+          border: 1px solid transparent;
+          bottom: 2px;
+          content: "";
+          left: 2px;
+          outline: 1px solid #605e5c;
+          position: absolute;
+          right: 2px;
+          top: 2px;
+          z-index: 1;
+        }
+        @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
           bottom: -2px;
           left: -2px;
           outline-color: ButtonText;
@@ -1797,7 +2161,7 @@ exports[`Pagination render comboBox Pagination correctly 1`] = `
           background-color: #f3f2f1;
           color: #106ebe;
         }
-        @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+        @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
           border-color: Highlight;
           color: Highlight;
         }
@@ -1833,6 +2197,7 @@ exports[`Pagination render comboBox Pagination correctly 1`] = `
             ms-Button-icon
             {
               display: inline-block;
+              text-decoration: inherit;
             }
             {
               -moz-osx-font-smoothing: grayscale;
@@ -1872,17 +2237,19 @@ exports[`Pagination render comboBox Pagination correctly 1`] = `
         {
           -moz-osx-font-smoothing: grayscale;
           -webkit-font-smoothing: antialiased;
+          align-items: center;
           background-color: transparent;
           border-radius: 2px;
           border: none;
           box-sizing: border-box;
           color: #0078d4;
           cursor: pointer;
-          display: inline-block;
+          display: inline-flex;
           font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
           font-size: 14px;
           font-weight: 400;
           height: 32px;
+          justify-content: center;
           outline: transparent;
           padding-bottom: 0;
           padding-left: 4px;
@@ -1908,7 +2275,25 @@ exports[`Pagination render comboBox Pagination correctly 1`] = `
           top: 2px;
           z-index: 1;
         }
-        @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+        @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+          bottom: -2px;
+          left: -2px;
+          outline-color: ButtonText;
+          right: -2px;
+          top: -2px;
+        }
+        :host(.ms-Fabric--isFocusVisible) &:focus:after {
+          border: 1px solid transparent;
+          bottom: 2px;
+          content: "";
+          left: 2px;
+          outline: 1px solid #605e5c;
+          position: absolute;
+          right: 2px;
+          top: 2px;
+          z-index: 1;
+        }
+        @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
           bottom: -2px;
           left: -2px;
           outline-color: ButtonText;
@@ -1924,7 +2309,7 @@ exports[`Pagination render comboBox Pagination correctly 1`] = `
           background-color: #f3f2f1;
           color: #106ebe;
         }
-        @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+        @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
           border-color: Highlight;
           color: Highlight;
         }
@@ -1960,6 +2345,7 @@ exports[`Pagination render comboBox Pagination correctly 1`] = `
             ms-Button-icon
             {
               display: inline-block;
+              text-decoration: inherit;
             }
             {
               -moz-osx-font-smoothing: grayscale;

@@ -50,10 +50,10 @@ const CONTEXTUAL_SPLIT_MENU_MINWIDTH = '28px';
 const MediumScreenSelector = getScreenSelector(0, ScreenWidthMaxMedium);
 
 export const getSplitButtonVerticalDividerClassNames = memoizeFunction(
-  /* eslint-disable deprecation/deprecation */
+  /* eslint-disable @typescript-eslint/no-deprecated */
   (theme: ITheme): IVerticalDividerClassNames => {
     return mergeStyleSets(getDividerClassNames(theme), {
-      /* eslint-enable deprecation/deprecation */
+      /* eslint-enable @typescript-eslint/no-deprecated */
       wrapper: {
         position: 'absolute',
         right: 28, // width of the splitMenu based on the padding plus icon fontSize
@@ -132,8 +132,12 @@ export const getItemClassNames = memoizeFunction(
               selectors: {
                 ':hover': styles.rootHovered,
                 ':active': styles.rootPressed,
-                [`.${IsFocusVisibleClassName} &:focus, .${IsFocusVisibleClassName} &:focus:hover`]: styles.rootFocused,
-                [`.${IsFocusVisibleClassName} &:hover`]: { background: 'inherit;' },
+                // eslint-disable-next-line @fluentui/max-len
+                [`.${IsFocusVisibleClassName} &:focus, .${IsFocusVisibleClassName} &:focus:hover, :host(.${IsFocusVisibleClassName}) &:focus, :host(.${IsFocusVisibleClassName}) &:focus:hover`]:
+                  styles.rootFocused,
+                [`.${IsFocusVisibleClassName} &:hover, :host(.${IsFocusVisibleClassName}) &:hover`]: {
+                  background: 'inherit;',
+                },
               },
             },
           ],
@@ -154,8 +158,12 @@ export const getItemClassNames = memoizeFunction(
                 // when hovering over the splitPrimary also affect the splitMenu
                 [`:hover ~ .${classNames.splitMenu}`]: styles.rootHovered,
                 ':active': styles.rootPressed,
-                [`.${IsFocusVisibleClassName} &:focus, .${IsFocusVisibleClassName} &:focus:hover`]: styles.rootFocused,
-                [`.${IsFocusVisibleClassName} &:hover`]: { background: 'inherit;' },
+                // eslint-disable-next-line @fluentui/max-len
+                [`.${IsFocusVisibleClassName} &:focus, .${IsFocusVisibleClassName} &:focus:hover, :host(.${IsFocusVisibleClassName}) &:focus, :host(.${IsFocusVisibleClassName}) &:focus:hover`]:
+                  styles.rootFocused,
+                [`.${IsFocusVisibleClassName} &:hover, :host(.${IsFocusVisibleClassName}) &:hover`]: {
+                  background: 'inherit;',
+                },
               },
             },
           ],
@@ -176,8 +184,12 @@ export const getItemClassNames = memoizeFunction(
               selectors: {
                 ':hover': styles.rootHovered,
                 ':active': styles.rootPressed,
-                [`.${IsFocusVisibleClassName} &:focus, .${IsFocusVisibleClassName} &:focus:hover`]: styles.rootFocused,
-                [`.${IsFocusVisibleClassName} &:hover`]: { background: 'inherit;' },
+                // eslint-disable-next-line @fluentui/max-len
+                [`.${IsFocusVisibleClassName} &:focus, .${IsFocusVisibleClassName} &:focus:hover, :host(.${IsFocusVisibleClassName}) &:focus, :host(.${IsFocusVisibleClassName}) &:focus:hover`]:
+                  styles.rootFocused,
+                [`.${IsFocusVisibleClassName} &:hover, :host(.${IsFocusVisibleClassName}) &:hover`]: {
+                  background: 'inherit;',
+                },
               },
             },
           ],
@@ -215,7 +227,9 @@ export const getItemClassNames = memoizeFunction(
           !checked && [
             {
               selectors: {
-                [`.${IsFocusVisibleClassName} &:focus, .${IsFocusVisibleClassName} &:focus:hover`]: styles.rootFocused,
+                // eslint-disable-next-line @fluentui/max-len
+                [`.${IsFocusVisibleClassName} &:focus, .${IsFocusVisibleClassName} &:focus:hover, :host(.${IsFocusVisibleClassName}) &:focus, :host(.${IsFocusVisibleClassName}) &:focus:hover`]:
+                  styles.rootFocused,
               },
             },
           ],
@@ -235,7 +249,7 @@ export const getItemClassNames = memoizeFunction(
  * the getStyles API, but invokes memoized className generator function with
  * primitive values.
  *
- * @param props the ContextualMenuItem style props used to generate its styles.
+ * @param props - the ContextualMenuItem style props used to generate its styles.
  */
 export const getItemStyles = (props: IContextualMenuItemStyleProps): IContextualMenuItemStyles => {
   const {
@@ -253,7 +267,7 @@ export const getItemStyles = (props: IContextualMenuItemStyleProps): IContextual
     className,
   } = props;
 
-  // eslint-disable-next-line deprecation/deprecation
+  // eslint-disable-next-line @typescript-eslint/no-deprecated
   return getItemClassNames(
     theme,
     disabled,

@@ -12,14 +12,20 @@ const LIST_ITEM = 'listitem';
 const LIST = 'splist';
 const MULTIPLE_ITEMS = 'multiple';
 const NEWS = 'sponews';
-const STREAM = 'stream';
+const STREAM = 'video';
 const DESKTOP_FOLDER = 'desktopfolder';
-const DOCUMENTS_FOLDER = 'documentfolder';
+const DOCUMENTS_FOLDER = 'documentsfolder';
 const PICTURES_FOLDER = 'picturesfolder';
 const LINKED_FOLDER = 'linkedfolder';
 const FORM = 'form';
 const SWAY = 'sway';
 const PLAYLIST = 'playlist';
+const LOOP_WORKSPACE = 'loopworkspace';
+const TODOITEM = 'todoitem';
+const PLANNER = 'planner';
+const PORTFOLIO = 'portfolio';
+const ALBUM = 'album';
+const LIST_FORM = 'listform';
 
 export const DEFAULT_ICON_SIZE: FileTypeIconSize = 16;
 export type FileTypeIconSize = 16 | 20 | 24 | 32 | 40 | 48 | 64 | 96;
@@ -143,13 +149,37 @@ export function getFileTypeIconNameFromExtensionOrType(
       case FileIconType.playlist:
         iconBaseName = PLAYLIST;
         break;
+      case FileIconType.loopworkspace:
+        iconBaseName = LOOP_WORKSPACE;
+        break;
+      case FileIconType.planner:
+        iconBaseName = PLANNER;
+        break;
+      case FileIconType.todoItem:
+        iconBaseName = TODOITEM;
+        break;
+      case FileIconType.portfolio:
+        iconBaseName = PORTFOLIO;
+        break;
+      case FileIconType.album:
+        iconBaseName = ALBUM;
+        break;
+      case FileIconType.listForm:
+        iconBaseName = LIST_FORM;
+        break;
     }
   }
   return iconBaseName || GENERIC_FILE;
 }
 
-export function getFileTypeIconSuffix(size: FileTypeIconSize, imageFileType: ImageFileType = 'svg'): string {
-  let devicePixelRatio: number = window.devicePixelRatio;
+export function getFileTypeIconSuffix(
+  size: FileTypeIconSize,
+  imageFileType: ImageFileType = 'svg',
+  win?: Window,
+): string {
+  // eslint-disable-next-line no-restricted-globals
+  win ??= window;
+  let devicePixelRatio: number = win.devicePixelRatio;
   let devicePixelRatioSuffix = ''; // Default is 1x
 
   // SVGs scale well, so you can generally use the default image.

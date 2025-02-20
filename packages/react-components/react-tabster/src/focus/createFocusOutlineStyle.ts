@@ -18,8 +18,33 @@ export type FocusOutlineStyleOptions = {
   outlineWidth: string;
   outlineOffset?: string | FocusOutlineOffset;
 };
-export interface CreateFocusOutlineStyleOptions extends CreateCustomFocusIndicatorStyleOptions {
+export interface CreateFocusOutlineStyleOptions extends Omit<CreateCustomFocusIndicatorStyleOptions, 'enableOutline'> {
   style?: Partial<FocusOutlineStyleOptions>;
+
+  /**
+   * Enables the browser default outline style
+   */
+  enableOutline?: boolean;
+}
+
+/**
+ * Get the position of the focus outline
+ *
+ * @param options - Configures the style of the focus outline
+ * @param position - The position of the focus outline
+ * @returns CSS value for the position of the focus outline
+ */
+function getOutlinePosition(
+  { outlineWidth, outlineOffset }: FocusOutlineStyleOptions,
+  position: 'top' | 'bottom' | 'left' | 'right',
+) {
+  const offsetValue = (outlineOffset as FocusOutlineOffset)?.[position] || outlineOffset;
+
+  if (!outlineOffset) {
+    return `calc(${outlineWidth} * -1)`;
+  }
+
+  return `calc(0px - ${outlineWidth} - ${offsetValue})`;
 }
 
 /**
@@ -30,30 +55,28 @@ export interface CreateFocusOutlineStyleOptions extends CreateCustomFocusIndicat
  * @returns focus outline styles object
  */
 const getFocusOutlineStyles = (options: FocusOutlineStyleOptions): GriffelStyle => {
-  const { outlineRadius, outlineColor, outlineOffset, outlineWidth } = options;
-
-  const outlineOffsetTop = (outlineOffset as FocusOutlineOffset)?.top || outlineOffset;
-  const outlineOffsetBottom = (outlineOffset as FocusOutlineOffset)?.bottom || outlineOffset;
-  const outlineOffsetLeft = (outlineOffset as FocusOutlineOffset)?.left || outlineOffset;
-  const outlineOffsetRight = (outlineOffset as FocusOutlineOffset)?.right || outlineOffset;
+  const { outlineRadius, outlineColor, outlineWidth } = options;
 
   return {
     ...shorthands.borderColor('transparent'),
-    ':after': {
+    '@media (forced-colors: active)': {
+      '::after': {
+        ...shorthands.borderColor('Highlight'),
+      },
+    },
+    '::after': {
       content: '""',
       position: 'absolute',
       pointerEvents: 'none',
       zIndex: 1,
 
-      ...shorthands.borderStyle('solid'),
-      ...shorthands.borderWidth(outlineWidth),
-      ...shorthands.borderRadius(outlineRadius),
-      ...shorthands.borderColor(outlineColor),
+      border: `${outlineWidth} solid ${outlineColor}`,
+      borderRadius: outlineRadius,
 
-      top: !outlineOffset ? `-${outlineWidth}` : `calc(0px - ${outlineWidth} - ${outlineOffsetTop})`,
-      bottom: !outlineOffset ? `-${outlineWidth}` : `calc(0px - ${outlineWidth} - ${outlineOffsetBottom})`,
-      left: !outlineOffset ? `-${outlineWidth}` : `calc(0px - ${outlineWidth} - ${outlineOffsetLeft})`,
-      right: !outlineOffset ? `-${outlineWidth}` : `calc(0px - ${outlineWidth} - ${outlineOffsetRight})`,
+      top: getOutlinePosition(options, 'top'),
+      right: getOutlinePosition(options, 'right'),
+      bottom: getOutlinePosition(options, 'bottom'),
+      left: getOutlinePosition(options, 'left'),
     },
   };
 };
@@ -66,10 +89,19 @@ const getFocusOutlineStyles = (options: FocusOutlineStyleOptions): GriffelStyle 
  * @returns focus outline styles object for @see makeStyles
  */
 export const createFocusOutlineStyle = ({
+  enableOutline = false,
   selector = defaultOptions.selector,
+  customizeSelector,
   style = defaultOptions.style,
-}: CreateFocusOutlineStyleOptions = defaultOptions): GriffelStyle =>
-  createCustomFocusIndicatorStyle(
+}: CreateFocusOutlineStyleOptions = defaultOptions): GriffelStyle => ({
+  ':focus': {
+    outlineStyle: enableOutline ? undefined : 'none',
+  },
+  ':focus-visible': {
+    outlineStyle: enableOutline ? undefined : 'none',
+  },
+
+  ...createCustomFocusIndicatorStyle(
     getFocusOutlineStyles({
       outlineColor: tokens.colorStrokeFocus2,
       outlineRadius: tokens.borderRadiusMedium,
@@ -77,5 +109,6 @@ export const createFocusOutlineStyle = ({
       outlineWidth: '2px',
       ...style,
     }),
-    { selector },
-  );
+    { selector, customizeSelector },
+  ),
+});

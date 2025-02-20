@@ -1,7 +1,7 @@
 import * as React from 'react';
 import type { IIconProps } from '../../Icon';
 import type { ISelectableOption, ISelectableDroppableTextProps } from '../../SelectableOption';
-import type { IStyle, ITheme } from '../../Styling';
+import type { IShadowDomStyle, IStyle, ITheme } from '../../Styling';
 import type { IButtonStyles, IButtonProps } from '../../Button';
 import type { IRefObject, IRenderFunction } from '../../Utilities';
 import type { IComboBoxClassNames } from './ComboBox.classNames';
@@ -139,6 +139,20 @@ export interface IComboBoxProps
   allowFreeform?: boolean;
 
   /**
+   * When true, the Combobox will allow the user to type freely while the Combobox is focused.
+   * On Blur, the value will be set to the matching option, or the previous selection if there is no match.
+   * @defaultvalue false
+   */
+  allowFreeInput?: boolean;
+
+  /**
+   * When true this allows the parent element to navigate using left and right arrow keys.
+   *
+   * @defaultvalue false
+   */
+  allowParentArrowNavigation?: boolean;
+
+  /**
    * Whether the ComboBox auto completes. As the user is entering text, potential matches will be
    * suggested from the list of options. If the ComboBox is expanded, this will also scroll to the
    * suggested option and give it a selected style.
@@ -213,12 +227,12 @@ export interface IComboBoxProps
   scrollSelectedToTop?: boolean;
 
   /**
-   * Add additional content above the option list in the callout.
+   * Add additional content above the option list in the callout. Content should not include interactive items.
    */
   onRenderUpperContent?: IRenderFunction<IComboBoxProps>;
 
   /**
-   * Add additional content below the option list in the callout.
+   * Add additional content below the option list in the callout. Content should not include interactive items.
    */
   onRenderLowerContent?: IRenderFunction<IComboBoxProps>;
 
@@ -239,10 +253,9 @@ export interface IComboBoxProps
   dropdownMaxWidth?: number;
 
   /**
-   * Whether to hide the ComboBox's caret (expand) button element from screen readers. This is true
-   * (hidden) by default because all functionality is handled by the input element, and the arrow
-   * button is only meant to be decorative.
-   * @defaultvalue true
+   * Whether to hide the ComboBox's caret (expand) button element from screen readers. This is false
+   * (exposed to AT) by default because Android Talkback cannot otherwise expand the combobox.
+   * @defaultvalue false
    */
   isButtonAriaHidden?: boolean;
 
@@ -278,6 +291,12 @@ export interface IComboBoxProps
    * Custom render function for the label text.
    */
   onRenderLabel?: IRenderFunction<IOnRenderComboBoxLabelProps>;
+
+  /**
+   * Whether matching the ComboBox options when writing in the ComboBox input should be case-sensitive or not.
+   * @defaultvalue false
+   */
+  caseSensitive?: boolean;
 }
 
 /**
@@ -298,7 +317,7 @@ export interface IOnRenderComboBoxLabelProps {
 /**
  * {@docCategory ComboBox}
  */
-export interface IComboBoxStyles {
+export interface IComboBoxStyles extends IShadowDomStyle {
   /**
    * Style for the container which has the ComboBox and the label.
    * (In most other components this would be called `root`.)

@@ -37,7 +37,8 @@ const NO_COLUMNS: IColumn[] = [];
 
 export class DetailsHeaderBase
   extends React.Component<IDetailsHeaderBaseProps, IDetailsHeaderState>
-  implements IDetailsHeader {
+  implements IDetailsHeader
+{
   public static defaultProps = {
     selectAllVisibility: SelectAllVisibility.visible,
     collapseAllVisibility: CollapseAllVisibility.visible,
@@ -202,9 +203,9 @@ export class DetailsHeaderBase
 
     const classNames = this._classNames;
     const IconComponent = useFastIcons ? FontIcon : Icon;
-    const showGroupExpander =
-      groupNestingDepth! > 0 && this.props.collapseAllVisibility === CollapseAllVisibility.visible;
-    const columnIndexOffset = 1 + (showCheckbox ? 1 : 0) + (showGroupExpander ? 1 : 0);
+    const hasGroupExpander = groupNestingDepth! > 0;
+    const showGroupExpander = hasGroupExpander && this.props.collapseAllVisibility === CollapseAllVisibility.visible;
+    const columnIndexOffset = this._computeColumnIndexOffset(showCheckbox);
 
     const isRTL = getRTL(theme);
     return (
@@ -294,6 +295,10 @@ export class DetailsHeaderBase
             />
             {/* Use this span in addition to aria-label, otherwise VoiceOver ignores the column */}
             <span className={classNames.accessibleLabel}>{ariaLabelForToggleAllGroupsButton}</span>
+          </div>
+        ) : hasGroupExpander ? (
+          <div className={classNames.cellIsGroupExpander} data-is-focusable={false} role="columnheader">
+            {/* Empty placeholder cell when CollapseAllVisibility is hidden */}
           </div>
         ) : null}
         <GroupSpacer indentWidth={indentWidth} role="gridcell" count={groupNestingDepth! - 1} />
@@ -405,13 +410,13 @@ export class DetailsHeaderBase
         if (columnReorderProps.onColumnDrop) {
           const dragDropDetails: IColumnDragDropDetails = {
             draggedIndex: this._draggedColumnIndex,
-            targetIndex: targetIndex,
+            targetIndex,
           };
           columnReorderProps.onColumnDrop(dragDropDetails);
-          /* eslint-disable deprecation/deprecation */
+          /* eslint-disable @typescript-eslint/no-deprecated */
         } else if (columnReorderProps.handleColumnReorder) {
           columnReorderProps.handleColumnReorder(this._draggedColumnIndex, targetIndex);
-          /* eslint-enable deprecation/deprecation */
+          /* eslint-enable @typescript-eslint/no-deprecated */
         }
       }
     }
@@ -419,6 +424,21 @@ export class DetailsHeaderBase
     this._resetDropHints();
     this._dropHintDetails = {};
     this._draggedColumnIndex = -1;
+  };
+
+  private _computeColumnIndexOffset = (showCheckbox: boolean) => {
+    const hasGroupExpander = this.props.groupNestingDepth && this.props.groupNestingDepth > 0;
+
+    let offset = 1;
+    if (showCheckbox) {
+      offset += 1;
+    }
+
+    if (hasGroupExpander) {
+      offset += 1;
+    }
+
+    return offset;
   };
 
   /**
@@ -436,7 +456,7 @@ export class DetailsHeaderBase
     const itemIndex = props.itemIndex;
     if (itemIndex >= 0) {
       // Column index is set based on the checkbox
-      this._draggedColumnIndex = this._isCheckboxColumnHidden() ? itemIndex - 1 : itemIndex - 2;
+      this._draggedColumnIndex = itemIndex - this._computeColumnIndexOffset(!this._isCheckboxColumnHidden());
       this._getDropHintPositions();
       if (columnReorderProps.onColumnDragStart) {
         columnReorderProps.onColumnDragStart(true);
@@ -654,7 +674,12 @@ export class DetailsHeaderBase
     const classNames = this._classNames;
     const IconComponent = this.props.useFastIcons ? FontIcon : Icon;
     return (
-      <div key={'dropHintKey'} className={classNames.dropHintStyle} id={`columnDropHint_${dropHintIndex}`}>
+      <div
+        key={'dropHintKey'}
+        className={classNames.dropHintStyle}
+        id={`columnDropHint_${dropHintIndex}`}
+        aria-hidden={true}
+      >
         <div
           role="presentation"
           key={`dropHintCircleKey`}
@@ -717,7 +742,7 @@ export class DetailsHeaderBase
 
     this.setState({
       columnResizeDetails: {
-        columnIndex: columnIndex,
+        columnIndex,
         columnMinWidth: columns[columnIndex].calculatedWidth!,
         originX: ev.clientX,
       },
@@ -748,11 +773,11 @@ export class DetailsHeaderBase
     const columnIndex = Number(columnIndexAttr);
 
     if (!columnResizeDetails) {
-      // eslint-disable-next-line deprecation/deprecation
+      // eslint-disable-next-line @typescript-eslint/no-deprecated
       if (ev.which === KeyCodes.enter) {
         this.setState({
           columnResizeDetails: {
-            columnIndex: columnIndex,
+            columnIndex,
             columnMinWidth: columns[columnIndex].calculatedWidth!,
           },
         });
@@ -763,7 +788,7 @@ export class DetailsHeaderBase
     } else {
       let increment: number | undefined;
 
-      // eslint-disable-next-line deprecation/deprecation
+      // eslint-disable-next-line @typescript-eslint/no-deprecated
       if (ev.which === KeyCodes.enter) {
         this.setState({
           columnResizeDetails: undefined,
@@ -771,10 +796,10 @@ export class DetailsHeaderBase
 
         ev.preventDefault();
         ev.stopPropagation();
-        // eslint-disable-next-line deprecation/deprecation
+        // eslint-disable-next-line @typescript-eslint/no-deprecated
       } else if (ev.which === KeyCodes.left) {
         increment = getRTL(this.props.theme) ? 1 : -1;
-        // eslint-disable-next-line deprecation/deprecation
+        // eslint-disable-next-line @typescript-eslint/no-deprecated
       } else if (ev.which === KeyCodes.right) {
         increment = getRTL(this.props.theme) ? -1 : 1;
       }
@@ -880,7 +905,7 @@ export class DetailsHeaderBase
 
     if (this.state.isAllSelected !== isAllSelected) {
       this.setState({
-        isAllSelected: isAllSelected,
+        isAllSelected,
       });
     }
   }

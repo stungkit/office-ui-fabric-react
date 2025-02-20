@@ -18,6 +18,7 @@ export function getFirstFocusable(
   rootElement: HTMLElement,
   currentElement: HTMLElement,
   includeElementsInFocusZones?: boolean,
+  includeShadowRoots?: boolean,
 ): HTMLElement | null {
   return getNextElement(
     rootElement,
@@ -26,6 +27,10 @@ export function getFirstFocusable(
     false /*suppressParentTraversal*/,
     false /*suppressChildTraversal*/,
     includeElementsInFocusZones,
+    undefined,
+    undefined,
+    undefined,
+    includeShadowRoots,
   );
 }
 
@@ -38,6 +43,7 @@ export function getLastFocusable(
   rootElement: HTMLElement,
   currentElement: HTMLElement,
   includeElementsInFocusZones?: boolean,
+  includeShadowRoots?: boolean,
 ): HTMLElement | null {
   return getPreviousElement(
     rootElement,
@@ -46,6 +52,9 @@ export function getLastFocusable(
     false /*suppressParentTraversal*/,
     true /*traverseChildren*/,
     includeElementsInFocusZones,
+    undefined,
+    undefined,
+    includeShadowRoots,
   );
 }
 
@@ -64,6 +73,7 @@ export function getFirstTabbable(
   currentElement: HTMLElement,
   includeElementsInFocusZones?: boolean,
   checkNode: boolean = true,
+  includeShadowRoots?: boolean,
 ): HTMLElement | null {
   return getNextElement(
     rootElement,
@@ -74,6 +84,8 @@ export function getFirstTabbable(
     includeElementsInFocusZones,
     false /*allowFocusRoot*/,
     true /*tabbable*/,
+    undefined,
+    includeShadowRoots,
   );
 }
 
@@ -92,6 +104,7 @@ export function getLastTabbable(
   currentElement: HTMLElement,
   includeElementsInFocusZones?: boolean,
   checkNode: boolean = true,
+  includeShadowRoots?: boolean,
 ): HTMLElement | null {
   return getPreviousElement(
     rootElement,
@@ -102,6 +115,7 @@ export function getLastTabbable(
     includeElementsInFocusZones,
     false /*allowFocusRoot*/,
     true /*tabbable*/,
+    includeShadowRoots,
   );
 }
 
@@ -110,10 +124,26 @@ export function getLastTabbable(
  *
  * @public
  * @param rootElement - Element to start the search for a focusable child.
+ * @param bypassHiddenElements - If true, focus will be not be set on hidden elements.
  * @returns True if focus was set, false if it was not.
  */
-export function focusFirstChild(rootElement: HTMLElement): boolean {
-  let element: HTMLElement | null = getNextElement(rootElement, rootElement, true, false, false, true);
+export function focusFirstChild(
+  rootElement: HTMLElement,
+  bypassHiddenElements?: boolean,
+  includeShadowRoots?: boolean,
+): boolean {
+  let element: HTMLElement | null = getNextElement(
+    rootElement,
+    rootElement,
+    true,
+    false,
+    false,
+    true,
+    undefined,
+    undefined,
+    bypassHiddenElements,
+    includeShadowRoots,
+  );
 
   if (element) {
     focusAsync(element);
@@ -137,6 +167,7 @@ export function getPreviousElement(
   includeElementsInFocusZones?: boolean,
   allowFocusRoot?: boolean,
   tabbable?: boolean,
+  includeShadowRoots?: boolean,
 ): HTMLElement | null {
   if (!currentElement || (!allowFocusRoot && currentElement === rootElement)) {
     return null;
@@ -150,19 +181,23 @@ export function getPreviousElement(
     isCurrentElementVisible &&
     (includeElementsInFocusZones || !(isElementFocusZone(currentElement) || isElementFocusSubZone(currentElement)))
   ) {
+    const lastElementChild = (currentElement.lastElementChild ||
+      (includeShadowRoots && currentElement.shadowRoot?.lastElementChild)) as HTMLElement;
+
     const childMatch = getPreviousElement(
       rootElement,
-      currentElement.lastElementChild as HTMLElement,
+      lastElementChild,
       true,
       true,
       true,
       includeElementsInFocusZones,
       allowFocusRoot,
       tabbable,
+      includeShadowRoots,
     );
 
     if (childMatch) {
-      if ((tabbable && isElementTabbable(childMatch, true)) || !tabbable) {
+      if ((tabbable && isElementTabbable(childMatch, true, includeShadowRoots)) || !tabbable) {
         return childMatch;
       }
 
@@ -175,6 +210,7 @@ export function getPreviousElement(
         includeElementsInFocusZones,
         allowFocusRoot,
         tabbable,
+        includeShadowRoots,
       );
       if (childMatchSiblingMatch) {
         return childMatchSiblingMatch;
@@ -196,6 +232,7 @@ export function getPreviousElement(
           includeElementsInFocusZones,
           allowFocusRoot,
           tabbable,
+          includeShadowRoots,
         );
 
         if (childMatchParentMatch) {
@@ -208,7 +245,7 @@ export function getPreviousElement(
   }
 
   // Check the current node, if it's not the first traversal.
-  if (checkNode && isCurrentElementVisible && isElementTabbable(currentElement, tabbable)) {
+  if (checkNode && isCurrentElementVisible && isElementTabbable(currentElement, tabbable, includeShadowRoots)) {
     return currentElement;
   }
 
@@ -222,6 +259,7 @@ export function getPreviousElement(
     includeElementsInFocusZones,
     allowFocusRoot,
     tabbable,
+    includeShadowRoots,
   );
 
   if (siblingMatch) {
@@ -239,6 +277,7 @@ export function getPreviousElement(
       includeElementsInFocusZones,
       allowFocusRoot,
       tabbable,
+      includeShadowRoots,
     );
   }
 
@@ -261,15 +300,19 @@ export function getNextElement(
   includeElementsInFocusZones?: boolean,
   allowFocusRoot?: boolean,
   tabbable?: boolean,
+  bypassHiddenElements?: boolean,
+  includeShadowRoots?: boolean,
 ): HTMLElement | null {
   if (!currentElement || (currentElement === rootElement && suppressChildTraversal && !allowFocusRoot)) {
     return null;
   }
 
-  let isCurrentElementVisible = isElementVisible(currentElement);
+  const checkElementVisibility = bypassHiddenElements ? isElementVisibleAndNotHidden : isElementVisible;
+
+  let isCurrentElementVisible = checkElementVisibility(currentElement);
 
   // Check the current node, if it's not the first traversal.
-  if (checkNode && isCurrentElementVisible && isElementTabbable(currentElement, tabbable)) {
+  if (checkNode && isCurrentElementVisible && isElementTabbable(currentElement, tabbable, includeShadowRoots)) {
     return currentElement;
   }
 
@@ -279,15 +322,20 @@ export function getNextElement(
     isCurrentElementVisible &&
     (includeElementsInFocusZones || !(isElementFocusZone(currentElement) || isElementFocusSubZone(currentElement)))
   ) {
+    const firstElementchild = (currentElement.firstElementChild ||
+      (includeShadowRoots && currentElement.shadowRoot?.firstElementChild)) as HTMLElement;
+
     const childMatch = getNextElement(
       rootElement,
-      currentElement.firstElementChild as HTMLElement,
+      firstElementchild,
       true,
       true,
       false,
       includeElementsInFocusZones,
       allowFocusRoot,
       tabbable,
+      bypassHiddenElements,
+      includeShadowRoots,
     );
 
     if (childMatch) {
@@ -309,6 +357,8 @@ export function getNextElement(
     includeElementsInFocusZones,
     allowFocusRoot,
     tabbable,
+    bypassHiddenElements,
+    includeShadowRoots,
   );
 
   if (siblingMatch) {
@@ -325,6 +375,8 @@ export function getNextElement(
       includeElementsInFocusZones,
       allowFocusRoot,
       tabbable,
+      bypassHiddenElements,
+      includeShadowRoots,
     );
   }
 
@@ -365,12 +417,13 @@ export function isElementVisible(element: HTMLElement | undefined | null): boole
  *
  * @public
  */
-export function isElementVisibleAndNotHidden(element: HTMLElement | undefined | null): boolean {
+export function isElementVisibleAndNotHidden(element: HTMLElement | undefined | null, win?: Window): boolean {
+  const theWin = win ?? getWindow()!;
   return (
     !!element &&
     isElementVisible(element) &&
     !element.hidden &&
-    window.getComputedStyle(element).visibility !== 'hidden'
+    theWin.getComputedStyle(element).visibility !== 'hidden'
   );
 }
 
@@ -381,7 +434,11 @@ export function isElementVisibleAndNotHidden(element: HTMLElement | undefined | 
  *
  * @public
  */
-export function isElementTabbable(element: HTMLElement, checkTabIndex?: boolean): boolean {
+export function isElementTabbable(
+  element: HTMLElement,
+  checkTabIndex?: boolean,
+  checkShadowRoot: boolean = true,
+): boolean {
   // If this element is null or is disabled, it is not considered tabbable.
   if (!element || (element as HTMLButtonElement).disabled) {
     return false;
@@ -400,6 +457,7 @@ export function isElementTabbable(element: HTMLElement, checkTabIndex?: boolean)
 
   let isFocusableAttribute = element.getAttribute ? element.getAttribute(IS_FOCUSABLE_ATTRIBUTE) : null;
   let isTabIndexSet = tabIndexAttributeValue !== null && tabIndex >= 0;
+  let delegatesFocus = checkShadowRoot && element.shadowRoot ? !!element.shadowRoot.delegatesFocus : false;
 
   const result =
     !!element &&
@@ -410,7 +468,8 @@ export function isElementTabbable(element: HTMLElement, checkTabIndex?: boolean)
       element.tagName === 'TEXTAREA' ||
       element.tagName === 'SELECT' ||
       isFocusableAttribute === 'true' ||
-      isTabIndexSet);
+      isTabIndexSet ||
+      delegatesFocus);
 
   return checkTabIndex ? tabIndex !== -1 && result : result;
 }
@@ -439,8 +498,8 @@ export function isElementFocusSubZone(element?: HTMLElement): boolean {
  * @public
  */
 export function doesElementContainFocus(element: HTMLElement): boolean {
-  let document = getDocument(element);
-  let currentActiveElement: HTMLElement | undefined = document && (document.activeElement as HTMLElement);
+  let doc = getDocument(element);
+  let currentActiveElement: HTMLElement | undefined = doc && (doc.activeElement as HTMLElement);
   if (currentActiveElement && elementContains(element, currentActiveElement)) {
     return true;
   }
@@ -456,11 +515,13 @@ export function doesElementContainFocus(element: HTMLElement): boolean {
 export function shouldWrapFocus(
   element: HTMLElement,
   noWrapDataAttribute: 'data-no-vertical-wrap' | 'data-no-horizontal-wrap',
+  doc?: Document,
 ): boolean {
-  return elementContainsAttribute(element, noWrapDataAttribute) === 'true' ? false : true;
+  const theDoc = doc ?? getDocument()!;
+  return elementContainsAttribute(element, noWrapDataAttribute, theDoc) === 'true' ? false : true;
 }
 
-let targetToFocusOnNextRepaint: HTMLElement | { focus: () => void } | null | undefined = undefined;
+let animationId: number | undefined = undefined;
 
 /**
  * Sets focus to an element asynchronously. The focus will be set at the next browser repaint,
@@ -470,23 +531,20 @@ let targetToFocusOnNextRepaint: HTMLElement | { focus: () => void } | null | und
  */
 export function focusAsync(element: HTMLElement | { focus: () => void } | undefined | null): void {
   if (element) {
-    // An element was already queued to be focused, so replace that one with the new element
-    if (targetToFocusOnNextRepaint) {
-      targetToFocusOnNextRepaint = element;
-      return;
-    }
-
-    targetToFocusOnNextRepaint = element;
-
     const win = getWindow(element as Element);
 
     if (win) {
+      // cancel any previous focus queues
+      if (animationId !== undefined) {
+        win.cancelAnimationFrame(animationId);
+      }
+
       // element.focus() is a no-op if the element is no longer in the DOM, meaning this is always safe
-      win.requestAnimationFrame(() => {
-        targetToFocusOnNextRepaint && targetToFocusOnNextRepaint.focus();
+      animationId = win.requestAnimationFrame(() => {
+        element && element.focus();
 
         // We are done focusing for this frame, so reset the queued focus element
-        targetToFocusOnNextRepaint = undefined;
+        animationId = undefined;
       });
     }
   }

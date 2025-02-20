@@ -11,12 +11,12 @@ export const useContextSelectors = <
   Value extends Record<string, any>,
   Properties extends string,
   Selectors extends Record<Properties, ContextSelector<Value, SelectedValue>>,
-  SelectedValue extends any
+  SelectedValue extends any,
 >(
   context: Context<Value>,
   selectors: Selectors,
 ): Record<Properties, SelectedValue> => {
-  const contextValue = React.useContext((context as unknown) as Context<ContextValues<Value>>);
+  const contextValue = React.useContext(context as unknown as Context<ContextValues<Value>>);
 
   const {
     value: { current: value },
@@ -79,7 +79,7 @@ export const useContextSelectors = <
         }
 
         return [payload[1], nextSelected] as const;
-      } catch (e) {
+      } catch {
         // ignored (stale props or some other reason)
       }
       return [...prevState] as const; // schedule update

@@ -6,18 +6,20 @@ import * as React from 'react';
 type TestComponentProps = {
   className?: string;
   color?: string;
+  unstyled?: boolean;
 
   styles?: ComponentSlotStyle<TestComponentProps>;
   variables?: ComponentVariablesInput;
 };
 
 const TestComponent: React.FunctionComponent<TestComponentProps> = props => {
-  const { className, color, styles, variables } = props;
+  const { className, color, styles, variables, unstyled } = props;
 
   const { classes } = useStyles('Test', {
     className: 'ui-test',
     mapPropsToStyles: () => ({ color }),
     mapPropsToInlineStyles: () => ({ className, styles, variables }),
+    unstyled,
   });
 
   return <div className={classes.root} />;
@@ -45,6 +47,30 @@ describe('useStyles', () => {
     });
   });
 
+  describe('unstyled', () => {
+    it('applies "className" from options', () => {
+      const wrapper = shallow(<TestComponent unstyled={true} />);
+
+      expect(wrapper.find('div').prop('className')).toContain('ui-test');
+    });
+
+    it('applies "className" from props', () => {
+      const wrapper = shallow(<TestComponent unstyled={true} className="foo" />);
+
+      expect(wrapper.find('div').prop('className')).toContain('foo');
+    });
+
+    it('does not resolve styles', () => {
+      const styles = jest.fn();
+      mount(<TestComponent unstyled={true} color="green" />, {
+        wrappingComponent: Unstable_FluentContextProvider,
+        wrappingComponentProps: { value: { performance: {}, theme: createTheme(styles) } },
+      });
+
+      expect(styles).not.toHaveBeenCalled();
+    });
+  });
+
   describe('styles', () => {
     it('passes props mapped via "mapPropsToStyles" to styles functions', () => {
       const styles = jest.fn();
@@ -53,7 +79,7 @@ describe('useStyles', () => {
         wrappingComponentProps: { value: { performance: {}, theme: createTheme(styles) } },
       });
 
-      expect(styles).toBeCalledWith(
+      expect(styles).toHaveBeenCalledWith(
         expect.objectContaining({
           props: { color: 'green' },
         }),

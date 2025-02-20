@@ -2,6 +2,10 @@ import * as React from 'react';
 import { CommandBar, ICommandBarItemProps } from '@fluentui/react/lib/CommandBar';
 import { IButtonProps } from '@fluentui/react/lib/Button';
 
+export default {
+  title: 'Components/CommandBar',
+};
+
 const overflowProps: IButtonProps = { ariaLabel: 'More commands' };
 
 export const CommandBarBasicExample: React.FunctionComponent = () => {
@@ -24,6 +28,7 @@ const _items: ICommandBarItemProps[] = [
     text: 'Add',
     cacheKey: 'myCacheKey', // changing this key will invalidate this item's cache
     iconProps: { iconName: 'Add' },
+    diabled: true,
     subMenuProps: {
       items: [
         {

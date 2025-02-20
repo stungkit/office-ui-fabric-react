@@ -1,4 +1,8 @@
 {
   "extends": ["plugin:@fluentui/eslint-plugin/react"],
-  "root": true
+  "root": true,
+  "rules": {
+    "@griffel/styles-file": "off",
+    "@nx/workspace-no-restricted-globals": "off"
+  }
 }

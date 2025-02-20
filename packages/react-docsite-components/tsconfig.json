@@ -7,7 +7,6 @@
     "sourceMap": true,
     "experimentalDecorators": true,
     "importHelpers": true,
-    "forceConsistentCasingInFileNames": true,
     "noImplicitAny": true,
     "noUnusedLocals": true,
     "strictNullChecks": true,
@@ -17,7 +16,8 @@
     "noImplicitThis": true,
     "outDir": "lib",
     "lib": ["es5", "dom", "es2015.promise"],
-    "types": ["webpack-env", "jest"]
+    "types": ["webpack-env", "jest"],
+    "isolatedModules": true
   },
   "include": ["src"]
 }

@@ -36,7 +36,7 @@ export function getStyles(props: ISuggestionsItemStyleProps): ISuggestionsItemSt
       },
       suggested && {
         selectors: {
-          [`.${IsFocusVisibleClassName} &`]: {
+          [`.${IsFocusVisibleClassName} &, :host(.${IsFocusVisibleClassName}) &`]: {
             selectors: {
               [`.${classNames.closeButton}`]: {
                 display: 'block',
@@ -61,6 +61,7 @@ export function getStyles(props: ISuggestionsItemStyleProps): ISuggestionsItemSt
     itemButton: [
       classNames.itemButton,
       {
+        justifyContent: 'flex-start',
         width: '100%',
         padding: 0,
         border: 'none',
@@ -68,7 +69,7 @@ export function getStyles(props: ISuggestionsItemStyleProps): ISuggestionsItemSt
         // Force the item button to be collapsible so it can always shrink
         // to accommodate the close button as a peer in its flex container.
         minWidth: 0,
-        // Require for IE11 to truncate the component.
+        // Required for IE11 to truncate the component.
         overflow: 'hidden',
         selectors: {
           [HighContrastSelector]: {
@@ -122,7 +123,7 @@ export function getStyles(props: ISuggestionsItemStyleProps): ISuggestionsItemSt
         },
       },
       suggested && {
-        [`.${IsFocusVisibleClassName} &`]: {
+        [`.${IsFocusVisibleClassName} &, :host(.${IsFocusVisibleClassName}) &`]: {
           selectors: {
             ':hover, :active': {
               background: palette.neutralTertiary,

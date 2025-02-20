@@ -30,6 +30,8 @@ const RENDER_OPTIONS: IDropdownOption[] = [
 describe('Dropdown', () => {
   beforeEach(() => {
     resetIds();
+    const win = window as any;
+    Object.defineProperty(win.HTMLHtmlElement.prototype, 'clientWidth', { configurable: true, value: 1024 });
   });
 
   afterEach(() => {
@@ -708,12 +710,13 @@ describe('Dropdown', () => {
       expect(dropdownRoot.getAttribute('aria-labelledby')).not.toBeNull();
     });
 
-    it('sets role=error on included error message', () => {
+    it('sets alert message and aria-invalid when errorMessage is set', () => {
       const { getByRole } = render(
         <Dropdown label="Test label" options={[]} id="sample-dropdown" errorMessage="This is an example error." />,
       );
       const alert = getByRole('alert');
       expect(alert.textContent).toBe('This is an example error.');
+      expect(getByRole('combobox').getAttribute('aria-invalid')).toBe('true');
     });
   });
 

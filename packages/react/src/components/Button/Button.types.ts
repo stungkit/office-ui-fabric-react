@@ -7,7 +7,7 @@ import type { ISplitButtonClassNames } from './SplitButton/SplitButton.className
 import type { IRefObject, IRenderFunction, IComponentAs } from '../../Utilities';
 import type { IContextualMenuProps } from '../../ContextualMenu';
 import type { IIconProps } from '../../Icon';
-import type { IStyle, ITheme } from '../../Styling';
+import type { IShadowDomStyle, IStyle, ITheme } from '../../Styling';
 import type { IKeytipProps } from '../../Keytip';
 
 /**
@@ -42,12 +42,12 @@ export interface IButton {
 /**
  * {@docCategory Button}
  */
-/* eslint-disable deprecation/deprecation */
+/* eslint-disable @typescript-eslint/no-deprecated */
 export interface IButtonProps
   extends React.AllHTMLAttributes<
     HTMLAnchorElement | HTMLButtonElement | HTMLDivElement | BaseButton | Button | HTMLSpanElement
   > {
-  /* eslint-enable deprecation/deprecation */
+  /* eslint-enable @typescript-eslint/no-deprecated */
   /**
    * Optional callback to access the `IButton` interface. Use this instead of `ref` for accessing
    * the public methods and properties of the component.
@@ -332,7 +332,7 @@ export interface IButtonProps
    * Style for the description text if applicable (for compound buttons).
    * @deprecated Use `secondaryText` instead.
    */
-  description?: IStyle;
+  description?: string;
 
   /**
    * yet unknown docs
@@ -372,7 +372,7 @@ export enum ButtonType {
 /**
  * {@docCategory Button}
  */
-export interface IButtonStyles {
+export interface IButtonStyles extends IShadowDomStyle {
   /**
    * Style for the root element in the default enabled, non-toggled state.
    */

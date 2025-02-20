@@ -81,7 +81,7 @@ exports[`DatePicker renders DatePicker allowing text input correctly 1`] = `
               &:hover {
                 border-color: #323130;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                 -ms-high-contrast-adjust: none;
                 border-color: Highlight;
                 forced-color-adjust: none;
@@ -92,6 +92,7 @@ exports[`DatePicker renders DatePicker allowing text input correctly 1`] = `
             aria-expanded={false}
             aria-haspopup="dialog"
             aria-invalid={false}
+            aria-required={false}
             className=
                 ms-TextField-field
                 {
@@ -132,7 +133,7 @@ exports[`DatePicker renders DatePicker allowing text input correctly 1`] = `
                 &::-ms-clear {
                   display: none;
                 }
-                @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+                @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                   background: Window;
                   color: WindowText;
                 }
@@ -140,23 +141,24 @@ exports[`DatePicker renders DatePicker allowing text input correctly 1`] = `
                   color: #605e5c;
                   opacity: 1;
                 }
-                @media screen and (-ms-high-contrast: active), (forced-colors: active){&::placeholder {
+                @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&::placeholder {
                   color: GrayText;
                 }
                 &:-ms-input-placeholder {
                   color: #605e5c;
                   opacity: 1;
                 }
-                @media screen and (-ms-high-contrast: active), (forced-colors: active){&:-ms-input-placeholder {
+                @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:-ms-input-placeholder {
                   color: GrayText;
                 }
                 &::-ms-input-placeholder {
                   color: #605e5c;
                   opacity: 1;
                 }
-                @media screen and (-ms-high-contrast: active), (forced-colors: active){&::-ms-input-placeholder {
+                @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&::-ms-input-placeholder {
                   color: GrayText;
                 }
+            data-is-focusable={true}
             id="DatePicker0-label"
             onBlur={[Function]}
             onChange={[Function]}
@@ -171,6 +173,7 @@ exports[`DatePicker renders DatePicker allowing text input correctly 1`] = `
             value=""
           />
           <i
+            aria-expanded={false}
             aria-hidden={true}
             className=
                 ms-DatePicker-event--without-label
@@ -194,9 +197,11 @@ exports[`DatePicker renders DatePicker allowing text input correctly 1`] = `
                   position: absolute;
                   right: 4px;
                   speak: none;
+                  text-decoration: inherit;
                 }
             data-icon-name="Calendar"
             onClick={[Function]}
+            role="button"
           >
             
           </i>
@@ -307,7 +312,7 @@ exports[`DatePicker renders DatePicker with value correctly 1`] = `
               &:hover {
                 border-color: #323130;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                 -ms-high-contrast-adjust: none;
                 border-color: Highlight;
                 forced-color-adjust: none;
@@ -318,6 +323,7 @@ exports[`DatePicker renders DatePicker with value correctly 1`] = `
             aria-expanded={false}
             aria-haspopup="dialog"
             aria-invalid={false}
+            aria-required={false}
             className=
                 ms-TextField-field
                 {
@@ -330,15 +336,19 @@ exports[`DatePicker renders DatePicker with value correctly 1`] = `
                   box-shadow: none;
                   box-sizing: border-box;
                   color: #323130;
+                  cursor: pointer;
                   font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
                   font-size: 14px;
                   font-weight: 400;
+                  height: 32px;
+                  line-height: 30px;
                   margin-bottom: 0px;
                   margin-left: 0px;
                   margin-right: 0px;
                   margin-top: 0px;
                   min-width: 0px;
                   outline: 0px;
+                  overflow: hidden;
                   padding-bottom: 0;
                   padding-left: 8px;
                   padding-right: 24px;
@@ -358,7 +368,7 @@ exports[`DatePicker renders DatePicker with value correctly 1`] = `
                 &::-ms-clear {
                   display: none;
                 }
-                @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+                @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                   background: Window;
                   color: WindowText;
                 }
@@ -366,30 +376,24 @@ exports[`DatePicker renders DatePicker with value correctly 1`] = `
                   color: #605e5c;
                   opacity: 1;
                 }
-                @media screen and (-ms-high-contrast: active), (forced-colors: active){&::placeholder {
+                @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&::placeholder {
                   color: GrayText;
                 }
                 &:-ms-input-placeholder {
                   color: #605e5c;
                   opacity: 1;
                 }
-                @media screen and (-ms-high-contrast: active), (forced-colors: active){&:-ms-input-placeholder {
+                @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:-ms-input-placeholder {
                   color: GrayText;
                 }
                 &::-ms-input-placeholder {
                   color: #605e5c;
                   opacity: 1;
                 }
-                @media screen and (-ms-high-contrast: active), (forced-colors: active){&::-ms-input-placeholder {
+                @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&::-ms-input-placeholder {
                   color: GrayText;
                 }
-                {
-                  cursor: pointer;
-                  height: 32px;
-                  line-height: 30px;
-                  overflow: hidden;
-                  text-overflow: ellipsis;
-                }
+            data-is-focusable={true}
             id="DatePicker0-label"
             onBlur={[Function]}
             onChange={[Function]}
@@ -426,6 +430,7 @@ exports[`DatePicker renders DatePicker with value correctly 1`] = `
                   position: absolute;
                   right: 4px;
                   speak: none;
+                  text-decoration: inherit;
                 }
             data-icon-name="Calendar"
             onClick={[Function]}
@@ -539,7 +544,7 @@ exports[`DatePicker renders default DatePicker correctly 1`] = `
               &:hover {
                 border-color: #323130;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                 -ms-high-contrast-adjust: none;
                 border-color: Highlight;
                 forced-color-adjust: none;
@@ -550,6 +555,7 @@ exports[`DatePicker renders default DatePicker correctly 1`] = `
             aria-expanded={false}
             aria-haspopup="dialog"
             aria-invalid={false}
+            aria-required={false}
             className=
                 ms-TextField-field
                 {
@@ -562,15 +568,19 @@ exports[`DatePicker renders default DatePicker correctly 1`] = `
                   box-shadow: none;
                   box-sizing: border-box;
                   color: #323130;
+                  cursor: pointer;
                   font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
                   font-size: 14px;
                   font-weight: 400;
+                  height: 32px;
+                  line-height: 30px;
                   margin-bottom: 0px;
                   margin-left: 0px;
                   margin-right: 0px;
                   margin-top: 0px;
                   min-width: 0px;
                   outline: 0px;
+                  overflow: hidden;
                   padding-bottom: 0;
                   padding-left: 8px;
                   padding-right: 24px;
@@ -590,7 +600,7 @@ exports[`DatePicker renders default DatePicker correctly 1`] = `
                 &::-ms-clear {
                   display: none;
                 }
-                @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+                @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                   background: Window;
                   color: WindowText;
                 }
@@ -598,30 +608,24 @@ exports[`DatePicker renders default DatePicker correctly 1`] = `
                   color: #605e5c;
                   opacity: 1;
                 }
-                @media screen and (-ms-high-contrast: active), (forced-colors: active){&::placeholder {
+                @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&::placeholder {
                   color: GrayText;
                 }
                 &:-ms-input-placeholder {
                   color: #605e5c;
                   opacity: 1;
                 }
-                @media screen and (-ms-high-contrast: active), (forced-colors: active){&:-ms-input-placeholder {
+                @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:-ms-input-placeholder {
                   color: GrayText;
                 }
                 &::-ms-input-placeholder {
                   color: #605e5c;
                   opacity: 1;
                 }
-                @media screen and (-ms-high-contrast: active), (forced-colors: active){&::-ms-input-placeholder {
+                @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&::-ms-input-placeholder {
                   color: GrayText;
                 }
-                {
-                  cursor: pointer;
-                  height: 32px;
-                  line-height: 30px;
-                  overflow: hidden;
-                  text-overflow: ellipsis;
-                }
+            data-is-focusable={true}
             id="DatePicker0-label"
             onBlur={[Function]}
             onChange={[Function]}
@@ -638,7 +642,7 @@ exports[`DatePicker renders default DatePicker correctly 1`] = `
                   {
                     color: #605e5c;
                   }
-                  @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+                  @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                     color: GrayText;
                   }
             />
@@ -667,6 +671,7 @@ exports[`DatePicker renders default DatePicker correctly 1`] = `
                   position: absolute;
                   right: 4px;
                   speak: none;
+                  text-decoration: inherit;
                 }
             data-icon-name="Calendar"
             onClick={[Function]}

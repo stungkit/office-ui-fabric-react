@@ -11,6 +11,7 @@ import {
   trackEvent,
   trackPageView,
   IWithPlatformProps,
+  TopBanner,
   TopNav,
   ScrollBars,
   INavPage,
@@ -29,6 +30,7 @@ import { AppThemesContext, extractAnchorLink } from '@fluentui/react-docsite-com
 import { getItem, setItem } from '@fluentui/utilities/lib/sessionStorage';
 import * as styles from './Site.module.scss';
 import { appMaximumWidthLg } from '../../styles/constants';
+import { cdnUrl } from '../../utilities/cdn';
 
 export interface ISiteProps<TPlatforms extends string = string> {
   children?: React.ReactNode;
@@ -96,7 +98,7 @@ export class Site<TPlatforms extends string = string> extends React.Component<
     let platform = 'default' as TPlatforms;
 
     // If current page doesn't have pages for the active platform, switch to its first platform.
-    if (Object.keys(navData.pagePlatforms).length > 0 && navData.activePages.length === 0) {
+    if (Object.keys(navData.pagePlatforms!).length > 0 && navData.activePages!.length === 0) {
       const firstPlatform = getPageFirstPlatform(getSiteArea(siteDefinition.pages), siteDefinition);
       const currentPage = getSiteArea(siteDefinition.pages);
       platform = firstPlatform;
@@ -142,7 +144,7 @@ export class Site<TPlatforms extends string = string> extends React.Component<
     const { siteDefinition } = this.props;
 
     // If current page doesn't have pages for the active platform, switch to its first platform.
-    if (Object.keys(pagePlatforms).length > 0 && activePages.length === 0) {
+    if (Object.keys(pagePlatforms!).length > 0 && activePages!.length === 0) {
       const firstPlatform = getPageFirstPlatform(getSiteArea(siteDefinition.pages), siteDefinition);
       this._onPlatformChanged(firstPlatform);
     }
@@ -159,6 +161,7 @@ export class Site<TPlatforms extends string = string> extends React.Component<
     const SiteContent = () => (
       <div key="site" className={styles.siteRoot}>
         {this._renderTopNav()}
+        {this._renderTopBanner()}
         {this._renderMessageBar()}
         <div className={css(styles.siteWrapper, isContentFullBleed && styles.fullWidth)}>
           {this._renderPageNav()}
@@ -168,7 +171,6 @@ export class Site<TPlatforms extends string = string> extends React.Component<
             data-app-content-div="true"
             // This needs to be programmatically focusable for "jump to main content" functionality
             tabIndex={-1}
-            role="main"
           >
             {childrenWithPlatform}
           </div>
@@ -331,6 +333,10 @@ export class Site<TPlatforms extends string = string> extends React.Component<
     }
   };
 
+  private _renderTopBanner = (): JSX.Element | undefined => {
+    return <TopBanner cdnUrl={cdnUrl} />;
+  };
+
   private _renderPlatformPicker = (): JSX.Element | null => {
     const { siteDefinition } = this.props;
     const { hasPlatformPicker, platform, pagePlatforms } = this.state;
@@ -348,22 +354,19 @@ export class Site<TPlatforms extends string = string> extends React.Component<
     return null;
   };
 
-  private _renderPlatformBar = (): JSX.Element | undefined => {
+  private _renderPlatformBar = (): JSX.Element | null => {
     const { siteDefinition } = this.props;
     const { platform, pagePlatforms, hasPlatformPicker } = this.state;
 
-    return (
-      hasPlatformPicker &&
-      Object.keys(pagePlatforms).length > 0 && (
-        <PlatformBar
-          activePlatform={platform}
-          onPlatformClick={this._onPlatformChanged}
-          pagePlatforms={pagePlatforms}
-          platforms={siteDefinition.platforms}
-          innerWidth={appMaximumWidthLg}
-        />
-      )
-    );
+    return hasPlatformPicker && Object.keys(pagePlatforms!).length > 0 ? (
+      <PlatformBar
+        activePlatform={platform}
+        onPlatformClick={this._onPlatformChanged}
+        pagePlatforms={pagePlatforms}
+        platforms={siteDefinition.platforms!}
+        innerWidth={appMaximumWidthLg}
+      />
+    ) : null;
   };
 
   /**
@@ -501,7 +504,7 @@ export class Site<TPlatforms extends string = string> extends React.Component<
     document.title = [
       siteDefinition.siteTitle,
       siteArea,
-      currPlatform && platforms[currPlatform]?.name,
+      currPlatform && platforms![currPlatform]?.name,
       activePageName !== siteArea && activePageName,
     ]
       .filter(Boolean)
@@ -532,7 +535,7 @@ export class Site<TPlatforms extends string = string> extends React.Component<
       this._jumpInterval = this._async.setInterval(() => {
         const el = document.getElementById(anchor);
         if (el || Date.now() - start > 1000) {
-          this._async.clearInterval(this._jumpInterval);
+          this._async.clearInterval(this._jumpInterval!);
           this._jumpInterval = undefined;
           if (el) {
             jumpToAnchor(anchor);

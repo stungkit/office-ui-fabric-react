@@ -8,7 +8,7 @@ const getClassNames = classNamesFunction<IShimmerLineStyleProps, IShimmerLineSty
  * {@docCategory Shimmer}
  */
 export const ShimmerLineBase: React.FunctionComponent<IShimmerLineProps> = props => {
-  // eslint-disable-next-line deprecation/deprecation
+  // eslint-disable-next-line @typescript-eslint/no-deprecated
   const { height, styles, width = '100%', borderStyle, theme } = props;
 
   const classNames = getClassNames(styles!, {
@@ -18,10 +18,7 @@ export const ShimmerLineBase: React.FunctionComponent<IShimmerLineProps> = props
   });
 
   return (
-    <div
-      style={{ width: width, minWidth: typeof width === 'number' ? `${width}px` : 'auto' }}
-      className={classNames.root}
-    >
+    <div style={{ width, minWidth: typeof width === 'number' ? `${width}px` : 'auto' }} className={classNames.root}>
       <svg width="2" height="2" className={classNames.topLeftCorner}>
         <path d="M0 2 A 2 2, 0, 0, 1, 2 0 L 0 0 Z" />
       </svg>
