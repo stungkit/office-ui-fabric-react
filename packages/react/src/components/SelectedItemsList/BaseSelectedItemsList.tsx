@@ -7,14 +7,19 @@ import type {
   ISelectedItemProps,
 } from './BaseSelectedItemsList.types';
 import type { IObjectWithKey } from '../../Utilities';
+import { WindowContext } from '@fluentui/react-window-provider';
+import { getDocumentEx } from '../../utilities/dom';
 
 export interface IBaseSelectedItemsListState<T> {
   items: T[];
 }
 
-export class BaseSelectedItemsList<T, P extends IBaseSelectedItemsListProps<T>>
+export class BaseSelectedItemsList<T extends {}, P extends IBaseSelectedItemsListProps<T>>
   extends React.Component<P, IBaseSelectedItemsListState<T>>
-  implements IBaseSelectedItemsList<T> {
+  implements IBaseSelectedItemsList<T>
+{
+  public static contextType = WindowContext;
+
   protected root: HTMLElement;
   private _defaultSelection: Selection;
 
@@ -32,7 +37,7 @@ export class BaseSelectedItemsList<T, P extends IBaseSelectedItemsListProps<T>>
     initializeComponentRef(this);
     const items: T[] = basePickerProps.selectedItems || basePickerProps.defaultSelectedItems || [];
     this.state = {
-      items: items,
+      items,
     };
 
     // Create a new selection if one is not specified
@@ -125,7 +130,7 @@ export class BaseSelectedItemsList<T, P extends IBaseSelectedItemsListProps<T>>
       // If the component is a controlled component then the controlling component will need to pass the new props
       this.onChange(items);
     } else {
-      this.setState({ items: items }, () => {
+      this.setState({ items }, () => {
         this._onSelectedItemsUpdated(items, focusIndex);
       });
     }
@@ -181,7 +186,7 @@ export class BaseSelectedItemsList<T, P extends IBaseSelectedItemsListProps<T>>
         selected: this.selection.isIndexSelected(index),
         onRemoveItem: () => this.removeItem(item),
         onItemChange: this.onItemChange,
-        removeButtonAriaLabel: removeButtonAriaLabel,
+        removeButtonAriaLabel,
         onCopyItem: (itemToCopy: T) => this.copyItems([itemToCopy]),
       }),
     );
@@ -212,21 +217,23 @@ export class BaseSelectedItemsList<T, P extends IBaseSelectedItemsListProps<T>>
     if (this.props.onCopyItems) {
       const copyText = (this.props.onCopyItems as any)(items);
 
-      const copyInput = document.createElement('input') as HTMLInputElement;
-      document.body.appendChild(copyInput);
+      const doc = getDocumentEx(this.context)!; // equivalent to previous behavior of directly using `document`
+      const copyInput = doc.createElement('input') as HTMLInputElement;
+      doc.body.appendChild(copyInput);
 
       try {
         // Try to copy the text directly to the clipboard
         copyInput.value = copyText;
         copyInput.select();
-        if (!document.execCommand('copy')) {
+        // eslint-disable-next-line @typescript-eslint/no-deprecated
+        if (!doc.execCommand('copy')) {
           // The command failed. Fallback to the method below.
           throw new Error();
         }
       } catch (err) {
         // no op
       } finally {
-        document.body.removeChild(copyInput);
+        doc.body.removeChild(copyInput);
       }
     }
   }

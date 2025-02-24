@@ -1,5 +1,14 @@
 import * as React from 'react';
-import { Async, getNativeProps, initializeComponentRef, inputProperties, isIE11, KeyCodes } from '../../Utilities';
+import {
+  Async,
+  getDocument,
+  getNativeProps,
+  initializeComponentRef,
+  inputProperties,
+  isIE11,
+  KeyCodes,
+} from '../../Utilities';
+import { WindowContext } from '@fluentui/react-window-provider';
 import type { IAutofill, IAutofillProps } from './Autofill.types';
 
 export interface IAutofillState {
@@ -23,15 +32,17 @@ export class Autofill extends React.Component<IAutofillProps, IAutofillState> im
   public static defaultProps = {
     enableAutofillOnKeyPress: [KeyCodes.down, KeyCodes.up] as KeyCodes[],
   };
+  // need to check WindowContext to get the provided document
+  public static contextType = WindowContext;
 
   private _inputElement = React.createRef<HTMLInputElement>();
   private _autoFillEnabled = true;
   private _async: Async;
 
   public static getDerivedStateFromProps(props: IAutofillProps, state: IAutofillState): IAutofillState | null {
-    // eslint-disable-next-line deprecation/deprecation
+    // eslint-disable-next-line @typescript-eslint/no-deprecated
     if (props.updateValueInWillReceiveProps) {
-      // eslint-disable-next-line deprecation/deprecation
+      // eslint-disable-next-line @typescript-eslint/no-deprecated
       const updatedInputValue = props.updateValueInWillReceiveProps();
       // Don't update if we have a null value or the value isn't changing
       // the value should still update if an empty string is passed in
@@ -87,7 +98,7 @@ export class Autofill extends React.Component<IAutofillProps, IAutofillState> im
     return this._inputElement.current;
   }
 
-  public componentDidUpdate(_: any, _1: any, cursor: ICursorLocation | null) {
+  public componentDidUpdate(_: any, previousState: IAutofillState, cursor: ICursorLocation | null) {
     const { suggestedDisplayValue, shouldSelectFullInputValueInComponentDidUpdate, preventValueSelection } = this.props;
     let differenceIndex = 0;
 
@@ -95,11 +106,16 @@ export class Autofill extends React.Component<IAutofillProps, IAutofillState> im
       return;
     }
 
+    const document = this.context?.window.document || getDocument(this._inputElement.current);
+    const isFocused = this._inputElement.current && this._inputElement.current === document?.activeElement;
+
     if (
+      isFocused &&
       this._autoFillEnabled &&
       this.value &&
       suggestedDisplayValue &&
-      _doesTextStartWith(suggestedDisplayValue, this.value)
+      _doesTextStartWith(suggestedDisplayValue, this.value) &&
+      previousState.inputValue !== this.value
     ) {
       let shouldSelectFullRange = false;
 
@@ -107,8 +123,8 @@ export class Autofill extends React.Component<IAutofillProps, IAutofillState> im
         shouldSelectFullRange = shouldSelectFullInputValueInComponentDidUpdate();
       }
 
-      if (shouldSelectFullRange && this._inputElement.current) {
-        this._inputElement.current.setSelectionRange(0, suggestedDisplayValue.length, SELECTION_BACKWARD);
+      if (shouldSelectFullRange) {
+        this._inputElement.current!.setSelectionRange(0, suggestedDisplayValue.length, SELECTION_BACKWARD);
       } else {
         while (
           differenceIndex < this.value.length &&
@@ -116,8 +132,8 @@ export class Autofill extends React.Component<IAutofillProps, IAutofillState> im
         ) {
           differenceIndex++;
         }
-        if (differenceIndex > 0 && this._inputElement.current) {
-          this._inputElement.current.setSelectionRange(
+        if (differenceIndex > 0) {
+          this._inputElement.current!.setSelectionRange(
             differenceIndex,
             suggestedDisplayValue.length,
             SELECTION_BACKWARD,
@@ -232,21 +248,24 @@ export class Autofill extends React.Component<IAutofillProps, IAutofillState> im
     // Right now typing does not have isComposing, once that has been fixed any should be removed.
 
     if (!(ev.nativeEvent as any).isComposing) {
-      // eslint-disable-next-line deprecation/deprecation
+      // eslint-disable-next-line @typescript-eslint/no-deprecated
       switch (ev.which) {
+        case KeyCodes.del:
         case KeyCodes.backspace:
           this._autoFillEnabled = false;
           break;
         case KeyCodes.left:
         case KeyCodes.right:
           if (this._autoFillEnabled) {
-            this.setState({ inputValue: this.props.suggestedDisplayValue || '' });
+            this.setState(prev => ({
+              inputValue: this.props.suggestedDisplayValue || prev.inputValue,
+            }));
             this._autoFillEnabled = false;
           }
           break;
         default:
           if (!this._autoFillEnabled) {
-            // eslint-disable-next-line deprecation/deprecation
+            // eslint-disable-next-line @typescript-eslint/no-deprecated
             if (this.props.enableAutofillOnKeyPress!.indexOf(ev.which) !== -1) {
               this._autoFillEnabled = true;
             }
@@ -322,7 +341,7 @@ export class Autofill extends React.Component<IAutofillProps, IAutofillState> im
       return;
     }
 
-    // eslint-disable-next-line deprecation/deprecation
+    // eslint-disable-next-line @typescript-eslint/no-deprecated
     const { onInputChange, onInputValueChange } = this.props;
     if (onInputChange) {
       newValue = onInputChange?.(newValue, composing) || '';

@@ -13,7 +13,7 @@ import {
   ForwardRefWithAs,
 } from '@fluentui/react-bindings';
 import * as customPropTypes from '@fluentui/react-proptypes';
-import * as PopperJs from '@popperjs/core';
+import type { BasePlacement as PopperJsBasePlacement, Placement as PopperJsPlacement } from '@popperjs/core';
 import cx from 'classnames';
 import * as _ from 'lodash';
 import * as PropTypes from 'prop-types';
@@ -78,7 +78,7 @@ export interface PopupContentProps extends UIComponentProps, ChildrenComponentPr
 }
 
 export type PopupContentStylesProps = Required<Pick<PopupContentProps, 'pointing'>> & {
-  basePlacement: PopperJs.BasePlacement;
+  basePlacement: PopperJsBasePlacement;
   autoSize?: AutoSize;
 };
 
@@ -90,7 +90,7 @@ export const popupContentSlotClassNames: PopupContentSlotClassNames = {
 /**
  * A PopupContent displays the content of a Popup component.
  */
-export const PopupContent = (React.forwardRef<HTMLDivElement, PopupContentProps>((props, ref) => {
+export const PopupContent = React.forwardRef<HTMLDivElement, PopupContentProps>((props, ref) => {
   const context = useFluentContext();
   const { setStart, setEnd } = useTelemetry(PopupContent.displayName, context.telemetry);
   setStart();
@@ -188,14 +188,14 @@ export const PopupContent = (React.forwardRef<HTMLDivElement, PopupContentProps>
   setEnd();
 
   return element;
-}) as unknown) as ForwardRefWithAs<'div', HTMLDivElement, PopupContentProps> &
+}) as unknown as ForwardRefWithAs<'div', HTMLDivElement, PopupContentProps> &
   FluentComponentStaticProps<PopupContentProps>;
 
 PopupContent.displayName = 'PopupContent';
 
 PopupContent.propTypes = {
   ...commonPropTypes.createCommon(),
-  placement: PropTypes.oneOf<PopperJs.Placement>([
+  placement: PropTypes.oneOf<PopperJsPlacement>([
     'auto-start',
     'auto',
     'auto-end',

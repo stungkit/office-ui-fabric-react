@@ -1,19 +1,17 @@
 import * as React from 'react';
-import Screener from 'screener-storybook/src/screener';
-import { storiesOf } from '@storybook/react';
-import { TestWrapperDecorator } from '../utilities/index';
+import { Steps } from 'storywright';
+import { getStoryVariant, RTL, StoryWrightDecorator, TestWrapperDecorator } from '../utilities';
 import { Layer } from '@fluentui/react';
 
-storiesOf('Layer', module)
-  .addDecorator(TestWrapperDecorator)
-  .addDecorator(story =>
-    // prettier-ignore
-    <Screener
-      steps={new Screener.Steps()
-        .snapshot('default', { cropTo: '.ms-Layer' })
-        .end()}
-    >
-      {story()}
-    </Screener>,
-  )
-  .addStory('Root', () => <Layer>Layer content</Layer>, { includeRtl: true });
+export default {
+  title: 'Layer',
+
+  decorators: [
+    TestWrapperDecorator,
+    StoryWrightDecorator(new Steps().snapshot('default', { cropTo: '.ms-Layer' }).end()),
+  ],
+};
+
+export const Root = () => <Layer>Layer content</Layer>;
+
+export const RootRTL = getStoryVariant(Root, RTL);

@@ -61,16 +61,27 @@ exports[`Toggle renders hidden toggle correctly 1`] = `
             top: -2px;
             z-index: 1;
           }
+          :host(.ms-Fabric--isFocusVisible) &:focus:after {
+            border: 1px solid #ffffff;
+            bottom: -2px;
+            content: "";
+            left: -2px;
+            outline: 1px solid #605e5c;
+            position: absolute;
+            right: -2px;
+            top: -2px;
+            z-index: 1;
+          }
           &:hover {
             border-color: #323130;
           }
           &:hover .ms-Toggle-thumb {
             background-color: #201f1e;
           }
-          @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover .ms-Toggle-thumb {
+          @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover .ms-Toggle-thumb {
             border-color: Highlight;
           }
-          @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+          @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
             border-color: Highlight;
           }
       data-is-focusable={true}
@@ -193,16 +204,27 @@ exports[`Toggle renders toggle correctly 1`] = `
             top: -2px;
             z-index: 1;
           }
+          :host(.ms-Fabric--isFocusVisible) &:focus:after {
+            border: 1px solid #ffffff;
+            bottom: -2px;
+            content: "";
+            left: -2px;
+            outline: 1px solid #605e5c;
+            position: absolute;
+            right: -2px;
+            top: -2px;
+            z-index: 1;
+          }
           &:hover {
             border-color: #323130;
           }
           &:hover .ms-Toggle-thumb {
             background-color: #201f1e;
           }
-          @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover .ms-Toggle-thumb {
+          @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover .ms-Toggle-thumb {
             border-color: Highlight;
           }
-          @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+          @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
             border-color: Highlight;
           }
       data-is-focusable={true}
@@ -330,16 +352,27 @@ exports[`Toggle renders toggle correctly with inline label (JSX Element) 1`] = `
             top: -2px;
             z-index: 1;
           }
+          :host(.ms-Fabric--isFocusVisible) &:focus:after {
+            border: 1px solid #ffffff;
+            bottom: -2px;
+            content: "";
+            left: -2px;
+            outline: 1px solid #605e5c;
+            position: absolute;
+            right: -2px;
+            top: -2px;
+            z-index: 1;
+          }
           &:hover {
             border-color: #323130;
           }
           &:hover .ms-Toggle-thumb {
             background-color: #201f1e;
           }
-          @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover .ms-Toggle-thumb {
+          @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover .ms-Toggle-thumb {
             border-color: Highlight;
           }
-          @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+          @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
             border-color: Highlight;
           }
       data-is-focusable={true}
@@ -465,16 +498,27 @@ exports[`Toggle renders toggle correctly with inline label (string) 1`] = `
             top: -2px;
             z-index: 1;
           }
+          :host(.ms-Fabric--isFocusVisible) &:focus:after {
+            border: 1px solid #ffffff;
+            bottom: -2px;
+            content: "";
+            left: -2px;
+            outline: 1px solid #605e5c;
+            position: absolute;
+            right: -2px;
+            top: -2px;
+            z-index: 1;
+          }
           &:hover {
             border-color: #323130;
           }
           &:hover .ms-Toggle-thumb {
             background-color: #201f1e;
           }
-          @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover .ms-Toggle-thumb {
+          @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover .ms-Toggle-thumb {
             border-color: Highlight;
           }
-          @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+          @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
             border-color: Highlight;
           }
       data-is-focusable={true}
@@ -599,16 +643,27 @@ exports[`Toggle renders toggle correctly with inline label and on/off text provi
             top: -2px;
             z-index: 1;
           }
+          :host(.ms-Fabric--isFocusVisible) &:focus:after {
+            border: 1px solid #ffffff;
+            bottom: -2px;
+            content: "";
+            left: -2px;
+            outline: 1px solid #605e5c;
+            position: absolute;
+            right: -2px;
+            top: -2px;
+            z-index: 1;
+          }
           &:hover {
             border-color: #323130;
           }
           &:hover .ms-Toggle-thumb {
             background-color: #201f1e;
           }
-          @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover .ms-Toggle-thumb {
+          @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover .ms-Toggle-thumb {
             border-color: Highlight;
           }
-          @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+          @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
             border-color: Highlight;
           }
       data-is-focusable={true}

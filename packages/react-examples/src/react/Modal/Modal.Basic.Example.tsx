@@ -25,6 +25,7 @@ export const ModalBasicExample: React.FunctionComponent = () => {
       closeMenuItemText: 'Close',
       menu: ContextualMenu,
       keepInBounds,
+      dragHandleSelector: '.ms-Modal-scrollableContent > div:first-child',
     }),
     [keepInBounds],
   );
@@ -56,7 +57,9 @@ export const ModalBasicExample: React.FunctionComponent = () => {
         dragOptions={isDraggable ? dragOptions : undefined}
       >
         <div className={contentStyles.header}>
-          <span id={titleId}>Lorem Ipsum</span>
+          <h2 className={contentStyles.heading} id={titleId}>
+            Lorem Ipsum
+          </h2>
           <IconButton
             styles={iconButtonStyles}
             iconProps={cancelIcon}
@@ -121,7 +124,7 @@ const contentStyles = mergeStyleSets({
     alignItems: 'stretch',
   },
   header: [
-    // eslint-disable-next-line deprecation/deprecation
+    // eslint-disable-next-line @typescript-eslint/no-deprecated
     theme.fonts.xLargePlus,
     {
       flex: '1 1 auto',
@@ -133,6 +136,12 @@ const contentStyles = mergeStyleSets({
       padding: '12px 12px 14px 24px',
     },
   ],
+  heading: {
+    color: theme.palette.neutralPrimary,
+    fontWeight: FontWeights.semibold,
+    fontSize: 'inherit',
+    margin: '0',
+  },
   body: {
     flex: '4 4 auto',
     padding: '0 24px 24px 24px',

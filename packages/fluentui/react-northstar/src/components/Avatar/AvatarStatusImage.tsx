@@ -13,14 +13,15 @@ import {
 import * as customPropTypes from '@fluentui/react-proptypes';
 
 import { FluentComponentStaticProps } from '../../types';
-import { commonPropTypes, createShorthandFactory, SizeValue, UIComponentProps } from '../../utils';
+import { commonPropTypes, createShorthandFactory, UIComponentProps } from '../../utils';
+import { AvatarSizeValue } from './Avatar';
 
 export interface AvatarStatusImageProps extends UIComponentProps {
   /** Accessibility behavior if overridden by the user. */
   accessibility?: Accessibility<ImageBehaviorProps>;
 
   /** Size multiplier */
-  size?: SizeValue;
+  size?: AvatarSizeValue;
 
   /** AvatarImage source URL. */
   src?: string;
@@ -32,7 +33,7 @@ export const avatarStatusImageClassName = 'ui-avatar__statusimage';
 /**
  * A AvatarStatusImage provides a status image for the Avatar.
  */
-export const AvatarStatusImage = (React.forwardRef<HTMLImageElement, AvatarStatusImageProps>((props, ref) => {
+export const AvatarStatusImage = React.forwardRef<HTMLImageElement, AvatarStatusImageProps>((props, ref) => {
   const context = useFluentContext();
   const { setStart, setEnd } = useTelemetry(AvatarStatusImage.displayName, context.telemetry);
   setStart();
@@ -67,7 +68,7 @@ export const AvatarStatusImage = (React.forwardRef<HTMLImageElement, AvatarStatu
   setEnd();
 
   return element;
-}) as unknown) as ForwardRefWithAs<'img', HTMLImageElement, AvatarStatusImageProps> &
+}) as unknown as ForwardRefWithAs<'img', HTMLImageElement, AvatarStatusImageProps> &
   FluentComponentStaticProps<AvatarStatusImageProps>;
 
 AvatarStatusImage.displayName = 'AvatarStatusImage';

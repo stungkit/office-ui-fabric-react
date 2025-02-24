@@ -22,10 +22,23 @@ module.exports = {
   },
   rules: {
     /**
+     * Enforce consistent importing from React by resticting named imports.
+     */
+    'no-restricted-syntax': [
+      'error',
+      {
+        selector: "ImportDeclaration[source.value='react'] ImportSpecifier",
+        message: "Avoid named imports from 'react'. Use 'import * as React from \"react\"' instead.",
+      },
+    ],
+    /**
      * griffel eslint rules
      * @see https://github.com/microsoft/griffel/tree/main/packages/eslint-plugin
      */
+    '@griffel/hook-naming': 'error',
     '@griffel/no-shorthands': 'error',
+    '@griffel/pseudo-element-naming': 'error',
+    '@griffel/styles-file': 'error',
     /**
      * react eslint rules
      * @see https://github.com/yannickcr/eslint-plugin-react
@@ -125,6 +138,8 @@ module.exports = {
     {
       files: '**/*.stories.tsx',
       rules: {
+        // allow makeStyles calls in stories as examples should be defined in a single file
+        '@griffel/styles-file': 'off',
         // allow arrow functions in stories for now (may want to change this later since using
         // constantly-mutating functions can be an anti-pattern which we may not want to demonstrate
         // in our converged components docs; it happened to be allowed starting out because .stories

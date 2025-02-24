@@ -1,61 +1,55 @@
 {
   "name": "@fluentui/react-tabster",
-  "version": "9.0.0-rc.11",
+  "version": "9.24.0",
   "description": "Utilities for focus management and facade for tabster",
   "main": "lib-commonjs/index.js",
   "module": "lib/index.js",
-  "typings": "dist/index.d.ts",
+  "typings": "./dist/index.d.ts",
   "sideEffects": false,
   "repository": {
     "type": "git",
     "url": "https://github.com/microsoft/fluentui"
   },
   "license": "MIT",
-  "scripts": {
-    "build": "just-scripts build",
-    "clean": "just-scripts clean",
-    "code-style": "just-scripts code-style",
-    "e2e": "e2e",
-    "just": "just-scripts",
-    "lint": "just-scripts lint",
-    "storybook": "node ../../../scripts/storybook/runner",
-    "test": "jest --passWithNoTests",
-    "docs": "api-extractor run --config=config/api-extractor.local.json --local",
-    "build:local": "tsc -p ./tsconfig.lib.json --module esnext --emitDeclarationOnly && node ../../../scripts/typescript/normalize-import --output ./dist/packages/react-components/react-tabster/src && yarn docs",
-    "start": "yarn storybook",
-    "type-check": "tsc -b tsconfig.json"
-  },
   "devDependencies": {
     "@fluentui/eslint-plugin": "*",
-    "@fluentui/scripts": "^1.0.0"
+    "@fluentui/scripts-api-extractor": "*",
+    "@fluentui/scripts-cypress": "*"
   },
   "dependencies": {
-    "@griffel/react": "1.0.5",
-    "@fluentui/react-shared-contexts": "9.0.0-rc.9",
-    "@fluentui/react-theme": "9.0.0-rc.9",
-    "@fluentui/react-utilities": "9.0.0-rc.9",
-    "keyborg": "^1.1.0",
-    "tabster": "^1.4.0",
-    "tslib": "^2.1.0"
+    "@fluentui/react-shared-contexts": "^9.21.2",
+    "@fluentui/react-theme": "^9.1.24",
+    "@fluentui/react-utilities": "^9.18.20",
+    "@griffel/react": "^1.5.22",
+    "@swc/helpers": "^0.5.1",
+    "keyborg": "^2.6.0",
+    "tabster": "^8.5.0"
   },
   "peerDependencies": {
-    "@types/react": ">=16.8.0 <18.0.0",
-    "@types/react-dom": ">=16.8.0 <18.0.0",
-    "react": ">=16.8.0 <18.0.0",
-    "react-dom": ">=16.8.0 <18.0.0"
+    "@types/react": ">=16.14.0 <19.0.0",
+    "@types/react-dom": ">=16.9.0 <19.0.0",
+    "react": ">=16.14.0 <19.0.0",
+    "react-dom": ">=16.14.0 <19.0.0"
   },
   "beachball": {
     "disallowedChangeTypes": [
       "major",
-      "minor",
-      "patch"
+      "prerelease"
     ]
   },
   "exports": {
     ".": {
-      "types": "./lib/index.d.ts",
+      "types": "./dist/index.d.ts",
+      "node": "./lib-commonjs/index.js",
       "import": "./lib/index.js",
       "require": "./lib-commonjs/index.js"
-    }
-  }
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "*.md",
+    "dist/*.d.ts",
+    "lib",
+    "lib-commonjs"
+  ]
 }

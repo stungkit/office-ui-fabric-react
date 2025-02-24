@@ -37,8 +37,8 @@ export const ChoiceGroupOptionStyles = (props: IChoiceGroupOptionStyleProps): Pa
           // The circle
           ':before': [
             {
-              width: StyleConstants.choiceGroupDimensions,
-              height: StyleConstants.choiceGroupDimensions,
+              width: StyleConstants.choiceFieldHeight,
+              height: StyleConstants.choiceFieldHeight,
               borderColor: semanticColors.bodyText,
             },
             checked && {
@@ -66,10 +66,23 @@ export const ChoiceGroupOptionStyles = (props: IChoiceGroupOptionStyleProps): Pa
               disabled && {
                 borderColor: extendedSemanticColors.controlOutlineDisabled,
               },
+            checked &&
+              (hasIcon || hasImage) && {
+                top: 7,
+                right: 7,
+                left: 'auto',
+              },
           ],
           ':hover': [
             (hasIcon || hasImage) && {
               borderColor: extendedSemanticColors.controlOutlineHovered,
+              selectors: {
+                '::after': {
+                  top: 7,
+                  right: 7,
+                  left: 'auto',
+                },
+              },
             },
             !disabled && {
               selectors: {

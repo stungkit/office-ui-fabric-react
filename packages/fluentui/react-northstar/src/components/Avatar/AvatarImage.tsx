@@ -11,9 +11,10 @@ import {
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 
-import { UIComponentProps, commonPropTypes, createShorthandFactory, SizeValue } from '../../utils';
+import { UIComponentProps, commonPropTypes, createShorthandFactory } from '../../utils';
 import { FluentComponentStaticProps } from '../../types';
 import { imageClassName } from '../Image/Image';
+import { AvatarSizeValue } from './Avatar';
 
 export interface AvatarImageProps extends UIComponentProps, ImageBehaviorProps {
   /** Alternative text. */
@@ -37,7 +38,7 @@ export interface AvatarImageProps extends UIComponentProps, ImageBehaviorProps {
   src?: string;
 
   /** Size multiplier. */
-  size?: SizeValue;
+  size?: AvatarSizeValue;
 }
 
 export type AvatarImageStylesProps = Pick<AvatarImageProps, 'avatar' | 'circular' | 'fluid' | 'size'>;
@@ -46,7 +47,7 @@ export const avatarImageClassName = imageClassName;
 /**
  * An AvatarImage is a graphic representation used by Avatar.
  */
-export const AvatarImage = (React.forwardRef<HTMLImageElement, AvatarImageProps>((props, ref) => {
+export const AvatarImage = React.forwardRef<HTMLImageElement, AvatarImageProps>((props, ref) => {
   const context = useFluentContext();
   const { setStart, setEnd } = useTelemetry(AvatarImage.displayName, context.telemetry);
   setStart();
@@ -98,7 +99,7 @@ export const AvatarImage = (React.forwardRef<HTMLImageElement, AvatarImageProps>
   setEnd();
 
   return result;
-}) as unknown) as ForwardRefWithAs<'img', HTMLImageElement, AvatarImageProps> &
+}) as unknown as ForwardRefWithAs<'img', HTMLImageElement, AvatarImageProps> &
   FluentComponentStaticProps<AvatarImageProps>;
 
 AvatarImage.displayName = 'AvatarImage';

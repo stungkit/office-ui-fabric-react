@@ -1,45 +1,23 @@
 import * as React from 'react';
-import { makeStyles } from '@griffel/react';
 import type { ThemeDesignerProps } from './ThemeDesigner.types';
-
-import { Nav } from './components/Nav/Nav';
+import { useStyles } from './ThemeDesigner.styles';
+import { ThemeDesignerContextProvider } from './Context/ThemeDesignerContext';
+import { FluentProvider, webLightTheme } from '@fluentui/react-components';
+import { Header } from './components/Header/Header';
 import { Sidebar } from './components/Sidebar/Sidebar';
 import { Content } from './components/Content/Content';
 
-const useStyles = makeStyles({
-  root: {
-    display: 'grid',
-    gridTemplateColumns: '300px auto',
-    gridTemplateRows: '40px auto',
-  },
-  nav: {
-    gridColumnStart: 1,
-    gridColumnEnd: 3,
-  },
-  sidebar: {
-    gridRowStart: 2,
-    gridRowEnd: 3,
-    gridColumnStart: 1,
-    gridColumnEnd: 2,
-  },
-  content: {
-    gridRowStart: 2,
-    gridRowEnd: 3,
-    gridColumnStart: 2,
-    gridColumnEnd: 3,
-  },
-});
-
-/**
- * ThemeDesigner component - TODO: add more docs
- */
 export const ThemeDesigner: React.FC<ThemeDesignerProps> = props => {
   const styles = useStyles();
   return (
-    <div className={styles.root}>
-      <Nav className={styles.nav} />
-      <Sidebar className={styles.sidebar} />
-      <Content className={styles.content} />
-    </div>
+    <FluentProvider theme={webLightTheme}>
+      <ThemeDesignerContextProvider>
+        <div className={styles.root}>
+          <Header className={styles.nav} />
+          <Sidebar className={styles.sidebar} />
+          <Content className={styles.content} />
+        </div>
+      </ThemeDesignerContextProvider>
+    </FluentProvider>
   );
 };

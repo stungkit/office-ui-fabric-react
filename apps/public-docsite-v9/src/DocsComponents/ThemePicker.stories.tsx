@@ -10,7 +10,7 @@ import {
   MenuTrigger,
 } from '@fluentui/react-components';
 import { themes, ThemeIds, THEME_ID } from '@fluentui/react-storybook-addon';
-import addons from '@storybook/addons';
+import { addons } from '@storybook/preview-api';
 
 const useStyles = makeStyles({
   menuButton: {
@@ -32,20 +32,24 @@ const useStyles = makeStyles({
  */
 export const ThemePicker: React.FC<{ selectedThemeId?: string }> = ({ selectedThemeId }) => {
   const styles = useStyles();
+  const [currentThemeId, setCurrentThemeId] = React.useState(selectedThemeId ?? null);
 
   const setGlobalTheme = (themeId: ThemeIds): void => {
     addons.getChannel().emit('updateGlobals', { globals: { [THEME_ID]: themeId } });
   };
   const onCheckedValueChange: MenuProps['onCheckedValueChange'] = (e, data) => {
-    setGlobalTheme(data.checkedItems[0] as ThemeIds);
+    const newThemeId = data.checkedItems[0] as ThemeIds;
+    setGlobalTheme(newThemeId);
+    setCurrentThemeId(newThemeId);
   };
 
-  const selectedTheme = themes.find(theme => theme.id === selectedThemeId);
+  const selectedTheme = themes.find(theme => theme.id === currentThemeId);
 
   return (
     <Menu
       onCheckedValueChange={onCheckedValueChange}
       checkedValues={{ theme: selectedThemeId ? [selectedThemeId] : [] }}
+      positioning={{ autoSize: true }}
     >
       <MenuTrigger>
         <MenuButton className={styles.menuButton} menuIcon={{ className: styles.chevronIcon }}>

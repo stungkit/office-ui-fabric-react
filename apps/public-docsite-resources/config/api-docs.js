@@ -3,7 +3,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { findRepoDeps, findGitRoot } = require('@fluentui/scripts/monorepo');
+const { findRepoDeps, findGitRoot } = require('@fluentui/scripts-monorepo');
 
 const gitRoot = findGitRoot();
 
@@ -12,6 +12,7 @@ module.exports = {
   apiJsonPaths: [
     'packages/react',
     ...findRepoDeps({ cwd: path.join(gitRoot, 'packages/react'), dev: false }).map(dep => dep.packagePath),
+    'packages/charts/react-charting',
   ]
     .map(packagePath => path.join(gitRoot, packagePath, 'dist', path.basename(packagePath) + '.api.json'))
     .filter(apiJsonPath => fs.existsSync(apiJsonPath)),
@@ -85,8 +86,28 @@ module.exports = {
       'TeachingBubble',
       'Text',
       'TextField',
+      'TimePicker',
       'Toggle',
       'Tooltip',
+    ],
+    'react-charting': [
+      'Legends',
+      'LineChart',
+      'AreaChart',
+      'DonutChart',
+      'VerticalBarChart',
+      'GroupedVerticalBarChart',
+      'HeatMapChart',
+      'HorizontalBarChart',
+      'HorizontalBarChartWithAxis',
+      'PieChart',
+      'GaugeChart',
+      'SankeyChart',
+      'SparklineChart',
+      'StackedBarChart',
+      'MultiStackedBarChart',
+      'TreeChart',
+      'VerticalStackedBarChart',
     ],
   },
 };

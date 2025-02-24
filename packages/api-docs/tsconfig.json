@@ -10,7 +10,6 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "noUnusedLocals": true,
-    "forceConsistentCasingInFileNames": true,
     "strictNullChecks": true,
     "noImplicitAny": true,
     "noImplicitThis": true,
@@ -19,7 +18,8 @@
     "preserveConstEnums": true,
     "downlevelIteration": true,
     "lib": ["es2017"],
-    "types": []
+    "types": [],
+    "isolatedModules": true
   },
   "include": ["src"]
 }
