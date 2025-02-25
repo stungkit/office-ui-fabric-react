@@ -1,126 +1,109 @@
-import { css, ElementStyles } from '@microsoft/fast-element';
+import { css } from '@microsoft/fast-element';
+import { display } from '../utils/display.js';
 import {
-  ElementDefinitionContext,
-  forcedColorsStylesheetBehavior,
-  FoundationElementDefinition,
-} from '@microsoft/fast-foundation';
-import { elevationShadowTooltip } from '../styles/index';
-import {
-  controlCornerRadius,
-  fillColor,
-  neutralForegroundRest,
-  neutralStrokeLayerRest,
-  strokeWidth,
-} from '../design-tokens';
-import { typeRampBase } from '../styles/patterns/type-ramp';
+  borderRadiusMedium,
+  colorNeutralBackground1,
+  colorNeutralForeground1,
+  colorNeutralShadowAmbient,
+  colorNeutralShadowKey,
+  colorTransparentStroke,
+  fontFamilyBase,
+  fontSizeBase200,
+  lineHeightBase200,
+  spacingHorizontalMNudge,
+  spacingHorizontalXS,
+  spacingVerticalXS,
+} from '../theme/design-tokens.js';
+import { TooltipPositioningOption } from './tooltip.options.js';
 
-export const tooltipStyles: (
-  context: ElementDefinitionContext,
-  definition: FoundationElementDefinition,
-) => ElementStyles = (context: ElementDefinitionContext, definition: FoundationElementDefinition) =>
-  css`
+/**
+ * Styles for the tooltip component
+ * @public
+ */
+export const styles = css`
+  ${display('inline-flex')}
+
+  :host(:not(:popover-open)) {
+    display: none;
+  }
+
+  :host {
+    --position-area: block-start;
+    --position-try-options: flip-block;
+    --block-offset: ${spacingVerticalXS};
+    --inline-offset: ${spacingHorizontalXS};
+    background: ${colorNeutralBackground1};
+    border-radius: ${borderRadiusMedium};
+    border: 1px solid ${colorTransparentStroke};
+    box-sizing: border-box;
+    color: ${colorNeutralForeground1};
+    display: inline-flex;
+    filter: drop-shadow(0 0 2px ${colorNeutralShadowAmbient}) drop-shadow(0 4px 8px ${colorNeutralShadowKey});
+    font-family: ${fontFamilyBase};
+    font-size: ${fontSizeBase200};
+    inset: unset;
+    line-height: ${lineHeightBase200};
+    margin: unset; /* Remove browser default for [popover] */
+    max-width: 240px;
+    overflow: visible;
+    padding: 4px ${spacingHorizontalMNudge} 6px;
+    position: absolute;
+    position-area: var(--position-area);
+    position-try-options: var(--position-try-options);
+    width: auto;
+    z-index: 1;
+  }
+
+  @supports (inset-area: block-start) {
     :host {
-      position: relative;
-      contain: layout;
-      overflow: visible;
-      height: 0;
-      width: 0;
-      z-index: 10000;
+      inset-area: var(--position-area);
+      position-try-fallbacks: var(--position-try-options);
     }
+  }
 
-    .tooltip {
-      box-sizing: border-box;
-      border-radius: calc(${controlCornerRadius} * 1px);
-      border: calc(${strokeWidth} * 1px) solid ${neutralStrokeLayerRest};
-      background: ${fillColor};
-      color: ${neutralForegroundRest};
-      padding: 4px 12px;
-      height: fit-content;
-      width: fit-content;
-      ${typeRampBase}
-      white-space: nowrap;
-      box-shadow: ${elevationShadowTooltip};
-    }
+  :host(:is([positioning^='above'], [positioning^='below'], :not([positioning]))) {
+    margin-block: var(--block-offset);
+  }
 
-    fluent-anchored-region {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: visible;
-      flex-direction: row;
-    }
+  :host(:is([positioning^='before'], [positioning^='after'])) {
+    margin-inline: var(--inline-offset);
+    --position-try-options: flip-inline;
+  }
 
-    fluent-anchored-region.right,
-    fluent-anchored-region.left {
-      flex-direction: column;
-    }
-
-    fluent-anchored-region.top .tooltip::after,
-    fluent-anchored-region.bottom .tooltip::after,
-    fluent-anchored-region.left .tooltip::after,
-    fluent-anchored-region.right .tooltip::after {
-      content: '';
-      width: 12px;
-      height: 12px;
-      background: ${fillColor};
-      border-top: calc(${strokeWidth} * 1px) solid ${neutralStrokeLayerRest};
-      border-left: calc(${strokeWidth} * 1px) solid ${neutralStrokeLayerRest};
-      position: absolute;
-    }
-
-    fluent-anchored-region.top .tooltip::after {
-      transform: translateX(-50%) rotate(225deg);
-      bottom: 5px;
-      left: 50%;
-    }
-
-    fluent-anchored-region.top .tooltip {
-      margin-bottom: 12px;
-    }
-
-    fluent-anchored-region.bottom .tooltip::after {
-      transform: translateX(-50%) rotate(45deg);
-      top: 5px;
-      left: 50%;
-    }
-
-    fluent-anchored-region.bottom .tooltip {
-      margin-top: 12px;
-    }
-
-    fluent-anchored-region.left .tooltip::after {
-      transform: translateY(-50%) rotate(135deg);
-      top: 50%;
-      right: 5px;
-    }
-
-    fluent-anchored-region.left .tooltip {
-      margin-right: 12px;
-    }
-
-    fluent-anchored-region.right .tooltip::after {
-      transform: translateY(-50%) rotate(-45deg);
-      top: 50%;
-      left: 5px;
-    }
-
-    fluent-anchored-region.right .tooltip {
-      margin-left: 12px;
-    }
-  `.withBehaviors(
-    forcedColorsStylesheetBehavior(
-      css`
-        :host([disabled]) {
-          opacity: 1;
-        }
-        fluent-anchored-region.top .tooltip::after,
-        fluent-anchored-region.bottom .tooltip::after,
-        fluent-anchored-region.left .tooltip::after,
-        fluent-anchored-region.right .tooltip::after {
-          content: '';
-          width: unset;
-          height: unset;
-        }
-      `,
-    ),
-  );
+  :host([positioning='above-start']) {
+    --position-area: ${TooltipPositioningOption['above-start']};
+  }
+  :host([positioning='above']) {
+    --position-area: ${TooltipPositioningOption.above};
+  }
+  :host([positioning='above-end']) {
+    --position-area: ${TooltipPositioningOption['above-end']};
+  }
+  :host([positioning='below-start']) {
+    --position-area: ${TooltipPositioningOption['below-start']};
+  }
+  :host([positioning='below']) {
+    --position-area: ${TooltipPositioningOption.below};
+  }
+  :host([positioning='below-end']) {
+    --position-area: ${TooltipPositioningOption['below-end']};
+  }
+  :host([positioning='before-top']) {
+    --position-area: ${TooltipPositioningOption['before-top']};
+  }
+  :host([positioning='before']) {
+    --position-area: ${TooltipPositioningOption.before};
+  }
+  :host([positioning='before-bottom']) {
+    --position-area: ${TooltipPositioningOption['before-bottom']};
+  }
+  :host([positioning='after-top']) {
+    --position-area: ${TooltipPositioningOption['after-top']};
+  }
+  :host([positioning='after']) {
+    --position-area: ${TooltipPositioningOption.after};
+  }
+  :host([positioning='after-bottom']) {
+    --position-area: ${TooltipPositioningOption['after-bottom']};
+  }
+`;

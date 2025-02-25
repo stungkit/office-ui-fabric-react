@@ -1,92 +1,98 @@
-export { getSlots, resolveShorthand } from './compose/index';
+export {
+  slot,
+  isSlot,
+  // eslint-disable-next-line @typescript-eslint/no-deprecated
+  getSlots,
+  // eslint-disable-next-line @typescript-eslint/no-deprecated
+  getSlotsNext,
+  assertSlots,
+  // eslint-disable-next-line @typescript-eslint/no-deprecated
+  resolveShorthand,
+  isResolvedShorthand,
+  getIntrinsicElementProps,
+  SLOT_ELEMENT_TYPE_SYMBOL,
+  SLOT_RENDER_FUNCTION_SYMBOL,
+} from './compose/index';
 export type {
-  AsIntrinsicElement,
+  ExtractSlotProps,
   ComponentProps,
   ComponentState,
-  ExtractSlotProps,
   ForwardRefComponent,
-  IsSingleton,
-  PropsWithoutRef,
-  ReplaceNullWithUndefined,
+  // eslint-disable-next-line @typescript-eslint/no-deprecated
   ResolveShorthandFunction,
+  // eslint-disable-next-line @typescript-eslint/no-deprecated
   ResolveShorthandOptions,
   Slot,
+  // eslint-disable-next-line @typescript-eslint/no-deprecated
   Slots,
   SlotClassNames,
   SlotPropsRecord,
   SlotRenderFunction,
   SlotShorthandValue,
-  UnionToIntersection,
   UnknownSlotProps,
+  SlotComponentType,
+  SlotOptions,
+  InferredElementRefType,
+  EventData,
+  EventHandler,
 } from './compose/index';
 
 export {
+  IdPrefixProvider,
   resetIdsForTests,
-  useBoolean,
-  useConst,
+  useAnimationFrame,
   useControllableState,
   useEventCallback,
   useFirstMount,
   useForceUpdate,
   useId,
   useIsomorphicLayoutEffect,
-  useMergedEventCallbacks,
   useMergedRefs,
-  useMount,
   useOnClickOutside,
   useOnScrollOutside,
   usePrevious,
+  useScrollbarWidth,
   useTimeout,
-  useUnmount,
 } from './hooks/index';
-export type {
-  RefObjectFunction,
-  UseBooleanCallbacks,
-  UseControllableStateOptions,
-  UseOnClickOrScrollOutsideOptions,
-} from './hooks/index';
+export type { RefObjectFunction, UseControllableStateOptions, UseOnClickOrScrollOutsideOptions } from './hooks/index';
 
-// eslint-disable-next-line @fluentui/ban-context-export
-export { canUseDOM, defaultSSRContextValue, useIsSSR, useSSRContext, SSRContext, SSRProvider } from './ssr/index';
-export type { SSRContextValue } from './ssr/index';
+export { canUseDOM, useIsSSR, SSRProvider } from './ssr/index';
 
 export {
-  anchorProperties,
-  applyTriggerPropsToChildren,
-  audioProperties,
-  baseElementEvents,
-  baseElementProperties,
-  buttonProperties,
   clamp,
-  colGroupProperties,
-  colProperties,
-  divProperties,
-  fieldsetProperties,
-  formProperties,
+  // eslint-disable-next-line @typescript-eslint/no-deprecated
   getNativeElementProps,
-  getNativeProps,
   getPartitionedNativeProps,
   getRTLSafeKey,
-  getTriggerChild,
-  htmlElementProperties,
-  iframeProperties,
-  // eslint-disable-next-line deprecation/deprecation
-  imageProperties,
-  imgProperties,
-  inputProperties,
-  isFluentTrigger,
-  labelProperties,
-  liProperties,
-  olProperties,
+  mergeCallbacks,
+  isHTMLElement,
+  isInteractiveHTMLElement,
   omit,
-  optionProperties,
-  selectProperties,
-  shouldPreventDefaultOnKeyDown,
-  tableProperties,
-  tdProperties,
-  textAreaProperties,
-  thProperties,
-  trProperties,
-  videoProperties,
+  createPriorityQueue,
 } from './utils/index';
-export type { FluentTriggerComponent } from './utils/index';
+
+export type { DistributiveOmit, UnionToIntersection } from './utils/types';
+
+export type { PriorityQueue } from './utils/priorityQueue';
+
+export { applyTriggerPropsToChildren, getTriggerChild, isFluentTrigger } from './trigger/index';
+
+export type { FluentTriggerComponent, TriggerProps } from './trigger/index';
+
+/**
+ * Event utils
+ */
+export type { NativeTouchOrMouseEvent, ReactTouchOrMouseEvent, TouchOrMouseEvent } from './events/index';
+export { isTouchEvent, isMouseEvent, getEventClientCoords } from './events/index';
+
+export type {
+  SelectionMode,
+  OnSelectionChangeCallback,
+  OnSelectionChangeData,
+  SelectionItemId,
+  SelectionHookParams,
+  SelectionMethods,
+} from './selection/index';
+export { useSelection } from './selection/index';
+
+export { elementContains, setVirtualParent, getParent } from './virtualParent/index';

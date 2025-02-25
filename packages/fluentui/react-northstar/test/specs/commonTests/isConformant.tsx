@@ -1,6 +1,6 @@
 import { Accessibility, AriaRole, IS_FOCUSABLE_ATTRIBUTE } from '@fluentui/accessibility';
 import { compose, ComposedComponent, FocusZone, Telemetry } from '@fluentui/react-bindings';
-import { Ref, RefFindNode, RefForward } from '@fluentui/react-component-ref';
+import { Ref } from '@fluentui/react-component-ref';
 import { isConformant as isConformantBase, IsConformantOptions } from '@fluentui/react-conformance';
 import { Renderer } from '@fluentui/react-northstar-styles-renderer';
 import { ComponentSlotStylesPrepared, emptyTheme } from '@fluentui/styles';
@@ -22,7 +22,7 @@ import * as FluentUI from 'src/index';
 import { getEventTargetComponent, EVENT_TARGET_ATTRIBUTE } from './eventTarget';
 import { extraConformanceTests } from './extraConformanceTests';
 
-export interface Conformant<TProps = {}>
+interface Conformant<TProps = {}>
   extends Pick<IsConformantOptions<TProps>, 'disabledTests' | 'testOptions' | 'getTargetElement'> {
   /** Path to the test file. */
   testPath: string;
@@ -75,6 +75,7 @@ export function isConformant(
   } = options;
 
   const defaultConfig: IsConformantOptions = {
+    tsConfig: { configName: 'tsconfig.spec.json' },
     renderOptions: { wrapper: EmptyThemeProvider },
     componentPath: testPath
       .replace(/test[/\\]specs/, 'src')
@@ -101,9 +102,7 @@ export function isConformant(
     ? (Component as ComposedComponent).fluentComposeConfig?.handledProps
     : Component.handledProps;
 
-  const helperComponentNames = [Ref, RefFindNode, RefForward, ...(wrapperComponent ? [wrapperComponent] : [])].map(
-    getDisplayName,
-  );
+  const helperComponentNames = [Ref, ...(wrapperComponent ? [wrapperComponent] : [])].map(getDisplayName);
 
   const toNextNonTrivialChild = (from: ReactWrapper) => {
     const current = from.childAt(0);
@@ -154,7 +153,7 @@ export function isConformant(
           const component = getComponent(wrapper);
           try {
             expect(component.is(tag)).toEqual(true);
-          } catch (err) {
+          } catch {
             expect(component.type()).not.toEqual(Component);
             expect(component.prop('as')).toEqual(tag);
           }
@@ -170,7 +169,7 @@ export function isConformant(
 
           try {
             expect(component.type()).toEqual(MyComponent);
-          } catch (err) {
+          } catch {
             expect(component.type()).not.toEqual(Component);
             expect(component.find('[as]').last().prop('as')).toEqual(MyComponent);
           }
@@ -188,7 +187,7 @@ export function isConformant(
 
           try {
             expect(component.type()).toEqual(MyComponent);
-          } catch (err) {
+          } catch {
             expect(component.type()).not.toEqual(Component);
             expect(component.prop('as')).toEqual(MyComponent);
           }
@@ -327,7 +326,7 @@ export function isConformant(
         const wrapper = mount(<Component {...wrapperProps} />);
 
         getEventTargetComponent(wrapper, listenerName, eventTargets).simulate(eventName);
-        expect(handler).toBeCalledTimes(1);
+        expect(handler).toHaveBeenCalledTimes(1);
       });
     });
   }
@@ -391,7 +390,7 @@ export function isConformant(
 
         try {
           expect(handlerSpy).toHaveBeenCalled();
-        } catch (err) {
+        } catch {
           throw new Error(
             [
               `<${constructorName} ${listenerName}={${handlerName}} />\n`,
@@ -423,7 +422,7 @@ export function isConformant(
           expectedArgs.forEach((expectedArg, argI) => {
             expect(lastHandlerCall[argI]).toEqual(expectedArg);
           });
-        } catch (err) {
+        } catch {
           throw new Error(
             [
               `<${constructorName} ${listenerName}={${handlerName}} />\n`,
@@ -452,11 +451,12 @@ export function isConformant(
     // for example, "Menu" for "ToolbarMenu" since it is accessed as "Toolbar.Menu" in the API
     const subcomponentName = isParent ? null : constructorName.replace(parentDisplayName!, '');
 
-    const componentClassName = (!isParent
-      ? _.includes(subcomponentName, 'Group')
-        ? `ui-${parentDisplayName}s`
-        : `ui-${parentDisplayName}__${subcomponentName}`
-      : `ui-${constructorName.toLowerCase()}`
+    const componentClassName = (
+      !isParent
+        ? _.includes(subcomponentName, 'Group')
+          ? `ui-${parentDisplayName}s`
+          : `ui-${parentDisplayName}__${subcomponentName}`
+        : `ui-${constructorName.toLowerCase()}`
     ).toLowerCase();
 
     const constClassName = _.camelCase(`${Component.displayName}ClassName`);
@@ -546,7 +546,7 @@ export function isConformant(
         it('allows to define additional styles props', () => {
           const renderer: Partial<Renderer> = {
             renderRule: styles => {
-              const props = (styles as unknown) as ComposedComponentStylesProps;
+              const props = styles as unknown as ComposedComponentStylesProps;
 
               return props.stylesTest ? 'has-test' : 'has-not-test';
             },
@@ -583,7 +583,7 @@ export function isConformant(
 
           const element = getComponent(wrapper);
           expect(typeof element.type()).toBe('string');
-          expect(rootRef).toBeCalledWith(expect.objectContaining({ tagName: _.upperCase(element.type()) }));
+          expect(rootRef).toHaveBeenCalledWith(expect.objectContaining({ tagName: _.upperCase(element.type()) }));
         });
       }
     });

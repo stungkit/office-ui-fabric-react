@@ -133,18 +133,15 @@ describe('useAutoControlled', () => {
   });
 
   it('should update function passing updated value', () => {
-    const { result, rerender } = renderHook(
-      ({ value }) => useAutoControlled<string>({ defaultValue: '', value }),
-      {
-        initialProps: { value: 'a' },
-      },
-    );
+    const { result, rerender } = renderHook(({ value }) => useAutoControlled<string>({ defaultValue: '', value }), {
+      initialProps: { value: 'a' },
+    });
     rerender({ value: 'b' });
 
     const dispatchSpy = jest.fn();
     act(() => {
       result.current[1](dispatchSpy);
     });
-    expect(dispatchSpy).toBeCalledWith('b');
+    expect(dispatchSpy).toHaveBeenCalledWith('b');
   });
 });

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactTestUtils from 'react-dom/test-utils';
-import { create } from '@fluentui/utilities/lib/test';
+import { create } from '@fluentui/test-utilities';
 import { ReactWrapper, mount } from 'enzyme';
 
 import { SpinButton } from './SpinButton';
@@ -28,8 +28,7 @@ describe('SpinButton', () => {
 
     // These don't update until editing is complete
     const isNumeric = !!value && !isNaN(Number(value));
-    // aria-valuenow is used for fully numeric values
-    expect(inputDOM.getAttribute('aria-valuenow')).toBe(isNumeric ? value : null);
+
     // aria-valuetext is used for values with suffixes or empty
     expect(inputDOM.getAttribute('aria-valuetext')).toBe(isNumeric ? null : value);
   }
@@ -126,7 +125,7 @@ describe('SpinButton', () => {
 
     it('renders correctly with user-provided values', () => {
       const component = create(
-        <SpinButton min={0} max={100} label="label" value="0" ariaValueNow={0} ariaValueText="0 pt" data-test="test" />,
+        <SpinButton min={0} max={100} label="label" value="0" ariaValueText="0 pt" data-test="test" />,
       );
       const tree = component.toJSON();
       expect(tree).toMatchSnapshot();
@@ -486,6 +485,40 @@ describe('SpinButton', () => {
       expect(onChange.mock.calls[0][1]).toBe('8');
     });
 
+    it('uses last known good value when stepping from invalid value via buttons', () => {
+      wrapper = mount(<SpinButton componentRef={ref} defaultValue="0" />);
+      jest.useFakeTimers();
+
+      const inputDOM = wrapper!.getDOMNode().querySelector('input')!;
+
+      ReactTestUtils.Simulate.focus(inputDOM);
+      ReactTestUtils.Simulate.input(inputDOM, mockEvent('2 2'));
+
+      simulateArrowButton('up');
+      ReactTestUtils.act(() => {
+        jest.runOnlyPendingTimers();
+      });
+
+      verifyValue('1');
+    });
+
+    it('uses last known good value when stepping from invalid value via keyboard', () => {
+      wrapper = mount(<SpinButton componentRef={ref} defaultValue="1" />);
+      jest.useFakeTimers();
+
+      const inputDOM = wrapper!.getDOMNode().querySelector('input')!;
+
+      ReactTestUtils.Simulate.focus(inputDOM);
+      ReactTestUtils.Simulate.input(inputDOM, mockEvent('garbage'));
+
+      simulateArrowKey(KeyCodes.down);
+      ReactTestUtils.act(() => {
+        jest.runOnlyPendingTimers();
+      });
+
+      verifyValue('0');
+    });
+
     it('resets value when input is cleared (empty)', () => {
       const onChange = jest.fn();
       wrapper = mount(<SpinButton componentRef={ref} defaultValue="12" onChange={onChange} />);
@@ -663,7 +696,7 @@ describe('SpinButton', () => {
       const onChange = jest.fn();
       let keyCode: number | undefined;
       const onValidate = jest.fn((value: string, event?: React.SyntheticEvent) => {
-        // eslint-disable-next-line deprecation/deprecation
+        // eslint-disable-next-line @typescript-eslint/no-deprecated
         keyCode = (event as React.KeyboardEvent).which;
         return value;
       });

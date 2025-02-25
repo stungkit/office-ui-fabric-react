@@ -3,6 +3,7 @@ import { Label } from '../../Label';
 import {
   classNamesFunction,
   find,
+  FocusRectsContext,
   getNativeProps,
   divProperties,
   setFocusVisibility,
@@ -19,6 +20,7 @@ import type {
   IChoiceGroup,
 } from './ChoiceGroup.types';
 import type { IChoiceGroupOptionProps } from './ChoiceGroupOption/ChoiceGroupOption.types';
+import { useDocumentEx } from '../../utilities/dom';
 
 const getClassNames = classNamesFunction<IChoiceGroupStyleProps, IChoiceGroupStyles>();
 
@@ -26,17 +28,23 @@ const getOptionId = (option: IChoiceGroupOption, id: string): string => {
   return `${id}-${option.key}`;
 };
 
-const findOption = (options: IChoiceGroupOption[], key: string | number | undefined) => {
+const findOption = (options: IChoiceGroupOption[], key: IChoiceGroupProps['selectedKey']) => {
   return key === undefined ? undefined : find(options, value => value.key === key);
 };
 
-const focusSelectedOption = (options: IChoiceGroupOption[], keyChecked: string | number | undefined, id: string) => {
+const focusSelectedOption = (
+  options: IChoiceGroupOption[],
+  keyChecked: IChoiceGroupProps['selectedKey'],
+  id: string,
+  focusProviders?: React.RefObject<HTMLElement>[],
+  doc?: Document,
+) => {
   const optionToFocus = findOption(options, keyChecked) || options.filter(option => !option.disabled)[0];
-  const elementToFocus = optionToFocus && document.getElementById(getOptionId(optionToFocus, id));
+  const elementToFocus = optionToFocus && doc?.getElementById(getOptionId(optionToFocus, id));
 
   if (elementToFocus) {
     elementToFocus.focus();
-    setFocusVisibility(true, elementToFocus as Element);
+    setFocusVisibility(true, elementToFocus as Element, focusProviders);
   }
 };
 
@@ -46,10 +54,12 @@ const focusFromFocusTrapZone = (evt: React.FocusEvent<HTMLElement>): boolean => 
 
 const useComponentRef = (
   options: IChoiceGroupOption[],
-  keyChecked: string | number | undefined,
+  keyChecked: IChoiceGroupProps['selectedKey'],
   id: string,
   componentRef?: IRefObject<IChoiceGroup>,
+  focusProviders?: React.RefObject<HTMLElement>[],
 ) => {
+  const doc = useDocumentEx();
   React.useImperativeHandle(
     componentRef,
     () => ({
@@ -57,10 +67,10 @@ const useComponentRef = (
         return findOption(options, keyChecked);
       },
       focus() {
-        focusSelectedOption(options, keyChecked, id);
+        focusSelectedOption(options, keyChecked, id, focusProviders, doc);
       },
     }),
-    [options, keyChecked, id],
+    [options, keyChecked, id, focusProviders, doc],
   );
 };
 
@@ -106,8 +116,10 @@ export const ChoiceGroupBase: React.FunctionComponent<IChoiceGroupProps> = React
   const rootRef = React.useRef<HTMLDivElement | null>(null);
   const mergedRootRefs: React.Ref<HTMLDivElement> = useMergedRefs(rootRef, forwardedRef);
 
+  const focusContext = React.useContext(FocusRectsContext);
+
   useDebugWarnings(props);
-  useComponentRef(options, keyChecked, id, componentRef);
+  useComponentRef(options, keyChecked, id, componentRef, focusContext?.registeredProviders);
   useFocusRects(rootRef);
 
   const onFocus = React.useCallback((ev?: React.FocusEvent<HTMLElement>, option?: IChoiceGroupOptionProps) => {
@@ -139,10 +151,10 @@ export const ChoiceGroupBase: React.FunctionComponent<IChoiceGroupProps> = React
     (evt: React.FocusEvent<HTMLElement>) => {
       // Handles scenarios like this bug: https://github.com/microsoft/fluentui/issues/20173
       if (focusFromFocusTrapZone(evt)) {
-        focusSelectedOption(options, keyChecked, id);
+        focusSelectedOption(options, keyChecked, id, focusContext?.registeredProviders);
       }
     },
-    [options, keyChecked, id],
+    [options, keyChecked, id, focusContext],
   );
 
   return (

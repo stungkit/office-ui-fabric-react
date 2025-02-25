@@ -2,6 +2,10 @@ import * as React from 'react';
 import { IIconProps } from '@fluentui/react';
 import { ActionButton } from '@fluentui/react/lib/Button';
 
+export default {
+  title: 'Components/ActionButton',
+};
+
 export interface IButtonExampleProps {
   // These are set based on the toggles shown above the examples (not needed in real code)
   disabled?: boolean;
@@ -18,7 +22,9 @@ export const ButtonActionExample: React.FunctionComponent<IButtonExampleProps> =
       <ActionButton iconProps={addFriendIcon} allowDisabledFocus disabled={disabled} checked={false}>
         Create account
       </ActionButton>
-
+      <ActionButton iconProps={addFriendIcon} allowDisabledFocus disabled={true} checked={false}>
+        Disabled
+      </ActionButton>
       <ActionButton iconProps={addFriendIcon} allowDisabledFocus disabled={disabled} checked={true}>
         Button checked
       </ActionButton>

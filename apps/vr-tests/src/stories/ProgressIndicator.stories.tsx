@@ -1,43 +1,37 @@
 import * as React from 'react';
-import Screener from 'screener-storybook/src/screener';
-import { storiesOf } from '@storybook/react';
-import { TestWrapperDecorator } from '../utilities/index';
+import { Steps } from 'storywright';
+import { getStoryVariant, RTL, StoryWrightDecorator, TestWrapperDecorator } from '../utilities';
 import { ProgressIndicator } from '@fluentui/react';
 
-storiesOf('ProgressIndicator', module)
-  .addDecorator(TestWrapperDecorator)
-  .addDecorator(story =>
-    // prettier-ignore
-    <Screener
-      steps={new Screener.Steps()
-        .snapshot('default', { cropTo: '.testWrapper' })
-        .end()}
-    >
-      {story()}
-    </Screener>,
-  )
-  .addStory('0%', () => (
-    <ProgressIndicator
-      label="Example title"
-      description="Example description"
-      percentComplete={0}
-    />
-  ))
-  .addStory(
-    '50%',
-    () => (
-      <ProgressIndicator
-        label="Example title"
-        description="Example description"
-        percentComplete={0.5}
-      />
-    ),
-    { includeRtl: true },
-  )
-  .addStory('100%', () => (
-    <ProgressIndicator
-      label="Example title"
-      description="Example description"
-      percentComplete={1}
-    />
-  ));
+export default {
+  title: 'ProgressIndicator',
+
+  decorators: [
+    TestWrapperDecorator,
+    StoryWrightDecorator(new Steps().snapshot('default', { cropTo: '.testWrapper' }).end()),
+  ],
+};
+
+export const _0 = () => (
+  <ProgressIndicator label="Example title" description="Example description" percentComplete={0} />
+);
+
+_0.storyName = '0%';
+
+export const _50 = () => (
+  <ProgressIndicator
+    label="Example title"
+    description="Example description"
+    percentComplete={0.5}
+  />
+);
+
+_50.storyName = '50%';
+
+export const _50RTL = getStoryVariant(_50, RTL);
+
+export const _100 = () => (
+  <ProgressIndicator label="Example title" description="Example description" percentComplete={1} />
+);
+
+_100.storyName = '100%';

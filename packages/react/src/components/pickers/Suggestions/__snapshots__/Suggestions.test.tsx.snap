@@ -37,6 +37,10 @@ exports[`Suggestions renders a list properly 1`] = `
               background: #edebe9;
               display: block;
             }
+            :host(.ms-Fabric--isFocusVisible) & .ms-Suggestions-closeButton {
+              background: #edebe9;
+              display: block;
+            }
             &:after {
               border: 1px solid #605e5c;
               bottom: 0px;
@@ -60,6 +64,7 @@ exports[`Suggestions renders a list properly 1`] = `
               {
                 -moz-osx-font-smoothing: grayscale;
                 -webkit-font-smoothing: antialiased;
+                align-items: center;
                 background-color: transparent;
                 background: #edebe9;
                 border-radius: 2px;
@@ -67,11 +72,12 @@ exports[`Suggestions renders a list properly 1`] = `
                 box-sizing: border-box;
                 color: #323130;
                 cursor: pointer;
-                display: inline-block;
+                display: inline-flex;
                 font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
                 font-size: 14px;
                 font-weight: 400;
                 height: 100%;
+                justify-content: flex-start;
                 min-width: 0px;
                 outline: transparent;
                 overflow: hidden;
@@ -99,7 +105,25 @@ exports[`Suggestions renders a list properly 1`] = `
                 top: 2px;
                 z-index: 1;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+                bottom: -2px;
+                left: -2px;
+                outline-color: ButtonText;
+                right: -2px;
+                top: -2px;
+              }
+              :host(.ms-Fabric--isFocusVisible) &:focus:after {
+                border: 1px solid transparent;
+                bottom: 2px;
+                content: "";
+                left: 2px;
+                outline: 1px solid #605e5c;
+                position: absolute;
+                right: 2px;
+                top: 2px;
+                z-index: 1;
+              }
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
                 bottom: -2px;
                 left: -2px;
                 outline-color: ButtonText;
@@ -111,7 +135,7 @@ exports[`Suggestions renders a list properly 1`] = `
                 position: relative;
                 top: 0px;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                 -ms-high-contrast-adjust: none;
                 background: Highlight;
                 border-color: Window;
@@ -122,7 +146,7 @@ exports[`Suggestions renders a list properly 1`] = `
                 background: #c8c6c4;
                 color: #201f1e;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                 -ms-high-contrast-adjust: none;
                 background: Highlight;
                 color: HighlightText;
@@ -200,17 +224,19 @@ exports[`Suggestions renders a list properly 1`] = `
               {
                 -moz-osx-font-smoothing: grayscale;
                 -webkit-font-smoothing: antialiased;
+                align-items: center;
                 background-color: transparent;
                 border-radius: 2px;
                 border: none;
                 box-sizing: border-box;
                 color: #323130;
                 cursor: pointer;
-                display: inline-block;
+                display: inline-flex;
                 font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
                 font-size: 14px;
                 font-weight: 400;
                 height: 100%;
+                justify-content: flex-start;
                 min-width: 0px;
                 outline: transparent;
                 overflow: hidden;
@@ -238,7 +264,25 @@ exports[`Suggestions renders a list properly 1`] = `
                 top: 2px;
                 z-index: 1;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+                bottom: -2px;
+                left: -2px;
+                outline-color: ButtonText;
+                right: -2px;
+                top: -2px;
+              }
+              :host(.ms-Fabric--isFocusVisible) &:focus:after {
+                border: 1px solid transparent;
+                bottom: 2px;
+                content: "";
+                left: 2px;
+                outline: 1px solid #605e5c;
+                position: absolute;
+                right: 2px;
+                top: 2px;
+                z-index: 1;
+              }
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
                 bottom: -2px;
                 left: -2px;
                 outline-color: ButtonText;
@@ -250,14 +294,14 @@ exports[`Suggestions renders a list properly 1`] = `
                 position: relative;
                 top: 0px;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                 border-color: Window;
                 color: WindowText;
               }
               &:hover {
                 color: #201f1e;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                 -ms-high-contrast-adjust: none;
                 background: Highlight;
                 color: HighlightText;
@@ -335,17 +379,19 @@ exports[`Suggestions renders a list properly 1`] = `
               {
                 -moz-osx-font-smoothing: grayscale;
                 -webkit-font-smoothing: antialiased;
+                align-items: center;
                 background-color: transparent;
                 border-radius: 2px;
                 border: none;
                 box-sizing: border-box;
                 color: #323130;
                 cursor: pointer;
-                display: inline-block;
+                display: inline-flex;
                 font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
                 font-size: 14px;
                 font-weight: 400;
                 height: 100%;
+                justify-content: flex-start;
                 min-width: 0px;
                 outline: transparent;
                 overflow: hidden;
@@ -373,7 +419,25 @@ exports[`Suggestions renders a list properly 1`] = `
                 top: 2px;
                 z-index: 1;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+                bottom: -2px;
+                left: -2px;
+                outline-color: ButtonText;
+                right: -2px;
+                top: -2px;
+              }
+              :host(.ms-Fabric--isFocusVisible) &:focus:after {
+                border: 1px solid transparent;
+                bottom: 2px;
+                content: "";
+                left: 2px;
+                outline: 1px solid #605e5c;
+                position: absolute;
+                right: 2px;
+                top: 2px;
+                z-index: 1;
+              }
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
                 bottom: -2px;
                 left: -2px;
                 outline-color: ButtonText;
@@ -385,14 +449,14 @@ exports[`Suggestions renders a list properly 1`] = `
                 position: relative;
                 top: 0px;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                 border-color: Window;
                 color: WindowText;
               }
               &:hover {
                 color: #201f1e;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                 -ms-high-contrast-adjust: none;
                 background: Highlight;
                 color: HighlightText;
@@ -470,17 +534,19 @@ exports[`Suggestions renders a list properly 1`] = `
               {
                 -moz-osx-font-smoothing: grayscale;
                 -webkit-font-smoothing: antialiased;
+                align-items: center;
                 background-color: transparent;
                 border-radius: 2px;
                 border: none;
                 box-sizing: border-box;
                 color: #323130;
                 cursor: pointer;
-                display: inline-block;
+                display: inline-flex;
                 font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
                 font-size: 14px;
                 font-weight: 400;
                 height: 100%;
+                justify-content: flex-start;
                 min-width: 0px;
                 outline: transparent;
                 overflow: hidden;
@@ -508,7 +574,25 @@ exports[`Suggestions renders a list properly 1`] = `
                 top: 2px;
                 z-index: 1;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+                bottom: -2px;
+                left: -2px;
+                outline-color: ButtonText;
+                right: -2px;
+                top: -2px;
+              }
+              :host(.ms-Fabric--isFocusVisible) &:focus:after {
+                border: 1px solid transparent;
+                bottom: 2px;
+                content: "";
+                left: 2px;
+                outline: 1px solid #605e5c;
+                position: absolute;
+                right: 2px;
+                top: 2px;
+                z-index: 1;
+              }
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
                 bottom: -2px;
                 left: -2px;
                 outline-color: ButtonText;
@@ -520,14 +604,14 @@ exports[`Suggestions renders a list properly 1`] = `
                 position: relative;
                 top: 0px;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                 border-color: Window;
                 color: WindowText;
               }
               &:hover {
                 color: #201f1e;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                 -ms-high-contrast-adjust: none;
                 background: Highlight;
                 color: HighlightText;
@@ -605,17 +689,19 @@ exports[`Suggestions renders a list properly 1`] = `
               {
                 -moz-osx-font-smoothing: grayscale;
                 -webkit-font-smoothing: antialiased;
+                align-items: center;
                 background-color: transparent;
                 border-radius: 2px;
                 border: none;
                 box-sizing: border-box;
                 color: #323130;
                 cursor: pointer;
-                display: inline-block;
+                display: inline-flex;
                 font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
                 font-size: 14px;
                 font-weight: 400;
                 height: 100%;
+                justify-content: flex-start;
                 min-width: 0px;
                 outline: transparent;
                 overflow: hidden;
@@ -643,7 +729,25 @@ exports[`Suggestions renders a list properly 1`] = `
                 top: 2px;
                 z-index: 1;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+                bottom: -2px;
+                left: -2px;
+                outline-color: ButtonText;
+                right: -2px;
+                top: -2px;
+              }
+              :host(.ms-Fabric--isFocusVisible) &:focus:after {
+                border: 1px solid transparent;
+                bottom: 2px;
+                content: "";
+                left: 2px;
+                outline: 1px solid #605e5c;
+                position: absolute;
+                right: 2px;
+                top: 2px;
+                z-index: 1;
+              }
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
                 bottom: -2px;
                 left: -2px;
                 outline-color: ButtonText;
@@ -655,14 +759,14 @@ exports[`Suggestions renders a list properly 1`] = `
                 position: relative;
                 top: 0px;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                 border-color: Window;
                 color: WindowText;
               }
               &:hover {
                 color: #201f1e;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                 -ms-high-contrast-adjust: none;
                 background: Highlight;
                 color: HighlightText;
@@ -740,17 +844,19 @@ exports[`Suggestions renders a list properly 1`] = `
               {
                 -moz-osx-font-smoothing: grayscale;
                 -webkit-font-smoothing: antialiased;
+                align-items: center;
                 background-color: transparent;
                 border-radius: 2px;
                 border: none;
                 box-sizing: border-box;
                 color: #323130;
                 cursor: pointer;
-                display: inline-block;
+                display: inline-flex;
                 font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
                 font-size: 14px;
                 font-weight: 400;
                 height: 100%;
+                justify-content: flex-start;
                 min-width: 0px;
                 outline: transparent;
                 overflow: hidden;
@@ -778,7 +884,25 @@ exports[`Suggestions renders a list properly 1`] = `
                 top: 2px;
                 z-index: 1;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+                bottom: -2px;
+                left: -2px;
+                outline-color: ButtonText;
+                right: -2px;
+                top: -2px;
+              }
+              :host(.ms-Fabric--isFocusVisible) &:focus:after {
+                border: 1px solid transparent;
+                bottom: 2px;
+                content: "";
+                left: 2px;
+                outline: 1px solid #605e5c;
+                position: absolute;
+                right: 2px;
+                top: 2px;
+                z-index: 1;
+              }
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
                 bottom: -2px;
                 left: -2px;
                 outline-color: ButtonText;
@@ -790,14 +914,14 @@ exports[`Suggestions renders a list properly 1`] = `
                 position: relative;
                 top: 0px;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                 border-color: Window;
                 color: WindowText;
               }
               &:hover {
                 color: #201f1e;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                 -ms-high-contrast-adjust: none;
                 background: Highlight;
                 color: HighlightText;
@@ -875,17 +999,19 @@ exports[`Suggestions renders a list properly 1`] = `
               {
                 -moz-osx-font-smoothing: grayscale;
                 -webkit-font-smoothing: antialiased;
+                align-items: center;
                 background-color: transparent;
                 border-radius: 2px;
                 border: none;
                 box-sizing: border-box;
                 color: #323130;
                 cursor: pointer;
-                display: inline-block;
+                display: inline-flex;
                 font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
                 font-size: 14px;
                 font-weight: 400;
                 height: 100%;
+                justify-content: flex-start;
                 min-width: 0px;
                 outline: transparent;
                 overflow: hidden;
@@ -913,7 +1039,25 @@ exports[`Suggestions renders a list properly 1`] = `
                 top: 2px;
                 z-index: 1;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+                bottom: -2px;
+                left: -2px;
+                outline-color: ButtonText;
+                right: -2px;
+                top: -2px;
+              }
+              :host(.ms-Fabric--isFocusVisible) &:focus:after {
+                border: 1px solid transparent;
+                bottom: 2px;
+                content: "";
+                left: 2px;
+                outline: 1px solid #605e5c;
+                position: absolute;
+                right: 2px;
+                top: 2px;
+                z-index: 1;
+              }
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
                 bottom: -2px;
                 left: -2px;
                 outline-color: ButtonText;
@@ -925,14 +1069,14 @@ exports[`Suggestions renders a list properly 1`] = `
                 position: relative;
                 top: 0px;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                 border-color: Window;
                 color: WindowText;
               }
               &:hover {
                 color: #201f1e;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                 -ms-high-contrast-adjust: none;
                 background: Highlight;
                 color: HighlightText;
@@ -1010,17 +1154,19 @@ exports[`Suggestions renders a list properly 1`] = `
               {
                 -moz-osx-font-smoothing: grayscale;
                 -webkit-font-smoothing: antialiased;
+                align-items: center;
                 background-color: transparent;
                 border-radius: 2px;
                 border: none;
                 box-sizing: border-box;
                 color: #323130;
                 cursor: pointer;
-                display: inline-block;
+                display: inline-flex;
                 font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
                 font-size: 14px;
                 font-weight: 400;
                 height: 100%;
+                justify-content: flex-start;
                 min-width: 0px;
                 outline: transparent;
                 overflow: hidden;
@@ -1048,7 +1194,25 @@ exports[`Suggestions renders a list properly 1`] = `
                 top: 2px;
                 z-index: 1;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+                bottom: -2px;
+                left: -2px;
+                outline-color: ButtonText;
+                right: -2px;
+                top: -2px;
+              }
+              :host(.ms-Fabric--isFocusVisible) &:focus:after {
+                border: 1px solid transparent;
+                bottom: 2px;
+                content: "";
+                left: 2px;
+                outline: 1px solid #605e5c;
+                position: absolute;
+                right: 2px;
+                top: 2px;
+                z-index: 1;
+              }
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
                 bottom: -2px;
                 left: -2px;
                 outline-color: ButtonText;
@@ -1060,14 +1224,14 @@ exports[`Suggestions renders a list properly 1`] = `
                 position: relative;
                 top: 0px;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                 border-color: Window;
                 color: WindowText;
               }
               &:hover {
                 color: #201f1e;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                 -ms-high-contrast-adjust: none;
                 background: Highlight;
                 color: HighlightText;
@@ -1145,17 +1309,19 @@ exports[`Suggestions renders a list properly 1`] = `
               {
                 -moz-osx-font-smoothing: grayscale;
                 -webkit-font-smoothing: antialiased;
+                align-items: center;
                 background-color: transparent;
                 border-radius: 2px;
                 border: none;
                 box-sizing: border-box;
                 color: #323130;
                 cursor: pointer;
-                display: inline-block;
+                display: inline-flex;
                 font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
                 font-size: 14px;
                 font-weight: 400;
                 height: 100%;
+                justify-content: flex-start;
                 min-width: 0px;
                 outline: transparent;
                 overflow: hidden;
@@ -1183,7 +1349,25 @@ exports[`Suggestions renders a list properly 1`] = `
                 top: 2px;
                 z-index: 1;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+                bottom: -2px;
+                left: -2px;
+                outline-color: ButtonText;
+                right: -2px;
+                top: -2px;
+              }
+              :host(.ms-Fabric--isFocusVisible) &:focus:after {
+                border: 1px solid transparent;
+                bottom: 2px;
+                content: "";
+                left: 2px;
+                outline: 1px solid #605e5c;
+                position: absolute;
+                right: 2px;
+                top: 2px;
+                z-index: 1;
+              }
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
                 bottom: -2px;
                 left: -2px;
                 outline-color: ButtonText;
@@ -1195,14 +1379,14 @@ exports[`Suggestions renders a list properly 1`] = `
                 position: relative;
                 top: 0px;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                 border-color: Window;
                 color: WindowText;
               }
               &:hover {
                 color: #201f1e;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                 -ms-high-contrast-adjust: none;
                 background: Highlight;
                 color: HighlightText;
@@ -1280,17 +1464,19 @@ exports[`Suggestions renders a list properly 1`] = `
               {
                 -moz-osx-font-smoothing: grayscale;
                 -webkit-font-smoothing: antialiased;
+                align-items: center;
                 background-color: transparent;
                 border-radius: 2px;
                 border: none;
                 box-sizing: border-box;
                 color: #323130;
                 cursor: pointer;
-                display: inline-block;
+                display: inline-flex;
                 font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
                 font-size: 14px;
                 font-weight: 400;
                 height: 100%;
+                justify-content: flex-start;
                 min-width: 0px;
                 outline: transparent;
                 overflow: hidden;
@@ -1318,7 +1504,25 @@ exports[`Suggestions renders a list properly 1`] = `
                 top: 2px;
                 z-index: 1;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+                bottom: -2px;
+                left: -2px;
+                outline-color: ButtonText;
+                right: -2px;
+                top: -2px;
+              }
+              :host(.ms-Fabric--isFocusVisible) &:focus:after {
+                border: 1px solid transparent;
+                bottom: 2px;
+                content: "";
+                left: 2px;
+                outline: 1px solid #605e5c;
+                position: absolute;
+                right: 2px;
+                top: 2px;
+                z-index: 1;
+              }
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
                 bottom: -2px;
                 left: -2px;
                 outline-color: ButtonText;
@@ -1330,14 +1534,14 @@ exports[`Suggestions renders a list properly 1`] = `
                 position: relative;
                 top: 0px;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                 border-color: Window;
                 color: WindowText;
               }
               &:hover {
                 color: #201f1e;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                 -ms-high-contrast-adjust: none;
                 background: Highlight;
                 color: HighlightText;
@@ -1415,17 +1619,19 @@ exports[`Suggestions renders a list properly 1`] = `
               {
                 -moz-osx-font-smoothing: grayscale;
                 -webkit-font-smoothing: antialiased;
+                align-items: center;
                 background-color: transparent;
                 border-radius: 2px;
                 border: none;
                 box-sizing: border-box;
                 color: #323130;
                 cursor: pointer;
-                display: inline-block;
+                display: inline-flex;
                 font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
                 font-size: 14px;
                 font-weight: 400;
                 height: 100%;
+                justify-content: flex-start;
                 min-width: 0px;
                 outline: transparent;
                 overflow: hidden;
@@ -1453,7 +1659,25 @@ exports[`Suggestions renders a list properly 1`] = `
                 top: 2px;
                 z-index: 1;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+                bottom: -2px;
+                left: -2px;
+                outline-color: ButtonText;
+                right: -2px;
+                top: -2px;
+              }
+              :host(.ms-Fabric--isFocusVisible) &:focus:after {
+                border: 1px solid transparent;
+                bottom: 2px;
+                content: "";
+                left: 2px;
+                outline: 1px solid #605e5c;
+                position: absolute;
+                right: 2px;
+                top: 2px;
+                z-index: 1;
+              }
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
                 bottom: -2px;
                 left: -2px;
                 outline-color: ButtonText;
@@ -1465,14 +1689,14 @@ exports[`Suggestions renders a list properly 1`] = `
                 position: relative;
                 top: 0px;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                 border-color: Window;
                 color: WindowText;
               }
               &:hover {
                 color: #201f1e;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                 -ms-high-contrast-adjust: none;
                 background: Highlight;
                 color: HighlightText;
@@ -1550,17 +1774,19 @@ exports[`Suggestions renders a list properly 1`] = `
               {
                 -moz-osx-font-smoothing: grayscale;
                 -webkit-font-smoothing: antialiased;
+                align-items: center;
                 background-color: transparent;
                 border-radius: 2px;
                 border: none;
                 box-sizing: border-box;
                 color: #323130;
                 cursor: pointer;
-                display: inline-block;
+                display: inline-flex;
                 font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
                 font-size: 14px;
                 font-weight: 400;
                 height: 100%;
+                justify-content: flex-start;
                 min-width: 0px;
                 outline: transparent;
                 overflow: hidden;
@@ -1588,7 +1814,25 @@ exports[`Suggestions renders a list properly 1`] = `
                 top: 2px;
                 z-index: 1;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+                bottom: -2px;
+                left: -2px;
+                outline-color: ButtonText;
+                right: -2px;
+                top: -2px;
+              }
+              :host(.ms-Fabric--isFocusVisible) &:focus:after {
+                border: 1px solid transparent;
+                bottom: 2px;
+                content: "";
+                left: 2px;
+                outline: 1px solid #605e5c;
+                position: absolute;
+                right: 2px;
+                top: 2px;
+                z-index: 1;
+              }
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
                 bottom: -2px;
                 left: -2px;
                 outline-color: ButtonText;
@@ -1600,14 +1844,14 @@ exports[`Suggestions renders a list properly 1`] = `
                 position: relative;
                 top: 0px;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                 border-color: Window;
                 color: WindowText;
               }
               &:hover {
                 color: #201f1e;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                 -ms-high-contrast-adjust: none;
                 background: Highlight;
                 color: HighlightText;
@@ -1685,17 +1929,19 @@ exports[`Suggestions renders a list properly 1`] = `
               {
                 -moz-osx-font-smoothing: grayscale;
                 -webkit-font-smoothing: antialiased;
+                align-items: center;
                 background-color: transparent;
                 border-radius: 2px;
                 border: none;
                 box-sizing: border-box;
                 color: #323130;
                 cursor: pointer;
-                display: inline-block;
+                display: inline-flex;
                 font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
                 font-size: 14px;
                 font-weight: 400;
                 height: 100%;
+                justify-content: flex-start;
                 min-width: 0px;
                 outline: transparent;
                 overflow: hidden;
@@ -1723,7 +1969,25 @@ exports[`Suggestions renders a list properly 1`] = `
                 top: 2px;
                 z-index: 1;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+                bottom: -2px;
+                left: -2px;
+                outline-color: ButtonText;
+                right: -2px;
+                top: -2px;
+              }
+              :host(.ms-Fabric--isFocusVisible) &:focus:after {
+                border: 1px solid transparent;
+                bottom: 2px;
+                content: "";
+                left: 2px;
+                outline: 1px solid #605e5c;
+                position: absolute;
+                right: 2px;
+                top: 2px;
+                z-index: 1;
+              }
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
                 bottom: -2px;
                 left: -2px;
                 outline-color: ButtonText;
@@ -1735,14 +1999,14 @@ exports[`Suggestions renders a list properly 1`] = `
                 position: relative;
                 top: 0px;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                 border-color: Window;
                 color: WindowText;
               }
               &:hover {
                 color: #201f1e;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                 -ms-high-contrast-adjust: none;
                 background: Highlight;
                 color: HighlightText;
@@ -1820,17 +2084,19 @@ exports[`Suggestions renders a list properly 1`] = `
               {
                 -moz-osx-font-smoothing: grayscale;
                 -webkit-font-smoothing: antialiased;
+                align-items: center;
                 background-color: transparent;
                 border-radius: 2px;
                 border: none;
                 box-sizing: border-box;
                 color: #323130;
                 cursor: pointer;
-                display: inline-block;
+                display: inline-flex;
                 font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
                 font-size: 14px;
                 font-weight: 400;
                 height: 100%;
+                justify-content: flex-start;
                 min-width: 0px;
                 outline: transparent;
                 overflow: hidden;
@@ -1858,7 +2124,25 @@ exports[`Suggestions renders a list properly 1`] = `
                 top: 2px;
                 z-index: 1;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+                bottom: -2px;
+                left: -2px;
+                outline-color: ButtonText;
+                right: -2px;
+                top: -2px;
+              }
+              :host(.ms-Fabric--isFocusVisible) &:focus:after {
+                border: 1px solid transparent;
+                bottom: 2px;
+                content: "";
+                left: 2px;
+                outline: 1px solid #605e5c;
+                position: absolute;
+                right: 2px;
+                top: 2px;
+                z-index: 1;
+              }
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
                 bottom: -2px;
                 left: -2px;
                 outline-color: ButtonText;
@@ -1870,14 +2154,14 @@ exports[`Suggestions renders a list properly 1`] = `
                 position: relative;
                 top: 0px;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                 border-color: Window;
                 color: WindowText;
               }
               &:hover {
                 color: #201f1e;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                 -ms-high-contrast-adjust: none;
                 background: Highlight;
                 color: HighlightText;
@@ -1955,17 +2239,19 @@ exports[`Suggestions renders a list properly 1`] = `
               {
                 -moz-osx-font-smoothing: grayscale;
                 -webkit-font-smoothing: antialiased;
+                align-items: center;
                 background-color: transparent;
                 border-radius: 2px;
                 border: none;
                 box-sizing: border-box;
                 color: #323130;
                 cursor: pointer;
-                display: inline-block;
+                display: inline-flex;
                 font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
                 font-size: 14px;
                 font-weight: 400;
                 height: 100%;
+                justify-content: flex-start;
                 min-width: 0px;
                 outline: transparent;
                 overflow: hidden;
@@ -1993,7 +2279,25 @@ exports[`Suggestions renders a list properly 1`] = `
                 top: 2px;
                 z-index: 1;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+                bottom: -2px;
+                left: -2px;
+                outline-color: ButtonText;
+                right: -2px;
+                top: -2px;
+              }
+              :host(.ms-Fabric--isFocusVisible) &:focus:after {
+                border: 1px solid transparent;
+                bottom: 2px;
+                content: "";
+                left: 2px;
+                outline: 1px solid #605e5c;
+                position: absolute;
+                right: 2px;
+                top: 2px;
+                z-index: 1;
+              }
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
                 bottom: -2px;
                 left: -2px;
                 outline-color: ButtonText;
@@ -2005,14 +2309,14 @@ exports[`Suggestions renders a list properly 1`] = `
                 position: relative;
                 top: 0px;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                 border-color: Window;
                 color: WindowText;
               }
               &:hover {
                 color: #201f1e;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                 -ms-high-contrast-adjust: none;
                 background: Highlight;
                 color: HighlightText;
@@ -2111,6 +2415,10 @@ exports[`Suggestions renders a list properly with CSS-in-JS styles 1`] = `
               background: #edebe9;
               display: block;
             }
+            :host(.ms-Fabric--isFocusVisible) & .ms-Suggestions-closeButton {
+              background: #edebe9;
+              display: block;
+            }
             &:after {
               border: 1px solid #605e5c;
               bottom: 0px;
@@ -2134,6 +2442,7 @@ exports[`Suggestions renders a list properly with CSS-in-JS styles 1`] = `
               {
                 -moz-osx-font-smoothing: grayscale;
                 -webkit-font-smoothing: antialiased;
+                align-items: center;
                 background-color: transparent;
                 background: #edebe9;
                 border-radius: 2px;
@@ -2141,11 +2450,12 @@ exports[`Suggestions renders a list properly with CSS-in-JS styles 1`] = `
                 box-sizing: border-box;
                 color: #323130;
                 cursor: pointer;
-                display: inline-block;
+                display: inline-flex;
                 font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
                 font-size: 14px;
                 font-weight: 400;
                 height: 100%;
+                justify-content: flex-start;
                 min-width: 0px;
                 outline: transparent;
                 overflow: hidden;
@@ -2173,7 +2483,25 @@ exports[`Suggestions renders a list properly with CSS-in-JS styles 1`] = `
                 top: 2px;
                 z-index: 1;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+                bottom: -2px;
+                left: -2px;
+                outline-color: ButtonText;
+                right: -2px;
+                top: -2px;
+              }
+              :host(.ms-Fabric--isFocusVisible) &:focus:after {
+                border: 1px solid transparent;
+                bottom: 2px;
+                content: "";
+                left: 2px;
+                outline: 1px solid #605e5c;
+                position: absolute;
+                right: 2px;
+                top: 2px;
+                z-index: 1;
+              }
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
                 bottom: -2px;
                 left: -2px;
                 outline-color: ButtonText;
@@ -2185,7 +2513,7 @@ exports[`Suggestions renders a list properly with CSS-in-JS styles 1`] = `
                 position: relative;
                 top: 0px;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                 -ms-high-contrast-adjust: none;
                 background: Highlight;
                 border-color: Window;
@@ -2196,7 +2524,7 @@ exports[`Suggestions renders a list properly with CSS-in-JS styles 1`] = `
                 background: #c8c6c4;
                 color: #201f1e;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                 -ms-high-contrast-adjust: none;
                 background: Highlight;
                 color: HighlightText;
@@ -2274,17 +2602,19 @@ exports[`Suggestions renders a list properly with CSS-in-JS styles 1`] = `
               {
                 -moz-osx-font-smoothing: grayscale;
                 -webkit-font-smoothing: antialiased;
+                align-items: center;
                 background-color: transparent;
                 border-radius: 2px;
                 border: none;
                 box-sizing: border-box;
                 color: #323130;
                 cursor: pointer;
-                display: inline-block;
+                display: inline-flex;
                 font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
                 font-size: 14px;
                 font-weight: 400;
                 height: 100%;
+                justify-content: flex-start;
                 min-width: 0px;
                 outline: transparent;
                 overflow: hidden;
@@ -2312,7 +2642,25 @@ exports[`Suggestions renders a list properly with CSS-in-JS styles 1`] = `
                 top: 2px;
                 z-index: 1;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+                bottom: -2px;
+                left: -2px;
+                outline-color: ButtonText;
+                right: -2px;
+                top: -2px;
+              }
+              :host(.ms-Fabric--isFocusVisible) &:focus:after {
+                border: 1px solid transparent;
+                bottom: 2px;
+                content: "";
+                left: 2px;
+                outline: 1px solid #605e5c;
+                position: absolute;
+                right: 2px;
+                top: 2px;
+                z-index: 1;
+              }
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
                 bottom: -2px;
                 left: -2px;
                 outline-color: ButtonText;
@@ -2324,14 +2672,14 @@ exports[`Suggestions renders a list properly with CSS-in-JS styles 1`] = `
                 position: relative;
                 top: 0px;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                 border-color: Window;
                 color: WindowText;
               }
               &:hover {
                 color: #201f1e;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                 -ms-high-contrast-adjust: none;
                 background: Highlight;
                 color: HighlightText;
@@ -2409,17 +2757,19 @@ exports[`Suggestions renders a list properly with CSS-in-JS styles 1`] = `
               {
                 -moz-osx-font-smoothing: grayscale;
                 -webkit-font-smoothing: antialiased;
+                align-items: center;
                 background-color: transparent;
                 border-radius: 2px;
                 border: none;
                 box-sizing: border-box;
                 color: #323130;
                 cursor: pointer;
-                display: inline-block;
+                display: inline-flex;
                 font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
                 font-size: 14px;
                 font-weight: 400;
                 height: 100%;
+                justify-content: flex-start;
                 min-width: 0px;
                 outline: transparent;
                 overflow: hidden;
@@ -2447,7 +2797,25 @@ exports[`Suggestions renders a list properly with CSS-in-JS styles 1`] = `
                 top: 2px;
                 z-index: 1;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+                bottom: -2px;
+                left: -2px;
+                outline-color: ButtonText;
+                right: -2px;
+                top: -2px;
+              }
+              :host(.ms-Fabric--isFocusVisible) &:focus:after {
+                border: 1px solid transparent;
+                bottom: 2px;
+                content: "";
+                left: 2px;
+                outline: 1px solid #605e5c;
+                position: absolute;
+                right: 2px;
+                top: 2px;
+                z-index: 1;
+              }
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
                 bottom: -2px;
                 left: -2px;
                 outline-color: ButtonText;
@@ -2459,14 +2827,14 @@ exports[`Suggestions renders a list properly with CSS-in-JS styles 1`] = `
                 position: relative;
                 top: 0px;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                 border-color: Window;
                 color: WindowText;
               }
               &:hover {
                 color: #201f1e;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                 -ms-high-contrast-adjust: none;
                 background: Highlight;
                 color: HighlightText;
@@ -2544,17 +2912,19 @@ exports[`Suggestions renders a list properly with CSS-in-JS styles 1`] = `
               {
                 -moz-osx-font-smoothing: grayscale;
                 -webkit-font-smoothing: antialiased;
+                align-items: center;
                 background-color: transparent;
                 border-radius: 2px;
                 border: none;
                 box-sizing: border-box;
                 color: #323130;
                 cursor: pointer;
-                display: inline-block;
+                display: inline-flex;
                 font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
                 font-size: 14px;
                 font-weight: 400;
                 height: 100%;
+                justify-content: flex-start;
                 min-width: 0px;
                 outline: transparent;
                 overflow: hidden;
@@ -2582,7 +2952,25 @@ exports[`Suggestions renders a list properly with CSS-in-JS styles 1`] = `
                 top: 2px;
                 z-index: 1;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+                bottom: -2px;
+                left: -2px;
+                outline-color: ButtonText;
+                right: -2px;
+                top: -2px;
+              }
+              :host(.ms-Fabric--isFocusVisible) &:focus:after {
+                border: 1px solid transparent;
+                bottom: 2px;
+                content: "";
+                left: 2px;
+                outline: 1px solid #605e5c;
+                position: absolute;
+                right: 2px;
+                top: 2px;
+                z-index: 1;
+              }
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
                 bottom: -2px;
                 left: -2px;
                 outline-color: ButtonText;
@@ -2594,14 +2982,14 @@ exports[`Suggestions renders a list properly with CSS-in-JS styles 1`] = `
                 position: relative;
                 top: 0px;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                 border-color: Window;
                 color: WindowText;
               }
               &:hover {
                 color: #201f1e;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                 -ms-high-contrast-adjust: none;
                 background: Highlight;
                 color: HighlightText;
@@ -2679,17 +3067,19 @@ exports[`Suggestions renders a list properly with CSS-in-JS styles 1`] = `
               {
                 -moz-osx-font-smoothing: grayscale;
                 -webkit-font-smoothing: antialiased;
+                align-items: center;
                 background-color: transparent;
                 border-radius: 2px;
                 border: none;
                 box-sizing: border-box;
                 color: #323130;
                 cursor: pointer;
-                display: inline-block;
+                display: inline-flex;
                 font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
                 font-size: 14px;
                 font-weight: 400;
                 height: 100%;
+                justify-content: flex-start;
                 min-width: 0px;
                 outline: transparent;
                 overflow: hidden;
@@ -2717,7 +3107,25 @@ exports[`Suggestions renders a list properly with CSS-in-JS styles 1`] = `
                 top: 2px;
                 z-index: 1;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+                bottom: -2px;
+                left: -2px;
+                outline-color: ButtonText;
+                right: -2px;
+                top: -2px;
+              }
+              :host(.ms-Fabric--isFocusVisible) &:focus:after {
+                border: 1px solid transparent;
+                bottom: 2px;
+                content: "";
+                left: 2px;
+                outline: 1px solid #605e5c;
+                position: absolute;
+                right: 2px;
+                top: 2px;
+                z-index: 1;
+              }
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
                 bottom: -2px;
                 left: -2px;
                 outline-color: ButtonText;
@@ -2729,14 +3137,14 @@ exports[`Suggestions renders a list properly with CSS-in-JS styles 1`] = `
                 position: relative;
                 top: 0px;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                 border-color: Window;
                 color: WindowText;
               }
               &:hover {
                 color: #201f1e;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                 -ms-high-contrast-adjust: none;
                 background: Highlight;
                 color: HighlightText;
@@ -2814,17 +3222,19 @@ exports[`Suggestions renders a list properly with CSS-in-JS styles 1`] = `
               {
                 -moz-osx-font-smoothing: grayscale;
                 -webkit-font-smoothing: antialiased;
+                align-items: center;
                 background-color: transparent;
                 border-radius: 2px;
                 border: none;
                 box-sizing: border-box;
                 color: #323130;
                 cursor: pointer;
-                display: inline-block;
+                display: inline-flex;
                 font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
                 font-size: 14px;
                 font-weight: 400;
                 height: 100%;
+                justify-content: flex-start;
                 min-width: 0px;
                 outline: transparent;
                 overflow: hidden;
@@ -2852,7 +3262,25 @@ exports[`Suggestions renders a list properly with CSS-in-JS styles 1`] = `
                 top: 2px;
                 z-index: 1;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+                bottom: -2px;
+                left: -2px;
+                outline-color: ButtonText;
+                right: -2px;
+                top: -2px;
+              }
+              :host(.ms-Fabric--isFocusVisible) &:focus:after {
+                border: 1px solid transparent;
+                bottom: 2px;
+                content: "";
+                left: 2px;
+                outline: 1px solid #605e5c;
+                position: absolute;
+                right: 2px;
+                top: 2px;
+                z-index: 1;
+              }
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
                 bottom: -2px;
                 left: -2px;
                 outline-color: ButtonText;
@@ -2864,14 +3292,14 @@ exports[`Suggestions renders a list properly with CSS-in-JS styles 1`] = `
                 position: relative;
                 top: 0px;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                 border-color: Window;
                 color: WindowText;
               }
               &:hover {
                 color: #201f1e;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                 -ms-high-contrast-adjust: none;
                 background: Highlight;
                 color: HighlightText;
@@ -2949,17 +3377,19 @@ exports[`Suggestions renders a list properly with CSS-in-JS styles 1`] = `
               {
                 -moz-osx-font-smoothing: grayscale;
                 -webkit-font-smoothing: antialiased;
+                align-items: center;
                 background-color: transparent;
                 border-radius: 2px;
                 border: none;
                 box-sizing: border-box;
                 color: #323130;
                 cursor: pointer;
-                display: inline-block;
+                display: inline-flex;
                 font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
                 font-size: 14px;
                 font-weight: 400;
                 height: 100%;
+                justify-content: flex-start;
                 min-width: 0px;
                 outline: transparent;
                 overflow: hidden;
@@ -2987,7 +3417,25 @@ exports[`Suggestions renders a list properly with CSS-in-JS styles 1`] = `
                 top: 2px;
                 z-index: 1;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+                bottom: -2px;
+                left: -2px;
+                outline-color: ButtonText;
+                right: -2px;
+                top: -2px;
+              }
+              :host(.ms-Fabric--isFocusVisible) &:focus:after {
+                border: 1px solid transparent;
+                bottom: 2px;
+                content: "";
+                left: 2px;
+                outline: 1px solid #605e5c;
+                position: absolute;
+                right: 2px;
+                top: 2px;
+                z-index: 1;
+              }
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
                 bottom: -2px;
                 left: -2px;
                 outline-color: ButtonText;
@@ -2999,14 +3447,14 @@ exports[`Suggestions renders a list properly with CSS-in-JS styles 1`] = `
                 position: relative;
                 top: 0px;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                 border-color: Window;
                 color: WindowText;
               }
               &:hover {
                 color: #201f1e;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                 -ms-high-contrast-adjust: none;
                 background: Highlight;
                 color: HighlightText;
@@ -3084,17 +3532,19 @@ exports[`Suggestions renders a list properly with CSS-in-JS styles 1`] = `
               {
                 -moz-osx-font-smoothing: grayscale;
                 -webkit-font-smoothing: antialiased;
+                align-items: center;
                 background-color: transparent;
                 border-radius: 2px;
                 border: none;
                 box-sizing: border-box;
                 color: #323130;
                 cursor: pointer;
-                display: inline-block;
+                display: inline-flex;
                 font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
                 font-size: 14px;
                 font-weight: 400;
                 height: 100%;
+                justify-content: flex-start;
                 min-width: 0px;
                 outline: transparent;
                 overflow: hidden;
@@ -3122,7 +3572,25 @@ exports[`Suggestions renders a list properly with CSS-in-JS styles 1`] = `
                 top: 2px;
                 z-index: 1;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+                bottom: -2px;
+                left: -2px;
+                outline-color: ButtonText;
+                right: -2px;
+                top: -2px;
+              }
+              :host(.ms-Fabric--isFocusVisible) &:focus:after {
+                border: 1px solid transparent;
+                bottom: 2px;
+                content: "";
+                left: 2px;
+                outline: 1px solid #605e5c;
+                position: absolute;
+                right: 2px;
+                top: 2px;
+                z-index: 1;
+              }
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
                 bottom: -2px;
                 left: -2px;
                 outline-color: ButtonText;
@@ -3134,14 +3602,14 @@ exports[`Suggestions renders a list properly with CSS-in-JS styles 1`] = `
                 position: relative;
                 top: 0px;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                 border-color: Window;
                 color: WindowText;
               }
               &:hover {
                 color: #201f1e;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                 -ms-high-contrast-adjust: none;
                 background: Highlight;
                 color: HighlightText;
@@ -3219,17 +3687,19 @@ exports[`Suggestions renders a list properly with CSS-in-JS styles 1`] = `
               {
                 -moz-osx-font-smoothing: grayscale;
                 -webkit-font-smoothing: antialiased;
+                align-items: center;
                 background-color: transparent;
                 border-radius: 2px;
                 border: none;
                 box-sizing: border-box;
                 color: #323130;
                 cursor: pointer;
-                display: inline-block;
+                display: inline-flex;
                 font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
                 font-size: 14px;
                 font-weight: 400;
                 height: 100%;
+                justify-content: flex-start;
                 min-width: 0px;
                 outline: transparent;
                 overflow: hidden;
@@ -3257,7 +3727,25 @@ exports[`Suggestions renders a list properly with CSS-in-JS styles 1`] = `
                 top: 2px;
                 z-index: 1;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+                bottom: -2px;
+                left: -2px;
+                outline-color: ButtonText;
+                right: -2px;
+                top: -2px;
+              }
+              :host(.ms-Fabric--isFocusVisible) &:focus:after {
+                border: 1px solid transparent;
+                bottom: 2px;
+                content: "";
+                left: 2px;
+                outline: 1px solid #605e5c;
+                position: absolute;
+                right: 2px;
+                top: 2px;
+                z-index: 1;
+              }
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
                 bottom: -2px;
                 left: -2px;
                 outline-color: ButtonText;
@@ -3269,14 +3757,14 @@ exports[`Suggestions renders a list properly with CSS-in-JS styles 1`] = `
                 position: relative;
                 top: 0px;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                 border-color: Window;
                 color: WindowText;
               }
               &:hover {
                 color: #201f1e;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                 -ms-high-contrast-adjust: none;
                 background: Highlight;
                 color: HighlightText;
@@ -3354,17 +3842,19 @@ exports[`Suggestions renders a list properly with CSS-in-JS styles 1`] = `
               {
                 -moz-osx-font-smoothing: grayscale;
                 -webkit-font-smoothing: antialiased;
+                align-items: center;
                 background-color: transparent;
                 border-radius: 2px;
                 border: none;
                 box-sizing: border-box;
                 color: #323130;
                 cursor: pointer;
-                display: inline-block;
+                display: inline-flex;
                 font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
                 font-size: 14px;
                 font-weight: 400;
                 height: 100%;
+                justify-content: flex-start;
                 min-width: 0px;
                 outline: transparent;
                 overflow: hidden;
@@ -3392,7 +3882,25 @@ exports[`Suggestions renders a list properly with CSS-in-JS styles 1`] = `
                 top: 2px;
                 z-index: 1;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+                bottom: -2px;
+                left: -2px;
+                outline-color: ButtonText;
+                right: -2px;
+                top: -2px;
+              }
+              :host(.ms-Fabric--isFocusVisible) &:focus:after {
+                border: 1px solid transparent;
+                bottom: 2px;
+                content: "";
+                left: 2px;
+                outline: 1px solid #605e5c;
+                position: absolute;
+                right: 2px;
+                top: 2px;
+                z-index: 1;
+              }
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
                 bottom: -2px;
                 left: -2px;
                 outline-color: ButtonText;
@@ -3404,14 +3912,14 @@ exports[`Suggestions renders a list properly with CSS-in-JS styles 1`] = `
                 position: relative;
                 top: 0px;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                 border-color: Window;
                 color: WindowText;
               }
               &:hover {
                 color: #201f1e;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                 -ms-high-contrast-adjust: none;
                 background: Highlight;
                 color: HighlightText;
@@ -3489,17 +3997,19 @@ exports[`Suggestions renders a list properly with CSS-in-JS styles 1`] = `
               {
                 -moz-osx-font-smoothing: grayscale;
                 -webkit-font-smoothing: antialiased;
+                align-items: center;
                 background-color: transparent;
                 border-radius: 2px;
                 border: none;
                 box-sizing: border-box;
                 color: #323130;
                 cursor: pointer;
-                display: inline-block;
+                display: inline-flex;
                 font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
                 font-size: 14px;
                 font-weight: 400;
                 height: 100%;
+                justify-content: flex-start;
                 min-width: 0px;
                 outline: transparent;
                 overflow: hidden;
@@ -3527,7 +4037,25 @@ exports[`Suggestions renders a list properly with CSS-in-JS styles 1`] = `
                 top: 2px;
                 z-index: 1;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+                bottom: -2px;
+                left: -2px;
+                outline-color: ButtonText;
+                right: -2px;
+                top: -2px;
+              }
+              :host(.ms-Fabric--isFocusVisible) &:focus:after {
+                border: 1px solid transparent;
+                bottom: 2px;
+                content: "";
+                left: 2px;
+                outline: 1px solid #605e5c;
+                position: absolute;
+                right: 2px;
+                top: 2px;
+                z-index: 1;
+              }
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
                 bottom: -2px;
                 left: -2px;
                 outline-color: ButtonText;
@@ -3539,14 +4067,14 @@ exports[`Suggestions renders a list properly with CSS-in-JS styles 1`] = `
                 position: relative;
                 top: 0px;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                 border-color: Window;
                 color: WindowText;
               }
               &:hover {
                 color: #201f1e;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                 -ms-high-contrast-adjust: none;
                 background: Highlight;
                 color: HighlightText;
@@ -3624,17 +4152,19 @@ exports[`Suggestions renders a list properly with CSS-in-JS styles 1`] = `
               {
                 -moz-osx-font-smoothing: grayscale;
                 -webkit-font-smoothing: antialiased;
+                align-items: center;
                 background-color: transparent;
                 border-radius: 2px;
                 border: none;
                 box-sizing: border-box;
                 color: #323130;
                 cursor: pointer;
-                display: inline-block;
+                display: inline-flex;
                 font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
                 font-size: 14px;
                 font-weight: 400;
                 height: 100%;
+                justify-content: flex-start;
                 min-width: 0px;
                 outline: transparent;
                 overflow: hidden;
@@ -3662,7 +4192,25 @@ exports[`Suggestions renders a list properly with CSS-in-JS styles 1`] = `
                 top: 2px;
                 z-index: 1;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+                bottom: -2px;
+                left: -2px;
+                outline-color: ButtonText;
+                right: -2px;
+                top: -2px;
+              }
+              :host(.ms-Fabric--isFocusVisible) &:focus:after {
+                border: 1px solid transparent;
+                bottom: 2px;
+                content: "";
+                left: 2px;
+                outline: 1px solid #605e5c;
+                position: absolute;
+                right: 2px;
+                top: 2px;
+                z-index: 1;
+              }
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
                 bottom: -2px;
                 left: -2px;
                 outline-color: ButtonText;
@@ -3674,14 +4222,14 @@ exports[`Suggestions renders a list properly with CSS-in-JS styles 1`] = `
                 position: relative;
                 top: 0px;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                 border-color: Window;
                 color: WindowText;
               }
               &:hover {
                 color: #201f1e;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                 -ms-high-contrast-adjust: none;
                 background: Highlight;
                 color: HighlightText;
@@ -3759,17 +4307,19 @@ exports[`Suggestions renders a list properly with CSS-in-JS styles 1`] = `
               {
                 -moz-osx-font-smoothing: grayscale;
                 -webkit-font-smoothing: antialiased;
+                align-items: center;
                 background-color: transparent;
                 border-radius: 2px;
                 border: none;
                 box-sizing: border-box;
                 color: #323130;
                 cursor: pointer;
-                display: inline-block;
+                display: inline-flex;
                 font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
                 font-size: 14px;
                 font-weight: 400;
                 height: 100%;
+                justify-content: flex-start;
                 min-width: 0px;
                 outline: transparent;
                 overflow: hidden;
@@ -3797,7 +4347,25 @@ exports[`Suggestions renders a list properly with CSS-in-JS styles 1`] = `
                 top: 2px;
                 z-index: 1;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+                bottom: -2px;
+                left: -2px;
+                outline-color: ButtonText;
+                right: -2px;
+                top: -2px;
+              }
+              :host(.ms-Fabric--isFocusVisible) &:focus:after {
+                border: 1px solid transparent;
+                bottom: 2px;
+                content: "";
+                left: 2px;
+                outline: 1px solid #605e5c;
+                position: absolute;
+                right: 2px;
+                top: 2px;
+                z-index: 1;
+              }
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
                 bottom: -2px;
                 left: -2px;
                 outline-color: ButtonText;
@@ -3809,14 +4377,14 @@ exports[`Suggestions renders a list properly with CSS-in-JS styles 1`] = `
                 position: relative;
                 top: 0px;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                 border-color: Window;
                 color: WindowText;
               }
               &:hover {
                 color: #201f1e;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                 -ms-high-contrast-adjust: none;
                 background: Highlight;
                 color: HighlightText;
@@ -3894,17 +4462,19 @@ exports[`Suggestions renders a list properly with CSS-in-JS styles 1`] = `
               {
                 -moz-osx-font-smoothing: grayscale;
                 -webkit-font-smoothing: antialiased;
+                align-items: center;
                 background-color: transparent;
                 border-radius: 2px;
                 border: none;
                 box-sizing: border-box;
                 color: #323130;
                 cursor: pointer;
-                display: inline-block;
+                display: inline-flex;
                 font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
                 font-size: 14px;
                 font-weight: 400;
                 height: 100%;
+                justify-content: flex-start;
                 min-width: 0px;
                 outline: transparent;
                 overflow: hidden;
@@ -3932,7 +4502,25 @@ exports[`Suggestions renders a list properly with CSS-in-JS styles 1`] = `
                 top: 2px;
                 z-index: 1;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+                bottom: -2px;
+                left: -2px;
+                outline-color: ButtonText;
+                right: -2px;
+                top: -2px;
+              }
+              :host(.ms-Fabric--isFocusVisible) &:focus:after {
+                border: 1px solid transparent;
+                bottom: 2px;
+                content: "";
+                left: 2px;
+                outline: 1px solid #605e5c;
+                position: absolute;
+                right: 2px;
+                top: 2px;
+                z-index: 1;
+              }
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
                 bottom: -2px;
                 left: -2px;
                 outline-color: ButtonText;
@@ -3944,14 +4532,14 @@ exports[`Suggestions renders a list properly with CSS-in-JS styles 1`] = `
                 position: relative;
                 top: 0px;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                 border-color: Window;
                 color: WindowText;
               }
               &:hover {
                 color: #201f1e;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                 -ms-high-contrast-adjust: none;
                 background: Highlight;
                 color: HighlightText;
@@ -4029,17 +4617,19 @@ exports[`Suggestions renders a list properly with CSS-in-JS styles 1`] = `
               {
                 -moz-osx-font-smoothing: grayscale;
                 -webkit-font-smoothing: antialiased;
+                align-items: center;
                 background-color: transparent;
                 border-radius: 2px;
                 border: none;
                 box-sizing: border-box;
                 color: #323130;
                 cursor: pointer;
-                display: inline-block;
+                display: inline-flex;
                 font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
                 font-size: 14px;
                 font-weight: 400;
                 height: 100%;
+                justify-content: flex-start;
                 min-width: 0px;
                 outline: transparent;
                 overflow: hidden;
@@ -4067,7 +4657,25 @@ exports[`Suggestions renders a list properly with CSS-in-JS styles 1`] = `
                 top: 2px;
                 z-index: 1;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+                bottom: -2px;
+                left: -2px;
+                outline-color: ButtonText;
+                right: -2px;
+                top: -2px;
+              }
+              :host(.ms-Fabric--isFocusVisible) &:focus:after {
+                border: 1px solid transparent;
+                bottom: 2px;
+                content: "";
+                left: 2px;
+                outline: 1px solid #605e5c;
+                position: absolute;
+                right: 2px;
+                top: 2px;
+                z-index: 1;
+              }
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
                 bottom: -2px;
                 left: -2px;
                 outline-color: ButtonText;
@@ -4079,14 +4687,14 @@ exports[`Suggestions renders a list properly with CSS-in-JS styles 1`] = `
                 position: relative;
                 top: 0px;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                 border-color: Window;
                 color: WindowText;
               }
               &:hover {
                 color: #201f1e;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                 -ms-high-contrast-adjust: none;
                 background: Highlight;
                 color: HighlightText;
@@ -4182,17 +4790,19 @@ exports[`Suggestions scrolls to selected index properly 1`] = `
               {
                 -moz-osx-font-smoothing: grayscale;
                 -webkit-font-smoothing: antialiased;
+                align-items: center;
                 background-color: transparent;
                 border-radius: 2px;
                 border: none;
                 box-sizing: border-box;
                 color: #323130;
                 cursor: pointer;
-                display: inline-block;
+                display: inline-flex;
                 font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
                 font-size: 14px;
                 font-weight: 400;
                 height: 100%;
+                justify-content: flex-start;
                 min-width: 0px;
                 outline: transparent;
                 overflow: hidden;
@@ -4220,7 +4830,25 @@ exports[`Suggestions scrolls to selected index properly 1`] = `
                 top: 2px;
                 z-index: 1;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+                bottom: -2px;
+                left: -2px;
+                outline-color: ButtonText;
+                right: -2px;
+                top: -2px;
+              }
+              :host(.ms-Fabric--isFocusVisible) &:focus:after {
+                border: 1px solid transparent;
+                bottom: 2px;
+                content: "";
+                left: 2px;
+                outline: 1px solid #605e5c;
+                position: absolute;
+                right: 2px;
+                top: 2px;
+                z-index: 1;
+              }
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
                 bottom: -2px;
                 left: -2px;
                 outline-color: ButtonText;
@@ -4232,14 +4860,14 @@ exports[`Suggestions scrolls to selected index properly 1`] = `
                 position: relative;
                 top: 0px;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                 border-color: Window;
                 color: WindowText;
               }
               &:hover {
                 color: #201f1e;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                 -ms-high-contrast-adjust: none;
                 background: Highlight;
                 color: HighlightText;
@@ -4317,17 +4945,19 @@ exports[`Suggestions scrolls to selected index properly 1`] = `
               {
                 -moz-osx-font-smoothing: grayscale;
                 -webkit-font-smoothing: antialiased;
+                align-items: center;
                 background-color: transparent;
                 border-radius: 2px;
                 border: none;
                 box-sizing: border-box;
                 color: #323130;
                 cursor: pointer;
-                display: inline-block;
+                display: inline-flex;
                 font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
                 font-size: 14px;
                 font-weight: 400;
                 height: 100%;
+                justify-content: flex-start;
                 min-width: 0px;
                 outline: transparent;
                 overflow: hidden;
@@ -4355,7 +4985,25 @@ exports[`Suggestions scrolls to selected index properly 1`] = `
                 top: 2px;
                 z-index: 1;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+                bottom: -2px;
+                left: -2px;
+                outline-color: ButtonText;
+                right: -2px;
+                top: -2px;
+              }
+              :host(.ms-Fabric--isFocusVisible) &:focus:after {
+                border: 1px solid transparent;
+                bottom: 2px;
+                content: "";
+                left: 2px;
+                outline: 1px solid #605e5c;
+                position: absolute;
+                right: 2px;
+                top: 2px;
+                z-index: 1;
+              }
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
                 bottom: -2px;
                 left: -2px;
                 outline-color: ButtonText;
@@ -4367,14 +5015,14 @@ exports[`Suggestions scrolls to selected index properly 1`] = `
                 position: relative;
                 top: 0px;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                 border-color: Window;
                 color: WindowText;
               }
               &:hover {
                 color: #201f1e;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                 -ms-high-contrast-adjust: none;
                 background: Highlight;
                 color: HighlightText;
@@ -4452,17 +5100,19 @@ exports[`Suggestions scrolls to selected index properly 1`] = `
               {
                 -moz-osx-font-smoothing: grayscale;
                 -webkit-font-smoothing: antialiased;
+                align-items: center;
                 background-color: transparent;
                 border-radius: 2px;
                 border: none;
                 box-sizing: border-box;
                 color: #323130;
                 cursor: pointer;
-                display: inline-block;
+                display: inline-flex;
                 font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
                 font-size: 14px;
                 font-weight: 400;
                 height: 100%;
+                justify-content: flex-start;
                 min-width: 0px;
                 outline: transparent;
                 overflow: hidden;
@@ -4490,7 +5140,25 @@ exports[`Suggestions scrolls to selected index properly 1`] = `
                 top: 2px;
                 z-index: 1;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+                bottom: -2px;
+                left: -2px;
+                outline-color: ButtonText;
+                right: -2px;
+                top: -2px;
+              }
+              :host(.ms-Fabric--isFocusVisible) &:focus:after {
+                border: 1px solid transparent;
+                bottom: 2px;
+                content: "";
+                left: 2px;
+                outline: 1px solid #605e5c;
+                position: absolute;
+                right: 2px;
+                top: 2px;
+                z-index: 1;
+              }
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
                 bottom: -2px;
                 left: -2px;
                 outline-color: ButtonText;
@@ -4502,14 +5170,14 @@ exports[`Suggestions scrolls to selected index properly 1`] = `
                 position: relative;
                 top: 0px;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                 border-color: Window;
                 color: WindowText;
               }
               &:hover {
                 color: #201f1e;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                 -ms-high-contrast-adjust: none;
                 background: Highlight;
                 color: HighlightText;
@@ -4587,17 +5255,19 @@ exports[`Suggestions scrolls to selected index properly 1`] = `
               {
                 -moz-osx-font-smoothing: grayscale;
                 -webkit-font-smoothing: antialiased;
+                align-items: center;
                 background-color: transparent;
                 border-radius: 2px;
                 border: none;
                 box-sizing: border-box;
                 color: #323130;
                 cursor: pointer;
-                display: inline-block;
+                display: inline-flex;
                 font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
                 font-size: 14px;
                 font-weight: 400;
                 height: 100%;
+                justify-content: flex-start;
                 min-width: 0px;
                 outline: transparent;
                 overflow: hidden;
@@ -4625,7 +5295,25 @@ exports[`Suggestions scrolls to selected index properly 1`] = `
                 top: 2px;
                 z-index: 1;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+                bottom: -2px;
+                left: -2px;
+                outline-color: ButtonText;
+                right: -2px;
+                top: -2px;
+              }
+              :host(.ms-Fabric--isFocusVisible) &:focus:after {
+                border: 1px solid transparent;
+                bottom: 2px;
+                content: "";
+                left: 2px;
+                outline: 1px solid #605e5c;
+                position: absolute;
+                right: 2px;
+                top: 2px;
+                z-index: 1;
+              }
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
                 bottom: -2px;
                 left: -2px;
                 outline-color: ButtonText;
@@ -4637,14 +5325,14 @@ exports[`Suggestions scrolls to selected index properly 1`] = `
                 position: relative;
                 top: 0px;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                 border-color: Window;
                 color: WindowText;
               }
               &:hover {
                 color: #201f1e;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                 -ms-high-contrast-adjust: none;
                 background: Highlight;
                 color: HighlightText;
@@ -4722,17 +5410,19 @@ exports[`Suggestions scrolls to selected index properly 1`] = `
               {
                 -moz-osx-font-smoothing: grayscale;
                 -webkit-font-smoothing: antialiased;
+                align-items: center;
                 background-color: transparent;
                 border-radius: 2px;
                 border: none;
                 box-sizing: border-box;
                 color: #323130;
                 cursor: pointer;
-                display: inline-block;
+                display: inline-flex;
                 font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
                 font-size: 14px;
                 font-weight: 400;
                 height: 100%;
+                justify-content: flex-start;
                 min-width: 0px;
                 outline: transparent;
                 overflow: hidden;
@@ -4760,7 +5450,25 @@ exports[`Suggestions scrolls to selected index properly 1`] = `
                 top: 2px;
                 z-index: 1;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+                bottom: -2px;
+                left: -2px;
+                outline-color: ButtonText;
+                right: -2px;
+                top: -2px;
+              }
+              :host(.ms-Fabric--isFocusVisible) &:focus:after {
+                border: 1px solid transparent;
+                bottom: 2px;
+                content: "";
+                left: 2px;
+                outline: 1px solid #605e5c;
+                position: absolute;
+                right: 2px;
+                top: 2px;
+                z-index: 1;
+              }
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
                 bottom: -2px;
                 left: -2px;
                 outline-color: ButtonText;
@@ -4772,14 +5480,14 @@ exports[`Suggestions scrolls to selected index properly 1`] = `
                 position: relative;
                 top: 0px;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                 border-color: Window;
                 color: WindowText;
               }
               &:hover {
                 color: #201f1e;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                 -ms-high-contrast-adjust: none;
                 background: Highlight;
                 color: HighlightText;
@@ -4857,17 +5565,19 @@ exports[`Suggestions scrolls to selected index properly 1`] = `
               {
                 -moz-osx-font-smoothing: grayscale;
                 -webkit-font-smoothing: antialiased;
+                align-items: center;
                 background-color: transparent;
                 border-radius: 2px;
                 border: none;
                 box-sizing: border-box;
                 color: #323130;
                 cursor: pointer;
-                display: inline-block;
+                display: inline-flex;
                 font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
                 font-size: 14px;
                 font-weight: 400;
                 height: 100%;
+                justify-content: flex-start;
                 min-width: 0px;
                 outline: transparent;
                 overflow: hidden;
@@ -4895,7 +5605,25 @@ exports[`Suggestions scrolls to selected index properly 1`] = `
                 top: 2px;
                 z-index: 1;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+                bottom: -2px;
+                left: -2px;
+                outline-color: ButtonText;
+                right: -2px;
+                top: -2px;
+              }
+              :host(.ms-Fabric--isFocusVisible) &:focus:after {
+                border: 1px solid transparent;
+                bottom: 2px;
+                content: "";
+                left: 2px;
+                outline: 1px solid #605e5c;
+                position: absolute;
+                right: 2px;
+                top: 2px;
+                z-index: 1;
+              }
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
                 bottom: -2px;
                 left: -2px;
                 outline-color: ButtonText;
@@ -4907,14 +5635,14 @@ exports[`Suggestions scrolls to selected index properly 1`] = `
                 position: relative;
                 top: 0px;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                 border-color: Window;
                 color: WindowText;
               }
               &:hover {
                 color: #201f1e;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                 -ms-high-contrast-adjust: none;
                 background: Highlight;
                 color: HighlightText;
@@ -4992,17 +5720,19 @@ exports[`Suggestions scrolls to selected index properly 1`] = `
               {
                 -moz-osx-font-smoothing: grayscale;
                 -webkit-font-smoothing: antialiased;
+                align-items: center;
                 background-color: transparent;
                 border-radius: 2px;
                 border: none;
                 box-sizing: border-box;
                 color: #323130;
                 cursor: pointer;
-                display: inline-block;
+                display: inline-flex;
                 font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
                 font-size: 14px;
                 font-weight: 400;
                 height: 100%;
+                justify-content: flex-start;
                 min-width: 0px;
                 outline: transparent;
                 overflow: hidden;
@@ -5030,7 +5760,25 @@ exports[`Suggestions scrolls to selected index properly 1`] = `
                 top: 2px;
                 z-index: 1;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+                bottom: -2px;
+                left: -2px;
+                outline-color: ButtonText;
+                right: -2px;
+                top: -2px;
+              }
+              :host(.ms-Fabric--isFocusVisible) &:focus:after {
+                border: 1px solid transparent;
+                bottom: 2px;
+                content: "";
+                left: 2px;
+                outline: 1px solid #605e5c;
+                position: absolute;
+                right: 2px;
+                top: 2px;
+                z-index: 1;
+              }
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
                 bottom: -2px;
                 left: -2px;
                 outline-color: ButtonText;
@@ -5042,14 +5790,14 @@ exports[`Suggestions scrolls to selected index properly 1`] = `
                 position: relative;
                 top: 0px;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                 border-color: Window;
                 color: WindowText;
               }
               &:hover {
                 color: #201f1e;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                 -ms-high-contrast-adjust: none;
                 background: Highlight;
                 color: HighlightText;
@@ -5127,17 +5875,19 @@ exports[`Suggestions scrolls to selected index properly 1`] = `
               {
                 -moz-osx-font-smoothing: grayscale;
                 -webkit-font-smoothing: antialiased;
+                align-items: center;
                 background-color: transparent;
                 border-radius: 2px;
                 border: none;
                 box-sizing: border-box;
                 color: #323130;
                 cursor: pointer;
-                display: inline-block;
+                display: inline-flex;
                 font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
                 font-size: 14px;
                 font-weight: 400;
                 height: 100%;
+                justify-content: flex-start;
                 min-width: 0px;
                 outline: transparent;
                 overflow: hidden;
@@ -5165,7 +5915,25 @@ exports[`Suggestions scrolls to selected index properly 1`] = `
                 top: 2px;
                 z-index: 1;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+                bottom: -2px;
+                left: -2px;
+                outline-color: ButtonText;
+                right: -2px;
+                top: -2px;
+              }
+              :host(.ms-Fabric--isFocusVisible) &:focus:after {
+                border: 1px solid transparent;
+                bottom: 2px;
+                content: "";
+                left: 2px;
+                outline: 1px solid #605e5c;
+                position: absolute;
+                right: 2px;
+                top: 2px;
+                z-index: 1;
+              }
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
                 bottom: -2px;
                 left: -2px;
                 outline-color: ButtonText;
@@ -5177,14 +5945,14 @@ exports[`Suggestions scrolls to selected index properly 1`] = `
                 position: relative;
                 top: 0px;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                 border-color: Window;
                 color: WindowText;
               }
               &:hover {
                 color: #201f1e;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                 -ms-high-contrast-adjust: none;
                 background: Highlight;
                 color: HighlightText;
@@ -5254,6 +6022,10 @@ exports[`Suggestions scrolls to selected index properly 1`] = `
               background: #edebe9;
               display: block;
             }
+            :host(.ms-Fabric--isFocusVisible) & .ms-Suggestions-closeButton {
+              background: #edebe9;
+              display: block;
+            }
             &:after {
               border: 1px solid #605e5c;
               bottom: 0px;
@@ -5277,6 +6049,7 @@ exports[`Suggestions scrolls to selected index properly 1`] = `
               {
                 -moz-osx-font-smoothing: grayscale;
                 -webkit-font-smoothing: antialiased;
+                align-items: center;
                 background-color: transparent;
                 background: #edebe9;
                 border-radius: 2px;
@@ -5284,11 +6057,12 @@ exports[`Suggestions scrolls to selected index properly 1`] = `
                 box-sizing: border-box;
                 color: #323130;
                 cursor: pointer;
-                display: inline-block;
+                display: inline-flex;
                 font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
                 font-size: 14px;
                 font-weight: 400;
                 height: 100%;
+                justify-content: flex-start;
                 min-width: 0px;
                 outline: transparent;
                 overflow: hidden;
@@ -5316,7 +6090,25 @@ exports[`Suggestions scrolls to selected index properly 1`] = `
                 top: 2px;
                 z-index: 1;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+                bottom: -2px;
+                left: -2px;
+                outline-color: ButtonText;
+                right: -2px;
+                top: -2px;
+              }
+              :host(.ms-Fabric--isFocusVisible) &:focus:after {
+                border: 1px solid transparent;
+                bottom: 2px;
+                content: "";
+                left: 2px;
+                outline: 1px solid #605e5c;
+                position: absolute;
+                right: 2px;
+                top: 2px;
+                z-index: 1;
+              }
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
                 bottom: -2px;
                 left: -2px;
                 outline-color: ButtonText;
@@ -5328,7 +6120,7 @@ exports[`Suggestions scrolls to selected index properly 1`] = `
                 position: relative;
                 top: 0px;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                 -ms-high-contrast-adjust: none;
                 background: Highlight;
                 border-color: Window;
@@ -5339,7 +6131,7 @@ exports[`Suggestions scrolls to selected index properly 1`] = `
                 background: #c8c6c4;
                 color: #201f1e;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                 -ms-high-contrast-adjust: none;
                 background: Highlight;
                 color: HighlightText;
@@ -5417,17 +6209,19 @@ exports[`Suggestions scrolls to selected index properly 1`] = `
               {
                 -moz-osx-font-smoothing: grayscale;
                 -webkit-font-smoothing: antialiased;
+                align-items: center;
                 background-color: transparent;
                 border-radius: 2px;
                 border: none;
                 box-sizing: border-box;
                 color: #323130;
                 cursor: pointer;
-                display: inline-block;
+                display: inline-flex;
                 font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
                 font-size: 14px;
                 font-weight: 400;
                 height: 100%;
+                justify-content: flex-start;
                 min-width: 0px;
                 outline: transparent;
                 overflow: hidden;
@@ -5455,7 +6249,25 @@ exports[`Suggestions scrolls to selected index properly 1`] = `
                 top: 2px;
                 z-index: 1;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+                bottom: -2px;
+                left: -2px;
+                outline-color: ButtonText;
+                right: -2px;
+                top: -2px;
+              }
+              :host(.ms-Fabric--isFocusVisible) &:focus:after {
+                border: 1px solid transparent;
+                bottom: 2px;
+                content: "";
+                left: 2px;
+                outline: 1px solid #605e5c;
+                position: absolute;
+                right: 2px;
+                top: 2px;
+                z-index: 1;
+              }
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
                 bottom: -2px;
                 left: -2px;
                 outline-color: ButtonText;
@@ -5467,14 +6279,14 @@ exports[`Suggestions scrolls to selected index properly 1`] = `
                 position: relative;
                 top: 0px;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                 border-color: Window;
                 color: WindowText;
               }
               &:hover {
                 color: #201f1e;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                 -ms-high-contrast-adjust: none;
                 background: Highlight;
                 color: HighlightText;
@@ -5552,17 +6364,19 @@ exports[`Suggestions scrolls to selected index properly 1`] = `
               {
                 -moz-osx-font-smoothing: grayscale;
                 -webkit-font-smoothing: antialiased;
+                align-items: center;
                 background-color: transparent;
                 border-radius: 2px;
                 border: none;
                 box-sizing: border-box;
                 color: #323130;
                 cursor: pointer;
-                display: inline-block;
+                display: inline-flex;
                 font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
                 font-size: 14px;
                 font-weight: 400;
                 height: 100%;
+                justify-content: flex-start;
                 min-width: 0px;
                 outline: transparent;
                 overflow: hidden;
@@ -5590,7 +6404,25 @@ exports[`Suggestions scrolls to selected index properly 1`] = `
                 top: 2px;
                 z-index: 1;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+                bottom: -2px;
+                left: -2px;
+                outline-color: ButtonText;
+                right: -2px;
+                top: -2px;
+              }
+              :host(.ms-Fabric--isFocusVisible) &:focus:after {
+                border: 1px solid transparent;
+                bottom: 2px;
+                content: "";
+                left: 2px;
+                outline: 1px solid #605e5c;
+                position: absolute;
+                right: 2px;
+                top: 2px;
+                z-index: 1;
+              }
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
                 bottom: -2px;
                 left: -2px;
                 outline-color: ButtonText;
@@ -5602,14 +6434,14 @@ exports[`Suggestions scrolls to selected index properly 1`] = `
                 position: relative;
                 top: 0px;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                 border-color: Window;
                 color: WindowText;
               }
               &:hover {
                 color: #201f1e;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                 -ms-high-contrast-adjust: none;
                 background: Highlight;
                 color: HighlightText;
@@ -5687,17 +6519,19 @@ exports[`Suggestions scrolls to selected index properly 1`] = `
               {
                 -moz-osx-font-smoothing: grayscale;
                 -webkit-font-smoothing: antialiased;
+                align-items: center;
                 background-color: transparent;
                 border-radius: 2px;
                 border: none;
                 box-sizing: border-box;
                 color: #323130;
                 cursor: pointer;
-                display: inline-block;
+                display: inline-flex;
                 font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
                 font-size: 14px;
                 font-weight: 400;
                 height: 100%;
+                justify-content: flex-start;
                 min-width: 0px;
                 outline: transparent;
                 overflow: hidden;
@@ -5725,7 +6559,25 @@ exports[`Suggestions scrolls to selected index properly 1`] = `
                 top: 2px;
                 z-index: 1;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+                bottom: -2px;
+                left: -2px;
+                outline-color: ButtonText;
+                right: -2px;
+                top: -2px;
+              }
+              :host(.ms-Fabric--isFocusVisible) &:focus:after {
+                border: 1px solid transparent;
+                bottom: 2px;
+                content: "";
+                left: 2px;
+                outline: 1px solid #605e5c;
+                position: absolute;
+                right: 2px;
+                top: 2px;
+                z-index: 1;
+              }
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
                 bottom: -2px;
                 left: -2px;
                 outline-color: ButtonText;
@@ -5737,14 +6589,14 @@ exports[`Suggestions scrolls to selected index properly 1`] = `
                 position: relative;
                 top: 0px;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                 border-color: Window;
                 color: WindowText;
               }
               &:hover {
                 color: #201f1e;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                 -ms-high-contrast-adjust: none;
                 background: Highlight;
                 color: HighlightText;
@@ -5822,17 +6674,19 @@ exports[`Suggestions scrolls to selected index properly 1`] = `
               {
                 -moz-osx-font-smoothing: grayscale;
                 -webkit-font-smoothing: antialiased;
+                align-items: center;
                 background-color: transparent;
                 border-radius: 2px;
                 border: none;
                 box-sizing: border-box;
                 color: #323130;
                 cursor: pointer;
-                display: inline-block;
+                display: inline-flex;
                 font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
                 font-size: 14px;
                 font-weight: 400;
                 height: 100%;
+                justify-content: flex-start;
                 min-width: 0px;
                 outline: transparent;
                 overflow: hidden;
@@ -5860,7 +6714,25 @@ exports[`Suggestions scrolls to selected index properly 1`] = `
                 top: 2px;
                 z-index: 1;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+                bottom: -2px;
+                left: -2px;
+                outline-color: ButtonText;
+                right: -2px;
+                top: -2px;
+              }
+              :host(.ms-Fabric--isFocusVisible) &:focus:after {
+                border: 1px solid transparent;
+                bottom: 2px;
+                content: "";
+                left: 2px;
+                outline: 1px solid #605e5c;
+                position: absolute;
+                right: 2px;
+                top: 2px;
+                z-index: 1;
+              }
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
                 bottom: -2px;
                 left: -2px;
                 outline-color: ButtonText;
@@ -5872,14 +6744,14 @@ exports[`Suggestions scrolls to selected index properly 1`] = `
                 position: relative;
                 top: 0px;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                 border-color: Window;
                 color: WindowText;
               }
               &:hover {
                 color: #201f1e;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                 -ms-high-contrast-adjust: none;
                 background: Highlight;
                 color: HighlightText;
@@ -5957,17 +6829,19 @@ exports[`Suggestions scrolls to selected index properly 1`] = `
               {
                 -moz-osx-font-smoothing: grayscale;
                 -webkit-font-smoothing: antialiased;
+                align-items: center;
                 background-color: transparent;
                 border-radius: 2px;
                 border: none;
                 box-sizing: border-box;
                 color: #323130;
                 cursor: pointer;
-                display: inline-block;
+                display: inline-flex;
                 font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
                 font-size: 14px;
                 font-weight: 400;
                 height: 100%;
+                justify-content: flex-start;
                 min-width: 0px;
                 outline: transparent;
                 overflow: hidden;
@@ -5995,7 +6869,25 @@ exports[`Suggestions scrolls to selected index properly 1`] = `
                 top: 2px;
                 z-index: 1;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+                bottom: -2px;
+                left: -2px;
+                outline-color: ButtonText;
+                right: -2px;
+                top: -2px;
+              }
+              :host(.ms-Fabric--isFocusVisible) &:focus:after {
+                border: 1px solid transparent;
+                bottom: 2px;
+                content: "";
+                left: 2px;
+                outline: 1px solid #605e5c;
+                position: absolute;
+                right: 2px;
+                top: 2px;
+                z-index: 1;
+              }
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
                 bottom: -2px;
                 left: -2px;
                 outline-color: ButtonText;
@@ -6007,14 +6899,14 @@ exports[`Suggestions scrolls to selected index properly 1`] = `
                 position: relative;
                 top: 0px;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                 border-color: Window;
                 color: WindowText;
               }
               &:hover {
                 color: #201f1e;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                 -ms-high-contrast-adjust: none;
                 background: Highlight;
                 color: HighlightText;
@@ -6092,17 +6984,19 @@ exports[`Suggestions scrolls to selected index properly 1`] = `
               {
                 -moz-osx-font-smoothing: grayscale;
                 -webkit-font-smoothing: antialiased;
+                align-items: center;
                 background-color: transparent;
                 border-radius: 2px;
                 border: none;
                 box-sizing: border-box;
                 color: #323130;
                 cursor: pointer;
-                display: inline-block;
+                display: inline-flex;
                 font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
                 font-size: 14px;
                 font-weight: 400;
                 height: 100%;
+                justify-content: flex-start;
                 min-width: 0px;
                 outline: transparent;
                 overflow: hidden;
@@ -6130,7 +7024,25 @@ exports[`Suggestions scrolls to selected index properly 1`] = `
                 top: 2px;
                 z-index: 1;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){.ms-Fabric--isFocusVisible &:focus:after {
+                bottom: -2px;
+                left: -2px;
+                outline-color: ButtonText;
+                right: -2px;
+                top: -2px;
+              }
+              :host(.ms-Fabric--isFocusVisible) &:focus:after {
+                border: 1px solid transparent;
+                bottom: 2px;
+                content: "";
+                left: 2px;
+                outline: 1px solid #605e5c;
+                position: absolute;
+                right: 2px;
+                top: 2px;
+                z-index: 1;
+              }
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){:host(.ms-Fabric--isFocusVisible) &:focus:after {
                 bottom: -2px;
                 left: -2px;
                 outline-color: ButtonText;
@@ -6142,14 +7054,14 @@ exports[`Suggestions scrolls to selected index properly 1`] = `
                 position: relative;
                 top: 0px;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
                 border-color: Window;
                 color: WindowText;
               }
               &:hover {
                 color: #201f1e;
               }
-              @media screen and (-ms-high-contrast: active), (forced-colors: active){&:hover {
+              @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:hover {
                 -ms-high-contrast-adjust: none;
                 background: Highlight;
                 color: HighlightText;

@@ -1,35 +1,21 @@
 import * as React from 'react';
 import { fluentProviderClassNames, useThemeClassName } from '@fluentui/react-components';
 import { PortalCompatContextProvider } from '@fluentui/react-portal-compat-context';
+import { applyFocusVisiblePolyfill } from '@fluentui/react-tabster';
 
 import type { RegisterPortalFn } from '@fluentui/react-portal-compat-context';
 
-const CLASS_NAME_REGEX = new RegExp(`(${fluentProviderClassNames.root}\\d+)`);
+const CLASS_NAME_REGEX = new RegExp(`([^\\s]*${fluentProviderClassNames.root}\\w+)`, 'g');
 
-export const PortalCompatProvider: React.FC = props => {
-  const { children } = props;
+export function useProviderThemeClasses(): string[] {
+  'use no memo';
 
   const themeClassName = useThemeClassName();
-  const cssVariablesClassName = React.useMemo<string | undefined>(
-    // "themeClassName" may contain multiple classes while we want to add only a class that hosts CSS variables
+  const cssVariablesClasses = React.useMemo<string[]>(
+    // "themeClassName" may contain multiple classes while we want to add only classes that host CSS variables
     // Keep in sync with "packages/react-provider/src/components/FluentProvider/useFluentProviderThemeStyleTag.ts"
-    () => themeClassName.match(CLASS_NAME_REGEX)?.[1],
+    () => themeClassName.match(CLASS_NAME_REGEX) ?? [],
     [themeClassName],
-  );
-
-  const registerPortalEl = React.useCallback<RegisterPortalFn>(
-    element => {
-      if (cssVariablesClassName) {
-        element.classList.add(cssVariablesClassName);
-      }
-
-      return () => {
-        if (cssVariablesClassName) {
-          element.classList.remove(cssVariablesClassName);
-        }
-      };
-    },
-    [cssVariablesClassName],
   );
 
   if (process.env.NODE_ENV !== 'production') {
@@ -47,6 +33,30 @@ export const PortalCompatProvider: React.FC = props => {
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
   }
+
+  return cssVariablesClasses;
+}
+
+export const PortalCompatProvider: React.FC<{ children?: React.ReactNode }> = props => {
+  const { children } = props;
+  const cssVariablesClasses = useProviderThemeClasses();
+
+  const registerPortalEl = React.useCallback<RegisterPortalFn>(
+    element => {
+      let disposeFocusVisiblePolyfill: () => void = () => undefined;
+
+      element.classList.add(...cssVariablesClasses);
+      if (element.ownerDocument.defaultView) {
+        disposeFocusVisiblePolyfill = applyFocusVisiblePolyfill(element, element.ownerDocument.defaultView);
+      }
+
+      return () => {
+        element.classList.remove(...cssVariablesClasses);
+        disposeFocusVisiblePolyfill();
+      };
+    },
+    [cssVariablesClasses],
+  );
 
   return <PortalCompatContextProvider value={registerPortalEl}>{children}</PortalCompatContextProvider>;
 };

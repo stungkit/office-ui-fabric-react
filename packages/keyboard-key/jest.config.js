@@ -1,7 +1,6 @@
-let { createConfig } = require('@fluentui/scripts/jest/jest-resources');
+const { createV8Config: createConfig } = require('@fluentui/scripts-jest');
 
 const config = createConfig({
-  collectCoverage: true,
   collectCoverageFrom: ['src/**/*.ts', '!src/**/*.test.ts', '!node_modules/**'],
   coverageDirectory: 'coverage',
   coverageThreshold: {

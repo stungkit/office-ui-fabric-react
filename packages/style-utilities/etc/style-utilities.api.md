@@ -37,12 +37,14 @@ import { ISemanticTextColors } from '@fluentui/theme';
 import { ISpacing } from '@fluentui/theme';
 import { IStyle } from '@fluentui/merge-styles';
 import { IStyleSet } from '@fluentui/merge-styles';
+import { IStyleSetBase } from '@fluentui/merge-styles';
 import { IStyleSheetConfig } from '@fluentui/merge-styles';
 import { ITheme } from '@fluentui/theme';
 import { keyframes } from '@fluentui/merge-styles';
 import { mergeStyles } from '@fluentui/merge-styles';
 import { mergeStyleSets } from '@fluentui/merge-styles';
 import { registerDefaultFontFaces } from '@fluentui/theme';
+import { ShadowConfig } from '@fluentui/merge-styles';
 import { Stylesheet } from '@fluentui/merge-styles';
 
 // @public (undocumented)
@@ -78,8 +80,11 @@ export { DefaultFontStyles }
 
 export { DefaultPalette }
 
+// @public @deprecated (undocumented)
+export const EdgeChromiumHighContrastSelector = "@media screen and (-ms-high-contrast: active), screen and (forced-colors: active)";
+
 // @public (undocumented)
-export const EdgeChromiumHighContrastSelector = "@media screen and (forced-colors: active)";
+export const FLUENT_CDN_BASE_URL = "https://res.cdn.office.net/files/fabric-cdn-prod_20241209.001";
 
 // @public
 export function focusClear(): IRawStyle;
@@ -110,7 +115,7 @@ export function getFocusOutlineStyle(theme: ITheme, inset?: number, width?: numb
 export function getFocusStyle(theme: ITheme, options?: IGetFocusStylesOptions): IRawStyle;
 
 // @public @deprecated
-export function getFocusStyle(theme: ITheme, inset?: number, position?: 'relative' | 'absolute', highContrastStyle?: IRawStyle | undefined, borderColor?: string, outlineColor?: string, isFocusedOnly?: boolean): IRawStyle;
+export function getFocusStyle(theme: ITheme, inset?: number, position?: 'relative' | 'absolute', highContrastStyle?: IRawStyle | undefined, borderColor?: string, outlineColor?: string, isFocusedOnly?: boolean, borderRadius?: string | number | undefined): IRawStyle;
 
 // @public
 export function getGlobalClassNames<T>(classNames: GlobalClassNames<T>, theme: ITheme, disableGlobalClassNames?: boolean): GlobalClassNames<T>;
@@ -148,13 +153,13 @@ export type GlobalClassNames<IStyles> = Record<keyof IStyles, string>;
 export const hiddenContentStyle: IRawStyle;
 
 // @public (undocumented)
-export const HighContrastSelector = "@media screen and (-ms-high-contrast: active), (forced-colors: active)";
+export const HighContrastSelector = "@media screen and (-ms-high-contrast: active), screen and (forced-colors: active)";
 
 // @public (undocumented)
-export const HighContrastSelectorBlack = "@media screen and (-ms-high-contrast: white-on-black), (forced-colors: white-on-black)";
+export const HighContrastSelectorBlack = "@media screen and (-ms-high-contrast: white-on-black), screen and (forced-colors: active) and (prefers-color-scheme: dark)";
 
 // @public (undocumented)
-export const HighContrastSelectorWhite = "@media screen and (-ms-high-contrast: black-on-white), (forced-colors: black-on-white)";
+export const HighContrastSelectorWhite = "@media screen and (-ms-high-contrast: black-on-white), screen and (forced-colors: active) and (prefers-color-scheme: light)";
 
 export { IAnimationStyles }
 
@@ -175,10 +180,12 @@ export { IFontWeight }
 // @public (undocumented)
 export interface IGetFocusStylesOptions {
     borderColor?: string;
+    borderRadius?: string | number | undefined;
     highContrastStyle?: IRawStyle;
     inset?: number;
     isFocusedOnly?: boolean;
     outlineColor?: string;
+    pointerEvents?: IRawStyle['pointerEvents'];
     position?: 'relative' | 'absolute';
     width?: number;
 }
@@ -242,6 +249,8 @@ export { ISpacing }
 export { IStyle }
 
 export { IStyleSet }
+
+export { IStyleSetBase }
 
 export { IStyleSheetConfig }
 
@@ -321,6 +330,8 @@ export const ScreenWidthMinXXXLarge = 1920;
 
 // @public
 export function setIconOptions(options: Partial<IIconOptions>): void;
+
+export { ShadowConfig }
 
 export { Stylesheet }
 

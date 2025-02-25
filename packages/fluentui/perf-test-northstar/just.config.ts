@@ -1,8 +1,9 @@
 import path from 'path';
-import { preset, series, task, argv } from '@fluentui/scripts';
-import { getResolveLoaderDirs } from '@fluentui/scripts/webpack/webpack-resources';
 
-preset();
+import { task, argv, taskPresets } from 'just-scripts';
+import { config } from './tasks/perf-test.config';
+
+taskPresets.lib();
 
 // TODO: FUR integration issues
 // - FUR build fails when it comes across these new packages inside of packages/
@@ -16,7 +17,6 @@ function bundleStories() {
     await digestStories({
       configDir: path.join(__dirname, '.digest'),
       outputDir: path.join(__dirname, 'dist'),
-      resolveDirs: getResolveLoaderDirs(),
     });
   };
 }
@@ -28,14 +28,13 @@ task('perf-test:bundle', bundleStories());
 
 task('perf-test:run', () => {
   // delay require in case digest isn't built yet
-  const runPerfTest = require('./tasks/perf-test').default;
+  const { getPerfRegressions } = require('./tasks/perf-test') as typeof import('./tasks/perf-test');
 
-  return runPerfTest(argv().base);
+  return getPerfRegressions(config, (argv() as { base?: boolean }).base);
 });
 
-// TOOD: is build doing anything meaningful? only if there's source that's not a just script?
 // TODO: if stories/scenarios are added in this package, make sure build catches type errors
-task('perf-test', series('build', 'perf-test:bundle', 'perf-test:run'));
+// task('perf-test', series('perf-test:bundle', 'perf-test:run'));
 
 // TODO: Uncomment once stories can be referred to in a dependency.
 // This command will not be reliable until perf stories are in a package that can be set as a dep.

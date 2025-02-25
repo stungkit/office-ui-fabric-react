@@ -4,6 +4,7 @@ import {
   IDetailsRowStyles,
   IDetailsListStyleProps,
   IDetailsListStyles,
+  IDetailsHeaderStyles,
 } from '@fluentui/react/lib/DetailsList';
 import { IExtendedSemanticColors } from '../IExtendedSemanticColors';
 import { FontSizes } from '../AzureType';
@@ -17,9 +18,8 @@ export const CheckStyles = (props: ICheckStyleProps): Partial<ICheckStyles> => {
     circle: [
       {
         fontSize: 0,
-        paddingTop: 1,
         paddingLeft: 1,
-        borderRadius: 2,
+        borderRadius: StyleConstants.borderRadius,
         color: semanticColors.listBackground,
         backgroundColor: semanticColors.listBackground,
         borderColor: semanticColors.ButtonBorderFocus,
@@ -29,8 +29,8 @@ export const CheckStyles = (props: ICheckStyleProps): Partial<ICheckStyles> => {
     ],
     check: [
       {
-        left: 2.5,
-        top: 1.5,
+        left: 1.8,
+        top: 0,
       },
       checked && {
         color: semanticColors.inputText,
@@ -51,8 +51,22 @@ export const DetailsListStyles = (props: IDetailsListStyleProps): Partial<IDetai
     root: {
       borderTop: StyleConstants.borderNone,
       selectors: {
-        '.ms-DetailsRow-check': {
-          opacity: 1,
+        ':has(.ms-Check.is-checked) .ms-DetailsHeader:not(.is-allSelected) .ms-DetailsHeader-cellIsCheck': {
+          '.ms-Check:before': {
+            backgroundColor: extendedSemanticColors.checkBoxIndeterminateDetailsRowCheck,
+            borderRadius: 0,
+            zIndex: 1,
+            top: 6,
+            left: 6,
+            height: 8,
+            width: 8,
+          },
+          '.ms-Check:hover:before': {
+            backgroundColor: extendedSemanticColors.checkBoxIndeterminateDetailsRowCheckHover,
+          },
+          '.ms-Check-check': {
+            display: 'none',
+          },
         },
       },
     },
@@ -115,10 +129,12 @@ export const DetailsRowStyles = (props: IDetailsRowStyleProps): Partial<IDetails
         borderColor: extendedSemanticColors.rowBorder,
         color: semanticColors.listText,
         fontSize: theme.fonts.medium.fontSize,
-        borderBottom: `1px solid ${extendedSemanticColors.listItemBackgroundSelected} !important`,
         selectors: {
+          '&.ms-DetailsRow': {
+            borderBottom: `1px solid ${extendedSemanticColors.listItemBackgroundSelected}`,
+          },
           '.ms-DetailsRow-check': {
-            opacity: 1,
+            opacity: '1',
           },
         },
       },
@@ -139,9 +155,6 @@ export const DetailsRowStyles = (props: IDetailsRowStyleProps): Partial<IDetails
                   color: extendedSemanticColors.listLinkHovered,
                 },
               },
-            },
-            ':after': {
-              border: `1px solid ${extendedSemanticColors.listItemBackgroundSelected} !important`,
             },
             ':focus': {
               backgroundColor: extendedSemanticColors.rowFocus,
@@ -165,13 +178,16 @@ export const DetailsRowStyles = (props: IDetailsRowStyleProps): Partial<IDetails
             '.ms-Check-check': {
               color: extendedSemanticColors.checkBoxCheck,
             },
-            '.ms-Link': {
+            '.ms-Link, .ms-DetailsRow-cell .ms-Link': {
+              color: extendedSemanticColors.listLinkRowSelected,
+            },
+            '.ms-DetailsRow-cell .ms-Link': {
               color: extendedSemanticColors.listLinkRowSelected,
             },
             ':hover': {
               background: extendedSemanticColors.listItemBackgroundSelectedHovered,
               selectors: {
-                '.ms-Link': {
+                '.ms-Link, .ms-DetailsRow-cell .ms-Link': {
                   color: extendedSemanticColors.listLinkRowSelectedHovered,
                 },
                 '.ms-Check-circle': {
@@ -183,5 +199,17 @@ export const DetailsRowStyles = (props: IDetailsRowStyleProps): Partial<IDetails
         },
       ],
     ],
+  };
+};
+
+export const DetailsHeaderStyles = (props: IDetailsRowStyleProps): Partial<IDetailsHeaderStyles> => {
+  return {
+    root: {
+      selectors: {
+        '.ms-DetailsRow-check': {
+          opacity: 1,
+        },
+      },
+    },
   };
 };

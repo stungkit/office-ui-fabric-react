@@ -248,7 +248,7 @@ export const SpinButtonBase: React.FunctionComponent<ISpinButtonProps> = React.f
         // Edge case: if intermediateValue is set, this means that the user was editing the input
         // text and then started spinning (either with mouse or keyboard). We need to validate and
         // call onChange before starting to spin.
-        if (ev.type === 'keydown') {
+        if (ev.type === 'keydown' || ev.type === 'mousedown') {
           // For the arrow keys, we have to manually trigger validation.
           // (For the buttons, validation will happen automatically since the input's onBlur will
           // be triggered after mousedown on the button completes.)
@@ -345,7 +345,7 @@ export const SpinButtonBase: React.FunctionComponent<ISpinButtonProps> = React.f
   const handleKeyDown = (ev: React.KeyboardEvent<HTMLInputElement>): void => {
     // eat the up and down arrow keys to keep focus in the spinButton
     // (especially when a spinButton is inside of a FocusZone)
-    // eslint-disable-next-line deprecation/deprecation
+    // eslint-disable-next-line @typescript-eslint/no-deprecated
     if (ev.which === KeyCodes.up || ev.which === KeyCodes.down || ev.which === KeyCodes.enter) {
       ev.preventDefault();
       ev.stopPropagation();
@@ -357,7 +357,7 @@ export const SpinButtonBase: React.FunctionComponent<ISpinButtonProps> = React.f
 
     let spinDirection = KeyboardSpinDirection.notSpinning;
 
-    // eslint-disable-next-line deprecation/deprecation
+    // eslint-disable-next-line @typescript-eslint/no-deprecated
     switch (ev.which) {
       case KeyCodes.up:
         spinDirection = KeyboardSpinDirection.up;
@@ -386,7 +386,7 @@ export const SpinButtonBase: React.FunctionComponent<ISpinButtonProps> = React.f
   /** Stop spinning on keyUp if the up or down arrow key fired this event */
   const handleKeyUp = React.useCallback(
     (ev: React.KeyboardEvent<HTMLElement>): void => {
-      // eslint-disable-next-line deprecation/deprecation
+      // eslint-disable-next-line @typescript-eslint/no-deprecated
       if (disabled || ev.which === KeyCodes.up || ev.which === KeyCodes.down) {
         stop();
         return;
@@ -447,9 +447,8 @@ export const SpinButtonBase: React.FunctionComponent<ISpinButtonProps> = React.f
           autoComplete="off"
           role="spinbutton"
           aria-labelledby={label && labelId}
-          // TODO: test what happens while editing
-          aria-valuenow={ariaValueNow ?? (valueIsNumber ? Number(value) : undefined)}
           aria-valuetext={ariaValueText ?? (valueIsNumber ? undefined : value)}
+          aria-valuenow={ariaValueNow}
           aria-valuemin={min}
           aria-valuemax={max}
           aria-describedby={ariaDescribedBy}

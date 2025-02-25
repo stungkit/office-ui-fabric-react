@@ -12,9 +12,9 @@ export const VerticalDividerBase: React.FunctionComponent<IVerticalDividerProps>
   HTMLDivElement,
   IVerticalDividerProps
 >((props, ref) => {
-  // eslint-disable-next-line deprecation/deprecation
+  // eslint-disable-next-line @typescript-eslint/no-deprecated
   const { styles, theme, getClassNames: deprecatedGetClassNames, className } = props;
-  const classNames = getClassNames(styles, { theme: theme, getClassNames: deprecatedGetClassNames, className });
+  const classNames = getClassNames(styles, { theme, getClassNames: deprecatedGetClassNames, className });
   return (
     <span className={classNames.wrapper} ref={ref}>
       <span className={classNames.divider} />

@@ -62,7 +62,8 @@ const HIDE_ICON_NAME = 'Hide';
 
 export class TextFieldBase
   extends React.Component<ITextFieldProps, ITextFieldState, ITextFieldSnapshot>
-  implements ITextField {
+  implements ITextField
+{
   public static defaultProps: ITextFieldProps = {
     resizable: true,
     deferredValidationTime: 200,
@@ -245,7 +246,7 @@ export class TextFieldBase
     }));
 
     return (
-      // eslint-disable-next-line deprecation/deprecation
+      // eslint-disable-next-line @typescript-eslint/no-deprecated
       <div ref={this.props.elementRef} className={classNames.root}>
         <div className={classNames.wrapper}>
           {onRenderLabel(this.props, this._onRenderLabel)}
@@ -638,9 +639,15 @@ export class TextFieldBase
 
   private _adjustInputHeight(): void {
     if (this._textElement.current && this.props.autoAdjustHeight && this.props.multiline) {
+      const scrollTop = this.props.scrollContainerRef?.current?.scrollTop;
       const textField = this._textElement.current;
       textField.style.height = '';
       textField.style.height = textField.scrollHeight + 'px';
+
+      if (scrollTop) {
+        // Safe to assert not null, otherwise we wouldn't have a scrollTop;
+        this.props.scrollContainerRef!.current!.scrollTop = scrollTop;
+      }
     }
   }
 }
@@ -672,7 +679,7 @@ function _browserNeedsRevealButton() {
 
     if (win?.navigator) {
       // Edge, Chromium Edge
-      const isEdge = /^Edg/.test(win.navigator.userAgent || '');
+      const isEdge = /Edg/.test(win.navigator.userAgent || '');
 
       __browserNeedsRevealButton = !(isIE11() || isEdge);
     } else {

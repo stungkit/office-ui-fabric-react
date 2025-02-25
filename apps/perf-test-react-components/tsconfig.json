@@ -1,21 +1,21 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "target": "es5",
-    "outDir": "lib",
     "module": "commonjs",
+    "target": "ES2019",
+    "noEmit": true,
+    "isolatedModules": true,
+    "importHelpers": true,
     "jsx": "react",
-    "declaration": true,
-    "sourceMap": true,
-    "experimentalDecorators": true,
-    "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "node",
+    "noUnusedLocals": true,
     "preserveConstEnums": true,
-    "strictNullChecks": true,
-    "noImplicitAny": true,
-    "lib": ["es2016", "dom"],
-    "types": ["webpack-env"],
     "skipLibCheck": true
   },
-  "include": ["src"]
+  "include": [],
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    }
+  ]
 }

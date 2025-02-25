@@ -14,6 +14,7 @@ import { useMergedRefs, useAsync, useTarget } from '@fluentui/react-hooks';
 import type { IPositioningContainerProps } from './PositioningContainer.types';
 import type { Point, IRectangle } from '../../../Utilities';
 import type { IPositionedData, IPositionProps, IPosition } from '../../../Positioning';
+import { useDocumentEx, useWindowEx } from '../../../utilities/dom';
 
 const OFF_SCREEN_STYLE = { opacity: 0 };
 
@@ -34,30 +35,26 @@ const DEFAULT_PROPS = {
   directionalHint: DirectionalHint.bottomAutoEdge,
 };
 
-function useCachedBounds(props: IPositioningContainerProps, targetWindow: Window | undefined) {
+function useBounds(props: IPositioningContainerProps, targetWindow: Window | undefined) {
   /** The bounds used when determining if and where the PositioningContainer should be placed. */
-  const positioningBounds = React.useRef<IRectangle>();
 
-  const getCachedBounds = (): IRectangle => {
-    if (!positioningBounds.current) {
-      let currentBounds = props.bounds;
+  const getBounds = (): IRectangle => {
+    let currentBounds = props.bounds;
 
-      if (!currentBounds) {
-        currentBounds = {
-          top: 0 + props.minPagePadding!,
-          left: 0 + props.minPagePadding!,
-          right: targetWindow!.innerWidth - props.minPagePadding!,
-          bottom: targetWindow!.innerHeight - props.minPagePadding!,
-          width: targetWindow!.innerWidth - props.minPagePadding! * 2,
-          height: targetWindow!.innerHeight - props.minPagePadding! * 2,
-        };
-      }
-      positioningBounds.current = currentBounds;
+    if (!currentBounds) {
+      currentBounds = {
+        top: 0 + props.minPagePadding!,
+        left: 0 + props.minPagePadding!,
+        right: targetWindow!.innerWidth - props.minPagePadding!,
+        bottom: targetWindow!.innerHeight - props.minPagePadding!,
+        width: targetWindow!.innerWidth - props.minPagePadding! * 2,
+        height: targetWindow!.innerHeight - props.minPagePadding! * 2,
+      };
     }
-    return positioningBounds.current;
+    return currentBounds;
   };
 
-  return getCachedBounds;
+  return getBounds;
 }
 
 function usePositionState(
@@ -68,6 +65,8 @@ function usePositionState(
   getCachedBounds: () => IRectangle,
 ) {
   const async = useAsync();
+  const doc = useDocumentEx();
+  const win = useWindowEx();
   /**
    * Current set of calculated positions for the outermost parent container.
    */
@@ -94,13 +93,15 @@ function usePositionState(
         // or don't check anything else if the target is a Point or Rectangle
         if (
           (!(target as Element).getBoundingClientRect && !(target as MouseEvent).preventDefault) ||
-          document.body.contains(target as Node)
+          doc?.body.contains(target as Node)
         ) {
           currentProps!.gapSpace = offsetFromTarget;
           const newPositions: IPositionedData = positionElement(
             currentProps!,
             hostElement,
             positioningContainerElement,
+            undefined,
+            win,
           );
           // Set the new position only when the positions are not exists or one of the new positioningContainer
           // positions are different. The position should not change if the position is within 2 decimal places.
@@ -156,6 +157,7 @@ function useMaxHeight(
    * without going beyond the window or target bounds
    */
   const maxHeight = React.useRef<number | undefined>();
+  const win = useWindowEx();
 
   // If the target element changed, reset the max height. If we are tracking
   // target with class name, always reset because we do not know if
@@ -175,7 +177,14 @@ function useMaxHeight(
     if (!maxHeight.current) {
       if (directionalHintFixed && targetRef.current) {
         const gapSpace = offsetFromTarget ? offsetFromTarget : 0;
-        maxHeight.current = getMaxHeight(targetRef.current, directionalHint!, gapSpace, getCachedBounds());
+        maxHeight.current = getMaxHeight(
+          targetRef.current,
+          directionalHint!,
+          gapSpace,
+          getCachedBounds(),
+          undefined,
+          win,
+        );
       } else {
         maxHeight.current = getCachedBounds().height! - BORDER_WIDTH * 2;
       }
@@ -260,8 +269,10 @@ export function useHeightOffset(
   /**
    * Tracks the current height offset and updates during
    * the height animation when props.finalHeight is specified.
+   * State stored as object to ensure re-render even if the value does not change.
+   *  See https://github.com/microsoft/fluentui/issues/23545
    */
-  const [heightOffset, setHeightOffset] = React.useState<number>(0);
+  const [heightOffset, setHeightOffset] = React.useState<{ value: number }>({ value: 0 });
   const async = useAsync();
   const setHeightOffsetTimer = React.useRef<number>(0);
 
@@ -278,7 +289,7 @@ export function useHeightOffset(
         const cardCurrHeight: number = positioningContainerMainElem.offsetHeight;
         const scrollDiff: number = cardScrollHeight - cardCurrHeight;
 
-        setHeightOffset(heightOffset + scrollDiff);
+        setHeightOffset({ value: heightOffset.value + scrollDiff });
 
         if (positioningContainerMainElem.offsetHeight < finalHeight) {
           setHeightOffsetEveryFrame();
@@ -292,14 +303,14 @@ export function useHeightOffset(
   // eslint-disable-next-line react-hooks/exhaustive-deps -- should only re-run if finalHeight changes
   React.useEffect(setHeightOffsetEveryFrame, [finalHeight]);
 
-  return heightOffset;
+  return heightOffset.value;
 }
 
 export const PositioningContainer: React.FunctionComponent<IPositioningContainerProps> = React.forwardRef<
   HTMLDivElement,
   IPositioningContainerProps
 >((propsWithoutDefaults, forwardedRef) => {
-  const props = getPropsWithDefaults(DEFAULT_PROPS, propsWithoutDefaults);
+  const props = getPropsWithDefaults<IPositioningContainerProps>(DEFAULT_PROPS, propsWithoutDefaults);
 
   // @TODO rename to reflect the name of this class
   const contentHost = React.useRef<HTMLDivElement>(null);
@@ -310,7 +321,7 @@ export const PositioningContainer: React.FunctionComponent<IPositioningContainer
   const rootRef = useMergedRefs(forwardedRef, positionedHost);
 
   const [targetRef, targetWindow] = useTarget(props.target, positionedHost);
-  const getCachedBounds = useCachedBounds(props, targetWindow);
+  const getCachedBounds = useBounds(props, targetWindow);
   const [positions, updateAsyncPosition] = usePositionState(
     props,
     positionedHost,
@@ -370,7 +381,7 @@ export const PositioningContainer: React.FunctionComponent<IPositioningContainer
     </div>
   );
 
-  return doNotLayer ? content : <Layer>{content}</Layer>;
+  return doNotLayer ? content : <Layer {...props.layerProps}>{content}</Layer>;
 });
 PositioningContainer.displayName = 'PositioningContainer';
 

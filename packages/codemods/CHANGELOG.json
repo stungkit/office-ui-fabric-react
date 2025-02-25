@@ -2,6 +2,269 @@
   "name": "@fluentui/codemods",
   "entries": [
     {
+      "date": "Mon, 20 Jan 2025 07:21:45 GMT",
+      "tag": "@fluentui/codemods_v8.4.27",
+      "version": "8.4.27",
+      "comments": {
+        "none": [
+          {
+            "author": "vgenaev@gmail.com",
+            "package": "@fluentui/codemods",
+            "commit": "fd420e1e0b66e04c8a423cff3eea6d21d9434d2d",
+            "comment": "chore: migrate from deprecation plugin to ts-eslint/no-deprecated rule"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 23 Dec 2024 07:22:57 GMT",
+      "tag": "@fluentui/codemods_v8.4.27",
+      "version": "8.4.27",
+      "comments": {
+        "patch": [
+          {
+            "author": "olfedias@microsoft.com",
+            "package": "@fluentui/codemods",
+            "commit": "dc7bb663e3d93a19b611cf1892556d69c57b1269",
+            "comment": "chore: remove usage of \"export *\""
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 11 Jul 2024 07:33:36 GMT",
+      "tag": "@fluentui/codemods_v8.4.26",
+      "version": "8.4.26",
+      "comments": {
+        "none": [
+          {
+            "author": "vgenaev@gmail.com",
+            "package": "@fluentui/codemods",
+            "commit": "ff2c81325d734ddff92e606ac681c22c710f262f",
+            "comment": "remove redundant forceConsistentCasingInFileNames option"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 09 Jul 2024 07:36:39 GMT",
+      "tag": "@fluentui/codemods_v8.4.26",
+      "version": "8.4.26",
+      "comments": {
+        "none": [
+          {
+            "author": "martinhochel@microsoft.com",
+            "package": "@fluentui/codemods",
+            "commit": "674cdee6cfb1cb34e6ba1b24f665d0b8751a5dea",
+            "comment": "chore: remove npmScope from project name"
+          }
+        ],
+        "patch": [
+          {
+            "author": "martinhochel@microsoft.com",
+            "package": "@fluentui/codemods",
+            "commit": "4edb54ea6e32b7ee68a9e3a8444378711a9d66f9",
+            "comment": "fix: revert incorectly set npm versions in all packages"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 22 Mar 2024 07:28:52 GMT",
+      "tag": "@fluentui/codemods_v8.4.16",
+      "version": "8.4.16",
+      "comments": {
+        "patch": [
+          {
+            "author": "behowell@microsoft.com",
+            "package": "@fluentui/codemods",
+            "commit": "9237b8c77a00da7995e31e130f60f563544079e6",
+            "comment": "fix: Build errors in TypeScript 5.3"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 28 Jun 2023 07:37:31 GMT",
+      "tag": "@fluentui/codemods_v8.4.12",
+      "version": "8.4.12",
+      "comments": {
+        "none": [
+          {
+            "author": "martinhochel@microsoft.com",
+            "package": "@fluentui/codemods",
+            "commit": "fbe878e9c9785588197481f172c42c2c0a230292",
+            "comment": "fix: update .npmignore to unify v8 packages and exclude project.json"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 31 May 2023 07:38:38 GMT",
+      "tag": "@fluentui/codemods_v8.4.12",
+      "version": "8.4.12",
+      "comments": {
+        "patch": [
+          {
+            "author": "martinhochel@microsoft.com",
+            "package": "@fluentui/codemods",
+            "commit": "4b637ced41e430bf8d79c7fc67c103d5efdfd3a8",
+            "comment": "fix: tweak type errors exposed in ts 4.5"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 03 Mar 2023 07:47:18 GMT",
+      "tag": "@fluentui/codemods_v8.4.8",
+      "version": "8.4.8",
+      "comments": {
+        "none": [
+          {
+            "author": "martinhochel@microsoft.com",
+            "package": "@fluentui/codemods",
+            "commit": "677a67b551966986db34a6fac608cb89ee150471",
+            "comment": "style: apply prettier 2.3-2.8 formatting on whole codebase"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 11 Jan 2023 07:50:50 GMT",
+      "tag": "@fluentui/codemods_v8.4.7",
+      "version": "8.4.7",
+      "comments": {
+        "none": [
+          {
+            "author": "martinhochel@microsoft.com",
+            "package": "@fluentui/codemods",
+            "commit": "64bb45980d68de1219c6b36a7db5363f0a9cff9f",
+            "comment": "chore: migrate to packaged scripts"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 02 Jan 2023 07:46:40 GMT",
+      "tag": "@fluentui/codemods_v8.4.6",
+      "version": "8.4.6",
+      "comments": {
+        "none": [
+          {
+            "author": "martinhochel@microsoft.com",
+            "package": "@fluentui/codemods",
+            "commit": "4ec2b998b294d6d9c3196d3d82893bdd97d0c105",
+            "comment": "chore(scripts): move index.ts to  to follow sub-folder domain packaging"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 30 Dec 2022 07:50:57 GMT",
+      "tag": "@fluentui/codemods_v8.4.6",
+      "version": "8.4.6",
+      "comments": {
+        "none": [
+          {
+            "author": "martinhochel@microsoft.com",
+            "package": "@fluentui/codemods",
+            "commit": "194b0cf0cc27c1c1233aa945f09b3ad29778d8ca",
+            "comment": "chore(scripts): use for @fluentui/scripts version within all package.json"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 26 Dec 2022 07:45:09 GMT",
+      "tag": "@fluentui/codemods_v8.4.6",
+      "version": "8.4.6",
+      "comments": {
+        "none": [
+          {
+            "author": "martinhochel@microsoft.com",
+            "package": "@fluentui/codemods",
+            "commit": "613f784ec4ef8055efdebcf1ff31540ad9b8eadd",
+            "comment": "chore: enable strict checking in all just-config files and their dependencies"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 01 Dec 2022 07:57:06 GMT",
+      "tag": "@fluentui/codemods_v8.4.6",
+      "version": "8.4.6",
+      "comments": {
+        "none": [
+          {
+            "author": "martinhochel@microsoft.com",
+            "package": "@fluentui/codemods",
+            "commit": "c46ff8dec351ebf57efb4114366016010b285429",
+            "comment": "chore: enable isolateModules"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 12 Oct 2022 07:38:30 GMT",
+      "tag": "@fluentui/codemods_v8.4.5",
+      "version": "8.4.5",
+      "comments": {
+        "patch": [
+          {
+            "author": "miroslav.stastny@microsoft.com",
+            "package": "@fluentui/codemods",
+            "commit": "90200f61726f12deb407611ec32067301efeb0e9",
+            "comment": "fix: Do not fail on empty configMod config"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 24 Aug 2022 16:36:05 GMT",
+      "tag": "@fluentui/codemods_v8.4.4",
+      "version": "8.4.4",
+      "comments": {
+        "patch": [
+          {
+            "author": "tristan.watanabe@gmail.com",
+            "package": "@fluentui/codemods",
+            "commit": "7c7f113c5db25307df478f48612dd0fa77f8e8d4",
+            "comment": "fix: fixes broken publish."
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 23 Aug 2022 07:22:49 GMT",
+      "tag": "@fluentui/codemods_v8.4.3",
+      "version": "8.4.3",
+      "comments": {
+        "patch": [
+          {
+            "author": "tristan.watanabe@gmail.com",
+            "package": "@fluentui/codemods",
+            "commit": "c8f9d1ef1983bffe9917da81b097f503f587faa9",
+            "comment": "fix: Update React dependency to 17.0.2."
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 25 Jul 2022 07:36:54 GMT",
+      "tag": "@fluentui/codemods_v8.4.1",
+      "version": "8.4.1",
+      "comments": {
+        "none": [
+          {
+            "author": "martinhochel@microsoft.com",
+            "package": "@fluentui/codemods",
+            "commit": "f79394055c953c73943709259ff257982b143f1e",
+            "comment": "chore: update package.json main/types field to accomodate new 'build' task behaviours"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 18 May 2022 07:41:14 GMT",
       "tag": "@fluentui/codemods_v8.4.1",
       "version": "8.4.1",

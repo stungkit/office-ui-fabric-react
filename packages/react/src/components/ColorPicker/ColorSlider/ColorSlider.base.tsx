@@ -41,7 +41,7 @@ export class ColorSliderBase extends React.Component<IColorSliderProps, IColorSl
       maxValue: 'type',
       minValue: 'type',
     });
-    // eslint-disable-next-line deprecation/deprecation
+    // eslint-disable-next-line @typescript-eslint/no-deprecated
     if (this._type !== 'hue' && !(props.overlayColor || props.overlayStyle)) {
       warn(`ColorSlider: 'overlayColor' is required when 'type' is "alpha" or "transparency"`);
     }
@@ -63,7 +63,19 @@ export class ColorSliderBase extends React.Component<IColorSliderProps, IColorSl
     }
   }
 
+  public componentDidMount(): void {
+    if (this._root.current) {
+      // with Chrome's passive DOM listeners, stopPropagation and preventDefault only work if passive is false.
+      this._root.current.addEventListener('touchstart', this._onTouchStart, { capture: true, passive: false });
+      this._root.current.addEventListener('touchmove', this._onTouchMove, { capture: true, passive: false });
+    }
+  }
+
   public componentWillUnmount() {
+    if (this._root.current) {
+      this._root.current.removeEventListener('touchstart', this._onTouchStart);
+      this._root.current.removeEventListener('touchmove', this._onTouchMove);
+    }
     this._disposeListeners();
   }
 
@@ -71,7 +83,7 @@ export class ColorSliderBase extends React.Component<IColorSliderProps, IColorSl
     const type = this._type;
     const maxValue = this._maxValue;
     const {
-      // eslint-disable-next-line deprecation/deprecation
+      // eslint-disable-next-line @typescript-eslint/no-deprecated
       overlayStyle,
       overlayColor,
       theme,
@@ -127,7 +139,7 @@ export class ColorSliderBase extends React.Component<IColorSliderProps, IColorSl
   }
 
   private get _type(): IColorSliderProps['type'] {
-    // eslint-disable-next-line deprecation/deprecation
+    // eslint-disable-next-line @typescript-eslint/no-deprecated
     const { isAlpha, type = isAlpha ? 'alpha' : 'hue' } = this.props;
     return type;
   }
@@ -143,7 +155,7 @@ export class ColorSliderBase extends React.Component<IColorSliderProps, IColorSl
 
     // Intentionally DO NOT flip the color picker in RTL: its orientation is not very meaningful,
     // and getting all the math and styles flipped correctly is tricky
-    // eslint-disable-next-line deprecation/deprecation
+    // eslint-disable-next-line @typescript-eslint/no-deprecated
     switch (ev.which) {
       case KeyCodes.left: {
         currentValue -= increment;
@@ -196,12 +208,44 @@ export class ColorSliderBase extends React.Component<IColorSliderProps, IColorSl
     this._updateValue(ev, newValue);
   };
 
+  private _onTouchStart = (ev: TouchEvent): void => {
+    if (!this._root.current) {
+      return;
+    }
+
+    // prevent touch from scrolling the page so that the touch can be dragged on the color rectangle.
+    ev.stopPropagation();
+  };
+
+  private _onTouchMove = (ev: TouchEvent): void => {
+    if (!this._root.current) {
+      return;
+    }
+
+    const lastTouch = ev.touches[ev.touches.length - 1];
+    if (lastTouch.clientX !== undefined) {
+      const maxValue = this._maxValue;
+      const rectSize = this._root.current.getBoundingClientRect();
+
+      const currentPercentage = (lastTouch.clientX - rectSize.left) / rectSize.width;
+      const newValue = clamp(Math.round(currentPercentage * maxValue), maxValue);
+
+      this._updateValue(ev, newValue);
+    }
+
+    ev.preventDefault();
+    ev.stopPropagation();
+  };
+
   private _disposeListeners = (): void => {
     this._disposables.forEach(dispose => dispose());
     this._disposables = [];
   };
 
-  private _updateValue(ev: MouseEvent | KeyboardEvent | React.MouseEvent | React.KeyboardEvent, newValue: number) {
+  private _updateValue(
+    ev: MouseEvent | KeyboardEvent | React.MouseEvent | React.KeyboardEvent | TouchEvent,
+    newValue: number,
+  ) {
     if (newValue === this.value) {
       return;
     }

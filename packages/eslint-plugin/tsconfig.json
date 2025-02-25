@@ -3,13 +3,14 @@
     "noEmit": true,
     "allowJs": true,
     "checkJs": true,
-    "module": "commonjs",
-    "moduleResolution": "node",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "noUnusedLocals": true,
     "skipLibCheck": true,
     "strict": true,
-    "types": ["node"]
+    "types": ["node"],
+    "isolatedModules": true
   },
-  "include": ["src/**/*"],
+  "include": ["./src/**/*.js", "./src/**/*.ts"],
   "exclude": ["**/fixtures/**/*"]
 }

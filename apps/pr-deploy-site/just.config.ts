@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
-import { series, task, copyInstructionsTask, copyInstructions, cleanTask } from '@fluentui/scripts';
-import { findGitRoot, getAllPackageInfo } from '@fluentui/scripts/monorepo/index';
+import { series, task, copyInstructionsTask, copyInstructions, cleanTask } from '@fluentui/scripts-tasks';
+import { findGitRoot, getAllPackageInfo } from '@fluentui/scripts-monorepo';
 
 task('clean', cleanTask());
 
@@ -24,11 +24,14 @@ const dependencies = [
   '@fluentui/public-docsite',
   '@fluentui/react',
   '@fluentui/react-charting',
+  '@fluentui/chart-web-components',
+  '@fluentui/chart-docsite',
   '@fluentui/public-docsite-v9',
   '@fluentui/react-experiments',
   '@fluentui/web-components',
   '@fluentui/perf-test',
   '@fluentui/theming-designer',
+  '@fluentui/theme-designer',
   '@fluentui/perf-test-react-components',
 ];
 

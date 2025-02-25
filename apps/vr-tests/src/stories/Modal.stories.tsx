@@ -1,23 +1,25 @@
 import * as React from 'react';
-import Screener from 'screener-storybook/src/screener';
-import { storiesOf } from '@storybook/react';
-import { TestWrapperDecorator } from '../utilities/index';
+import { Steps } from 'storywright';
+import { StoryWrightDecorator, TestWrapperDecorator } from '../utilities';
 import { Modal } from '@fluentui/react/lib/Modal';
 
-storiesOf('Modal', module)
-  .addDecorator(TestWrapperDecorator)
-  .addDecorator(story =>
-    // prettier-ignore
-    <Screener
-      steps={new Screener.Steps()
-        .snapshot('default', { cropTo: '.ms-Modal' })
-        .end()}
-    >
-      {story()}
-    </Screener>,
-  )
-  .addStory('Root', () => (
-    <Modal isOpen isBlocking={false}>
-      Modal content
-    </Modal>
-  ));
+export default {
+  title: 'Modal',
+
+  decorators: [
+    TestWrapperDecorator,
+    StoryWrightDecorator(new Steps().snapshot('default', { cropTo: '.ms-Modal' }).end()),
+  ],
+};
+
+export const Root = () => (
+  <Modal isOpen isBlocking={false}>
+    Modal content
+  </Modal>
+);
+
+export const Modeless = () => (
+  <Modal isModeless isOpen>
+    Modeless Modal content
+  </Modal>
+);

@@ -3,7 +3,7 @@ import { DetailsListBase } from './DetailsList.base';
 import { SelectionMode } from '../../Selection';
 import { ScrollToMode } from '../../List';
 import type { ISelection, ISelectionZoneProps } from '../../Selection';
-import type { IRefObject, IBaseProps, IRenderFunction, IStyleFunctionOrObject } from '../../Utilities';
+import type { IRefObject, IBaseProps, IRenderFunction, IStyleFunctionOrObject, IComponentAs } from '../../Utilities';
 import type { IDragDropEvents, IDragDropContext, IDragDropHelper, IDragDropOptions } from '../../DragDrop';
 import type { IGroup, IGroupRenderProps, IGroupDividerProps, IGroupedListProps } from '../GroupedList/index';
 import type { IDetailsRowProps, IDetailsRowBaseProps } from '../DetailsList/DetailsRow';
@@ -125,7 +125,7 @@ export interface IDetailsListProps extends IBaseProps<IDetailsList>, IWithViewpo
   /**
    * Additional props to pass through to the SelectionZone created by default.
    */
-  selectionZoneProps?: ISelectionZoneProps;
+  selectionZoneProps?: Partial<ISelectionZoneProps>;
 
   /** Controls how the columns are adjusted. */
   layoutMode?: DetailsListLayoutMode;
@@ -332,6 +332,13 @@ export interface IDetailsListProps extends IBaseProps<IDetailsList>, IWithViewpo
   /** Whether to disable the built-in SelectionZone, so the host component can provide its own. */
   disableSelectionZone?: boolean;
 
+  /**
+   * Determines if an item is selected on focus.
+   *
+   * @defaultvalue true
+   */
+  isSelectedOnFocus?: boolean;
+
   /** Whether to animate updates */
   enableUpdateAnimations?: boolean;
 
@@ -433,6 +440,9 @@ export interface IColumn {
   /** If true, allow the column to be collapsed when rendered in justified layout. */
   isCollapsible?: boolean;
 
+  /** If true, column header will render an icon indicating column is sortable while unsorted */
+  showSortIconWhenUnsorted?: boolean;
+
   /** Determines if the column is currently sorted. Renders a sort arrow in the column header. */
   isSorted?: boolean;
 
@@ -470,6 +480,9 @@ export interface IColumn {
 
   /** Callback for when the user opens the column header context menu. */
   onColumnContextMenu?: (column?: IColumn, ev?: React.MouseEvent<HTMLElement>) => void;
+
+  /** Callback for when the user performs a keyboard action on the column header */
+  onColumnKeyDown?: (ev: React.KeyboardEvent, column: IColumn) => void;
 
   /**
    * Callback for when the column is resized (`width` is the current width).
@@ -512,6 +525,12 @@ export interface IColumn {
    * This will be read after the main column header label.
    */
   sortDescendingAriaLabel?: string;
+
+  /**
+   * Accessible label for indicating that the list could be sorted by this column but isn't currently.
+   * This will be read after the main column header label.
+   */
+  sortableAriaLabel?: string;
 
   /** Accessible label for the status of this column when grouped. */
   groupAriaLabel?: string;
@@ -684,6 +703,7 @@ export interface IDetailsListStyles {
 export interface IDetailsGroupRenderProps extends IGroupRenderProps {
   onRenderFooter?: IRenderFunction<IDetailsGroupDividerProps>;
   onRenderHeader?: IRenderFunction<IDetailsGroupDividerProps>;
+  groupedListAs?: IComponentAs<IGroupedListProps>;
 }
 
 /**

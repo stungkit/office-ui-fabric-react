@@ -46,13 +46,13 @@ export class DocumentCardPreviewBase extends React.Component<IDocumentCardPrevie
       preview = this._renderPreviewImage(previewImages[0]);
 
       // Override the border color if an accent color was provided
-      /* eslint-disable deprecation/deprecation */
+      /* eslint-disable @typescript-eslint/no-deprecated */
       if (previewImages[0].accentColor) {
         style = {
           borderBottomColor: previewImages[0].accentColor,
         };
       }
-      /* eslint-enable deprecation/deprecation */
+      /* eslint-enable @typescript-eslint/no-deprecated */
     }
 
     return (
@@ -69,10 +69,7 @@ export class DocumentCardPreviewBase extends React.Component<IDocumentCardPrevie
 
     if (previewIconProps) {
       return (
-        <div
-          className={css(this._classNames.previewIcon, previewIconContainerClass)}
-          style={{ width: width, height: height }}
-        >
+        <div className={css(this._classNames.previewIcon, previewIconContainerClass)} style={{ width, height }}>
           <Icon {...previewIconProps} />
         </div>
       );
@@ -130,7 +127,7 @@ export class DocumentCardPreviewBase extends React.Component<IDocumentCardPrevie
         />
         <Link
           className={this._classNames.fileListLink}
-          // eslint-disable-next-line deprecation/deprecation
+          // eslint-disable-next-line @typescript-eslint/no-deprecated
           href={file.url}
           {...file.linkProps}
         >

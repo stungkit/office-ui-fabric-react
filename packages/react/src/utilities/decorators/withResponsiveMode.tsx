@@ -74,7 +74,7 @@ export function getInitialResponsiveMode(): ResponsiveMode {
 export function withResponsiveMode<TProps extends { responsiveMode?: ResponsiveMode }, TState>(
   ComposedComponent: new (props: TProps, ...args: any[]) => React.Component<TProps, TState>,
 ): any {
-  // eslint-disable-next-line deprecation/deprecation
+  // eslint-disable-next-line @typescript-eslint/no-deprecated
   const resultClass = class WithResponsiveMode extends BaseDecorator<TProps, IWithResponsiveModeState> {
     public static contextType = WindowContext;
     public context: React.ContextType<typeof WindowContext>;
@@ -125,6 +125,14 @@ export function withResponsiveMode<TProps extends { responsiveMode?: ResponsiveM
   return hoistStatics(ComposedComponent, resultClass);
 }
 
+function getWidthOfCurrentWindow(currentWindow: Window): number {
+  try {
+    return currentWindow.document.documentElement.clientWidth;
+  } catch (e) {
+    return currentWindow.innerWidth;
+  }
+}
+
 /**
  * Hook to get the current responsive mode (window size category).
  * @param currentWindow - Use this window when determining the responsive mode.
@@ -134,7 +142,7 @@ export function getResponsiveMode(currentWindow: Window | undefined): Responsive
 
   if (currentWindow) {
     try {
-      while (currentWindow.innerWidth > RESPONSIVE_MAX_CONSTRAINT[responsiveMode]) {
+      while (getWidthOfCurrentWindow(currentWindow) > RESPONSIVE_MAX_CONSTRAINT[responsiveMode]) {
         responsiveMode++;
       }
     } catch (e) {

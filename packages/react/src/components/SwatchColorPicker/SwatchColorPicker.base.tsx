@@ -10,6 +10,7 @@ import type {
 } from './SwatchColorPicker.types';
 import type { IColorCellProps } from './ColorPickerGridCell.types';
 import type { IButtonGridProps } from '../../utilities/ButtonGrid/ButtonGrid.types';
+import { useDocumentEx } from '../../utilities/dom';
 
 interface ISwatchColorPickerInternalState {
   isNavigationIdle: boolean;
@@ -40,6 +41,7 @@ export const SwatchColorPickerBase: React.FunctionComponent<ISwatchColorPickerPr
 >((props, ref) => {
   const defaultId = useId('swatchColorPicker');
   const id = props.id || defaultId;
+  const doc = useDocumentEx();
 
   const internalState = useConst<ISwatchColorPickerInternalState>({
     isNavigationIdle: true,
@@ -66,7 +68,7 @@ export const SwatchColorPickerBase: React.FunctionComponent<ISwatchColorPickerPr
     focusOnHover,
     mouseLeaveParentSelector,
     onChange,
-    // eslint-disable-next-line deprecation/deprecation
+    // eslint-disable-next-line @typescript-eslint/no-deprecated
     onColorChanged,
     onCellHovered,
     onCellFocused,
@@ -74,6 +76,7 @@ export const SwatchColorPickerBase: React.FunctionComponent<ISwatchColorPickerPr
     cellHeight,
     cellWidth,
     cellBorderWidth,
+    onRenderColorCellContent,
   } = props;
 
   /**
@@ -81,7 +84,7 @@ export const SwatchColorPickerBase: React.FunctionComponent<ISwatchColorPickerPr
    */
   const itemsWithIndex = React.useMemo(() => {
     return colorCells.map((item, index) => {
-      return { ...item, index: index };
+      return { ...item, index };
     });
   }, [colorCells]);
 
@@ -160,13 +163,13 @@ export const SwatchColorPickerBase: React.FunctionComponent<ISwatchColorPickerPr
       const targetElement = ev.currentTarget as HTMLElement;
 
       // If navigation is idle and the targetElement is the focused element bail out
-      if (internalState.isNavigationIdle && !(document && targetElement === (document.activeElement as HTMLElement))) {
+      if (internalState.isNavigationIdle && !(doc && targetElement === (doc.activeElement as HTMLElement))) {
         targetElement.focus();
       }
 
       return true;
     },
-    [focusOnHover, internalState, disabled],
+    [focusOnHover, internalState, disabled, doc],
   );
 
   /**
@@ -181,7 +184,7 @@ export const SwatchColorPickerBase: React.FunctionComponent<ISwatchColorPickerPr
       }
 
       // Get the elements that math the given selector
-      const elements = document.querySelectorAll(parentSelector);
+      const elements = doc?.querySelectorAll(parentSelector) ?? [];
 
       // iterate over the elements return to make sure it is a parent of the target and focus it
       for (let index = 0; index < elements.length; index += 1) {
@@ -205,7 +208,7 @@ export const SwatchColorPickerBase: React.FunctionComponent<ISwatchColorPickerPr
         }
       }
     },
-    [disabled, focusOnHover, internalState, mouseLeaveParentSelector],
+    [disabled, focusOnHover, internalState, mouseLeaveParentSelector, doc],
   );
 
   /**
@@ -244,7 +247,7 @@ export const SwatchColorPickerBase: React.FunctionComponent<ISwatchColorPickerPr
    */
   const onCellClick = React.useCallback(
     (item: IColorCellProps, event?: React.MouseEvent<HTMLButtonElement>): void => {
-      if (disabled) {
+      if (disabled || item.disabled) {
         return;
       }
 
@@ -282,13 +285,13 @@ export const SwatchColorPickerBase: React.FunctionComponent<ISwatchColorPickerPr
   const onKeyDown = React.useCallback(
     (ev: React.KeyboardEvent<HTMLButtonElement>): void => {
       if (
-        // eslint-disable-next-line deprecation/deprecation
+        // eslint-disable-next-line @typescript-eslint/no-deprecated
         ev.which === KeyCodes.up ||
-        // eslint-disable-next-line deprecation/deprecation
+        // eslint-disable-next-line @typescript-eslint/no-deprecated
         ev.which === KeyCodes.down ||
-        // eslint-disable-next-line deprecation/deprecation
+        // eslint-disable-next-line @typescript-eslint/no-deprecated
         ev.which === KeyCodes.left ||
-        // eslint-disable-next-line deprecation/deprecation
+        // eslint-disable-next-line @typescript-eslint/no-deprecated
         ev.which === KeyCodes.right
       ) {
         setNavigationTimeout();
@@ -309,7 +312,7 @@ export const SwatchColorPickerBase: React.FunctionComponent<ISwatchColorPickerPr
         idPrefix={id}
         color={item.color}
         styles={getColorGridCellStyles}
-        disabled={disabled}
+        disabled={disabled || item.disabled}
         onClick={onCellClick}
         onHover={onGridCellHovered}
         onFocus={onGridCellFocused}
@@ -321,6 +324,7 @@ export const SwatchColorPickerBase: React.FunctionComponent<ISwatchColorPickerPr
         onMouseLeave={onMouseLeave}
         onWheel={setNavigationTimeout}
         onKeyDown={onKeyDown}
+        onRenderColorCellContent={onRenderColorCellContent}
         height={cellHeight}
         width={cellWidth}
         borderWidth={cellBorderWidth}
@@ -339,7 +343,7 @@ export const SwatchColorPickerBase: React.FunctionComponent<ISwatchColorPickerPr
   };
   return (
     <ButtonGrid
-      {...((props as unknown) as IButtonGridProps)}
+      {...(props as unknown as IButtonGridProps)}
       ref={ref}
       id={id}
       items={itemsWithIndex}

@@ -5,18 +5,37 @@ import {
   ExampleCard,
   IComponentDemoPageProps,
   PropertiesTableSet,
+  Markdown,
 } from '@fluentui/react-docsite-components';
 
 import { AreaChartBasicExample } from './AreaChart.Basic.Example';
 import { AreaChartMultipleExample } from './AreaChart.Multiple.Example';
 import { AreaChartStyledExample } from './AreaChart.Styled.Example';
 import { AreaChartCustomAccessibilityExample } from './AreaChart.CustomAccessibility.Example';
+import { AreaChartLargeDataExample } from './AreaChart.LargeData.Example';
+import { AreaChartDataChangeExample } from './AreaChart.DataChange.Example';
+import { AreaChartNegativeExample } from './AreaChart.Negative.Example';
+import { AreaChartMultipleNegativeExample } from './AreaChart.MultipleNegative.Example';
+import { AreaChartAllNegativeExample } from './AreaChart.AllNegative.Example';
 
-const AreaChartBasicExampleCode = require('!raw-loader?esModule=false!@fluentui/react-examples/src/react-charting/AreaChart/AreaChart.Basic.Example.tsx') as string;
-const AreaChartMultipleExampleCode = require('!raw-loader?esModule=false!@fluentui/react-examples/src/react-charting/AreaChart/AreaChart.Multiple.Example.tsx') as string;
-const AreaChartStyledExampleCode = require('!raw-loader?esModule=false!@fluentui/react-examples/src/react-charting/AreaChart/AreaChart.Styled.Example.tsx') as string;
-const AreaChartCustomAccessibilityExampleCode = require('!raw-loader?esModule=false!@fluentui/react-examples/src/react-charting/AreaChart/AreaChart.CustomAccessibility.Example.tsx') as string;
-
+const AreaChartBasicExampleCode =
+  require('!raw-loader?esModule=false!@fluentui/react-examples/src/react-charting/AreaChart/AreaChart.Basic.Example.tsx') as string;
+const AreaChartMultipleExampleCode =
+  require('!raw-loader?esModule=false!@fluentui/react-examples/src/react-charting/AreaChart/AreaChart.Multiple.Example.tsx') as string;
+const AreaChartStyledExampleCode =
+  require('!raw-loader?esModule=false!@fluentui/react-examples/src/react-charting/AreaChart/AreaChart.Styled.Example.tsx') as string;
+const AreaChartCustomAccessibilityExampleCode =
+  require('!raw-loader?esModule=false!@fluentui/react-examples/src/react-charting/AreaChart/AreaChart.CustomAccessibility.Example.tsx') as string;
+const AreaChartLargeDataExampleCode =
+  require('!raw-loader?esModule=false!@fluentui/react-examples/src/react-charting/AreaChart/AreaChart.LargeData.Example.tsx') as string;
+const AreaChartDataChangeExampleCode =
+  require('!raw-loader?esModule=false!@fluentui/react-examples/src/react-charting/AreaChart/AreaChart.DataChange.Example.tsx') as string;
+const AreaChartNegativeExampleCode =
+  require('!raw-loader?esModule=false!@fluentui/react-examples/src/react-charting/AreaChart/AreaChart.Negative.Example.tsx') as string;
+const AreaChartMultipleNegativeExampleCode =
+  require('!raw-loader?esModule=false!@fluentui/react-examples/src/react-charting/AreaChart/AreaChart.MultipleNegative.Example.tsx') as string;
+const AreaChartAllNegativeExampleCode =
+  require('!raw-loader?esModule=false!@fluentui/react-examples/src/react-charting/AreaChart/AreaChart.AllNegative.Example.tsx') as string;
 export class AreaChart extends React.Component<IComponentDemoPageProps, {}> {
   public render(): JSX.Element {
     return (
@@ -37,25 +56,51 @@ export class AreaChart extends React.Component<IComponentDemoPageProps, {}> {
             <ExampleCard title="Area chart custom Accessibility" code={AreaChartCustomAccessibilityExampleCode}>
               <AreaChartCustomAccessibilityExample />
             </ExampleCard>
+            <ExampleCard title="Area chart large data" code={AreaChartLargeDataExampleCode}>
+              <AreaChartLargeDataExample />
+            </ExampleCard>
+            <ExampleCard title="Area chart Data Change" code={AreaChartDataChangeExampleCode}>
+              <AreaChartDataChangeExample />
+            </ExampleCard>
+            <ExampleCard title="Area chart some negative y value data" code={AreaChartNegativeExampleCode}>
+              <AreaChartNegativeExample />
+            </ExampleCard>
+            <ExampleCard title="Area chart Multiple negative y value data" code={AreaChartMultipleNegativeExampleCode}>
+              <AreaChartMultipleNegativeExample />
+            </ExampleCard>
+            <ExampleCard title="Area chart All negative y value data" code={AreaChartAllNegativeExampleCode}>
+              <AreaChartAllNegativeExample />
+            </ExampleCard>
           </div>
         }
         propertiesTables={
           <PropertiesTableSet
             sources={[
               require<string>('!raw-loader?esModule=false!@fluentui/react-charting/src/components/AreaChart/AreaChart.types.ts'),
+              require<string>('!raw-loader?esModule=false!@fluentui/react-charting/src/components/CommonComponents/CartesianChart.types.ts'),
             ]}
           />
         }
         isHeaderVisible={this.props.isHeaderVisible}
         overview={
-          <div>
-            <p>
-              Area charts depict a time-series relationship. But unlike line charts, they can also visually represent
-              volume. Information is graphed on two axes, using data points connected by line segments. The area between
-              the axis and this line is commonly emphasized with color or shading for legibility. Most often area charts
-              compare two or more categories.
-            </p>
-          </div>
+          <Markdown>
+            {require<string>('!raw-loader?esModule=false!@fluentui/react-examples/src/react-charting/AreaChart/docs/AreaChartOverview.md')}
+          </Markdown>
+        }
+        bestPractices={
+          <Markdown>
+            {require<string>('!raw-loader?esModule=false!@fluentui/react-examples/src/react-charting/AreaChart/docs/AreaChartBestPractices.md')}
+          </Markdown>
+        }
+        dos={
+          <Markdown>
+            {require<string>('!raw-loader?esModule=false!@fluentui/react-examples/src/react-charting/AreaChart/docs/AreaChartDos.md')}
+          </Markdown>
+        }
+        donts={
+          <Markdown>
+            {require<string>('!raw-loader?esModule=false!@fluentui/react-examples/src/react-charting/AreaChart/docs/AreaChartDonts.md')}
+          </Markdown>
         }
       />
     );

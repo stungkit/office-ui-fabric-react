@@ -1,4 +1,5 @@
 // @ts-check
+const { __internal } = require('../internal');
 const configHelpers = require('../utils/configHelpers');
 
 /** @type {import("eslint").Linter.Config} */
@@ -13,7 +14,7 @@ const config = {
     'prettier',
   ],
   parser: '@typescript-eslint/parser',
-  plugins: ['import', '@fluentui', '@rnx-kit', '@typescript-eslint', 'deprecation', 'jest', 'jsdoc'],
+  plugins: ['import', '@fluentui', '@rnx-kit', '@typescript-eslint', 'jest', 'jsdoc', ...__internal.plugins],
   settings: {
     'import/resolver': {
       // @see https://github.com/alexgorbatchev/eslint-import-resolver-typescript#configuration
@@ -53,6 +54,7 @@ const config = {
     'lib-commonjs',
     'node_modules',
     'temp',
+    'bundle-size',
     '**/__snapshots__',
     '**/*.scss.ts',
   ],
@@ -124,7 +126,7 @@ const config = {
     'no-useless-escape': 'off',
     'no-useless-rename': 'off',
     'no-useless-return': 'off',
-    'object-shorthand': 'off',
+    'object-shorthand': 'warn',
     'operator-assignment': 'off',
     'prefer-destructuring': 'off',
     'prefer-template': 'off',
@@ -237,7 +239,7 @@ const typeAwareRules = {
   /**
    * plugin: https://github.com/gund/eslint-plugin-deprecation
    */
-  'deprecation/deprecation': 'error',
+  '@typescript-eslint/no-deprecated': 'error',
 };
 
 /**
@@ -307,7 +309,7 @@ const getOverrides = () => [
   {
     files: 'src/**/*.deprecated.test.{ts,tsx}',
     rules: {
-      'deprecation/deprecation': 'off', // the purpose of these tests
+      '@typescript-eslint/no-deprecated': 'off',
     },
   },
   {

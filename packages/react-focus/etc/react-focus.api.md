@@ -5,6 +5,7 @@
 ```ts
 
 import type { IRefObject } from '@fluentui/utilities';
+import { MergeStylesShadowRootContextValue } from '@fluentui/utilities';
 import type { Point } from '@fluentui/utilities';
 import * as React_2 from 'react';
 
@@ -12,14 +13,20 @@ import * as React_2 from 'react';
 export class FocusZone extends React_2.Component<IFocusZoneProps> implements IFocusZone {
     constructor(props: IFocusZoneProps);
     // (undocumented)
+    get activeElement(): HTMLElement | null;
+    // (undocumented)
     componentDidMount(): void;
     // (undocumented)
     componentDidUpdate(): void;
     // (undocumented)
     componentWillUnmount(): void;
     // (undocumented)
+    static contextType: React_2.Context<MergeStylesShadowRootContextValue | undefined>;
+    // (undocumented)
+    get defaultFocusElement(): HTMLElement | null;
+    // (undocumented)
     static defaultProps: IFocusZoneProps;
-    focus(forceIntoFirstElement?: boolean): boolean;
+    focus(forceIntoFirstElement?: boolean, bypassHiddenElements?: boolean): boolean;
     focusElement(element: HTMLElement, forceAlignment?: boolean): boolean;
     focusLast(): boolean;
     static getOuterZones(): number;
@@ -44,11 +51,11 @@ export const FocusZoneTabbableElements: {
 };
 
 // @public (undocumented)
-export type FocusZoneTabbableElements = typeof FocusZoneTabbableElements[keyof typeof FocusZoneTabbableElements];
+export type FocusZoneTabbableElements = (typeof FocusZoneTabbableElements)[keyof typeof FocusZoneTabbableElements];
 
 // @public
 export interface IFocusZone {
-    focus(forceIntoFirstElement?: boolean): boolean;
+    focus(forceIntoFirstElement?: boolean, bypassHiddenElements?: boolean): boolean;
     focusElement(childElement?: HTMLElement, forceAlignment?: boolean): boolean;
     focusLast(): boolean;
     setFocusAlignment(point: Point): void;

@@ -1,11 +1,12 @@
 {
-  "extends": ["plugin:@fluentui/eslint-plugin/react"],
+  "extends": ["plugin:@fluentui/eslint-plugin/react--legacy"],
   "root": true,
   "overrides": [
     {
       "files": ["bin/*.js", "src/loadSite.ts"],
       "rules": {
-        "no-console": "off"
+        "no-console": "off",
+        "no-restricted-globals": "off"
       }
     },
     {

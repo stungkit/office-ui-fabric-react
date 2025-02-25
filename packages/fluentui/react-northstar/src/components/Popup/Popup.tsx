@@ -18,9 +18,9 @@ import {
 } from '@fluentui/react-bindings';
 import { EventListener } from '@fluentui/react-component-event-listener';
 import { NodeRef, Unstable_NestingAuto } from '@fluentui/react-component-nesting-registry';
-import { handleRef, Ref, RefFindNode, RefForward } from '@fluentui/react-component-ref';
+import { handleRef, Ref } from '@fluentui/react-component-ref';
 import * as customPropTypes from '@fluentui/react-proptypes';
-import * as PopperJs from '@popperjs/core';
+import type { VirtualElement as PopperJsVirtualElement } from '@popperjs/core';
 import * as _ from 'lodash';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
@@ -58,7 +58,7 @@ export type RestrictedHoverEvents = 'hover' | 'focus' | 'context';
 export type PopupEventsArray = RestrictedClickEvents[] | RestrictedHoverEvents[];
 
 function getRealEventProps(element: React.ReactElement) {
-  if (element.type === Ref || element.type === RefFindNode || element.type === RefForward) {
+  if (element.type === Ref) {
     return getRealEventProps(element.props.children as React.ReactElement);
   }
 
@@ -190,7 +190,7 @@ export const Popup: React.FC<PopupProps> &
   const triggerRef = React.useRef<HTMLElement>();
   // focusable element which has triggered Popup, can be either triggerDomElement or the element inside it
   const triggerFocusableRef = React.useRef<HTMLElement>();
-  const rightClickReferenceObject = React.useRef<PopperJs.VirtualElement | null>();
+  const rightClickReferenceObject = React.useRef<PopperJsVirtualElement | null>();
 
   useOnIFrameFocus(open, context.target, (e: Event) => {
     const iframeInsidePopup = elementContains(popupContentRef.current, e.target as HTMLElement);
@@ -433,67 +433,69 @@ export const Popup: React.FC<PopupProps> &
     return relatedTarget && !(isInsideContent || isInsideTarget);
   };
 
-  const renderPopperChildren = classes => ({ placement, scheduleUpdate }: PopperChildrenProps) => {
-    const content = renderContent ? renderContent(scheduleUpdate) : props.content;
-    const popupContent = Popup.Content.create(content || {}, {
-      defaultProps: () =>
-        getA11yProps('popup', {
-          ...getContentProps(),
-          placement,
-          pointing,
-          pointerRef: pointerTargetRef,
-          trapFocus,
-          autoFocus,
-          autoSize,
-          className: classes,
-        }),
-      overrideProps: getContentProps,
-    });
+  const renderPopperChildren =
+    classes =>
+    ({ placement, scheduleUpdate }: PopperChildrenProps) => {
+      const content = renderContent ? renderContent(scheduleUpdate) : props.content;
+      const popupContent = Popup.Content.create(content || {}, {
+        defaultProps: () =>
+          getA11yProps('popup', {
+            ...getContentProps(),
+            placement,
+            pointing,
+            pointerRef: pointerTargetRef,
+            trapFocus,
+            autoFocus,
+            autoSize,
+            className: classes,
+          }),
+        overrideProps: getContentProps,
+      });
 
-    return (
-      <Unstable_NestingAuto>
-        {(getRefs, nestingRef) => (
-          <>
-            <Ref
-              innerRef={domElement => {
-                popupContentRef.current = domElement;
-                handleRef(contentRef, domElement);
-                nestingRef.current = domElement;
-              }}
-            >
-              {popupContent}
-            </Ref>
+      return (
+        <Unstable_NestingAuto>
+          {(getRefs, nestingRef) => (
+            <>
+              <Ref
+                innerRef={domElement => {
+                  popupContentRef.current = domElement;
+                  handleRef(contentRef, domElement);
+                  nestingRef.current = domElement;
+                }}
+              >
+                {popupContent}
+              </Ref>
 
-            {context.target && (
-              <>
-                <EventListener listener={handleMouseDown} target={context.target} type="mousedown" />
-                <EventListener listener={handleDocumentClick(getRefs)} target={context.target} type="click" capture />
-                <EventListener
-                  listener={handleDocumentClick(getRefs)}
-                  target={context.target}
-                  type="contextmenu"
-                  capture
-                />
-                <EventListener
-                  listener={handleDocumentKeyDown(getRefs)}
-                  target={context.target}
-                  type="keydown"
-                  capture
-                />
+              {context.target && (
+                <>
+                  <EventListener listener={handleMouseDown} target={context.target} type="mousedown" />
+                  <EventListener listener={handleDocumentClick(getRefs)} target={context.target} type="click" capture />
+                  <EventListener
+                    listener={handleDocumentClick(getRefs)}
+                    target={context.target}
+                    type="contextmenu"
+                    capture
+                  />
+                  <EventListener
+                    listener={handleDocumentKeyDown(getRefs)}
+                    target={context.target}
+                    type="keydown"
+                    capture
+                  />
 
-                {(isOpenedByRightClick || closeOnScroll) && (
-                  <>
-                    <EventListener listener={dismissOnScroll} target={context.target} type="wheel" capture />
-                    <EventListener listener={dismissOnScroll} target={context.target} type="touchmove" capture />
-                  </>
-                )}
-              </>
-            )}
-          </>
-        )}
-      </Unstable_NestingAuto>
-    );
-  };
+                  {(isOpenedByRightClick || closeOnScroll) && (
+                    <>
+                      <EventListener listener={dismissOnScroll} target={context.target} type="wheel" capture />
+                      <EventListener listener={dismissOnScroll} target={context.target} type="touchmove" capture />
+                    </>
+                  )}
+                </>
+              )}
+            </>
+          )}
+        </Unstable_NestingAuto>
+      );
+    };
 
   const dismissOnScroll = (e: TouchEvent | WheelEvent) => {
     // we only need to dismiss if the scroll happens outside the popup

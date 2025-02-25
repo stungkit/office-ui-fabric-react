@@ -3,6 +3,7 @@ import { useEventCallback } from './useEventCallback';
 import type { UseOnClickOrScrollOutsideOptions } from './useOnClickOutside';
 
 /**
+ * @internal
  * Utility to perform checks where a click/touch event was made outside a component
  */
 export const useOnScrollOutside = (options: UseOnClickOrScrollOutsideOptions) => {
@@ -12,17 +13,21 @@ export const useOnScrollOutside = (options: UseOnClickOrScrollOutsideOptions) =>
     const contains: UseOnClickOrScrollOutsideOptions['contains'] =
       containsProp || ((parent, child) => !!parent?.contains(child));
 
-    const isOutside = refs.every(ref => !contains(ref.current || null, ev.target as HTMLElement));
+    const target = ev.composedPath()[0] as HTMLElement;
+    const isOutside = refs.every(ref => !contains(ref.current || null, target));
+
     if (isOutside && !disabled) {
       callback(ev);
     }
   });
 
   React.useEffect(() => {
-    if (!disabled) {
-      element?.addEventListener('wheel', listener);
-      element?.addEventListener('touchmove', listener);
+    if (disabled) {
+      return;
     }
+
+    element?.addEventListener('wheel', listener);
+    element?.addEventListener('touchmove', listener);
 
     return () => {
       element?.removeEventListener('wheel', listener);

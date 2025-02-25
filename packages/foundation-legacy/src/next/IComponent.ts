@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IStyleSet } from '@fluentui/style-utilities';
+import { IStyleSetBase } from '@fluentui/style-utilities';
 import { IComponentOptions as IOldComponentOptions } from '../IComponent';
 import { ISlots, ISlotDefinition, ISlottableProps } from '../ISlots';
 
@@ -39,10 +39,10 @@ export type IPartialSlotComponent<TComponentProps extends ISlottableProps<TCompo
 export interface IComponentOptions<
   TComponentProps extends ISlottableProps<TComponentSlots>,
   TTokens,
-  TStyleSet extends IStyleSet<TStyleSet>,
+  TStyleSet extends IStyleSetBase,
   TViewProps = TComponentProps,
   TComponentSlots = {},
-  TStatics = {}
+  TStatics = {},
 > extends IOldComponentOptions<TComponentProps, TTokens, TStyleSet, TViewProps, TStatics> {
   /**
    * Slot definition object defining the slot component for each slot.
@@ -57,10 +57,10 @@ export interface IComponentOptions<
 export interface IRecompositionComponentOptions<
   TComponentProps extends ISlottableProps<TComponentSlots>,
   TTokens,
-  TStyleSet extends IStyleSet<TStyleSet>,
+  TStyleSet extends IStyleSetBase,
   TViewProps = TComponentProps,
   TComponentSlots = {},
-  TStatics = {}
+  TStatics = {},
 > extends IOldComponentOptions<TComponentProps, TTokens, TStyleSet, TViewProps, TStatics> {
   /**
    * Slot definition object defining the slot component for each slot.
@@ -78,8 +78,8 @@ export interface IRecompositionComponentOptions<
 export type IComponent<
   TComponentProps extends ISlottableProps<TComponentSlots>,
   TTokens,
-  TStyleSet extends IStyleSet<TStyleSet>,
+  TStyleSet extends IStyleSetBase,
   TViewProps = TComponentProps,
   TComponentSlots = {},
-  TStatics = {}
+  TStatics = {},
 > = Required<IComponentOptions<TComponentProps, TTokens, TStyleSet, TViewProps, TComponentSlots, TStatics>>;

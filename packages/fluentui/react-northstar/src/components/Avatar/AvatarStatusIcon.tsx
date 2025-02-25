@@ -9,10 +9,11 @@ import {
   ForwardRefWithAs,
 } from '@fluentui/react-bindings';
 import * as PropTypes from 'prop-types';
-import { commonPropTypes, UIComponentProps, createShorthandFactory, SizeValue } from '../../utils';
+import { commonPropTypes, UIComponentProps, createShorthandFactory } from '../../utils';
 import * as customPropTypes from '@fluentui/react-proptypes';
 import { FluentComponentStaticProps } from '../../types';
 import { Accessibility } from '@fluentui/accessibility';
+import { AvatarSizeValue } from './Avatar';
 
 export interface AvatarStatusIconProps extends UIComponentProps {
   /** Accessibility behavior if overridden by the user. */
@@ -22,7 +23,7 @@ export interface AvatarStatusIconProps extends UIComponentProps {
   state?: 'success' | 'info' | 'warning' | 'error' | 'unknown';
 
   /** Size multiplier */
-  size?: SizeValue;
+  size?: AvatarSizeValue;
 }
 
 export type AvatarStatusIconStylesProps = Required<Pick<AvatarStatusIconProps, 'size' | 'state'>>;
@@ -31,7 +32,7 @@ export const avatarStatusIconClassName = 'ui-avatar__statusicon';
 /**
  * A AvatarStatusIcon provides a status icon for the Avatar.
  */
-export const AvatarStatusIcon = (React.forwardRef<HTMLSpanElement, AvatarStatusIconProps>((props, ref) => {
+export const AvatarStatusIcon = React.forwardRef<HTMLSpanElement, AvatarStatusIconProps>((props, ref) => {
   const context = useFluentContext();
   const { setStart, setEnd } = useTelemetry(AvatarStatusIcon.displayName, context.telemetry);
   setStart();
@@ -67,7 +68,7 @@ export const AvatarStatusIcon = (React.forwardRef<HTMLSpanElement, AvatarStatusI
   setEnd();
 
   return element;
-}) as unknown) as ForwardRefWithAs<'span', HTMLSpanElement, AvatarStatusIconProps> & FluentComponentStaticProps;
+}) as unknown as ForwardRefWithAs<'span', HTMLSpanElement, AvatarStatusIconProps> & FluentComponentStaticProps;
 
 AvatarStatusIcon.displayName = 'AvatarStatusIcon';
 AvatarStatusIcon.propTypes = {

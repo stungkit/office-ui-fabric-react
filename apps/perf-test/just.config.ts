@@ -1,7 +1,9 @@
-import { getPerfRegressions } from './tasks/perf-test';
-import { preset, task, series } from '@fluentui/scripts';
+import { preset, task, series, getPerfRegressions } from '@fluentui/scripts-tasks';
+
+import { config } from './config/perf-test';
 
 preset();
 
-task('run-perf-test', getPerfRegressions);
-task('perf-test', series('build', 'bundle', 'run-perf-test'));
+task('perf-test:bundle', series('clean', 'copy', 'bundle'));
+task('run-perf-test', () => getPerfRegressions(config));
+task('perf-test', series('run-perf-test'));

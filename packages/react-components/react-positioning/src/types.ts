@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-type Rect = {
+export type PositioningRect = {
   width: number;
   height: number;
   x: number;
@@ -8,11 +8,34 @@ type Rect = {
 };
 
 export type OffsetFunctionParam = {
-  positionedRect: Rect;
-  targetRect: Rect;
+  positionedRect: PositioningRect;
+  targetRect: PositioningRect;
   position: Position;
   alignment?: Alignment;
 };
+
+export type TargetElement = HTMLElement | PositioningVirtualElement;
+
+/**
+ * @internal
+ */
+export interface PositionManager {
+  updatePosition: () => void;
+  dispose: () => void;
+}
+
+export interface UsePositioningReturn {
+  // React refs are supposed to be contravariant
+  // (allows a more general type to be passed rather than a more specific one)
+  // However, Typescript currently can't infer that fact for refs
+  // See https://github.com/microsoft/TypeScript/issues/30748 for more information
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  targetRef: React.MutableRefObject<any>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  containerRef: React.MutableRefObject<any>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  arrowRef: React.MutableRefObject<any>;
+}
 
 export type OffsetObject = { crossAxis?: number; mainAxis: number };
 
@@ -26,8 +49,19 @@ export type Position = 'above' | 'below' | 'before' | 'after';
 export type Alignment = 'top' | 'bottom' | 'start' | 'end' | 'center';
 
 export type AutoSize = 'height' | 'height-always' | 'width' | 'width-always' | 'always' | boolean;
+export type NormalizedAutoSize = { applyMaxWidth: boolean; applyMaxHeight: boolean };
 
-export type Boundary = HTMLElement | Array<HTMLElement> | 'clippingParents' | 'scrollParent' | 'window';
+export type PositioningBoundary =
+  | PositioningRect
+  | HTMLElement
+  | Array<HTMLElement>
+  | 'clippingParents'
+  | 'scrollParent'
+  | 'window';
+/**
+ * @deprecated use PositioningBoundary instead
+ */
+export type Boundary = PositioningBoundary;
 
 export type PositioningImperativeRef = {
   /**
@@ -40,7 +74,7 @@ export type PositioningImperativeRef = {
    * Sets the target and updates positioning imperatively.
    * Useful for avoiding double renders with the target option.
    */
-  setTarget: (target: HTMLElement | PositioningVirtualElement) => void;
+  setTarget: (target: TargetElement | null) => void;
 };
 
 export type PositioningVirtualElement = {
@@ -57,15 +91,26 @@ export type PositioningVirtualElement = {
   contextElement?: Element;
 };
 
+export type SetVirtualMouseTarget = (event: React.MouseEvent | MouseEvent | undefined | null) => void;
+
+/**
+ * Internal options for positioning
+ */
 export interface PositioningOptions {
   /** Alignment for the component. Only has an effect if used with the @see position option */
   align?: Alignment;
 
   /** The element which will define the boundaries of the positioned element for the flip behavior. */
-  flipBoundary?: Boundary;
+  flipBoundary?: PositioningBoundary | null;
 
   /** The element which will define the boundaries of the positioned element for the overflow behavior. */
-  overflowBoundary?: Boundary;
+  overflowBoundary?: PositioningBoundary | null;
+
+  /**
+   * Applies a padding to the overflow bounadry, so that overflow is detected earlier before the
+   * positioned surface hits the overflow boundary.
+   */
+  overflowBoundaryPadding?: number | Partial<{ top: number; end: number; bottom: number; start: number }>;
 
   /**
    * Position for the component. Position has higher priority than align. If position is vertical ('above' | 'below')
@@ -78,8 +123,15 @@ export interface PositioningOptions {
   /**
    * Enables the position element to be positioned with 'fixed' (default value is position: 'absolute')
    * @default false
+   * @deprecated use `strategy` instead
    */
   positionFixed?: boolean;
+
+  /**
+   * Specifies the type of CSS position property to use.
+   * @default absolute
+   */
+  strategy?: 'absolute' | 'fixed';
 
   /**
    * Lets you displace a positioned element from its reference element.
@@ -95,11 +147,11 @@ export interface PositioningOptions {
   arrowPadding?: number;
 
   /**
-   * Applies max-height and max-width on the positioned element to fit it within the available space in viewport.
-   * true enables this for both width and height when overflow happens.
-   * 'always' applies `max-height`/`max-width` regardless of overflow.
-   * 'height' applies `max-height` when overflow happens, and 'width' for `max-width`
-   * `height-always` applies `max-height` regardless of overflow, and 'width-always' for always applying `max-width`
+   * Applies styles on the positioned element to fit it within the available space in viewport.
+   * - true: set styles for max height/width.
+   * - 'height': set styles for max height.
+   * - 'width'': set styles for max width.
+   * Note that options 'always'/'height-always'/'width-always' are now obsolete, and equivalent to true/'height'/'width'.
    */
   autoSize?: AutoSize;
 
@@ -120,18 +172,80 @@ export interface PositioningOptions {
    */
   // eslint-disable-next-line @typescript-eslint/naming-convention
   unstable_disableTether?: boolean | 'all';
+
+  /**
+   * If flip fails to stop the positioned element from overflowing
+   * its boundaries, use a specified fallback positions.
+   */
+  fallbackPositions?: PositioningShorthandValue[];
+
+  /**
+   * Modifies whether popover is positioned using transform.
+   * @default true
+   */
+  useTransform?: boolean;
+
+  /**
+   * If false, does not position anything
+   */
+  enabled?: boolean;
+
+  /**
+   * When set, the positioned element matches the chosen dimension(s) of the target element
+   */
+  matchTargetSize?: 'width';
+
+  /**
+   * Called when a position update has finished. Multiple position updates can happen in a single render,
+   * since positioning happens outside of the React lifecycle.
+   *
+   * It's also possible to listen to the custom DOM event `fui-positioningend`
+   */
+  onPositioningEnd?: () => void;
+
+  /**
+   * Disables the resize observer that updates position on target or dimension change
+   */
+  disableUpdateOnResize?: boolean;
+
+  /**
+   * When true, the positioned element will shift to cover the target element when there's not enough space.
+   * @default false
+   */
+  shiftToCoverTarget?: boolean;
 }
 
+/**
+ * Public api that allows components using react-positioning to specify positioning options
+ */
 export interface PositioningProps
-  // "positionFixed" & "unstable_disableTether" are not exported as public API (yet)
-  extends Omit<PositioningOptions, 'positionFixed' | 'unstable_disableTether'> {
+  extends Pick<
+    PositioningOptions,
+    | 'align'
+    | 'arrowPadding'
+    | 'autoSize'
+    | 'coverTarget'
+    | 'fallbackPositions'
+    | 'flipBoundary'
+    | 'offset'
+    | 'overflowBoundary'
+    | 'overflowBoundaryPadding'
+    | 'pinned'
+    | 'position'
+    | 'strategy'
+    | 'useTransform'
+    | 'matchTargetSize'
+    | 'onPositioningEnd'
+    | 'disableUpdateOnResize'
+    | 'shiftToCoverTarget'
+  > {
   /** An imperative handle to Popper methods. */
   positioningRef?: React.Ref<PositioningImperativeRef>;
 
   /**
    * Manual override for the target element. Useful for scenarios where a component accepts user prop to override target
    */
-  target?: HTMLElement | PositioningVirtualElement | null;
+  target?: TargetElement | null;
 }
 
 export type PositioningShorthandValue =

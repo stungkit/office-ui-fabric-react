@@ -10,8 +10,6 @@ These design toolkits provide styles, controls and layout templates that enable 
   <li className="mdut--half">[Download Android toolkit (Sketch)](https://aka.ms/FluentToolkits/Android/Sketch)</li>
   <li className="mdut--half">[Download Android toolkit (Figma)](https://aka.ms/FluentToolkits/Android/Figma)</li>
   <li className="mdut--half">[Download Windows toolkit (Figma)](https://aka.ms/figmatoolkit)</li>
-  <li className="mdut--half">[Download Figma plug-in](https://www.figma.com/community/plugin/794492287931420611/Fluent-Theme-Designer)</li>
-
 </ul>
 
 <!-- headings get auto-generated IDs usually, and this page has two "SharePoint Framework" headings -->
@@ -22,16 +20,6 @@ These SharePoint design resources provide everything you need to design your web
 <ul className="md-list--flex">
   <li className="mdut--half">[Designing SharePoint experiences](https://aka.ms/spdesign)</li>
   <li className="mdut--half">[SharePoint Toolkit (Figma)](https://aka.ms/SharePointToolkits/Web/Figma)</li>
-</ul>
-
-<h3 id="office-add-ins-design">Office Add-ins</h3>
-
-The Add-ins design toolkit provides layouts for interface elements and commonly used patterns in Word, Excel, and PowerPoint. Use it in addition to the Microsoft design toolkits to create an add-in that fits within Office.
-
-<ul className="md-list--flex">
-  <li className="mdut--half">[Add-ins Toolkit (Sketch)](https://aka.ms/addins_sketch_toolkit)</li>
-  <li className="mdut--half">[Designing Office Add-ins](https://docs.microsoft.com/en-us/office/dev/add-ins/design/add-in-design)</li>
-  <li className="mdut--half">[Add-ins Toolkit (XD)](https://aka.ms/addins_toolkit)</li>
 </ul>
 
 ### Fonts

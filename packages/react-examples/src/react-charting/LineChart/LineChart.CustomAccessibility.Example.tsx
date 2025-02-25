@@ -1,6 +1,12 @@
 import * as React from 'react';
-import { IChartProps, ILineChartPoints, ILineChartProps, LineChart } from '@fluentui/react-charting';
-import { DefaultPalette } from '@fluentui/react/lib/Styling';
+import {
+  IChartProps,
+  ILineChartPoints,
+  ILineChartProps,
+  LineChart,
+  DataVizPalette,
+  getColorFromToken,
+} from '@fluentui/react-charting';
 import { Toggle } from '@fluentui/react/lib/Toggle';
 
 interface ILineChartCustomAccessibilityExampleState {
@@ -25,7 +31,7 @@ export class LineChartCustomAccessibilityExample extends React.Component<
   public render(): JSX.Element {
     return (
       <>
-        <label htmlFor="changeWidth_Custom">change Width:</label>
+        <label htmlFor="changeWidth_Custom">Change Width:</label>
         <input
           type="range"
           value={this.state.width}
@@ -35,7 +41,7 @@ export class LineChartCustomAccessibilityExample extends React.Component<
           onChange={this._onWidthChange}
           aria-valuetext={`ChangeWidthSlider${this.state.width}`}
         />
-        <label htmlFor="changeHeight_Custom">change Height:</label>
+        <label htmlFor="changeHeight_Custom">Change Height:</label>
         <input
           type="range"
           value={this.state.height}
@@ -113,7 +119,10 @@ export class LineChartCustomAccessibilityExample extends React.Component<
           },
         ],
         legend: 'First',
-        color: DefaultPalette.blue,
+        color: DataVizPalette.color4,
+        lineOptions: {
+          lineBorderWidth: '4',
+        },
         onLegendClick: this._onLegendClickHandler,
       },
       {
@@ -145,7 +154,10 @@ export class LineChartCustomAccessibilityExample extends React.Component<
           },
         ],
         legend: 'Second',
-        color: DefaultPalette.green,
+        color: DataVizPalette.color5,
+        lineOptions: {
+          lineBorderWidth: '4',
+        },
         onLegendClick: this._onLegendClickHandler,
       },
       {
@@ -157,7 +169,10 @@ export class LineChartCustomAccessibilityExample extends React.Component<
           { x: new Date('2018/05/01'), y: 50, callOutAccessibilityData: { ariaLabel: 'Point 3 Third 50' } },
         ],
         legend: 'Third',
-        color: DefaultPalette.red,
+        color: DataVizPalette.color6,
+        lineOptions: {
+          lineBorderWidth: '4',
+        },
         onLegendClick: this._onLegendClickHandler,
       },
     ];
@@ -180,7 +195,7 @@ export class LineChartCustomAccessibilityExample extends React.Component<
     const colorFillBarData = [
       {
         legend: 'Time range 1',
-        color: 'blue',
+        color: getColorFromToken(DataVizPalette.color11),
         data: [
           {
             startX: new Date('2018/01/06'),
@@ -190,7 +205,7 @@ export class LineChartCustomAccessibilityExample extends React.Component<
       },
       {
         legend: 'Time range 2',
-        color: 'red',
+        color: getColorFromToken(DataVizPalette.color10),
         data: [
           {
             startX: new Date('2018/01/18'),
@@ -216,6 +231,8 @@ export class LineChartCustomAccessibilityExample extends React.Component<
           legendProps={{ canSelectMultipleLegends: true, allowFocusOnLegends: true }}
           colorFillBars={colorFillBarData}
           allowMultipleShapesForPoints={this.state.allowMultipleShapes}
+          enablePerfOptimization={true}
+          useUTC={false}
         />
       </div>
     );

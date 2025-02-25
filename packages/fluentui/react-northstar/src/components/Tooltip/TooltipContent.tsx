@@ -9,7 +9,7 @@ import {
   ForwardRefWithAs,
 } from '@fluentui/react-bindings';
 import * as customPropTypes from '@fluentui/react-proptypes';
-import * as PopperJs from '@popperjs/core';
+import type { BasePlacement as PopperJsBasePlacement, Placement as PopperJsPlacement } from '@popperjs/core';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 
@@ -49,7 +49,7 @@ export interface TooltipContentProps extends UIComponentProps, ChildrenComponent
 }
 
 export type TooltipContentStylesProps = Required<Pick<TooltipContentProps, 'pointing' | 'open' | 'subtle'>> & {
-  basePlacement: PopperJs.BasePlacement;
+  basePlacement: PopperJsBasePlacement;
 };
 
 export const tooltipContentClassName = 'ui-tooltip__content';
@@ -57,7 +57,7 @@ export const tooltipContentClassName = 'ui-tooltip__content';
 /**
  * A TooltipContent contains the content of a Tooltip component.
  */
-export const TooltipContent = (React.forwardRef<HTMLDivElement, TooltipContentProps>((props, ref) => {
+export const TooltipContent = React.forwardRef<HTMLDivElement, TooltipContentProps>((props, ref) => {
   const context = useFluentContext();
   const { setStart, setEnd } = useTelemetry(TooltipContent.displayName, context.telemetry);
   setStart();
@@ -120,14 +120,14 @@ export const TooltipContent = (React.forwardRef<HTMLDivElement, TooltipContentPr
   setEnd();
 
   return element;
-}) as unknown) as ForwardRefWithAs<'div', HTMLDivElement, TooltipContentProps> &
+}) as unknown as ForwardRefWithAs<'div', HTMLDivElement, TooltipContentProps> &
   FluentComponentStaticProps<TooltipContentProps>;
 
 TooltipContent.displayName = 'TooltipContent';
 
 TooltipContent.propTypes = {
   ...commonPropTypes.createCommon(),
-  placement: PropTypes.oneOf<PopperJs.Placement>([
+  placement: PropTypes.oneOf<PopperJsPlacement>([
     'auto-start',
     'auto',
     'auto-end',

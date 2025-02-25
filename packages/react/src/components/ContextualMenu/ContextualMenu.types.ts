@@ -5,7 +5,14 @@ import type { IIconProps } from '../../Icon';
 import type { ICalloutProps, ICalloutContentStyleProps } from '../../Callout';
 import type { ITheme, IStyle } from '../../Styling';
 import type { IButtonStyles } from '../../Button';
-import type { IRefObject, IBaseProps, IRectangle, IRenderFunction, IStyleFunctionOrObject } from '../../Utilities';
+import type {
+  IRefObject,
+  IBaseProps,
+  IRectangle,
+  IRenderFunction,
+  IStyleFunctionOrObject,
+  IComponentAs,
+} from '../../Utilities';
 import type { IWithResponsiveModeState } from '../../ResponsiveMode';
 import type { IContextualMenuClassNames, IMenuItemClassNames } from './ContextualMenu.classNames';
 import type { IVerticalDividerClassNames } from '../Divider/VerticalDivider.types';
@@ -18,6 +25,7 @@ import type {
 import type { IKeytipProps } from '../../Keytip';
 import type { Target } from '@fluentui/react-hooks';
 import type { IPopupRestoreFocusParams } from '../../Popup';
+import { IContextualMenuItemWrapperProps } from './ContextualMenuItemWrapper/ContextualMenuItemWrapper.types';
 
 export { DirectionalHint } from '../../common/DirectionalHint';
 
@@ -42,11 +50,12 @@ export interface IContextualMenu {}
 export interface IContextualMenuProps
   extends IBaseProps<IContextualMenu>,
     React.RefAttributes<HTMLDivElement>,
-    // eslint-disable-next-line deprecation/deprecation
+    // eslint-disable-next-line @typescript-eslint/no-deprecated
     IWithResponsiveModeState {
   /**
    * Optional callback to access the IContextualMenu interface. Use this instead of ref for accessing
    * the public methods and properties of the component.
+   * @deprecated ContextualMenu has no imperative methods, so componentRef no longer returns a ref
    */
   componentRef?: IRefObject<IContextualMenu>;
 
@@ -223,7 +232,7 @@ export interface IContextualMenuProps
    * Method to provide the classnames to style the contextual menu.
    * @deprecated Use `styles` instead to leverage mergeStyles API.
    */
-  // eslint-disable-next-line deprecation/deprecation
+  // eslint-disable-next-line @typescript-eslint/no-deprecated
   getMenuClassNames?: (theme: ITheme, className?: string) => IContextualMenuClassNames;
 
   /** Custom render function for a submenu. */
@@ -249,9 +258,7 @@ export interface IContextualMenuProps
    * Custom component to use for rendering individual menu items.
    * @defaultvalue ContextualMenuItem
    */
-  contextualMenuItemAs?:
-    | React.ComponentClass<IContextualMenuItemProps>
-    | React.FunctionComponent<IContextualMenuItemProps>;
+  contextualMenuItemAs?: IComponentAs<IContextualMenuItemProps>;
 
   /**
    * Props to pass down to the FocusZone.
@@ -265,7 +272,7 @@ export interface IContextualMenuProps
    * Custom component to use for rendering the focus zone (the root).
    * @defaultValue FocusZone
    */
-  focusZoneAs?: React.ComponentClass<IFocusZoneProps> | React.FunctionComponent<IFocusZoneProps>;
+  focusZoneAs?: IComponentAs<IFocusZoneProps>;
 
   /**
    * If true, renders the ContextualMenu in a hidden state.
@@ -459,7 +466,7 @@ export interface IContextualMenuItem {
     iconClassName?: string,
     subMenuClassName?: string,
     primaryDisabled?: boolean,
-  ) => // eslint-disable-next-line deprecation/deprecation
+  ) => // eslint-disable-next-line @typescript-eslint/no-deprecated
   IMenuItemClassNames;
 
   /**
@@ -472,7 +479,7 @@ export interface IContextualMenuItem {
    * Default value is the `getSplitButtonVerticalDividerClassNames` func defined in `ContextualMenu.classnames.ts`.
    * @defaultvalue getSplitButtonVerticalDividerClassNames
    */
-  // eslint-disable-next-line deprecation/deprecation
+  // eslint-disable-next-line @typescript-eslint/no-deprecated
   getSplitButtonVerticalDividerClassNames?: (theme: ITheme) => IVerticalDividerClassNames;
 
   /**
@@ -514,6 +521,16 @@ export interface IContextualMenuItem {
    * item click dismisses the menu. (Will be undefined if rendering a command bar item.)
    */
   onRender?: (item: any, dismissMenu: (ev?: any, dismissAll?: boolean) => void) => React.ReactNode;
+
+  /**
+   * An override for the child content of the contextual menu item.
+   */
+  contextualMenuItemAs?: IComponentAs<IContextualMenuItemProps>;
+
+  /**
+   * An override for the entire component used to render the contextal menu item.
+   */
+  contextualMenuItemWrapperAs?: IComponentAs<IContextualMenuItemWrapperProps>;
 
   /**
    * Method to customize sub-components rendering of this menu item.

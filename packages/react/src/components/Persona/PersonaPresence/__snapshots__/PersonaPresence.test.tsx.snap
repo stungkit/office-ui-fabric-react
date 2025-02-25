@@ -20,7 +20,7 @@ exports[`PersonaPresence renders available + out of office 1`] = `
         top: auto;
         width: 12px;
       }
-      @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+      @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
         background-color: WindowText;
         border-color: Window;
       }
@@ -35,7 +35,7 @@ exports[`PersonaPresence renders available + out of office 1`] = `
         top: 0px;
         width: 100%;
       }
-      @media screen and (-ms-high-contrast: active), (forced-colors: active){&:before {
+      @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:before {
         border-color: Window;
         height: calc(100% - 2px);
         left: 1px;
@@ -60,9 +60,10 @@ exports[`PersonaPresence renders available + out of office 1`] = `
           font-weight: normal;
           line-height: 12px;
           speak: none;
+          text-decoration: inherit;
           vertical-align: top;
         }
-        @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+        @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
           color: Window;
         }
     data-icon-name="SkypeCheck"
@@ -92,7 +93,7 @@ exports[`PersonaPresence renders available 1`] = `
         top: auto;
         width: 12px;
       }
-      @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+      @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
         background-color: Highlight;
         border-color: Window;
       }
@@ -113,9 +114,10 @@ exports[`PersonaPresence renders available 1`] = `
           font-weight: normal;
           line-height: 12px;
           speak: none;
+          text-decoration: inherit;
           vertical-align: top;
         }
-        @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+        @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
           color: Window;
         }
     data-icon-name="SkypeCheck"
@@ -145,7 +147,7 @@ exports[`PersonaPresence renders away + out of office 1`] = `
         top: auto;
         width: 12px;
       }
-      @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+      @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
         background-color: WindowText;
         border-color: Window;
       }
@@ -160,7 +162,7 @@ exports[`PersonaPresence renders away + out of office 1`] = `
         top: 0px;
         width: 100%;
       }
-      @media screen and (-ms-high-contrast: active), (forced-colors: active){&:before {
+      @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:before {
         border-color: Window;
         height: calc(100% - 2px);
         left: 1px;
@@ -186,9 +188,10 @@ exports[`PersonaPresence renders away + out of office 1`] = `
           line-height: 12px;
           position: relative;
           speak: none;
+          text-decoration: inherit;
           vertical-align: top;
         }
-        @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+        @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
           color: Window;
         }
     data-icon-name="SkypeArrow"
@@ -218,7 +221,7 @@ exports[`PersonaPresence renders away 1`] = `
         top: auto;
         width: 12px;
       }
-      @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+      @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
         background-color: WindowText;
         border-color: Window;
       }
@@ -241,9 +244,10 @@ exports[`PersonaPresence renders away 1`] = `
           line-height: 12px;
           position: relative;
           speak: none;
+          text-decoration: inherit;
           vertical-align: top;
         }
-        @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+        @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
           color: Window;
         }
     data-icon-name="SkypeClock"
@@ -273,11 +277,11 @@ exports[`PersonaPresence renders blocked + out of office 1`] = `
         top: auto;
         width: 12px;
       }
-      @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+      @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
         background-color: WindowText;
         border-color: Window;
       }
-      @media screen and (-ms-high-contrast: active), (forced-colors: active){&:after {
+      @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:after {
         background-color: Window;
         left: 2px;
         width: calc(100% - 4px);
@@ -293,7 +297,7 @@ exports[`PersonaPresence renders blocked + out of office 1`] = `
         top: 0px;
         width: 100%;
       }
-      @media screen and (-ms-high-contrast: active), (forced-colors: active){&:before {
+      @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:before {
         border-color: Window;
         height: calc(100% - 2px);
         left: 1px;
@@ -312,10 +316,11 @@ exports[`PersonaPresence renders blocked + out of office 1`] = `
           display: inline-block;
           font-size: 6px;
           line-height: 12px;
+          text-decoration: inherit;
           vertical-align: top;
           width: 1em;
         }
-        @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+        @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
           color: Window;
         }
     data-icon-name=""
@@ -343,11 +348,11 @@ exports[`PersonaPresence renders blocked 1`] = `
         top: auto;
         width: 12px;
       }
-      @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+      @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
         background-color: WindowText;
         border-color: Window;
       }
-      @media screen and (-ms-high-contrast: active), (forced-colors: active){&:after {
+      @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:after {
         background-color: Window;
         left: 2px;
         width: calc(100% - 4px);
@@ -363,7 +368,7 @@ exports[`PersonaPresence renders blocked 1`] = `
         top: 0px;
         width: 100%;
       }
-      @media screen and (-ms-high-contrast: active), (forced-colors: active){&:before {
+      @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:before {
         border-color: Window;
         height: calc(100% - 2px);
         left: 1px;
@@ -382,10 +387,11 @@ exports[`PersonaPresence renders blocked 1`] = `
           display: inline-block;
           font-size: 6px;
           line-height: 12px;
+          text-decoration: inherit;
           vertical-align: top;
           width: 1em;
         }
-        @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+        @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
           color: Window;
         }
     data-icon-name=""
@@ -413,7 +419,7 @@ exports[`PersonaPresence renders busy + out of office 1`] = `
         top: auto;
         width: 12px;
       }
-      @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+      @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
         background-color: WindowText;
         border-color: Window;
       }
@@ -428,7 +434,7 @@ exports[`PersonaPresence renders busy + out of office 1`] = `
         top: 0px;
         width: 100%;
       }
-      @media screen and (-ms-high-contrast: active), (forced-colors: active){&:before {
+      @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:before {
         border-color: Window;
         height: calc(100% - 2px);
         left: 1px;
@@ -448,10 +454,11 @@ exports[`PersonaPresence renders busy + out of office 1`] = `
           display: inline-block;
           font-size: 6px;
           line-height: 12px;
+          text-decoration: inherit;
           vertical-align: top;
           width: 1em;
         }
-        @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+        @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
           color: Window;
         }
     data-icon-name=""
@@ -479,7 +486,7 @@ exports[`PersonaPresence renders busy 1`] = `
         top: auto;
         width: 12px;
       }
-      @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+      @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
         background-color: WindowText;
         border-color: Window;
       }
@@ -495,10 +502,11 @@ exports[`PersonaPresence renders busy 1`] = `
           display: inline-block;
           font-size: 6px;
           line-height: 12px;
+          text-decoration: inherit;
           vertical-align: top;
           width: 1em;
         }
-        @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+        @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
           color: Window;
         }
     data-icon-name=""
@@ -526,7 +534,7 @@ exports[`PersonaPresence renders do not disturb + out of office 1`] = `
         top: auto;
         width: 12px;
       }
-      @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+      @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
         background-color: WindowText;
         border-color: Window;
       }
@@ -541,7 +549,7 @@ exports[`PersonaPresence renders do not disturb + out of office 1`] = `
         top: 0px;
         width: 100%;
       }
-      @media screen and (-ms-high-contrast: active), (forced-colors: active){&:before {
+      @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:before {
         border-color: Window;
         height: calc(100% - 2px);
         left: 1px;
@@ -566,9 +574,10 @@ exports[`PersonaPresence renders do not disturb + out of office 1`] = `
           font-weight: normal;
           line-height: 12px;
           speak: none;
+          text-decoration: inherit;
           vertical-align: top;
         }
-        @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+        @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
           color: Window;
         }
     data-icon-name="SkypeMinus"
@@ -598,7 +607,7 @@ exports[`PersonaPresence renders do not disturb 1`] = `
         top: auto;
         width: 12px;
       }
-      @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+      @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
         background-color: WindowText;
         border-color: Window;
       }
@@ -619,9 +628,10 @@ exports[`PersonaPresence renders do not disturb 1`] = `
           font-weight: normal;
           line-height: 12px;
           speak: none;
+          text-decoration: inherit;
           vertical-align: top;
         }
-        @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+        @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
           color: Window;
         }
     data-icon-name="SkypeMinus"
@@ -655,7 +665,7 @@ exports[`PersonaPresence renders offline + out of office 1`] = `
         top: auto;
         width: 12px;
       }
-      @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+      @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
         background-color: WindowText;
         border-color: Window;
       }
@@ -670,7 +680,7 @@ exports[`PersonaPresence renders offline + out of office 1`] = `
         top: 0px;
         width: 100%;
       }
-      @media screen and (-ms-high-contrast: active), (forced-colors: active){&:before {
+      @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:before {
         border-color: Window;
         height: calc(100% - 2px);
         left: 1px;
@@ -695,9 +705,10 @@ exports[`PersonaPresence renders offline + out of office 1`] = `
           font-weight: normal;
           line-height: 12px;
           speak: none;
+          text-decoration: inherit;
           vertical-align: top;
         }
-        @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+        @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
           color: Window;
         }
     data-icon-name="SkypeArrow"
@@ -727,7 +738,7 @@ exports[`PersonaPresence renders offline 1`] = `
         top: auto;
         width: 12px;
       }
-      @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+      @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
         background-color: WindowText;
         border-color: Window;
       }
@@ -742,7 +753,7 @@ exports[`PersonaPresence renders offline 1`] = `
         top: 0px;
         width: 100%;
       }
-      @media screen and (-ms-high-contrast: active), (forced-colors: active){&:before {
+      @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:before {
         border-color: Window;
         height: calc(100% - 2px);
         left: 1px;
@@ -762,10 +773,11 @@ exports[`PersonaPresence renders offline 1`] = `
           display: inline-block;
           font-size: 6px;
           line-height: 12px;
+          text-decoration: inherit;
           vertical-align: top;
           width: 1em;
         }
-        @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+        @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
           color: Window;
         }
     data-icon-name=""

@@ -2,12 +2,13 @@ export { Async } from './Async';
 export type { ICancelable } from './Async';
 export { AutoScroll } from './AutoScroll';
 export {
-  // eslint-disable-next-line deprecation/deprecation
+  // eslint-disable-next-line @typescript-eslint/no-deprecated
   BaseComponent,
   nullRender,
 } from './BaseComponent';
 export type { IBaseProps } from './BaseComponent.types';
 export { DelayedRender } from './DelayedRender';
+export type { IReactProps } from './React.types';
 export type { IDelayedRenderProps, IDelayedRenderState } from './DelayedRender';
 export { EventGroup } from './EventGroup';
 export type { IDeclaredEventsByName, IEventRecord, IEventRecordList, IEventRecordsByName } from './EventGroup';
@@ -16,13 +17,13 @@ export type { IPerfData, IPerfMeasurement, IPerfSummary } from './FabricPerforma
 export { GlobalSettings } from './GlobalSettings';
 export type { IChangeDescription, IChangeEventCallback } from './GlobalSettings';
 export type {
-  // eslint-disable-next-line deprecation/deprecation
+  // eslint-disable-next-line @typescript-eslint/no-deprecated
   IClassNames,
 } from './IClassNames';
 export type { IComponentAs, IComponentAsProps } from './IComponentAs';
 export type { IDisposable } from './IDisposable';
 export type {
-  // eslint-disable-next-line deprecation/deprecation
+  // eslint-disable-next-line @typescript-eslint/no-deprecated
   IPoint,
   Point,
 } from './Point';
@@ -61,13 +62,13 @@ export type {
   ICustomizations,
   ISettings,
   ISettingsFunction,
-  // eslint-disable-next-line deprecation/deprecation
+  // eslint-disable-next-line @typescript-eslint/no-deprecated
   Settings,
-  // eslint-disable-next-line deprecation/deprecation
+  // eslint-disable-next-line @typescript-eslint/no-deprecated
   SettingsFunction,
 } from './customizations/Customizations';
 export {
-  // eslint-disable-next-line deprecation/deprecation
+  // eslint-disable-next-line @typescript-eslint/no-deprecated
   Customizer,
 } from './customizations/Customizer';
 export type { ICustomizerProps } from './customizations/Customizer.types';
@@ -82,8 +83,10 @@ export {
   elementContains,
   elementContainsAttribute,
   findElementRecursive,
+  getActiveElement,
   getChildren,
   getDocument,
+  getEventTarget,
   getFirstVisibleElementFromSelector,
   getParent,
   getRect,
@@ -92,7 +95,7 @@ export {
   isVirtualElement,
   on,
   portalContainsElement,
-  // eslint-disable-next-line deprecation/deprecation
+  // eslint-disable-next-line @typescript-eslint/no-deprecated
   raiseClick,
   setPortalAttribute,
   setVirtualParent,
@@ -124,15 +127,18 @@ export { hoistMethods, unhoistMethods } from './hoist';
 export { hoistStatics } from './hoistStatics';
 export { initializeComponentRef } from './initializeComponentRef';
 export {
-  // eslint-disable-next-line deprecation/deprecation
+  // eslint-disable-next-line @typescript-eslint/no-deprecated
   initializeFocusRects,
 } from './initializeFocusRects';
-export { FocusRects, useFocusRects } from './useFocusRects';
+export { FocusRectsProvider } from './FocusRectsProvider';
+export type { FocusRectsProviderProps } from './FocusRectsProvider';
+export { FocusRects, FocusRectsContext, useFocusRects } from './useFocusRects';
+export type { IFocusRectsContext } from './useFocusRects';
 export { getInitials } from './initials';
-export { addDirectionalKeyCode, isDirectionalKeyCode } from './keyboard';
+export { addDirectionalKeyCode, isDirectionalKeyCode, removeDirectionalKeyCode } from './keyboard';
 export {
   getLanguage,
-  // eslint-disable-next-line deprecation/deprecation
+  // eslint-disable-next-line @typescript-eslint/no-deprecated
   setLanguage,
 } from './language';
 export { calculatePrecision, fitContentToBounds, getDistanceBetweenPoints, precisionRound } from './math';
@@ -157,7 +163,7 @@ export {
   getNativeProps,
   htmlElementProperties,
   iframeProperties,
-  // eslint-disable-next-line deprecation/deprecation
+  // eslint-disable-next-line @typescript-eslint/no-deprecated
   imageProperties,
   imgProperties,
   inputProperties,
@@ -175,9 +181,9 @@ export {
 } from './properties';
 export { composeRenderFunction } from './renderFunction/composeRenderFunction';
 export {
-  // eslint-disable-next-line deprecation/deprecation
+  // eslint-disable-next-line @typescript-eslint/no-deprecated
   getResourceUrl,
-  // eslint-disable-next-line deprecation/deprecation
+  // eslint-disable-next-line @typescript-eslint/no-deprecated
   setBaseUrl,
 } from './resources';
 export { getRTL, getRTLSafeKeyCode, setRTL } from './rtl';
@@ -221,11 +227,43 @@ export type { ISettingsMap, IWarnControlledUsageParams } from './warn';
 export { isIE11 } from './ie11Detector';
 export { getPropsWithDefaults } from './getPropsWithDefaults';
 export { setFocusVisibility, IsFocusVisibleClassName } from './setFocusVisibility';
+export { canUseDOM } from './dom/canUseDOM';
+// eslint-disable-next-line @typescript-eslint/no-deprecated
 export { setSSR } from './dom/setSSR';
 export { createMergedRef } from './createMergedRef';
 export { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect';
 
 import './version';
 
-// eslint-disable-next-line deprecation/deprecation
+// eslint-disable-next-line @typescript-eslint/no-deprecated
 export type { IStyleFunctionOrObject, Omit } from '@fluentui/merge-styles';
+
+export {
+  MergeStylesRootProvider,
+  MergeStylesShadowRootContext,
+  MergeStylesShadowRootProvider,
+  useAdoptedStylesheet,
+  useAdoptedStylesheetEx,
+  useHasMergeStylesShadowRootContext,
+  useMergeStylesHooks,
+  useMergeStylesRootStylesheets,
+  useMergeStylesShadowRootContext,
+  useShadowConfig,
+  useStyled,
+} from './shadowDom';
+
+export type {
+  AdoptedStylesheetHook,
+  AdoptedStylesheetExHook,
+  HasMergeStylesShadowRootContextHook,
+  MergeStylesShadowRootContextHook,
+  MergeStylesRootContextValue,
+  MergeStylesRootProviderProps,
+  MergeStylesRootStylesheetsHook,
+  MergeStylesShadowRootContextValue,
+  MergeStylesShadowRootProviderProps,
+  MergeStylesContextConsumerProps,
+  ShadowConfigHook,
+  UseStyledHook,
+  UseWindowHook,
+} from './shadowDom';

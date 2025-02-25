@@ -42,7 +42,7 @@ exports[`Check renders Check (correctly) 1`] = `
       &:focus {
         opacity: 1;
       }
-      @media screen and (-ms-high-contrast: active), (forced-colors: active){&:before {
+      @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){&:before {
         background: Window;
       }
 >
@@ -53,6 +53,7 @@ exports[`Check renders Check (correctly) 1`] = `
         ms-Check-circle
         {
           display: inline-block;
+          text-decoration: inherit;
         }
         {
           -moz-osx-font-smoothing: grayscale;
@@ -76,7 +77,7 @@ exports[`Check renders Check (correctly) 1`] = `
           vertical-align: middle;
           width: 18px;
         }
-        @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+        @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
           color: WindowText;
         }
     data-icon-name="CircleRing"
@@ -95,6 +96,7 @@ exports[`Check renders Check (correctly) 1`] = `
         ms-Check-check
         {
           display: inline-block;
+          text-decoration: inherit;
         }
         {
           -moz-osx-font-smoothing: grayscale;
@@ -123,7 +125,7 @@ exports[`Check renders Check (correctly) 1`] = `
         &:hover {
           opacity: 1;
         }
-        @media screen and (-ms-high-contrast: active), (forced-colors: active){& {
+        @media screen and (-ms-high-contrast: active), screen and (forced-colors: active){& {
           -ms-high-contrast-adjust: none;
           border: none;
           color: WindowText;

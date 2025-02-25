@@ -3,14 +3,19 @@ import * as _ from 'lodash';
 import * as path from 'path';
 import { render } from '@testing-library/react';
 
-import { TestObject, IsConformantOptions } from './types';
+import { IsConformantOptions, DefaultTestObject } from './types';
 import { defaultErrorMessages } from './defaultErrorMessages';
 import { ComponentDoc } from 'react-docgen-typescript';
 import { getPackagePath, getCallbackArguments, validateCallbackArguments } from './utils/index';
 import { act } from 'react-dom/test-utils';
 
+/**
+ * TODO - TS 4.5 introduces strict catch `err` callback handling - opting out for sake of smoother ts 4.5 upgrade
+ */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type OptOutStrictCatchTypes = any;
+
 const CALLBACK_REGEX = /^on(?!Render[A-Z])[A-Z]/;
-const DEFAULT_CLASSNAME_PREFIX = 'fui-';
 
 /**
  * Find the target element where the attribute is applied using either `getTargetElement`,
@@ -27,9 +32,9 @@ function getTargetElement(
 
 /* eslint-disable @typescript-eslint/naming-convention */
 
-export const defaultTests: TestObject = {
+export const defaultTests: DefaultTestObject = {
   /** Component file exports a valid React element type  */
-  'exports-component': (componentInfo: ComponentDoc, testInfo: IsConformantOptions) => {
+  'exports-component': (testInfo: IsConformantOptions) => {
     it(`exports component from file under correct name (exports-component)`, () => {
       const { componentPath, Component, displayName } = testInfo;
       const componentFile = require(componentPath);
@@ -40,19 +45,19 @@ export const defaultTests: TestObject = {
         } else {
           expect(componentFile[displayName]).toBe(Component);
         }
-      } catch (e) {
+      } catch (e: OptOutStrictCatchTypes) {
         throw new Error(defaultErrorMessages['exports-component'](testInfo, e, Object.keys(componentFile)));
       }
     });
   },
 
   /** Component file exports a valid React element and can render it */
-  'component-renders': (componentInfo: ComponentDoc, testInfo: IsConformantOptions) => {
+  'component-renders': (testInfo: IsConformantOptions) => {
     it(`renders (component-renders)`, () => {
       try {
         const { requiredProps, Component, renderOptions } = testInfo;
         expect(() => render(<Component {...requiredProps} />, renderOptions)).not.toThrow();
-      } catch (e) {
+      } catch (e: OptOutStrictCatchTypes) {
         throw new Error(defaultErrorMessages['component-renders'](testInfo, e));
       }
     });
@@ -62,7 +67,7 @@ export const defaultTests: TestObject = {
    * If functional component: component has a displayName
    * Else: component's constructor is a named function and matches displayName
    */
-  'component-has-displayname': (componentInfo: ComponentDoc, testInfo: IsConformantOptions) => {
+  'component-has-displayname': (testInfo: IsConformantOptions) => {
     const { Component } = testInfo;
 
     it(`has a displayName or constructor name (component-has-displayname)`, () => {
@@ -74,14 +79,14 @@ export const defaultTests: TestObject = {
         // component with constructor name Wrapped, and adds a Styled prefix to the displayName. Components passed to
         // styled() typically have Base in their name, so remove that too.
         expect(displayName).toMatch(new RegExp(`^(Customized|Styled)?${testInfo.displayName}(Base)?$`));
-      } catch (e) {
+      } catch (e: OptOutStrictCatchTypes) {
         throw new Error(defaultErrorMessages['component-has-displayname'](testInfo, e));
       }
     });
   },
 
   /** Component handles ref */
-  'component-handles-ref': (componentInfo: ComponentDoc, testInfo: IsConformantOptions) => {
+  'component-handles-ref': (testInfo: IsConformantOptions) => {
     it(`handles ref (component-handles-ref)`, () => {
       // This test simply verifies that the passed ref is applied to an element *anywhere* in the DOM
       const { Component, requiredProps, elementRefName = 'ref', renderOptions } = testInfo;
@@ -96,14 +101,14 @@ export const defaultTests: TestObject = {
       try {
         expect(rootRef.current).toBeInstanceOf(HTMLElement);
         expect(baseElement.contains(rootRef.current)).toBe(true);
-      } catch (e) {
+      } catch (e: OptOutStrictCatchTypes) {
         throw new Error(defaultErrorMessages['component-handles-ref'](testInfo, e));
       }
     });
   },
 
   /** Component has ref applied to the root component DOM node */
-  'component-has-root-ref': (componentInfo: ComponentDoc, testInfo: IsConformantOptions) => {
+  'component-has-root-ref': (testInfo: IsConformantOptions) => {
     it(`applies ref to root element (component-has-root-ref)`, () => {
       const { renderOptions, Component, requiredProps, elementRefName = 'ref', primarySlot = 'root' } = testInfo;
 
@@ -130,7 +135,7 @@ export const defaultTests: TestObject = {
         // will print out the very long stringified version in the error (which isn't helpful)
         expect(rootRef.current).toBeInstanceOf(HTMLElement);
         expect(rootRef.current).toBe(refEl);
-      } catch (e) {
+      } catch (e: OptOutStrictCatchTypes) {
         throw new Error(defaultErrorMessages['component-has-root-ref'](testInfo, e));
       }
     });
@@ -148,7 +153,7 @@ export const defaultTests: TestObject = {
    * (In the extremely unlikely event that someone has a compelling need for the native functionality
    * in the future, it can be added under an `htmlSize` prop.)
    */
-  'omits-size-prop': (componentInfo: ComponentDoc, testInfo: IsConformantOptions) => {
+  'omits-size-prop': (testInfo: IsConformantOptions, componentInfo: ComponentDoc) => {
     const sizeType = componentInfo.props.size?.type?.name;
     if (!sizeType || componentInfo.props.htmlSize) {
       return;
@@ -176,14 +181,14 @@ export const defaultTests: TestObject = {
 
       try {
         expect(elementWithSize).toBeFalsy();
-      } catch (e) {
+      } catch (e: OptOutStrictCatchTypes) {
         throw new Error(defaultErrorMessages['omits-size-prop'](testInfo, e, size, elementWithSize!));
       }
     });
   },
 
   /** Component file handles classname prop */
-  'component-handles-classname': (componentInfo: ComponentDoc, testInfo: IsConformantOptions) => {
+  'component-handles-classname': (testInfo: IsConformantOptions) => {
     const { Component, requiredProps, renderOptions } = testInfo;
     const testClassName = 'testComponentClassName';
     let handledClassName = false;
@@ -212,7 +217,7 @@ export const defaultTests: TestObject = {
       try {
         expect(classNames).toContain(testClassName);
         handledClassName = true;
-      } catch (e) {
+      } catch (e: OptOutStrictCatchTypes) {
         throw new Error(
           defaultErrorMessages['component-handles-classname'](testInfo, e, testClassName, classNames, domNode),
         );
@@ -233,7 +238,7 @@ export const defaultTests: TestObject = {
         for (defaultClassName of defaultClassNames) {
           expect(classNames).toContain(defaultClassName);
         }
-      } catch (e) {
+      } catch (e: OptOutStrictCatchTypes) {
         throw new Error(
           defaultErrorMessages['component-preserves-default-classname'](
             testInfo,
@@ -247,64 +252,13 @@ export const defaultTests: TestObject = {
     });
   },
 
-  /** Component file has assigned and exported static class */
-  'component-has-static-classname': (componentInfo: ComponentDoc, testInfo: IsConformantOptions) => {
-    const {
-      Component,
-      requiredProps,
-      renderOptions,
-      testOptions: { 'component-has-static-classname': { prefix = DEFAULT_CLASSNAME_PREFIX } = {} } = {},
-    } = testInfo;
-    const componentClassName = `${prefix}${componentInfo.displayName}`;
+  /** Component file has assigned and exported static classnames object */
+  'component-has-static-classnames-object': (testInfo: IsConformantOptions) => {
+    const { componentPath, Component, testOptions = {}, requiredProps, renderOptions } = testInfo;
 
-    it(`has static classname (component-has-static-classname)`, () => {
-      const result = render(<Component {...requiredProps} />, renderOptions);
-      const rootEl = getTargetElement(testInfo, result, 'className');
-      expect(rootEl).toBeTruthy();
-      const classNames = classListToStrings(rootEl.classList);
-
-      try {
-        expect(classNames).toContain(componentClassName);
-      } catch (e) {
-        throw new Error(
-          defaultErrorMessages['component-has-static-classname'](testInfo, e, componentClassName, classNames),
-        );
-      }
-    });
-  },
-
-  'component-has-static-classname-exported': (componentInfo: ComponentDoc, testInfo: IsConformantOptions) => {
-    if (testInfo.isInternal) {
-      return;
-    }
-
-    const {
-      componentPath,
-      testOptions: { 'component-has-static-classname': { prefix = DEFAULT_CLASSNAME_PREFIX } = {} } = {},
-    } = testInfo;
-    const componentClassName = `${prefix}${componentInfo.displayName}`;
-
-    it(`static classname is exported at top-level (component-has-static-classname-exported)`, () => {
-      const exportName =
-        componentInfo.displayName.slice(0, 1).toLowerCase() + componentInfo.displayName.slice(1) + 'ClassName';
-
-      try {
-        const indexFile = require(path.join(getPackagePath(componentPath), 'src', 'index'));
-
-        expect(indexFile[exportName]).toBe(componentClassName);
-      } catch (e) {
-        throw new Error(
-          defaultErrorMessages['component-has-static-classname-exported'](testInfo, e, componentClassName, exportName),
-        );
-      }
-    });
-  },
-
-  'component-has-static-classnames-object': (componentInfo: ComponentDoc, testInfo: IsConformantOptions) => {
-    const { componentPath, Component, requiredProps, renderOptions } = testInfo;
-
-    const componentName = componentInfo.displayName;
-    const componentClassName = `fui-${componentName}`;
+    const componentName = testInfo.displayName;
+    const classNamePrefix = testOptions?.['component-has-static-classname']?.prefix ?? 'fui';
+    const componentClassName = `${classNamePrefix}-${componentName}`;
     const exportName = `${componentName[0].toLowerCase()}${componentName.slice(1)}ClassNames`;
     const indexPath = path.join(getPackagePath(componentPath), 'src', 'index');
     let handledClassNamesObjectExport = false;
@@ -319,7 +273,7 @@ export const defaultTests: TestObject = {
         const classNamesFromFile = indexFile[exportName];
         expect(classNamesFromFile).toBeTruthy();
         handledClassNamesObjectExport = true;
-      } catch (e) {
+      } catch (e: OptOutStrictCatchTypes) {
         throw new Error(
           defaultErrorMessages['component-has-static-classnames-object-exported'](testInfo, e, exportName),
         );
@@ -344,7 +298,7 @@ export const defaultTests: TestObject = {
 
       try {
         expect(classNamesFromFile).toEqual(expectedClassNames);
-      } catch (e) {
+      } catch (e: OptOutStrictCatchTypes) {
         throw new Error(
           defaultErrorMessages['component-has-static-classnames-in-correct-format'](testInfo, e, exportName),
         );
@@ -356,7 +310,6 @@ export const defaultTests: TestObject = {
         return;
       }
 
-      const { testOptions = {} } = testInfo;
       const staticClassNameVariants = testOptions['has-static-classnames'] ?? [{ props: {} }];
 
       for (const staticClassNames of staticClassNameVariants) {
@@ -366,18 +319,25 @@ export const defaultTests: TestObject = {
         };
         const result = render(<Component {...mergedProps} />, renderOptions);
         const rootEl = getTargetElement(testInfo, result, 'className');
+        const portalEl = staticClassNames.getPortalElement && staticClassNames.getPortalElement(result);
 
         const indexFile = require(indexPath);
         const classNamesFromFile = indexFile[exportName];
 
         const expectedClassNames: { [key: string]: string } = staticClassNames.expectedClassNames ?? classNamesFromFile;
-        const missingClassNames = Object.values(expectedClassNames).filter(
+        let missingClassNames = Object.values(expectedClassNames).filter(
           className => !rootEl.classList.contains(className) && !rootEl.querySelector(`.${className}`),
         );
 
+        if (missingClassNames.length && portalEl) {
+          missingClassNames = missingClassNames.filter(
+            className => !portalEl.classList.contains(className) && !portalEl.querySelector(`.${className}`),
+          );
+        }
+
         try {
           expect(missingClassNames).toHaveLength(0);
-        } catch (e) {
+        } catch (e: OptOutStrictCatchTypes) {
           throw new Error(
             defaultErrorMessages['component-has-static-classnames'](
               testInfo,
@@ -393,21 +353,21 @@ export const defaultTests: TestObject = {
   },
 
   /** Constructor/component name matches filename */
-  'name-matches-filename': (componentInfo: ComponentDoc, testInfo: IsConformantOptions) => {
+  'name-matches-filename': (testInfo: IsConformantOptions) => {
     it(`Component/constructor name matches filename (name-matches-filename)`, () => {
       try {
         const { componentPath, displayName } = testInfo;
         const fileName = path.basename(componentPath, path.extname(componentPath));
 
         expect(displayName).toMatch(fileName);
-      } catch (e) {
+      } catch (e: OptOutStrictCatchTypes) {
         throw new Error(defaultErrorMessages['name-matches-filename'](testInfo, e));
       }
     });
   },
 
   /** Ensures component is exported at top level allowing `import { Component } from 'packageName'` */
-  'exported-top-level': (componentInfo: ComponentDoc, testInfo: IsConformantOptions) => {
+  'exported-top-level': (testInfo: IsConformantOptions) => {
     if (testInfo.isInternal) {
       return;
     }
@@ -418,14 +378,14 @@ export const defaultTests: TestObject = {
         const indexFile = require(path.join(getPackagePath(componentPath), 'src', 'index'));
 
         expect(indexFile[displayName]).toBe(Component);
-      } catch (e) {
+      } catch (e: OptOutStrictCatchTypes) {
         throw new Error(defaultErrorMessages['exported-top-level'](testInfo, e));
       }
     });
   },
 
   /** Ensures component has top level file in package/src/componentName */
-  'has-top-level-file': (componentInfo: ComponentDoc, testInfo: IsConformantOptions) => {
+  'has-top-level-file': (testInfo: IsConformantOptions) => {
     if (testInfo.isInternal) {
       return;
     }
@@ -436,21 +396,21 @@ export const defaultTests: TestObject = {
         const topLevelFile = require(path.join(getPackagePath(componentPath), 'src', displayName));
 
         expect(topLevelFile[displayName]).toBe(Component);
-      } catch (e) {
+      } catch (e: OptOutStrictCatchTypes) {
         throw new Error(defaultErrorMessages['has-top-level-file'](testInfo, e));
       }
     });
   },
 
   /** Ensures aria attributes are kebab cased */
-  'kebab-aria-attributes': (componentInfo: ComponentDoc, testInfo: IsConformantOptions) => {
+  'kebab-aria-attributes': (testInfo: IsConformantOptions, componentInfo: ComponentDoc) => {
     it(`uses kebab-case for aria attributes (kebab-aria-attributes)`, () => {
       const invalidProps = Object.keys(componentInfo.props).filter(
         prop => prop.startsWith('aria') && !/^aria-[a-z]+$/.test(prop),
       );
       try {
         expect(invalidProps).toEqual([]);
-      } catch (e) {
+      } catch (e: OptOutStrictCatchTypes) {
         throw new Error(defaultErrorMessages['kebab-aria-attributes'](testInfo, invalidProps));
       }
     });
@@ -458,7 +418,7 @@ export const defaultTests: TestObject = {
 
   // TODO: Test last word of callback name against list of valid verbs
   /** Ensures that components have consistent custom callback names i.e. on[Part][Event] */
-  'consistent-callback-names': (componentInfo: ComponentDoc, testInfo: IsConformantOptions) => {
+  'consistent-callback-names': (testInfo: IsConformantOptions, componentInfo: ComponentDoc) => {
     it(`has consistent custom callback names (consistent-callback-names)`, () => {
       const { testOptions = {} } = testInfo;
       const propNames = Object.keys(componentInfo.props);
@@ -478,22 +438,36 @@ export const defaultTests: TestObject = {
 
       try {
         expect(invalidProps).toEqual([]);
-      } catch (e) {
+      } catch (e: OptOutStrictCatchTypes) {
         throw new Error(defaultErrorMessages['consistent-callback-names'](testInfo, invalidProps));
       }
     });
   },
 
-  /** Ensures that components have consistent callback arguments (ev, data) */
-  'consistent-callback-args': (componentInfo, testInfo, tsProgram) => {
+  /**
+   * Ensures that components have consistent callback arguments (ev, data)
+   * @deprecated this test is for existing callbacks. The newly added callbacks' type will be guarded by eslint rule consistent-callback-type
+   */
+  'consistent-callback-args': (testInfo, componentInfo, tsProgram) => {
     it('has consistent custom callback arguments (consistent-callback-args)', () => {
       const { testOptions = {} } = testInfo;
 
       const propNames = Object.keys(componentInfo.props);
-      const ignoreProps = testOptions['consistent-callback-args']?.ignoreProps || [];
+      const legacyCallbacks = testOptions['consistent-callback-args']?.legacyCallbacks || [];
+
+      // verify that legacyCallbacks option contains real props:
+      const legacyCallbacksNotInProp = legacyCallbacks.filter(legacyCallback => !propNames.includes(legacyCallback));
+      if (legacyCallbacksNotInProp.length) {
+        throw new Error(
+          [
+            `Option "consistent-callback-args.legacyCallbacks" contains "${legacyCallbacksNotInProp.join(', ')}" prop,`,
+            'which is not present in component props.',
+          ].join(' '),
+        );
+      }
 
       const invalidProps = propNames.reduce<Record<string, Error>>((errors, propName) => {
-        if (!ignoreProps.includes(propName) && CALLBACK_REGEX.test(propName)) {
+        if (legacyCallbacks.includes(propName)) {
           const propInfo = componentInfo.props[propName];
 
           if (!propInfo.declarations) {
@@ -522,7 +496,7 @@ export const defaultTests: TestObject = {
 
           try {
             validateCallbackArguments(getCallbackArguments(tsProgram, rootFileName, propsTypeName, propName));
-          } catch (err) {
+          } catch (err: OptOutStrictCatchTypes) {
             console.log('err', err);
 
             return { ...errors, [propName]: err };
@@ -534,14 +508,14 @@ export const defaultTests: TestObject = {
 
       try {
         expect(invalidProps).toEqual({});
-      } catch (e) {
+      } catch (e: OptOutStrictCatchTypes) {
         throw new Error(defaultErrorMessages['consistent-callback-args'](testInfo, invalidProps));
       }
     });
   },
 
   /** If the primary slot is specified, it receives native props other than 'className' and 'style' */
-  'primary-slot-gets-native-props': (componentInfo: ComponentDoc, testInfo: IsConformantOptions) => {
+  'primary-slot-gets-native-props': (testInfo: IsConformantOptions) => {
     it(`applies correct native props to the primary and root slots (primary-slot-gets-native-props)`, () => {
       try {
         const { Component, requiredProps, primarySlot = 'root', renderOptions } = testInfo;
@@ -601,7 +575,7 @@ export const defaultTests: TestObject = {
           expect(rootNode).not.toBe(ref.current);
           expect(rootNode.getAttribute(testDataAttribute)).not.toEqual(testDataAttribute);
         });
-      } catch (e) {
+      } catch (e: OptOutStrictCatchTypes) {
         throw new Error(defaultErrorMessages['primary-slot-gets-native-props'](testInfo, e));
       }
     });

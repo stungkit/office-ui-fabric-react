@@ -14,7 +14,8 @@ describe('Maybe', () => {
   it('just will error if you pass it undefined', () => {
     let error = false;
     try {
-      Something(undefined as unknown);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      Something(undefined as any);
     } catch (_) {
       error = true;
     }
@@ -67,7 +68,7 @@ describe('Maybe', () => {
   it('wraps undefined in Maybe correctly', () => {
     expect(
       Maybe('foo')
-        .then<string>(v => (undefined as unknown) as string)
+        .then<string>(v => undefined as unknown as string)
         .orElse('defaultValue'),
     ).toEqual('defaultValue');
   });

@@ -16,6 +16,8 @@ import type {
   IDocumentCardStyleProps,
   IDocumentCardStyles,
 } from './DocumentCard.types';
+import { WindowContext } from '@fluentui/react-window-provider';
+import { getWindowEx } from '../../utilities/dom';
 
 const getClassNames = classNamesFunction<IDocumentCardStyleProps, IDocumentCardStyles>();
 
@@ -31,6 +33,8 @@ export class DocumentCardBase extends React.Component<IDocumentCardProps, any> i
     type: DocumentCardType.normal,
   };
 
+  public static contextType = WindowContext;
+
   private _rootElement = React.createRef<HTMLDivElement>();
   private _classNames: IProcessedStyleSet<IDocumentCardStyles>;
 
@@ -44,7 +48,7 @@ export class DocumentCardBase extends React.Component<IDocumentCardProps, any> i
   }
 
   public render(): JSX.Element {
-    // eslint-disable-next-line deprecation/deprecation
+    // eslint-disable-next-line @typescript-eslint/no-deprecated
     const { onClick, onClickHref, children, type, accentColor, styles, theme, className } = this.props;
     const nativeProps = getNativeProps<React.HTMLAttributes<HTMLDivElement>>(this.props, divProperties, [
       'className',
@@ -100,7 +104,7 @@ export class DocumentCardBase extends React.Component<IDocumentCardProps, any> i
   };
 
   private _onKeyDown = (ev: React.KeyboardEvent<HTMLElement>): void => {
-    // eslint-disable-next-line deprecation/deprecation
+    // eslint-disable-next-line @typescript-eslint/no-deprecated
     if (ev.which === KeyCodes.enter || ev.which === KeyCodes.space) {
       this._onAction(ev);
     }
@@ -109,14 +113,16 @@ export class DocumentCardBase extends React.Component<IDocumentCardProps, any> i
   private _onAction = (ev: React.SyntheticEvent<HTMLElement>): void => {
     const { onClick, onClickHref, onClickTarget } = this.props;
 
+    const win = getWindowEx(this.context)!; // can only be called on the client
+
     if (onClick) {
       onClick(ev);
     } else if (!onClick && onClickHref) {
       // If no onClick Function was provided and we do have an onClickHref, redirect to the onClickHref
       if (onClickTarget) {
-        window.open(onClickHref, onClickTarget, 'noreferrer noopener nofollow');
+        win.open(onClickHref, onClickTarget, 'noreferrer noopener nofollow');
       } else {
-        window.location.href = onClickHref;
+        win.location.href = onClickHref;
       }
 
       ev.preventDefault();
