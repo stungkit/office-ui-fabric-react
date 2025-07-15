@@ -78,7 +78,7 @@
     "@nx/eslint-plugin": "20.8.1",
     "@nx/jest": "20.8.1",
     "@nx/js": "20.8.1",
-    "@nx/node": "20.8.1",
+    "@nx/node": "20.8.2",
     "@nx/plugin": "20.8.1",
     "@nx/workspace": "20.8.1",
     "@octokit/rest": "18.12.0",
