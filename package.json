@@ -244,7 +244,7 @@
     "jsonc-eslint-parser": "2.4.0",
     "just-scripts": "1.8.2",
     "license-webpack-plugin": "4.0.2",
-    "lint-staged": "10.2.10",
+    "lint-staged": "10.5.4",
     "loader-utils": "2.0.4",
     "lodash": "4.17.21",
     "markdown-table": "2.0.0",
