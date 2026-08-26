@@ -87,7 +87,7 @@
     "@nx/eslint-plugin": "21.6.10",
     "@nx/jest": "21.6.10",
     "@nx/js": "21.6.10",
-    "@nx/node": "21.6.10",
+    "@nx/node": "21.6.11",
     "@nx/plugin": "21.6.10",
     "@nx/workspace": "21.6.10",
     "@octokit/rest": "18.12.0",
