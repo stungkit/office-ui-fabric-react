@@ -50,7 +50,7 @@ jobs:
         with:
           node-version: 22.x
 
-      - uses: actions/github-script@v8
+      - uses: actions/github-script@v9
         with:
           script: |
             const syncpackVersion = require('./package.json').devDependencies.syncpack;
@@ -77,7 +77,7 @@ jobs:
         with:
           node-version: 22.x
 
-      - uses: actions/github-script@v8
+      - uses: actions/github-script@v9
         with:
           script: |
             const beachballVersion = require('./package.json').devDependencies.beachball;
